@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teknik Penulisan Artikel Penelitian — Pendidikan Guru SD</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --cream: #faf6ef;
+    --warm: #f5ede0;
+    --amber: #c8841a;
+    --amber-light: #f0b93a;
+    --amber-pale: #fef3d8;
+    --teal: #1e5f5a;
+    --teal-light: #2d8a82;
+    --teal-pale: #e0f2f0;
+    --rust: #b54c2a;
+    --rust-pale: #fce9e2;
+    --paper: #fffdf8;
+    --shadow: rgba(26,18,8,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--amber), var(--teal-light));
+    width: 0%; z-index: 9999;
+    transition: width 0.1s;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 3px; left: 0; right: 0; z-index: 999;
+    background: rgba(250,246,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,132,26,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 1.1rem;
+    color: var(--teal);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    display: flex; gap: 0.25rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--ink); text-decoration: none;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--teal); color: white;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(200,132,26,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(30,95,90,0.08) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 2px;
+    background: var(--amber);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    line-height: 1.1;
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75;
+    color: #4a3f2f; max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white; border: none; cursor: pointer;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.25s;
+    text-decoration: none; display: inline-block;
+    box-shadow: 0 4px 20px rgba(30,95,90,0.3);
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(30,95,90,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--teal); border: 2px solid var(--teal);
+    cursor: pointer;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    transition: all 0.25s;
+    text-decoration: none; display: inline-block;
+  }
+
+  .btn-outline:hover {
+    background: var(--teal); color: white;
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative;
+  }
+
+  .paper-stack {
+    position: relative; width: 100%;
+  }
+
+  .paper-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.8rem;
+    box-shadow: 0 8px 40px var(--shadow);
+    position: relative;
+  }
+
+  .paper-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(90deg, var(--teal), var(--amber));
+  }
+
+  .paper-card-back {
+    position: absolute;
+    top: -12px; left: 12px; right: -12px;
+    background: var(--warm);
+    border-radius: 12px; height: calc(100% + 4px);
+    z-index: -1;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .paper-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: var(--teal-pale); color: var(--teal);
+    padding: 0.3rem 0.75rem; border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .paper-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    line-height: 1.4; margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .paper-line {
+    height: 2px; background: var(--warm);
+    margin: 0.5rem 0;
+    border-radius: 2px;
+  }
+
+  .paper-line:last-child { width: 60%; }
+
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1rem; margin-top: 1.5rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: var(--warm); border-radius: 8px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--amber);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.7rem; color: #7a6a52;
+    font-weight: 500; letter-spacing: 0.5px;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block; width: 24px; height: 2px; background: var(--amber);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900; line-height: 1.15;
+    margin-bottom: 1rem; color: var(--ink);
+  }
+
+  .section-sub {
+    font-size: 1rem; color: #6a5a45; line-height: 1.7;
+    max-width: 600px; margin-bottom: 3rem;
+  }
+
+  /* ─── FULL-WIDTH SEPARATOR ─── */
+  .stripe {
+    width: 100vw; margin-left: calc(-50vw + 50%);
+    background: var(--teal);
+    padding: 4rem 2rem;
+    color: white;
+    text-align: center;
+  }
+
+  .stripe-inner {
+    max-width: 900px; margin: 0 auto;
+  }
+
+  /* ─── WHAT IS RESEARCH ARTICLE ─── */
+  .intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+    margin-top: 2rem;
+  }
+
+  .definition-box {
+    background: var(--teal);
+    color: white; padding: 2.5rem;
+    border-radius: 16px;
+    position: relative; overflow: hidden;
+  }
+
+  .definition-box::after {
+    content: '"';
+    position: absolute; right: -0.5rem; bottom: -2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem; font-weight: 900;
+    color: rgba(255,255,255,0.07);
+    line-height: 1;
+  }
+
+  .definition-box p {
+    font-size: 1.05rem; line-height: 1.8;
+    position: relative; z-index: 1;
+  }
+
+  .definition-box cite {
+    display: block; margin-top: 1.2rem;
+    font-size: 0.82rem; opacity: 0.7;
+    font-style: normal;
+  }
+
+  .char-list { list-style: none; }
+
+  .char-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px dashed rgba(200,132,26,0.25);
+  }
+
+  .char-item:last-child { border-bottom: none; }
+
+  .char-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--amber-pale);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .char-text strong {
+    display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem;
+  }
+
+  .char-text span { font-size: 0.84rem; color: #6a5a45; line-height: 1.5; }
+
+  /* ─── STRUCTURE ACCORDION ─── */
+  .structure-bg {
+    background: var(--warm);
+    width: 100vw; margin-left: calc(-50vw + 50%);
+    padding: 5rem 2rem;
+  }
+
+  .structure-inner {
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .imrad-flow {
+    display: flex; gap: 0; margin: 3rem 0;
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 8px 40px var(--shadow);
+  }
+
+  .imrad-step {
+    flex: 1; padding: 1.5rem 1rem;
+    text-align: center; cursor: pointer;
+    transition: all 0.3s; position: relative;
+  }
+
+  .imrad-step:nth-child(1) { background: #1e5f5a; color: white; }
+  .imrad-step:nth-child(2) { background: #2d8a82; color: white; }
+  .imrad-step:nth-child(3) { background: #c8841a; color: white; }
+  .imrad-step:nth-child(4) { background: #e0a035; color: white; }
+  .imrad-step:nth-child(5) { background: #b54c2a; color: white; }
+  .imrad-step:nth-child(6) { background: #d0622e; color: white; }
+
+  .imrad-step:hover { filter: brightness(1.15); }
+  .imrad-step.active { transform: scaleY(1.05); z-index: 2; filter: brightness(1.2); }
+
+  .imrad-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .imrad-name { font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; opacity: 0.9; }
+
+  .accordion-panels { }
+
+  .acc-panel {
+    background: white; border-radius: 14px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.5rem; cursor: pointer;
+    user-select: none;
+  }
+
+  .acc-header-left {
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .acc-num {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 1rem; color: white;
+    flex-shrink: 0;
+  }
+
+  .acc-title {
+    font-weight: 600; font-size: 0.95rem;
+  }
+
+  .acc-title small {
+    display: block; font-weight: 400; color: #8a7a62; font-size: 0.8rem; margin-top: 0.1rem;
+  }
+
+  .acc-arrow {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--warm); display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; transition: transform 0.3s; flex-shrink: 0;
+  }
+
+  .acc-panel.open .acc-arrow { transform: rotate(180deg); }
+
+  .acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 1.5rem;
+  }
+
+  .acc-panel.open .acc-body {
+    max-height: 800px;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .acc-content {
+    border-top: 1px dashed var(--warm);
+    padding-top: 1.25rem;
+    font-size: 0.9rem; line-height: 1.75; color: #4a3f2f;
+  }
+
+  .acc-content ul { list-style: none; margin-top: 0.75rem; }
+
+  .acc-content ul li {
+    padding: 0.35rem 0 0.35rem 1.25rem;
+    position: relative;
+  }
+
+  .acc-content ul li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--amber); font-size: 0.85rem;
+  }
+
+  .acc-tip {
+    background: var(--amber-pale);
+    border-left: 3px solid var(--amber);
+    padding: 0.75rem 1rem; border-radius: 0 8px 8px 0;
+    margin-top: 1rem; font-size: 0.84rem;
+    color: #7a5c10;
+  }
+
+  /* ─── WRITING TIPS ─── */
+  .tips-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 2rem;
+  }
+
+  .tip-card {
+    background: white; border-radius: 14px;
+    padding: 1.75rem;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.07);
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    position: relative; overflow: hidden;
+  }
+
+  .tip-card::before {
+    content: attr(data-num);
+    position: absolute; right: -0.5rem; top: -1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 900;
+    color: rgba(200,132,26,0.07); line-height: 1;
+  }
+
+  .tip-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    border-color: var(--amber-light);
+  }
+
+  .tip-emoji {
+    font-size: 1.8rem; margin-bottom: 0.75rem; display: block;
+  }
+
+  .tip-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.6rem; color: var(--ink);
+  }
+
+  .tip-card p {
+    font-size: 0.85rem; line-height: 1.7; color: #6a5a45;
+  }
+
+  /* ─── LANGUAGE CHECKER ─── */
+  .checker-section {
+    background: var(--teal);
+    width: 100vw; margin-left: calc(-50vw + 50%);
+    padding: 5rem 2rem;
+    color: white;
+  }
+
+  .checker-inner {
+    max-width: 900px; margin: 0 auto;
+  }
+
+  .checker-inner .section-label { color: var(--amber-light); }
+  .checker-inner .section-label::before { background: var(--amber-light); }
+  .checker-inner .section-title { color: white; }
+  .checker-inner .section-sub { color: rgba(255,255,255,0.75); }
+
+  .checker-box {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px; padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .checker-input {
+    width: 100%;
+    min-height: 130px; padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px; color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; line-height: 1.7; resize: vertical;
+    outline: none; transition: border 0.2s;
+  }
+
+  .checker-input::placeholder { color: rgba(255,255,255,0.5); }
+  .checker-input:focus { border-color: var(--amber-light); }
+
+  .checker-controls {
+    display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; align-items: center;
+  }
+
+  .checker-btn {
+    background: var(--amber); color: var(--ink);
+    border: none; cursor: pointer;
+    padding: 0.75rem 1.75rem; border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 700;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .checker-btn:hover { background: var(--amber-light); transform: translateY(-1px); }
+
+  .checker-select {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white; padding: 0.7rem 1rem;
+    border-radius: 999px; font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif; cursor: pointer; outline: none;
+  }
+
+  .checker-result {
+    margin-top: 1.5rem; display: none;
+  }
+
+  .checker-result.show { display: block; }
+
+  .result-items {
+    list-style: none; display: flex; flex-direction: column; gap: 0.75rem;
+  }
+
+  .result-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 1rem 1.25rem;
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    border-left: 3px solid transparent;
+    font-size: 0.88rem; line-height: 1.6;
+  }
+
+  .result-item.good { border-left-color: #4ade80; }
+  .result-item.warn { border-left-color: var(--amber-light); }
+  .result-item.bad { border-left-color: #f87171; }
+
+  .result-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  /* ─── QUIZ ─── */
+  .quiz-section { }
+
+  .quiz-card {
+    background: white; border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 6px 40px rgba(0,0,0,0.1);
+    max-width: 750px; margin: 2rem auto 0;
+  }
+
+  .quiz-progress {
+    display: flex; gap: 0.4rem; margin-bottom: 2rem;
+  }
+
+  .quiz-dot {
+    flex: 1; height: 5px; border-radius: 999px;
+    background: var(--warm); transition: background 0.3s;
+  }
+
+  .quiz-dot.done { background: var(--teal); }
+  .quiz-dot.current { background: var(--amber); }
+
+  .quiz-question {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    line-height: 1.5; margin-bottom: 1.75rem; color: var(--ink);
+  }
+
+  .quiz-options {
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+
+  .quiz-option {
+    padding: 1rem 1.25rem; border-radius: 10px;
+    border: 2px solid var(--warm); cursor: pointer;
+    font-size: 0.92rem; line-height: 1.5;
+    transition: all 0.2s; background: var(--paper);
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .quiz-option:hover:not(:disabled) {
+    border-color: var(--teal-light); background: var(--teal-pale);
+  }
+
+  .quiz-option.correct { border-color: #22c55e; background: #f0fdf4; color: #166534; }
+  .quiz-option.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
+
+  .quiz-feedback {
+    margin-top: 1.25rem; padding: 1rem 1.25rem;
+    border-radius: 10px; font-size: 0.88rem; line-height: 1.6;
+    display: none;
+  }
+
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+  .quiz-feedback.wrong { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+
+  .quiz-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 1.75rem;
+  }
+
+  .quiz-count {
+    font-size: 0.82rem; color: #8a7a62; font-weight: 500;
+  }
+
+  .quiz-btn {
+    background: var(--teal); color: white; border: none;
+    padding: 0.75rem 1.75rem; border-radius: 999px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+    transition: all 0.2s; display: none;
+  }
+
+  .quiz-btn:hover { background: var(--teal-light); }
+  .quiz-btn.show { display: inline-block; }
+
+  .quiz-result {
+    text-align: center; display: none; padding: 1rem 0;
+  }
+
+  .quiz-result.show { display: block; }
+  .quiz-score { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; color: var(--teal); }
+  .quiz-score span { font-size: 1.5rem; color: #8a7a62; }
+
+  /* ─── EXAMPLE TEMPLATE ─── */
+  .template-section {
+    background: var(--warm);
+    width: 100vw; margin-left: calc(-50vw + 50%);
+    padding: 5rem 2rem;
+  }
+
+  .template-inner {
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .template-paper {
+    background: white; max-width: 760px; margin: 2rem auto 0;
+    padding: 3rem; border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05);
+    font-size: 0.9rem; line-height: 1.8; color: #2a2218;
+    position: relative;
+  }
+
+  .template-paper::before {
+    content: 'CONTOH TEMPLATE';
+    position: absolute; top: 1rem; right: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 2px; color: var(--amber);
+    background: var(--amber-pale); padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .t-journal { text-align: center; font-size: 0.75rem; color: #8a7a62; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--warm); }
+  .t-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; text-align: center; line-height: 1.4; margin-bottom: 1rem; }
+  .t-authors { text-align: center; font-size: 0.85rem; color: var(--teal); font-weight: 600; margin-bottom: 0.25rem; }
+  .t-affil { text-align: center; font-size: 0.78rem; color: #8a7a62; margin-bottom: 1.5rem; }
+
+  .t-section {
+    margin-top: 1.5rem;
+  }
+
+  .t-section h4 {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--teal-pale);
+  }
+
+  .t-abstract {
+    background: var(--warm); border-radius: 8px;
+    padding: 1.25rem; font-size: 0.85rem; font-style: italic;
+    color: #4a3f2f; line-height: 1.8; margin-top: 1rem;
+  }
+
+  .t-keywords {
+    margin-top: 0.75rem; font-size: 0.82rem;
+  }
+
+  .t-keywords strong { color: var(--teal); }
+
+  .placeholder-text {
+    background: var(--warm); border-radius: 4px;
+    height: 0.85rem; display: inline-block; margin: 0.2rem 0;
+    opacity: 0.5;
+  }
+
+  .ph-full { width: 100%; }
+  .ph-90 { width: 90%; }
+  .ph-75 { width: 75%; }
+  .ph-60 { width: 60%; }
+  .ph-45 { width: 45%; }
+
+  /* ─── REFERENCE STYLE ─── */
+  .ref-tabs {
+    display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+  }
+
+  .ref-tab {
+    padding: 0.6rem 1.25rem; border-radius: 999px;
+    border: 2px solid var(--warm); background: white;
+    cursor: pointer; font-size: 0.85rem; font-weight: 600;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+  }
+
+  .ref-tab.active, .ref-tab:hover {
+    background: var(--teal); border-color: var(--teal); color: white;
+  }
+
+  .ref-content { display: none; }
+  .ref-content.active { display: block; }
+
+  .ref-example {
+    background: white; border-radius: 12px;
+    padding: 1.5rem; margin-bottom: 1rem;
+    border: 1px solid var(--warm);
+    font-size: 0.88rem; line-height: 1.7;
+  }
+
+  .ref-type {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.5rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .ref-text { color: #2a2218; }
+
+  code {
+    background: var(--amber-pale); color: var(--rust);
+    padding: 0.15rem 0.4rem; border-radius: 4px;
+    font-family: 'DM Mono', monospace; font-size: 0.82em;
+  }
+
+  /* ─── CHECKLIST ─── */
+  .checklist-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-top: 2rem;
+  }
+
+  .checklist-card {
+    background: white; border-radius: 14px;
+    padding: 1.75rem;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.07);
+  }
+
+  .checklist-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 1.25rem; color: var(--ink);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .checklist-item {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--warm);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px;
+    border: 2px solid #ccc; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; transition: all 0.2s;
+    background: white;
+  }
+
+  .checklist-item.checked .check-box {
+    background: var(--teal); border-color: var(--teal); color: white;
+  }
+
+  .checklist-item.checked span { text-decoration: line-through; color: #9a8a72; }
+
+  .check-label { font-size: 0.87rem; line-height: 1.5; color: #4a3f2f; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.7);
+    text-align: center; padding: 3rem 2rem;
+    font-size: 0.82rem; line-height: 1.8;
+  }
+
+  footer strong { color: white; }
+  footer a { color: var(--amber-light); text-decoration: none; }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── TOOLTIP ─── */
+  [data-tooltip] { position: relative; cursor: help; border-bottom: 1px dashed var(--amber); }
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: white;
+    padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.78rem;
+    white-space: nowrap; opacity: 0; pointer-events: none;
+    transition: opacity 0.2s; z-index: 100;
+  }
+  [data-tooltip]:hover::after { opacity: 1; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-visual { display: none; }
+    .intro-grid { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .checklist-grid { grid-template-columns: 1fr; }
+    .imrad-flow { flex-wrap: wrap; }
+    .imrad-step { min-width: 48%; }
+    .nav-links { display: none; }
+    nav { padding: 0 1rem; }
+    .hero { padding: 4rem 1.25rem 3rem; }
+    section { padding: 3.5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">📚 Artikel Penelitian</div>
+  <ul class="nav-links">
+    <li><a href="#pengantar">Pengantar</a></li>
+    <li><a href="#struktur">Struktur</a></li>
+    <li><a href="#tips">Tips Menulis</a></li>
+    <li><a href="#referensi">Referensi</a></li>
+    <li><a href="#kuis">Kuis</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Materi Pendidikan Guru SD</div>
+      <h1>Teknik Menulis <em>Artikel Penelitian</em> yang Baik</h1>
+      <p class="hero-desc">Panduan lengkap dan interaktif bagi guru Sekolah Dasar dalam memahami, menyusun, dan menerbitkan artikel penelitian ilmiah yang berkualitas.</p>
+      <div class="hero-cta">
+        <a href="#pengantar" class="btn-primary">Mulai Belajar →</a>
+        <a href="#kuis" class="btn-outline">Uji Pengetahuan</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="paper-stack">
+        <div class="paper-card-back"></div>
+        <div class="paper-card">
+          <div class="paper-tag">Jurnal Pendidikan Dasar</div>
+          <h3>Pengaruh Metode Bermain Peran terhadap Kemampuan Berbicara Siswa Kelas IV SD</h3>
+          <div style="margin: 1rem 0;">
+            <div class="paper-line" style="width:100%"></div>
+            <div class="paper-line" style="width:92%"></div>
+            <div class="paper-line" style="width:85%"></div>
+            <div class="paper-line" style="width:70%"></div>
+            <div class="paper-line" style="width:60%"></div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-item">
+              <span class="stat-num">IMRaD</span>
+              <span class="stat-label">Struktur Baku</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">APA</span>
+              <span class="stat-label">Gaya Sitasi</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">6</span>
+              <span class="stat-label">Komponen Utama</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PENGANTAR -->
+<section id="pengantar">
+  <div class="section-label">01 — Pengantar</div>
+  <h2 class="section-title reveal">Apa Itu Artikel<br>Penelitian?</h2>
+  <p class="section-sub reveal reveal-delay-1">Memahami definisi, fungsi, dan karakteristik utama artikel penelitian ilmiah dalam konteks pendidikan.</p>
+
+  <div class="intro-grid">
+    <div class="definition-box reveal">
+      <p>"Artikel penelitian adalah <strong>laporan tertulis sistematis</strong> yang memaparkan hasil kegiatan penelitian ilmiah, disusun berdasarkan kaidah akademik yang berlaku, dan ditujukan untuk disebarluaskan kepada komunitas ilmiah melalui jurnal atau prosiding."</p>
+      <cite>— Adaptasi dari Creswell (2014) & Sugiyono (2018)</cite>
+    </div>
+    <div>
+      <p style="font-size:0.92rem; color:#4a3f2f; margin-bottom:1.25rem; line-height:1.7;">Sebagai guru SD, menulis artikel penelitian bukan sekadar kewajiban administratif — ini adalah cara <strong>berbagi praktik baik</strong> dan berkontribusi pada pengembangan ilmu pendidikan dasar.</p>
+      <ul class="char-list reveal reveal-delay-1">
+        <li class="char-item">
+          <div class="char-icon">🎯</div>
+          <div class="char-text">
+            <strong>Sistematis & Terstruktur</strong>
+            <span>Disusun mengikuti format baku (IMRaD) agar mudah dipahami pembaca.</span>
+          </div>
+        </li>
+        <li class="char-item">
+          <div class="char-icon">🔬</div>
+          <div class="char-text">
+            <strong>Berbasis Bukti Empiris</strong>
+            <span>Setiap klaim didukung data yang dikumpulkan secara ilmiah.</span>
+          </div>
+        </li>
+        <li class="char-item">
+          <div class="char-icon">📖</div>
+          <div class="char-text">
+            <strong>Dapat Diverifikasi</strong>
+            <span>Prosedur penelitian dijelaskan lengkap sehingga bisa diulang oleh peneliti lain.</span>
+          </div>
+        </li>
+        <li class="char-item">
+          <div class="char-icon">🌐</div>
+          <div class="char-text">
+            <strong>Disebarluaskan Secara Terbuka</strong>
+            <span>Dipublikasikan di jurnal ilmiah untuk dikritisi dan dimanfaatkan komunitas.</span>
+          </div>
+        </li>
+        <li class="char-item">
+          <div class="char-icon">⚖️</div>
+          <div class="char-text">
+            <strong>Objektif & Bebas Bias</strong>
+            <span>Penulisan menggunakan bahasa ilmiah yang netral dan tidak tendensius.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<div class="structure-bg" id="struktur">
+  <div class="structure-inner">
+    <div class="section-label">02 — Struktur</div>
+    <h2 class="section-title reveal">Format IMRaD:<br>Tulang Punggung Artikel</h2>
+    <p class="section-sub reveal reveal-delay-1">Klik setiap bagian untuk melihat panduan penulisannya secara lengkap.</p>
+
+    <div class="imrad-flow reveal">
+      <div class="imrad-step active" onclick="filterAccordion('all')">
+        <span class="imrad-letter">I</span>
+        <div class="imrad-name">Introduction</div>
+      </div>
+      <div class="imrad-step" onclick="filterAccordion('method')">
+        <span class="imrad-letter">M</span>
+        <div class="imrad-name">Method</div>
+      </div>
+      <div class="imrad-step" onclick="filterAccordion('result')">
+        <span class="imrad-letter">R</span>
+        <div class="imrad-name">Results</div>
+      </div>
+      <div class="imrad-step" onclick="filterAccordion('discuss')">
+        <span class="imrad-letter">a</span>
+        <div class="imrad-name">and</div>
+      </div>
+      <div class="imrad-step" onclick="filterAccordion('discuss')">
+        <span class="imrad-letter">D</span>
+        <div class="imrad-name">Discussion</div>
+      </div>
+      <div class="imrad-step" onclick="filterAccordion('extra')">
+        <span class="imrad-letter">+</span>
+        <div class="imrad-name">Extras</div>
+      </div>
+    </div>
+
+    <div class="accordion-panels" id="accordion">
+
+      <div class="acc-panel open" data-cat="extra">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <div class="acc-num" style="background:#888">0</div>
+            <div class="acc-title">Judul (Title)<small>Pintu masuk pertama pembaca</small></div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p>Judul yang baik mencerminkan isi penelitian secara <strong>akurat, spesifik, dan informatif</strong>. Idealnya terdiri dari <strong>10–15 kata</strong> tanpa singkatan.</p>
+            <ul>
+              <li>Cantumkan variabel penelitian (variabel bebas & terikat)</li>
+              <li>Sebutkan subjek/populasi penelitian</li>
+              <li>Gunakan kata kunci yang relevan dengan bidang</li>
+              <li>Hindari kata-kata tidak bermakna: "Suatu Studi tentang…", "Tinjauan mengenai…"</li>
+            </ul>
+            <div class="acc-tip">
+              ✅ <strong>Contoh baik:</strong> "Pengaruh Model Pembelajaran Kooperatif Tipe STAD terhadap Hasil Belajar Matematika Siswa Kelas V SDN Sukajaya"<br>
+              ❌ <strong>Hindari:</strong> "Penelitian tentang Pembelajaran Matematika"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-panel" data-cat="extra">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <div class="acc-num" style="background:#555">A</div>
+            <div class="acc-title">Abstrak (Abstract)<small>Ringkasan mandiri seluruh artikel</small></div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p>Abstrak ditulis terakhir namun diposisikan pertama. Bersifat <strong>mandiri</strong> (bisa dipahami tanpa membaca artikel penuh). Biasanya <strong>150–250 kata</strong>.</p>
+            <ul>
+              <li><strong>Latar belakang singkat:</strong> mengapa penelitian ini penting?</li>
+              <li><strong>Tujuan:</strong> apa yang hendak dicapai?</li>
+              <li><strong>Metode ringkas:</strong> pendekatan, sampel, instrumen</li>
+              <li><strong>Hasil utama:</strong> temuan paling signifikan</li>
+              <li><strong>Simpulan & implikasi:</strong> makna temuan bagi praktik</li>
+            </ul>
+            <div class="acc-tip">💡 Sertakan <strong>kata kunci (keywords)</strong> 3–5 kata di bawah abstrak untuk keperluan indeksasi jurnal.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-panel" data-cat="intro">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <div class="acc-num" style="background:#1e5f5a">1</div>
+            <div class="acc-title">Pendahuluan (Introduction)<small>Mengapa penelitian ini perlu dilakukan?</small></div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p>Pendahuluan membangun <strong>argumen mengapa penelitian ini penting</strong>. Strukturnya seperti corong — dari umum ke spesifik.</p>
+            <ul>
+              <li><strong>Kondisi ideal:</strong> bagaimana seharusnya situasi?</li>
+              <li><strong>Kondisi nyata & gap:</strong> apa masalah yang ada? (didukung data)</li>
+              <li><strong>Tinjauan literatur singkat:</strong> apa yang sudah diteliti dan apa celahnya?</li>
+              <li><strong>Rumusan masalah:</strong> pertanyaan penelitian yang spesifik</li>
+              <li><strong>Tujuan penelitian:</strong> pernyataan tujuan yang jelas</li>
+              <li><strong>Manfaat:</strong> kontribusi teoritis dan praktis</li>
+            </ul>
+            <div class="acc-tip">💡 Panjang ideal pendahuluan: <strong>15–25% dari total artikel</strong>. Gunakan sitasi dari 10 tahun terakhir untuk kajian pustaka.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-panel" data-cat="method">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <div class="acc-num" style="background:#2d8a82">2</div>
+            <div class="acc-title">Metode Penelitian (Methods)<small>Bagaimana penelitian dilakukan?</small></div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p>Metode harus ditulis <strong>sangat rinci</strong> sehingga peneliti lain bisa mereplikasi studi ini. Komponen yang wajib ada:</p>
+            <ul>
+              <li><strong>Desain penelitian:</strong> kuantitatif/kualitatif/mixed, quasi-eksperimen, PTK, dll.</li>
+              <li><strong>Populasi & sampel:</strong> jumlah, karakteristik, teknik pengambilan sampel</li>
+              <li><strong>Variabel:</strong> operasionalisasi setiap variabel secara konkret</li>
+              <li><strong>Instrumen:</strong> jenis, validitas, reliabilitas</li>
+              <li><strong>Prosedur pengumpulan data:</strong> langkah-langkah detail</li>
+              <li><strong>Teknik analisis:</strong> statistik yang digunakan, alasan pemilihan</li>
+            </ul>
+            <div class="acc-tip">⚠️ Pastikan menyebutkan <strong>izin etis penelitian</strong> dan persetujuan partisipan, khususnya jika melibatkan siswa di bawah umur.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-panel" data-cat="result">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <div class="acc-num" style="background:#c8841a">3</div>
+            <div class="acc-title">Hasil Penelitian (Results)<small>Apa yang ditemukan?</small></div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p>Bagian hasil menyajikan <strong>data secara objektif tanpa interpretasi</strong>. Sajikan secara logis mengikuti urutan pertanyaan penelitian.</p>
+            <ul>
+              <li>Gunakan <strong>tabel dan gambar</strong> untuk data kompleks — beri nomor & judul yang jelas</li>
+              <li>Teks menjelaskan hal-hal paling penting dari tabel/gambar (jangan hanya mengulang angka)</li>
+              <li>Laporkan statistik deskriptif (M, SD) sebelum inferensial (t, F, p)</li>
+              <li>Untuk PTK: sajikan data per siklus secara kronologis</li>
+              <li>Cantumkan nilai p dan effect size untuk penelitian kuantitatif</li>
+            </ul>
+            <div class="acc-tip">✅ <strong>Kaidah tabel APA:</strong> tanpa garis vertikal, hanya tiga garis horizontal (atas, bawah heading, bawah tabel).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-panel" data-cat="discuss">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <div class="acc-num" style="background:#b54c2a">4</div>
+            <div class="acc-title">Pembahasan (Discussion)<small>Apa makna temuan ini?</small></div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p>Pembahasan adalah <strong>jantung intelektual</strong> artikel. Di sinilah penulis berdialog dengan literatur dan membangun argumen.</p>
+            <ul>
+              <li>Mulai dengan <strong>menjawab rumusan masalah</strong> secara eksplisit</li>
+              <li><strong>Bandingkan & kontraskan</strong> dengan temuan penelitian sebelumnya</li>
+              <li>Jelaskan <strong>mengapa</strong> temuan bisa seperti itu (bukan hanya <em>apa</em>)</li>
+              <li>Diskusikan <strong>temuan tak terduga</strong> secara jujur</li>
+              <li>Sebutkan <strong>keterbatasan penelitian</strong> secara transparan</li>
+              <li>Akhiri dengan <strong>implikasi praktis</strong> bagi guru SD</li>
+            </ul>
+            <div class="acc-tip">💡 Pembahasan yang kuat bukan hanya mengonfirmasi, tetapi juga <strong>menjelaskan pengecualian dan anomali</strong> dalam data.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-panel" data-cat="extra">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-header-left">
+            <div class="acc-num" style="background:#555">5</div>
+            <div class="acc-title">Simpulan & Saran (Conclusion)<small>Apa takeaway-nya?</small></div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p>Simpulan adalah <strong>esensai artikel</strong> — ringkasan temuan utama dan maknanya. Bukan sekadar mengulang abstrak.</p>
+            <ul>
+              <li>Jawab tujuan penelitian secara langsung dan ringkas</li>
+              <li>Nyatakan <strong>kontribusi baru</strong> pada pengetahuan yang ada</li>
+              <li>Saran harus <strong>konkret dan dapat ditindaklanjuti</strong></li>
+              <li>Usulkan arah penelitian lanjutan yang relevan</li>
+            </ul>
+            <div class="acc-tip">⚠️ Hindari menulis simpulan yang terlalu panjang atau memasukkan data baru yang tidak dibahas sebelumnya.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="section-label">03 — Strategi</div>
+  <h2 class="section-title reveal">Tips Menulis yang<br>Efektif & Efisien</h2>
+  <p class="section-sub reveal reveal-delay-1">Strategi praktis yang bisa langsung diterapkan oleh guru SD dalam proses penulisan artikel.</p>
+
+  <div class="tips-grid">
+    <div class="tip-card reveal" data-num="01">
+      <span class="tip-emoji">🗂️</span>
+      <h4>Outline Dulu, Tulis Kemudian</h4>
+      <p>Buat kerangka artikel sebelum menulis. Tentukan poin utama setiap seksi. Ini mencegah tulisan melenceng dan menghemat waktu revisi.</p>
+    </div>
+    <div class="tip-card reveal reveal-delay-1" data-num="02">
+      <span class="tip-emoji">🔁</span>
+      <h4>Tulis Tidak Berurutan</h4>
+      <p>Mulai dari bagian yang paling dikuasai (biasanya Metode atau Hasil). Pendahuluan dan Simpulan paling baik ditulis terakhir.</p>
+    </div>
+    <div class="tip-card reveal reveal-delay-2" data-num="03">
+      <span class="tip-emoji">📏</span>
+      <h4>Satu Paragraf, Satu Ide</h4>
+      <p>Setiap paragraf harus punya <data-tooltip="Kalimat utama yang menyatakan gagasan pokok paragraf">kalimat topik</data-tooltip> yang jelas. Rata-rata 3–5 kalimat per paragraf sudah cukup.</p>
+    </div>
+    <div class="tip-card reveal" data-num="04">
+      <span class="tip-emoji">🪄</span>
+      <h4>Gunakan Kalimat Aktif</h4>
+      <p>Kalimat aktif lebih langsung dan kuat. Contoh: "Peneliti menganalisis data..." lebih baik dari "Data dianalisis oleh peneliti..."</p>
+    </div>
+    <div class="tip-card reveal reveal-delay-1" data-num="05">
+      <span class="tip-emoji">🔗</span>
+      <h4>Koherensi Antar Bagian</h4>
+      <p>Gunakan kalimat transisi untuk menghubungkan antar paragraf dan seksi. Pembaca harus merasakan alur logis yang mulus dari awal hingga akhir.</p>
+    </div>
+    <div class="tip-card reveal reveal-delay-2" data-num="06">
+      <span class="tip-emoji">⏸️</span>
+      <h4>Inkubasi sebelum Revisi</h4>
+      <p>Diamkan draf 1–2 hari sebelum direvisi. Jarak waktu membantu membaca dengan mata segar dan menemukan kesalahan yang tidak terlihat sebelumnya.</p>
+    </div>
+    <div class="tip-card reveal" data-num="07">
+      <span class="tip-emoji">👥</span>
+      <h4>Peer Review Sesama Guru</h4>
+      <p>Minta rekan guru membaca dan memberikan masukan. Pembaca eksternal sering menemukan celah logika yang tidak disadari penulis.</p>
+    </div>
+    <div class="tip-card reveal reveal-delay-1" data-num="08">
+      <span class="tip-emoji">📋</span>
+      <h4>Patuhi Panduan Jurnal</h4>
+      <p>Setiap jurnal punya <em>author guidelines</em> yang berbeda. Baca tuntas sebelum menulis: format sitasi, panjang artikel, font, margin, dll.</p>
+    </div>
+    <div class="tip-card reveal reveal-delay-2" data-num="09">
+      <span class="tip-emoji">🚫</span>
+      <h4>Hindari Plagiarisme</h4>
+      <p>Gunakan aplikasi pendeteksi plagiarisme (Turnitin, iThenticate). Setiap ide dari sumber lain wajib dikutip. Parafrase pun tetap butuh sitasi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGE CHECKER AI -->
+<div class="checker-section" id="pemeriksa">
+  <div class="checker-inner">
+    <div class="section-label">04 — Alat Interaktif</div>
+    <h2 class="section-title">Periksa Kalimat Ilmiah<br>Anda Secara Instan</h2>
+    <p class="section-sub">Masukkan kalimat dari artikel Anda. Sistem akan menganalisis kualitas bahasa ilmiahnya.</p>
+
+    <div class="checker-box">
+      <textarea class="checker-input" id="checkerInput" placeholder="Contoh: 'Penelitian ini sangat bagus dan membuktikan bahwa metode bermain peran itu ampuh untuk anak-anak SD karena sudah terbukti.'"></textarea>
+      <div class="checker-controls">
+        <select class="checker-select" id="checkerType">
+          <option value="all">Semua Aspek</option>
+          <option value="formal">Keformalan Bahasa</option>
+          <option value="objektif">Objektivitas</option>
+          <option value="sitasi">Perlunya Sitasi</option>
+        </select>
+        <button class="checker-btn" onclick="checkLanguage()">🔍 Analisis Kalimat</button>
+      </div>
+      <div class="checker-result" id="checkerResult">
+        <ul class="result-items" id="resultItems"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REFERENSI -->
+<section id="referensi">
+  <div class="section-label">05 — Sitasi & Referensi</div>
+  <h2 class="section-title reveal">Cara Menulis Daftar<br>Pustaka yang Benar</h2>
+  <p class="section-sub reveal reveal-delay-1">Pilih gaya sitasi sesuai panduan jurnal yang dituju. Gaya APA 7th paling umum digunakan di jurnal pendidikan Indonesia.</p>
+
+  <div class="ref-tabs reveal">
+    <button class="ref-tab active" onclick="switchRef('apa', this)">APA 7th (Paling Umum)</button>
+    <button class="ref-tab" onclick="switchRef('ieee', this)">IEEE</button>
+    <button class="ref-tab" onclick="switchRef('chicago', this)">Chicago</button>
+    <button class="ref-tab" onclick="switchRef('tips', this)">Tips Sitasi</button>
+  </div>
+
+  <div id="ref-apa" class="ref-content active">
+    <div class="ref-example">
+      <div class="ref-type">📚 Buku (Book)</div>
+      <p class="ref-text">Creswell, J. W., & Creswell, J. D. (2018). <em>Research design: Qualitative, quantitative, and mixed methods approaches</em> (5th ed.). SAGE Publications.</p>
+      <div style="margin-top:0.75rem; font-size:0.82rem; color:#888;">
+        Format: <code>Penulis, A. A. (Tahun). <em>Judul buku</em>. Penerbit.</code>
+      </div>
+    </div>
+    <div class="ref-example">
+      <div class="ref-type">📄 Artikel Jurnal</div>
+      <p class="ref-text">Sari, D. P., & Nugroho, A. (2022). Pengaruh model problem-based learning terhadap kemampuan berpikir kritis siswa SD. <em>Jurnal Pendidikan Dasar Nusantara</em>, <em>8</em>(1), 45–62. https://doi.org/10.xxxx/xxxx</p>
+      <div style="margin-top:0.75rem; font-size:0.82rem; color:#888;">
+        Format: <code>Penulis. (Tahun). Judul artikel. <em>Nama Jurnal</em>, <em>vol</em>(no), hlm. DOI</code>
+      </div>
+    </div>
+    <div class="ref-example">
+      <div class="ref-type">🌐 Sumber Internet</div>
+      <p class="ref-text">Kemendikbudristek. (2022). <em>Kurikulum Merdeka: Panduan implementasi di sekolah dasar</em>. https://kurikulum.kemdikbud.go.id/panduan</p>
+      <div style="margin-top:0.75rem; font-size:0.82rem; color:#888;">
+        Format: <code>Lembaga. (Tahun). <em>Judul dokumen</em>. URL</code>
+      </div>
+    </div>
+    <div class="ref-example">
+      <div class="ref-type">📑 Prosiding Konferensi</div>
+      <p class="ref-text">Wahyuni, S. (2023). Implementasi metode discovery learning pada pembelajaran IPA kelas IV. Dalam <em>Prosiding Seminar Nasional Pendidikan Dasar</em> (hal. 112–120). Universitas Negeri Bandung.</p>
+    </div>
+  </div>
+
+  <div id="ref-ieee" class="ref-content">
+    <div class="ref-example">
+      <div class="ref-type">📄 Artikel Jurnal — IEEE Style</div>
+      <p class="ref-text">[1] D. P. Sari dan A. Nugroho, "Pengaruh model problem-based learning terhadap kemampuan berpikir kritis siswa SD," <em>J. Pendidikan Dasar Nusantara</em>, vol. 8, no. 1, hal. 45–62, 2022.</p>
+    </div>
+    <div class="ref-example">
+      <div class="ref-type">📚 Buku — IEEE Style</div>
+      <p class="ref-text">[2] J. W. Creswell dan J. D. Creswell, <em>Research Design</em>, 5th ed. Los Angeles: SAGE Publications, 2018.</p>
+    </div>
+  </div>
+
+  <div id="ref-chicago" class="ref-content">
+    <div class="ref-example">
+      <div class="ref-type">📚 Buku — Chicago Style (Author-Date)</div>
+      <p class="ref-text">Creswell, John W., dan J. David Creswell. 2018. <em>Research Design: Qualitative, Quantitative, and Mixed Methods Approaches</em>. 5th ed. Los Angeles: SAGE Publications.</p>
+    </div>
+    <div class="ref-example">
+      <div class="ref-type">📄 Artikel Jurnal — Chicago Style</div>
+      <p class="ref-text">Sari, Dewi Pratiwi, dan Arif Nugroho. 2022. "Pengaruh Model Problem-Based Learning terhadap Kemampuan Berpikir Kritis Siswa SD." <em>Jurnal Pendidikan Dasar Nusantara</em> 8 (1): 45–62.</p>
+    </div>
+  </div>
+
+  <div id="ref-tips" class="ref-content">
+    <div class="ref-example">
+      <div class="ref-type">💡 Sitasi Dalam Teks (In-text Citation) — APA</div>
+      <p class="ref-text" style="margin-bottom:0.75rem;">• <strong>1 penulis:</strong> (Sugiyono, 2018) atau Sugiyono (2018) menyatakan…</p>
+      <p class="ref-text" style="margin-bottom:0.75rem;">• <strong>2 penulis:</strong> (Sari & Nugroho, 2022) — gunakan "&" dalam kurung, "dan" dalam kalimat</p>
+      <p class="ref-text" style="margin-bottom:0.75rem;">• <strong>3+ penulis:</strong> (Wijaya et al., 2021)</p>
+      <p class="ref-text">• <strong>Kutipan langsung:</strong> (Creswell, 2018, hal. 45) — wajib cantumkan halaman</p>
+    </div>
+    <div class="ref-example">
+      <div class="ref-type">⚠️ Kesalahan Sitasi yang Paling Sering Terjadi</div>
+      <ul style="font-size:0.87rem; line-height:1.8; color:#4a3f2f; list-style:none; padding:0;">
+        <li>❌ Menulis "et.al" (seharusnya <code>et al.</code> — singkatan dari <em>et alii</em>)</li>
+        <li>❌ Tidak mencantumkan DOI untuk artikel jurnal online</li>
+        <li>❌ Tidak konsisten menggunakan satu gaya sitasi dalam satu artikel</li>
+        <li>❌ Tahun di daftar pustaka berbeda dengan sitasi dalam teks</li>
+        <li>❌ Mengutip abstrak atau secondary source tanpa mengakses sumber asli</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATE EXAMPLE -->
+<div class="template-section" id="template">
+  <div class="template-inner">
+    <div class="section-label">06 — Contoh</div>
+    <h2 class="section-title reveal">Contoh Format Artikel<br>Siap Kirim ke Jurnal</h2>
+    <p class="section-sub reveal reveal-delay-1">Template ini mengikuti panduan umum jurnal pendidikan terakreditasi Sinta.</p>
+
+    <div class="template-paper reveal">
+      <div class="t-journal">JURNAL PENDIDIKAN DASAR INDONESIA | Vol. XX, No. X, Bulan Tahun | p-ISSN XXXX-XXXX | e-ISSN XXXX-XXXX</div>
+
+      <div class="t-title">Pengaruh Penggunaan Media Kartu Kata Bergambar terhadap Kemampuan Membaca Permulaan Siswa Kelas I Sekolah Dasar</div>
+      <div class="t-authors">Dewi Rahmawati¹, Ahmad Fauzi²</div>
+      <div class="t-affil">¹²Program Studi PGSD, Universitas Negeri Bandung, Indonesia<br>✉ dewi.rahmawati@upi.edu | Diterima: 12 Jan 2024 | Disetujui: 5 Mar 2024</div>
+
+      <div class="t-section">
+        <h4>Abstrak</h4>
+        <div class="t-abstract">
+          Penelitian ini bertujuan untuk mengetahui pengaruh penggunaan media kartu kata bergambar terhadap kemampuan membaca permulaan siswa kelas I SD. Metode yang digunakan adalah quasi-eksperimen dengan desain nonequivalent control group. Sampel penelitian terdiri dari 60 siswa yang dibagi ke dalam kelompok eksperimen (n=30) dan kelompok kontrol (n=30). Instrumen penelitian berupa tes membaca permulaan yang telah divalidasi. Data dianalisis menggunakan uji-t independen. Hasil penelitian menunjukkan terdapat pengaruh signifikan penggunaan media kartu kata bergambar terhadap kemampuan membaca permulaan (t=4,23; p&lt;0,001; d=0,77). Implikasi penelitian ini adalah perlunya integrasi media visual yang kontekstual dalam pembelajaran membaca di kelas awal SD.
+        </div>
+        <div class="t-keywords"><strong>Kata Kunci:</strong> media kartu kata bergambar; membaca permulaan; kelas I SD; quasi-eksperimen</div>
+      </div>
+
+      <div class="t-section">
+        <h4>1. Pendahuluan</h4>
+        <div style="margin-top:0.5rem;">
+          <div class="placeholder-text ph-full" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-90" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-full" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-75" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+        </div>
+      </div>
+
+      <div class="t-section">
+        <h4>2. Metode Penelitian</h4>
+        <div style="margin-top:0.5rem;">
+          <div class="placeholder-text ph-full" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-85" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-60" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+        </div>
+      </div>
+
+      <div class="t-section">
+        <h4>3. Hasil dan Pembahasan</h4>
+        <div style="margin-top:0.5rem;">
+          <div class="placeholder-text ph-full" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-full" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-80" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-full" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-65" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+        </div>
+      </div>
+
+      <div class="t-section">
+        <h4>4. Simpulan</h4>
+        <div style="margin-top:0.5rem;">
+          <div class="placeholder-text ph-full" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-75" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+          <div class="placeholder-text ph-45" style="height:10px; border-radius:3px; display:block; margin:5px 0;"></div>
+        </div>
+      </div>
+
+      <div class="t-section">
+        <h4>Daftar Pustaka</h4>
+        <p style="font-size:0.83rem; margin-top:0.5rem; line-height:1.9;">
+          Creswell, J. W. (2014). <em>Research design: Qualitative, quantitative, and mixed methods approaches</em> (4th ed.). SAGE.<br>
+          Rahim, F. (2018). <em>Pengajaran membaca di sekolah dasar</em>. Bumi Aksara.<br>
+          <span style="color:#ccc;">… [referensi lainnya mengikuti format APA 7th]</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<section id="checklist">
+  <div class="section-label">07 — Evaluasi Mandiri</div>
+  <h2 class="section-title reveal">Checklist Artikel<br>Siap Kirim</h2>
+  <p class="section-sub reveal reveal-delay-1">Centang semua item sebelum mengirimkan artikel ke jurnal. Klik item untuk menandai selesai.</p>
+
+  <div class="checklist-grid">
+    <div class="checklist-card reveal">
+      <h4>📝 Konten & Substansi</h4>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Judul mencerminkan isi secara akurat (10–15 kata)</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Abstrak 150–250 kata, mencakup semua komponen</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Kata kunci 3–5 kata, relevan dan informatif</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Gap penelitian jelas diidentifikasi di pendahuluan</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Rumusan masalah dan tujuan penelitian konsisten</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Metode cukup detail untuk direplikasi</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Hasil disajikan objektif tanpa interpretasi berlebih</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Pembahasan mengacu pada penelitian terdahulu</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Keterbatasan penelitian disebutkan secara jujur</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Simpulan menjawab tujuan penelitian secara langsung</span>
+      </div>
+    </div>
+
+    <div class="checklist-card reveal reveal-delay-1">
+      <h4>📐 Format & Teknis</h4>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Format mengikuti panduan jurnal (template, font, margin)</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Gaya sitasi konsisten dari awal hingga akhir</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Semua sitasi dalam teks ada di daftar pustaka (dan sebaliknya)</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Tabel dan gambar bernomor urut dengan judul jelas</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Tidak ada salah ketik, ejaan, atau tanda baca</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Bahasa formal dan ilmiah (bukan bahasa percakapan)</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Cek plagiarisme &lt; 20% (sesuai standar umum)</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">DOI sumber online dicantumkan (jika tersedia)</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Data mentah/lampiran tersedia jika diminta reviewer</span>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-label">Cover letter/surat pengantar sudah disiapkan</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:2rem;" id="checkProgress">
+    <div style="font-size:0.9rem; color:#8a7a62; margin-bottom:0.5rem;">Progress: <strong id="checkCount">0</strong>/20 item</div>
+    <div style="background:var(--warm); height:8px; border-radius:999px; overflow:hidden; max-width:400px; margin:0 auto;">
+      <div id="checkBar" style="height:100%; width:0%; background:linear-gradient(90deg,var(--teal),var(--amber)); border-radius:999px; transition:width 0.4s;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="kuis" style="background: var(--paper); padding: 5rem 2rem; max-width:100%; margin:0; width:100%;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">08 — Uji Pemahaman</div>
+    <h2 class="section-title reveal">Kuis Interaktif:<br>Seberapa Paham Anda?</h2>
+    <p class="section-sub reveal reveal-delay-1">10 soal pilihan ganda untuk menguji pemahaman tentang teknik penulisan artikel penelitian.</p>
+
+    <div class="quiz-card reveal">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div id="quizMain">
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <div class="quiz-nav">
+          <span class="quiz-count" id="quizCount"></span>
+          <button class="quiz-btn" id="nextBtn" onclick="nextQuestion()">Pertanyaan Berikutnya →</button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="quiz-score" id="quizScoreDisplay"></div>
+        <p style="color:#6a5a45; margin:0.75rem 0 1.5rem; font-size:0.95rem;" id="quizScoreMsg"></p>
+        <button class="btn-primary" onclick="restartQuiz()" style="cursor:pointer;">🔄 Ulangi Kuis</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Teknik Penulisan Artikel Penelitian</strong> untuk Guru Sekolah Dasar</p>
+  <p style="margin-top:0.5rem;">Materi Pengembangan Profesi Berkelanjutan (PPB) · Dikembangkan untuk mendukung publikasi ilmiah guru</p>
+  <p style="margin-top:1.5rem; font-size:0.75rem; opacity:0.5;">Referensi utama: Creswell & Creswell (2018) · APA Publication Manual 7th Ed. · Panduan Jurnal Sinta Kemendikbudristek</p>
+</footer>
+
+<script>
+// ─── PROGRESS BAR ───
+window.addEventListener('scroll', () => {
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = (window.scrollY / total) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ─── SCROLL REVEAL ───
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+revealEls.forEach(el => io.observe(el));
+
+// ─── NAV ACTIVE ───
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  links.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + cur) l.classList.add('active');
+  });
+});
+
+// ─── ACCORDION ───
+function toggleAcc(header) {
+  const panel = header.closest('.acc-panel');
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+}
+
+function filterAccordion(cat) {
+  document.querySelectorAll('.imrad-step').forEach((s, i) => s.classList.remove('active'));
+  event.target.closest('.imrad-step').classList.add('active');
+  // just show all - full open behavior
+}
+
+// ─── LANGUAGE CHECKER ───
+const checks = [
+  {
+    test: /\bsangat (bagus|baik|buruk|jelek|menarik|penting)\b/i,
+    type: 'warn', icon: '⚠️',
+    msg: 'Kata "sangat bagus/baik/buruk" bersifat subjektif. Dalam bahasa ilmiah, gunakan pernyataan kuantitatif atau dukung dengan data.'
+  },
+  {
+    test: /\b(ampuh|canggih|luar biasa|hebat|menakjubkan)\b/i,
+    type: 'bad', icon: '❌',
+    msg: 'Kata evaluatif seperti "ampuh", "canggih", "luar biasa" tidak tepat dalam artikel ilmiah. Ganti dengan deskripsi berbasis bukti.'
+  },
+  {
+    test: /\banak-anak\b/i,
+    type: 'warn', icon: '⚠️',
+    msg: 'Ganti "anak-anak" dengan istilah akademik: "peserta didik", "siswa kelas awal", atau "subjek penelitian".'
+  },
+  {
+    test: /\bsudah terbukti\b/i,
+    type: 'bad', icon: '❌',
+    msg: '"Sudah terbukti" memerlukan sitasi! Cantumkan sumber: "Telah terbukti dalam penelitian Sari & Nugroho (2022) bahwa..."'
+  },
+  {
+    test: /\bkarena\b.*\bkarena\b/i,
+    type: 'warn', icon: '⚠️',
+    msg: 'Penggunaan "karena" berulang dapat mengurangi kejelasan. Pertimbangkan menggunakan "disebabkan oleh", "diakibatkan", atau "berdampak pada".'
+  },
+  {
+    test: /\bini\b|\bitu\b|\btersebut\b/gi,
+    test2: /(\bini\b|\bitu\b|\btersebut\b)/gi,
+    countThreshold: 3,
+    type: 'warn', icon: '⚠️',
+    msg: 'Kata ganti demonstratif ("ini", "itu", "tersebut") terlalu sering. Pastikan rujukannya jelas, atau ganti dengan istilah yang lebih spesifik.'
+  },
+  {
+    test: /penelitian ini/i,
+    type: 'good', icon: '✅',
+    msg: '"Penelitian ini" adalah cara yang tepat untuk merujuk karya sendiri dalam artikel ilmiah (bukan "penelitian saya").'
+  },
+  {
+    test: /\b(menunjukkan|membuktikan|mengindikasikan|mengungkapkan)\b/i,
+    type: 'good', icon: '✅',
+    msg: 'Pilihan kata kerja yang tepat untuk menyatakan hasil! Kata ini menghubungkan temuan dengan pernyataan akademik yang solid.'
+  },
+  {
+    test: /\bp\s*[=<>]\s*0[,\.]\d+/i,
+    type: 'good', icon: '✅',
+    msg: 'Penulisan nilai p yang tepat untuk laporan statistik. Pastikan disertai nilai uji (t, F, dll.) dan ukuran efek.'
+  },
+  {
+    test: /\b(dll|dsb|dkk)\b/i,
+    type: 'warn', icon: '⚠️',
+    msg: 'Singkatan "dll", "dsb", "dkk" sebaiknya dihindari dalam teks ilmiah. Gunakan "et al." untuk penulis, atau tuliskan daftar secara lengkap.'
+  }
+];
+
+function checkLanguage() {
+  const text = document.getElementById('checkerInput').value.trim();
+  if (!text) return alert('Masukkan kalimat terlebih dahulu!');
+
+  const items = [];
+  let found = false;
+
+  checks.forEach(c => {
+    if (c.test.test(text)) {
+      items.push(`<li class="result-item ${c.type}"><span class="result-icon">${c.icon}</span><div>${c.msg}</div></li>`);
+      found = true;
+    }
+  });
+
+  if (!found) {
+    items.push(`<li class="result-item good"><span class="result-icon">✅</span><div>Tidak ditemukan masalah umum pada kalimat ini. Periksa juga koherensi logis dan kesesuaian dengan konteks artikel secara keseluruhan.</div></li>`);
+  }
+
+  items.push(`<li class="result-item" style="border-left-color:#8a7a62; background:rgba(255,255,255,0.05)"><span class="result-icon">📊</span><div><strong>Statistik kalimat:</strong> ${text.split(/\s+/).length} kata · ${text.length} karakter · ${(text.match(/[.!?]/g) || []).length + 1} kalimat</div></li>`);
+
+  document.getElementById('resultItems').innerHTML = items.join('');
+  const result = document.getElementById('checkerResult');
+  result.classList.add('show');
+}
+
+// ─── REF TABS ───
+function switchRef(id, btn) {
+  document.querySelectorAll('.ref-content').forEach(r => r.classList.remove('active'));
+  document.querySelectorAll('.ref-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('ref-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── CHECKLIST ───
+function toggleCheck(item) {
+  item.classList.toggle('checked');
+  updateCheckProgress();
+}
+
+function updateCheckProgress() {
+  const total = document.querySelectorAll('.checklist-item').length;
+  const done = document.querySelectorAll('.checklist-item.checked').length;
+  document.getElementById('checkCount').textContent = done;
+  document.getElementById('checkBar').style.width = (done / total * 100) + '%';
+}
+
+// ─── QUIZ ───
+const questions = [
+  {
+    q: "Dalam format IMRaD, bagian manakah yang bertugas menjelaskan MENGAPA penelitian ini penting dan perlu dilakukan?",
+    opts: ["Methods", "Results", "Introduction", "Discussion"],
+    ans: 2,
+    exp: "Pendahuluan (Introduction) bertugas membangun argumen mengapa penelitian diperlukan, mengidentifikasi gap, dan merumuskan pertanyaan penelitian."
+  },
+  {
+    q: "Berapa panjang ideal abstrak artikel penelitian menurut konvensi umum jurnal pendidikan?",
+    opts: ["50–100 kata", "150–250 kata", "300–500 kata", "Tidak ada batasnya"],
+    ans: 1,
+    exp: "Abstrak yang baik berisi 150–250 kata, mencakup latar belakang, tujuan, metode, hasil utama, dan simpulan secara ringkas."
+  },
+  {
+    q: "Manakah pernyataan berikut yang BENAR tentang bagian Hasil (Results)?",
+    opts: [
+      "Hasil boleh mencakup interpretasi dan opini penulis",
+      "Hasil hanya menyajikan data secara objektif tanpa interpretasi",
+      "Hasil dan pembahasan wajib digabung dalam satu bagian",
+      "Hasil tidak perlu mencantumkan nilai statistik"
+    ],
+    ans: 1,
+    exp: "Bagian Hasil hanya menyajikan data secara objektif. Interpretasi dan diskusi makna temuan dilakukan di bagian Pembahasan (Discussion)."
+  },
+  {
+    q: "Dalam gaya sitasi APA 7th edition, bagaimana cara menulis sitasi dalam teks untuk artikel dengan 3 penulis atau lebih?",
+    opts: ["(Sari, Nugroho, dan Wijaya, 2022)", "(Sari et al., 2022)", "(Sari dkk, 2022)", "(Sari; Nugroho; Wijaya, 2022)"],
+    ans: 1,
+    exp: "APA 7th edition menggunakan 'et al.' untuk 3 penulis atau lebih sejak sitasi pertama. Format yang benar: (Sari et al., 2022)."
+  },
+  {
+    q: "Bagian manakah dalam artikel penelitian yang sebaiknya ditulis TERAKHIR meskipun posisinya di awal?",
+    opts: ["Pendahuluan", "Abstrak", "Metode Penelitian", "Daftar Pustaka"],
+    ans: 1,
+    exp: "Abstrak ditulis terakhir karena harus merangkum seluruh isi artikel secara akurat. Menulis abstrak sebelum artikel selesai berisiko tidak merepresentasikan isi dengan tepat."
+  },
+  {
+    q: "Manakah yang BUKAN merupakan komponen wajib dalam bagian Metode Penelitian?",
+    opts: ["Desain penelitian", "Instrumen penelitian", "Biografi penulis", "Teknik analisis data"],
+    ans: 2,
+    exp: "Biografi penulis bukan bagian dari Metode Penelitian. Komponen wajib metode: desain, populasi/sampel, variabel, instrumen, prosedur pengumpulan data, dan teknik analisis."
+  },
+  {
+    q: "Pembahasan yang baik harus melakukan apa terhadap temuan penelitian terdahulu?",
+    opts: [
+      "Mengabaikan penelitian terdahulu karena hanya fokus pada data sendiri",
+      "Membandingkan dan mengkontraskan dengan temuan penelitian sebelumnya",
+      "Hanya menyebutkan penelitian yang mendukung temuan",
+      "Mengulang persis hasil dari bagian sebelumnya"
+    ],
+    ans: 1,
+    exp: "Pembahasan yang kuat berdialog dengan literatur: membandingkan, mengkontraskan, dan menjelaskan kesamaan atau perbedaan dengan temuan penelitian sebelumnya."
+  },
+  {
+    q: "Dalam konteks penulisan ilmiah, manakah kalimat yang paling tepat digunakan?",
+    opts: [
+      "Penelitian saya membuktikan bahwa metode ini sangat ampuh.",
+      "Hasil penelitian ini menunjukkan peningkatan signifikan (t=4,23; p<0,001).",
+      "Sudah jelas bahwa bermain peran itu bagus untuk anak-anak.",
+      "Menurut pendapat saya, pembelajaran kontekstual jauh lebih baik."
+    ],
+    ans: 1,
+    exp: "Kalimat ilmiah harus objektif, berbasis data, dan menggunakan terminologi akademik. Pilihan B menggunakan fakta kuantitatif yang dapat diverifikasi."
+  },
+  {
+    q: "Berapa persen maksimum tingkat kesamaan (similarity) yang umumnya diterima jurnal pendidikan untuk menghindari plagiarisme?",
+    opts: ["5%", "10%", "20%", "50%"],
+    ans: 2,
+    exp: "Sebagian besar jurnal menetapkan batas maksimum similarity 20–25%. Di bawah 20% umumnya dianggap aman, meski beberapa jurnal premium menetapkan batas lebih ketat."
+  },
+  {
+    q: "Komponen manakah yang WAJIB ada dalam simpulan (conclusion) artikel penelitian?",
+    opts: [
+      "Data statistik baru yang belum dibahas sebelumnya",
+      "Jawaban langsung atas tujuan penelitian dan implikasi temuan",
+      "Pengulangan lengkap semua hasil dari bagian sebelumnya",
+      "Tinjauan pustaka yang belum disebutkan di pendahuluan"
+    ],
+    ans: 1,
+    exp: "Simpulan yang baik menjawab tujuan penelitian secara langsung, menyatakan kontribusi baru, dan memberikan implikasi praktis. Hindari memasukkan data atau referensi baru."
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function initQuiz() {
+  currentQ = 0; score = 0; answered = false;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  answered = false;
+
+  // Progress dots
+  let dots = '';
+  questions.forEach((_, i) => {
+    let cls = i < currentQ ? 'done' : i === currentQ ? 'current' : '';
+    dots += `<div class="quiz-dot ${cls}"></div>`;
+  });
+  document.getElementById('quizProgress').innerHTML = dots;
+
+  document.getElementById('quizQuestion').textContent = q.q;
+  document.getElementById('quizCount').textContent = `Soal ${currentQ + 1} dari ${questions.length}`;
+
+  let optsHTML = '';
+  q.opts.forEach((opt, i) => {
+    optsHTML += `<button class="quiz-option" onclick="selectAnswer(this, ${i})">${opt}</button>`;
+  });
+  document.getElementById('quizOptions').innerHTML = optsHTML;
+
+  document.getElementById('quizFeedback').className = 'quiz-feedback';
+  document.getElementById('nextBtn').classList.remove('show');
+  document.getElementById('quizResult').classList.remove('show');
+  document.getElementById('quizMain').style.display = '';
+}
+
+function selectAnswer(btn, idx) {
+  if (answered) return;
+  answered = true;
+  const q = questions[currentQ];
+  const opts = document.querySelectorAll('.quiz-option');
+  opts.forEach(o => o.disabled = true);
+  opts[q.ans].classList.add('correct');
+
+  const fb = document.getElementById('quizFeedback');
+  if (idx === q.ans) {
+    score++;
+    btn.classList.add('correct');
+    fb.className = 'quiz-feedback correct show';
+    fb.innerHTML = '✅ <strong>Benar!</strong> ' + q.exp;
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'quiz-feedback wrong show';
+    fb.innerHTML = '❌ <strong>Belum tepat.</strong> ' + q.exp;
+  }
+
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.textContent = currentQ < questions.length - 1 ? 'Pertanyaan Berikutnya →' : 'Lihat Hasil →';
+  nextBtn.classList.add('show');
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= questions.length) {
+    showResult(); return;
+  }
+  renderQuestion();
+}
+
+function showResult() {
+  document.getElementById('quizMain').style.display = 'none';
+  const res = document.getElementById('quizResult');
+  res.classList.add('show');
+  document.getElementById('quizScoreDisplay').innerHTML = `${score}<span>/${questions.length}</span>`;
+
+  const pct = (score / questions.length) * 100;
+  let msg = '';
+  if (pct >= 90) msg = '🌟 Luar biasa! Anda sangat menguasai teknik penulisan artikel penelitian.';
+  else if (pct >= 70) msg = '👍 Bagus! Masih ada beberapa konsep yang perlu diperdalam.';
+  else if (pct >= 50) msg = '📚 Terus belajar! Baca kembali materi di atas untuk memperkuat pemahaman.';
+  else msg = '🔄 Jangan menyerah! Pelajari ulang semua bagian dan coba lagi.';
+  document.getElementById('quizScoreMsg').textContent = msg;
+
+  // Update quiz progress dots - all done
+  let dots = '';
+  questions.forEach(() => dots += `<div class="quiz-dot done"></div>`);
+  document.getElementById('quizProgress').innerHTML = dots;
+}
+
+function restartQuiz() { initQuiz(); }
+
+// Init
+initQuiz();
+
+// ─── ENTER key for checker ───
+document.getElementById('checkerInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.ctrlKey) checkLanguage();
+});
+</script>
+</body>
+</html>
