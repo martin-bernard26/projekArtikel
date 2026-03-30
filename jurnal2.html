@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pencarian Jurnal Ilmiah — Martin Bernard, M.Pd.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parch: #f5edd6;
+    --parch-dark: #e8d8aa;
+    --parch-mid: #efe0bc;
+    --ink: #2b1d0e;
+    --ink-light: #4a3420;
+    --ink-faint: #7a6040;
+    --sepia: #8b6914;
+    --sepia-light: #c4973a;
+    --sepia-pale: #d4b87a;
+    --red-wax: #8b2020;
+    --red-wax-light: #b03030;
+    --border: #c4973a55;
+    --shadow: rgba(43,29,14,0.18);
+    --gold: #b8860b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background-color: #d4c090;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, #c9b07a44 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 80%, #a8893344 0%, transparent 55%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    min-height: 100vh;
+    color: var(--ink);
+    padding: 0 0 60px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    background-image: linear-gradient(135deg, #1a0f06 0%, #2b1d0e 50%, #1a0f06 100%);
+    border-bottom: 4px solid var(--gold);
+    padding: 28px 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(180,140,40,0.06) 22px, rgba(180,140,40,0.06) 23px);
+    pointer-events: none;
+  }
+  .header-ornament {
+    font-family: 'Cinzel', serif;
+    color: var(--sepia-pale);
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+  header h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--parch);
+    font-size: clamp(1.5rem, 4vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  }
+  header h1 span { color: var(--sepia-pale); }
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--parch-dark);
+    opacity: 0.75;
+    font-size: 1rem;
+    margin-top: 6px;
+  }
+  .header-line {
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 14px auto 0;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── SEARCH BOX ── */
+  .search-panel {
+    background: var(--parch);
+    background-image: linear-gradient(160deg, #fdf6e3 0%, #f0e0b8 100%);
+    border: 1px solid var(--sepia-pale);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 32px var(--shadow);
+    padding: 28px 28px 22px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .search-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    border-radius: 0 0 12px 12px;
+    pointer-events: none;
+  }
+  .search-row {
+    display: flex; gap: 10px; align-items: stretch;
+    margin-bottom: 14px;
+  }
+  .search-input-wrap {
+    flex: 1; position: relative;
+  }
+  .search-input-wrap::before {
+    content: '🔍';
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 16px; opacity: 0.5; pointer-events: none;
+  }
+  input[type="text"], select {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    background: rgba(255,255,255,0.55);
+    border: 1.5px solid var(--sepia-pale);
+    border-radius: 6px;
+    color: var(--ink);
+    padding: 10px 14px;
+    width: 100%;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+  #searchInput { padding-left: 42px; }
+  input[type="text"]:focus, select:focus {
+    border-color: var(--sepia);
+    box-shadow: 0 0 0 3px rgba(139,105,20,0.15);
+    background: rgba(255,255,255,0.85);
+  }
+  .filter-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .filter-group label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .api-toggle-row {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
+    align-items: center;
+  }
+  .api-toggle-row span {
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 1.5px; color: var(--ink-faint); margin-right: 4px;
+  }
+  .api-chip {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--parch-mid);
+    border: 1.5px solid var(--sepia-pale);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all .2s;
+    user-select: none;
+  }
+  .api-chip input[type="checkbox"] { display: none; }
+  .api-chip.active {
+    background: var(--ink);
+    border-color: var(--gold);
+    color: var(--parch);
+  }
+  .api-chip .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sepia-pale);
+    transition: background .2s;
+  }
+  .api-chip.active .dot { background: var(--gold); }
+
+  .btn-search {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    background: var(--ink);
+    color: var(--parch);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 10px 26px;
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+    align-self: flex-end;
+  }
+  .btn-search:hover { background: var(--red-wax); border-color: var(--sepia-pale); }
+
+  .action-row {
+    display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;
+  }
+  .btn-export {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 1px;
+    background: transparent;
+    color: var(--ink-faint);
+    border: 1px solid var(--sepia-pale);
+    border-radius: 5px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-export:hover { background: var(--parch-mid); color: var(--ink); }
+
+  /* ── STATS BAR ── */
+  #statsBar {
+    display: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--ink-faint);
+    text-align: center;
+    margin-bottom: 16px;
+    padding: 8px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(245,237,214,0.6);
+  }
+  #statsBar b { color: var(--sepia); }
+
+  /* ── RESULTS ── */
+  #results { display: flex; flex-direction: column; gap: 16px; }
+
+  .result-card {
+    background: var(--parch);
+    background-image: linear-gradient(170deg, #fefaf0 0%, #f0e0b4 100%);
+    border: 1px solid var(--sepia-pale);
+    border-left: 4px solid var(--sepia);
+    border-radius: 8px;
+    padding: 20px 22px;
+    box-shadow: 0 3px 12px var(--shadow);
+    position: relative;
+    transition: transform .15s, box-shadow .15s;
+    animation: fadeUp .35s ease both;
+  }
+  .result-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card-source-badge {
+    position: absolute; top: 14px; right: 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem; letter-spacing: 1.5px;
+    background: var(--ink);
+    color: var(--sepia-pale);
+    border-radius: 20px;
+    padding: 2px 10px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.35;
+    padding-right: 90px;
+  }
+  .card-meta {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+    font-style: italic;
+    display: flex; flex-wrap: wrap; gap: 4px 16px;
+  }
+  .card-meta span { display: flex; align-items: center; gap: 4px; }
+  .card-abstract {
+    font-size: 0.92rem;
+    color: var(--ink-light);
+    line-height: 1.65;
+    margin-bottom: 10px;
+    border-top: 1px dashed var(--border);
+    padding-top: 8px;
+    display: none;
+  }
+  .card-abstract.open { display: block; }
+  .card-actions {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  }
+  .btn-abstract {
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 1px;
+    background: transparent; color: var(--sepia);
+    border: 1px solid var(--sepia-pale); border-radius: 4px;
+    padding: 4px 10px; cursor: pointer; transition: all .15s;
+  }
+  .btn-abstract:hover { background: var(--parch-mid); }
+  .btn-doi {
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 1px;
+    background: var(--red-wax); color: var(--parch);
+    border: 1px solid var(--red-wax); border-radius: 4px;
+    padding: 4px 12px; cursor: pointer; transition: all .15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-doi:hover { background: var(--red-wax-light); }
+  .tag {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 1px;
+    background: var(--parch-dark); color: var(--ink-faint);
+    border-radius: 20px; padding: 2px 8px;
+  }
+  .citations-badge {
+    font-family: 'EB Garamond', serif; font-style: italic; font-size: 0.82rem;
+    color: var(--gold); margin-left: auto;
+  }
+
+  /* ── LOADING ── */
+  #loading {
+    display: none; text-align: center; padding: 40px;
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--ink-faint);
+  }
+  .spinner {
+    display: inline-block; width: 32px; height: 32px;
+    border: 3px solid var(--parch-dark);
+    border-top-color: var(--sepia);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin-bottom: 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── EMPTY / ERROR ── */
+  #emptyState {
+    display: none; text-align: center; padding: 48px 20px;
+    font-family: 'Playfair Display', serif; font-style: italic;
+    color: var(--ink-faint);
+  }
+  #emptyState .ornament { font-size: 2.5rem; margin-bottom: 10px; }
+
+  /* ── PAGINATION ── */
+  #pagination {
+    display: none; text-align: center; margin-top: 24px;
+  }
+  .page-btn {
+    font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 1px;
+    background: var(--parch); color: var(--ink);
+    border: 1.5px solid var(--sepia-pale); border-radius: 5px;
+    padding: 6px 16px; cursor: pointer; margin: 0 4px;
+    transition: all .15s;
+  }
+  .page-btn:hover, .page-btn.active { background: var(--ink); color: var(--parch); border-color: var(--gold); }
+  .page-info {
+    font-family: 'EB Garamond', serif; font-style: italic;
+    color: var(--ink-faint); font-size: 0.9rem; margin: 0 10px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; margin-top: 40px;
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 2px;
+    color: var(--ink-faint); opacity: 0.6;
+  }
+
+  @media (max-width: 600px) {
+    .search-row { flex-direction: column; }
+    .btn-search { width: 100%; text-align: center; }
+    .filter-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-ornament">✦ Pencarian Literatur Ilmiah ✦</div>
+  <h1>Jurnal <span>Ilmiah</span> Digital</h1>
+  <div class="header-sub">Crossref · Semantic Scholar · OpenAlex — Akses Gratis & Terbuka</div>
+  <div class="header-line"></div>
+</header>
+
+<div class="container">
+
+  <!-- SEARCH PANEL -->
+  <div class="search-panel">
+    <div class="search-row">
+      <div class="search-input-wrap">
+        <input type="text" id="searchInput" placeholder="Cari judul, penulis, kata kunci, DOI…" autocomplete="off">
+      </div>
+      <button class="btn-search" onclick="doSearch()">CARI</button>
+    </div>
+
+    <div class="filter-row">
+      <div class="filter-group">
+        <label>TAHUN MULAI</label>
+        <input type="text" id="yearFrom" placeholder="cth. 2018" maxlength="4">
+      </div>
+      <div class="filter-group">
+        <label>TAHUN AKHIR</label>
+        <input type="text" id="yearTo" placeholder="cth. 2024" maxlength="4">
+      </div>
+      <div class="filter-group">
+        <label>BIDANG ILMU</label>
+        <select id="fieldFilter">
+          <option value="">— Semua Bidang —</option>
+          <option value="mathematics">Matematika</option>
+          <option value="education">Pendidikan</option>
+          <option value="computer science">Ilmu Komputer</option>
+          <option value="physics">Fisika</option>
+          <option value="biology">Biologi</option>
+          <option value="chemistry">Kimia</option>
+          <option value="economics">Ekonomi</option>
+          <option value="psychology">Psikologi</option>
+          <option value="medicine">Kedokteran</option>
+          <option value="engineering">Teknik</option>
+          <option value="social science">Ilmu Sosial</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>URUTKAN</label>
+        <select id="sortBy">
+          <option value="relevance">Relevansi</option>
+          <option value="date-desc">Terbaru</option>
+          <option value="date-asc">Terlama</option>
+          <option value="citations">Sitasi Terbanyak</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="api-toggle-row">
+      <span>SUMBER:</span>
+      <label class="api-chip active" id="chip-crossref">
+        <input type="checkbox" id="useCrossref" checked onchange="toggleChip('chip-crossref')">
+        <span class="dot"></span> Crossref
+      </label>
+      <label class="api-chip active" id="chip-semantic">
+        <input type="checkbox" id="useSemantic" checked onchange="toggleChip('chip-semantic')">
+        <span class="dot"></span> Semantic Scholar
+      </label>
+      <label class="api-chip active" id="chip-openalex">
+        <input type="checkbox" id="useOpenalex" checked onchange="toggleChip('chip-openalex')">
+        <span class="dot"></span> OpenAlex
+      </label>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-export" onclick="exportCSV()">⬇ Ekspor CSV</button>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div id="statsBar"></div>
+
+  <!-- LOADING -->
+  <div id="loading">
+    <div class="spinner"></div><br>
+    Menyelidiki arsip ilmiah dunia…
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div id="emptyState">
+    <div class="ornament">📜</div>
+    <div>Ketikkan kata kunci untuk mulai menjelajahi literatur ilmiah.</div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results"></div>
+
+  <!-- PAGINATION -->
+  <div id="pagination"></div>
+
+  <footer>Martin Bernard, M.Pd. &nbsp;·&nbsp; IKIP Siliwangi &nbsp;·&nbsp; Pendidikan Matematika</footer>
+</div>
+
+<script>
+// ── State ──
+let allResults = [];
+let currentPage = 1;
+const PER_PAGE = 10;
+
+function toggleChip(id) {
+  const chip = document.getElementById(id);
+  const cb = chip.querySelector('input[type="checkbox"]');
+  if (cb.checked) chip.classList.add('active');
+  else chip.classList.remove('active');
+}
+
+// ── Enter key ──
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doSearch();
+});
+
+// ── MAIN SEARCH ──
+async function doSearch() {
+  const query = document.getElementById('searchInput').value.trim();
+  if (!query) return;
+
+  const useCrossref = document.getElementById('useCrossref').checked;
+  const useSemantic = document.getElementById('useSemantic').checked;
+  const useOpenalex = document.getElementById('useOpenalex').checked;
+
+  if (!useCrossref && !useSemantic && !useOpenalex) {
+    alert('Pilih minimal satu sumber API.');
+    return;
+  }
+
+  currentPage = 1;
+  allResults = [];
+  showLoading(true);
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('statsBar').style.display = 'none';
+  document.getElementById('pagination').style.display = 'none';
+  document.getElementById('emptyState').style.display = 'none';
+
+  const promises = [];
+  if (useCrossref) promises.push(fetchCrossref(query));
+  if (useSemantic) promises.push(fetchSemantic(query));
+  if (useOpenalex) promises.push(fetchOpenalex(query));
+
+  const results = await Promise.allSettled(promises);
+  results.forEach(r => {
+    if (r.status === 'fulfilled') allResults.push(...r.value);
+  });
+
+  applyFiltersAndSort();
+  showLoading(false);
+}
+
+// ── CROSSREF ──
+async function fetchCrossref(query) {
+  const field = document.getElementById('fieldFilter').value;
+  const yearFrom = document.getElementById('yearFrom').value;
+  const yearTo = document.getElementById('yearTo').value;
+
+  let url = `https://api.crossref.org/works?query=${encodeURIComponent(query)}&rows=20&select=DOI,title,author,published,abstract,container-title,is-referenced-by-count,subject`;
+  if (yearFrom || yearTo) {
+    const from = yearFrom || '1900';
+    const to = yearTo || new Date().getFullYear();
+    url += `&filter=from-pub-date:${from},until-pub-date:${to}`;
+  }
+  if (field) url += `&query.subject=${encodeURIComponent(field)}`;
+
+  const resp = await fetch(url);
+  const data = await resp.json();
+  return (data.message?.items || []).map(item => ({
+    source: 'Crossref',
+    title: (item.title || ['Tanpa Judul'])[0],
+    authors: (item.author || []).map(a => `${a.given || ''} ${a.family || ''}`.trim()).join(', ') || '—',
+    year: item.published?.['date-parts']?.[0]?.[0] || '—',
+    journal: (item['container-title'] || ['—'])[0],
+    doi: item.DOI ? `https://doi.org/${item.DOI}` : null,
+    abstract: item.abstract ? item.abstract.replace(/<[^>]+>/g, '') : null,
+    citations: item['is-referenced-by-count'] || 0,
+    subjects: (item.subject || []).slice(0, 3)
+  }));
+}
+
+// ── SEMANTIC SCHOLAR ──
+async function fetchSemantic(query) {
+  const yearFrom = document.getElementById('yearFrom').value;
+  const yearTo = document.getElementById('yearTo').value;
+  const field = document.getElementById('fieldFilter').value;
+
+  let url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(query)}&limit=15&fields=title,authors,year,externalIds,abstract,citationCount,venue,fieldsOfStudy`;
+  if (yearFrom || yearTo) {
+    url += `&year=${yearFrom || '1900'}-${yearTo || new Date().getFullYear()}`;
+  }
+
+  const resp = await fetch(url);
+  const data = await resp.json();
+  return (data.data || []).map(item => ({
+    source: 'Semantic Scholar',
+    title: item.title || 'Tanpa Judul',
+    authors: (item.authors || []).map(a => a.name).join(', ') || '—',
+    year: item.year || '—',
+    journal: item.venue || '—',
+    doi: item.externalIds?.DOI ? `https://doi.org/${item.externalIds.DOI}` : null,
+    abstract: item.abstract || null,
+    citations: item.citationCount || 0,
+    subjects: (item.fieldsOfStudy || []).slice(0, 3)
+  }));
+}
+
+// ── OPENALEX ──
+async function fetchOpenalex(query) {
+  const yearFrom = document.getElementById('yearFrom').value;
+  const yearTo = document.getElementById('yearTo').value;
+  const field = document.getElementById('fieldFilter').value;
+
+  let url = `https://api.openalex.org/works?search=${encodeURIComponent(query)}&per-page=15&select=id,title,authorships,publication_year,primary_location,doi,abstract_inverted_index,cited_by_count,topics`;
+  if (yearFrom) url += `&filter=publication_year:>${parseInt(yearFrom)-1}`;
+  if (yearTo) url += `,publication_year:<${parseInt(yearTo)+1}`;
+
+  const resp = await fetch(url);
+  const data = await resp.json();
+  return (data.results || []).map(item => {
+    // Reconstruct abstract from inverted index
+    let abstract = null;
+    if (item.abstract_inverted_index) {
+      const words = {};
+      for (const [word, positions] of Object.entries(item.abstract_inverted_index)) {
+        positions.forEach(p => { words[p] = word; });
+      }
+      const maxPos = Math.max(...Object.keys(words).map(Number));
+      abstract = Array.from({length: maxPos + 1}, (_, i) => words[i] || '').join(' ').trim();
+    }
+    return {
+      source: 'OpenAlex',
+      title: item.title || 'Tanpa Judul',
+      authors: (item.authorships || []).slice(0, 4).map(a => a.author?.display_name || '').join(', ') || '—',
+      year: item.publication_year || '—',
+      journal: item.primary_location?.source?.display_name || '—',
+      doi: item.doi || null,
+      abstract: abstract,
+      citations: item.cited_by_count || 0,
+      subjects: (item.topics || []).slice(0, 3).map(t => t.display_name)
+    };
+  });
+}
+
+// ── FILTER & SORT ──
+function applyFiltersAndSort() {
+  let results = [...allResults];
+
+  const sortBy = document.getElementById('sortBy').value;
+  if (sortBy === 'date-desc') results.sort((a, b) => (b.year || 0) - (a.year || 0));
+  else if (sortBy === 'date-asc') results.sort((a, b) => (a.year || 0) - (b.year || 0));
+  else if (sortBy === 'citations') results.sort((a, b) => b.citations - a.citations);
+
+  // Deduplicate by title similarity
+  const seen = new Set();
+  results = results.filter(r => {
+    const key = r.title.toLowerCase().slice(0, 60);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  if (results.length === 0) {
+    document.getElementById('emptyState').style.display = 'block';
+    document.getElementById('emptyState').innerHTML = '<div class="ornament">📜</div><div>Tidak ada hasil ditemukan. Coba kata kunci lain atau perluas filter.</div>';
+    return;
+  }
+
+  // Stats bar
+  const bar = document.getElementById('statsBar');
+  bar.style.display = 'block';
+  const sources = {};
+  results.forEach(r => { sources[r.source] = (sources[r.source] || 0) + 1; });
+  bar.innerHTML = `Ditemukan <b>${results.length}</b> artikel &nbsp;·&nbsp; ` +
+    Object.entries(sources).map(([s, n]) => `${s}: <b>${n}</b>`).join(' &nbsp;·&nbsp; ');
+
+  renderPage(results, currentPage);
+}
+
+// ── RENDER PAGE ──
+function renderPage(results, page) {
+  const total = results.length;
+  const totalPages = Math.ceil(total / PER_PAGE);
+  const start = (page - 1) * PER_PAGE;
+  const slice = results.slice(start, start + PER_PAGE);
+
+  const container = document.getElementById('results');
+  container.innerHTML = '';
+
+  slice.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'result-card';
+    card.style.animationDelay = `${idx * 0.05}s`;
+
+    const sourceColor = {
+      'Crossref': '#8b2020',
+      'Semantic Scholar': '#1a4a2e',
+      'OpenAlex': '#1a2a4a'
+    }[item.source] || '#2b1d0e';
+
+    card.innerHTML = `
+      <div class="card-source-badge" style="background:${sourceColor}">${item.source}</div>
+      <div class="card-title">${escapeHtml(item.title)}</div>
+      <div class="card-meta">
+        <span>👤 ${escapeHtml(item.authors)}</span>
+        <span>📅 ${item.year}</span>
+        ${item.journal !== '—' ? `<span>📰 ${escapeHtml(item.journal)}</span>` : ''}
+      </div>
+      ${item.subjects?.length ? `<div style="margin-bottom:8px; display:flex; flex-wrap:wrap; gap:4px">${item.subjects.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('')}</div>` : ''}
+      ${item.abstract ? `<div class="card-abstract" id="abs-${start+idx}">${escapeHtml(item.abstract.slice(0, 500))}${item.abstract.length > 500 ? '…' : ''}</div>` : ''}
+      <div class="card-actions">
+        ${item.abstract ? `<button class="btn-abstract" onclick="toggleAbstract('abs-${start+idx}', this)">▶ Abstrak</button>` : ''}
+        ${item.doi ? `<a class="btn-doi" href="${item.doi}" target="_blank" rel="noopener">DOI ↗</a>` : ''}
+        ${item.citations > 0 ? `<span class="citations-badge">📌 ${item.citations.toLocaleString()} sitasi</span>` : ''}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  // Pagination
+  const pg = document.getElementById('pagination');
+  if (totalPages > 1) {
+    pg.style.display = 'block';
+    pg.innerHTML = '';
+    if (page > 1) {
+      const prev = document.createElement('button');
+      prev.className = 'page-btn'; prev.textContent = '← Sebelumnya';
+      prev.onclick = () => { currentPage--; renderPage(results, currentPage); pg.scrollIntoView({behavior:'smooth'}); };
+      pg.appendChild(prev);
+    }
+    const info = document.createElement('span');
+    info.className = 'page-info';
+    info.textContent = `Halaman ${page} dari ${totalPages}`;
+    pg.appendChild(info);
+    if (page < totalPages) {
+      const next = document.createElement('button');
+      next.className = 'page-btn'; next.textContent = 'Berikutnya →';
+      next.onclick = () => { currentPage++; renderPage(results, currentPage); pg.scrollIntoView({behavior:'smooth'}); };
+      pg.appendChild(next);
+    }
+  } else {
+    pg.style.display = 'none';
+  }
+}
+
+function toggleAbstract(id, btn) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+  btn.textContent = el.classList.contains('open') ? '▼ Tutup Abstrak' : '▶ Abstrak';
+}
+
+function showLoading(v) {
+  document.getElementById('loading').style.display = v ? 'block' : 'none';
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ── EXPORT CSV ──
+function exportCSV() {
+  if (allResults.length === 0) {
+    alert('Lakukan pencarian terlebih dahulu.'); return;
+  }
+  const rows = [['No','Judul','Penulis','Tahun','Jurnal','DOI','Sitasi','Sumber','Abstrak']];
+  allResults.forEach((r, i) => {
+    rows.push([
+      i + 1,
+      `"${(r.title || '').replace(/"/g, '""')}"`,
+      `"${(r.authors || '').replace(/"/g, '""')}"`,
+      r.year || '',
+      `"${(r.journal || '').replace(/"/g, '""')}"`,
+      r.doi || '',
+      r.citations || 0,
+      r.source || '',
+      `"${(r.abstract || '').slice(0, 300).replace(/"/g, '""')}"`
+    ]);
+  });
+  const csv = '\uFEFF' + rows.map(r => r.join(',')).join('\n');
+  const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `hasil-jurnal-${Date.now()}.csv`;
+  a.click();
+}
+
+// Init
+document.getElementById('emptyState').style.display = 'block';
+</script>
+</body>
+</html>
