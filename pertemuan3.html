@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Penulisan Jurnal PGSD — Martin Bernard, M.Pd.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --parchment: #f5edd6;
+    --cream: #faf6ec;
+    --gold: #b8892a;
+    --gold-light: #d4a94e;
+    --gold-pale: #f0dfa0;
+    --rust: #8b3a2a;
+    --olive: #4a5a2a;
+    --brown: #6b4226;
+    --border: #c9a96e;
+    --shadow: rgba(90,60,20,0.18);
+    --panel: #ede3c8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ---- NOISE TEXTURE OVERLAY ---- */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    background: var(--ink);
+    color: var(--gold-pale);
+    text-align: center;
+    padding: 2.5rem 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+    margin-top: 1.5rem;
+  }
+  .header-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    margin-bottom: 1rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+  }
+  header h1 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+  header p.subtitle {
+    font-size: 0.9rem;
+    color: #c0a878;
+    font-style: italic;
+    margin-top: 0.4rem;
+  }
+
+  /* ---- NAV TABS ---- */
+  nav.tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    background: var(--ink);
+    padding: 0 1.5rem 1.2rem;
+  }
+  nav.tabs button {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid #444;
+    background: transparent;
+    color: #a08858;
+    padding: 0.45rem 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  nav.tabs button:hover,
+  nav.tabs button.active {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  /* ---- MAIN CONTENT ---- */
+  main { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem 4rem; position: relative; z-index: 1; }
+
+  /* ---- TAB PANELS ---- */
+  .panel { display: none; animation: fadeIn 0.35s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* ---- SECTION CARD ---- */
+  .card {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 2px 12px var(--shadow);
+    overflow: hidden;
+  }
+  .card-header {
+    background: var(--ink);
+    color: var(--gold-pale);
+    padding: 0.85rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .card-header .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    line-height: 1;
+    font-weight: 700;
+  }
+  .card-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .card-body { padding: 1.4rem; }
+
+  /* ---- PROSE ---- */
+  .prose p {
+    font-size: 0.93rem;
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+    color: #2a1f10;
+  }
+  .prose strong { color: var(--rust); font-weight: 600; }
+
+  /* ---- KRITERIA BOX ---- */
+  .kriteria {
+    background: var(--panel);
+    border-left: 3px solid var(--gold);
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+  .kriteria h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brown);
+    margin-bottom: 0.5rem;
+  }
+  .kriteria ul { padding-left: 1.2rem; }
+  .kriteria ul li { margin-bottom: 0.3rem; }
+
+  /* ---- CONTOH BOX ---- */
+  .contoh-box {
+    background: #2a1f10;
+    color: #e8d9b0;
+    border-radius: 2px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    position: relative;
+  }
+  .contoh-box::before {
+    content: 'CONTOH';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    font-style: normal;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .contoh-bad {
+    background: #2e1414;
+    color: #e8c0b0;
+  }
+  .contoh-bad::before { color: #e07070; content: 'HINDARI'; }
+
+  /* ---- FORMULA ---- */
+  .formula {
+    background: var(--panel);
+    border: 1px dashed var(--border);
+    padding: 0.8rem 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--olive);
+    margin: 1rem 0;
+    line-height: 1.6;
+  }
+  .formula span.label {
+    display: block;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.75rem;
+    color: var(--brown);
+    margin-bottom: 0.3rem;
+    font-style: italic;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ---- CHECKLIST ---- */
+  .checklist { list-style: none; padding: 0; margin: 0.8rem 0; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.88rem; line-height: 1.65; margin-bottom: 0.45rem; color: #2a1f10;
+  }
+  .checklist li::before {
+    content: '▪';
+    color: var(--gold);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* ---- DIVIDER ---- */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.5em;
+    margin: 1.2rem 0;
+    opacity: 0.6;
+  }
+
+  /* ---- STEP FLOW ---- */
+  .steps { counter-reset: step; }
+  .step {
+    display: flex; gap: 1rem; margin-bottom: 1.1rem; align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 2rem; height: 2rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  .step-body { font-size: 0.88rem; line-height: 1.7; color: #2a1f10; }
+  .step-body strong { color: var(--rust); }
+
+  /* ---- TUGAS PANEL ---- */
+  .tugas-card {
+    background: var(--ink);
+    color: var(--parchment);
+    border: 1px solid var(--gold);
+    padding: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .tugas-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+  .tugas-card p { font-size: 0.88rem; color: #c0a878; line-height: 1.7; }
+
+  .form-section {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .form-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--brown);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brown);
+    margin-bottom: 0.35rem;
+    margin-top: 0.9rem;
+  }
+  label:first-child { margin-top: 0; }
+
+  input[type="text"], input[type="url"], input[type="email"], textarea, select {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 2px;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+  textarea { min-height: 80px; resize: vertical; }
+
+  .btn-submit {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+  .btn-submit:active { transform: scale(0.99); }
+
+  .google-sheet-info {
+    background: #1a2e1a;
+    border: 1px solid #3a6e3a;
+    color: #a8d8a8;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.83rem;
+    line-height: 1.7;
+  }
+  .google-sheet-info strong { color: #6ec96e; }
+
+  /* ---- SUCCESS MODAL ---- */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(26,18,9,0.85);
+    z-index: 100;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--parchment);
+    border: 2px solid var(--gold);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.3s ease;
+  }
+  .modal h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--olive); margin-bottom: 0.7rem; }
+  .modal p { font-size: 0.88rem; color: #3a2a10; line-height: 1.7; margin-bottom: 1.2rem; }
+  .modal button { background: var(--ink); color: var(--gold-pale); border: none; padding: 0.6rem 2rem; font-family: 'Playfair Display', serif; font-size: 0.9rem; cursor: pointer; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: #9a8060;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 600px) {
+    .card-body { padding: 1rem; }
+    .form-section { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">Pendidikan Guru Sekolah Dasar · IKIP Siliwangi</div>
+  <h1>Panduan Teknik Penulisan<br><em>Jurnal Ilmiah PGSD</em></h1>
+  <p class="subtitle">Judul · Pendahuluan · Metode Penelitian — Martin Bernard, M.Pd.</p>
+</header>
+
+<nav class="tabs">
+  <button class="active" onclick="showPanel('judul', this)">§1 Judul</button>
+  <button onclick="showPanel('pendahuluan', this)">§2 Pendahuluan</button>
+  <button onclick="showPanel('metode', this)">§3 Metode Penelitian</button>
+  <button onclick="showPanel('tugas', this)">✎ Tugas</button>
+</nav>
+
+<main>
+
+<!-- ======== PANEL 1: JUDUL ======== -->
+<div id="panel-judul" class="panel active">
+
+  <div class="card">
+    <div class="card-header"><span class="num">1</span><h2>Mengapa Judul Itu Krusial?</h2></div>
+    <div class="card-body prose">
+      <p>Judul adalah <strong>gerbang pertama</strong> pembaca menuju karya ilmiah Anda. Sebuah judul yang baik bukan sekadar label — ia adalah pernyataan ringkas yang mengandung <strong>variabel, populasi, lokasi, dan metode</strong> secara implisit maupun eksplisit.</p>
+      <p>Dalam konteks PGSD, judul jurnal harus mencerminkan relevansi dengan pembelajaran di sekolah dasar: mengaitkan teori pendidikan dengan praktik nyata di kelas.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="num">2</span><h2>Struktur Judul yang Efektif</h2></div>
+    <div class="card-body">
+      <div class="formula">
+        <span class="label">// Formula umum judul penelitian PGSD</span>
+        [Pengaruh/Efektivitas/Pengembangan] + [Variabel X] + [terhadap/dalam] + [Variabel Y] + [pada Siswa Kelas — SD/MI ...] + [Tahun Ajaran ...]
+      </div>
+
+      <div class="kriteria">
+        <h3>Kriteria Judul Ilmiah yang Baik</h3>
+        <ul>
+          <li><strong>Spesifik:</strong> sebutkan kelas, sekolah, atau tahun ajaran jika relevan</li>
+          <li><strong>Ringkas:</strong> idealnya 12–20 kata; hindari frasa basa-basi ("Studi tentang…", "Suatu Tinjauan…")</li>
+          <li><strong>Informatif:</strong> mencerminkan variabel utama penelitian</li>
+          <li><strong>Tidak ambigu:</strong> gunakan istilah baku dan tepat</li>
+          <li><strong>Menarik:</strong> cukup memikat untuk membuat pembaca membuka abstrak</li>
+        </ul>
+      </div>
+
+      <div class="ornament">✦ ✦ ✦</div>
+
+      <div class="contoh-box">
+        "Pengaruh Penggunaan Media Komik Digital terhadap Kemampuan Membaca Pemahaman Siswa Kelas IV SD Negeri Cimahi 1 Tahun Ajaran 2024/2025"
+      </div>
+
+      <div class="contoh-bad">
+        "Studi tentang Pembelajaran Membaca di Sekolah Dasar" — terlalu umum, tidak ada variabel, tidak ada subyek spesifik.
+      </div>
+
+      <div class="prose" style="margin-top:1rem;">
+        <p>Untuk penelitian pengembangan (R&D), gunakan pola: <strong>"Pengembangan [Produk] untuk Meningkatkan [Kemampuan] Siswa Kelas — SD..."</strong></p>
+        <p>Untuk penelitian tindakan kelas (PTK): <strong>"Upaya Meningkatkan [Kemampuan] melalui [Metode/Model] pada Siswa Kelas — SDN ..."</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="num">3</span><h2>Daftar Periksa Judul</h2></div>
+    <div class="card-body">
+      <ul class="checklist">
+        <li>Apakah variabel independen (X) dan dependen (Y) sudah jelas?</li>
+        <li>Apakah subjek penelitian (kelas, jenjang, sekolah) tersebut?</li>
+        <li>Apakah jumlah kata tidak melebihi 20 kata?</li>
+        <li>Apakah tidak ada singkatan yang belum dijelaskan?</li>
+        <li>Apakah tidak ada kata basa-basi seperti "Suatu Kajian" atau "Sebuah Tinjauan"?</li>
+        <li>Apakah judul sudah mencerminkan konteks PGSD/sekolah dasar?</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======== PANEL 2: PENDAHULUAN ======== -->
+<div id="panel-pendahuluan" class="panel">
+
+  <div class="card">
+    <div class="card-header"><span class="num">1</span><h2>Fungsi Pendahuluan dalam Jurnal</h2></div>
+    <div class="card-body prose">
+      <p>Pendahuluan (<em>introduction</em>) bukan sekadar pembuka. Ia adalah <strong>argumen pertama</strong> Anda — mengapa penelitian ini perlu dilakukan, apa yang sudah ada, dan apa celah (gap) yang Anda isi.</p>
+      <p>Pendahuluan yang kuat membangun <strong>urgensi</strong> penelitian secara logis dari fenomena umum menuju masalah spesifik, lalu menegaskan tujuan penelitian.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="num">2</span><h2>Struktur Funnel (Corong) Pendahuluan</h2></div>
+    <div class="card-body">
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body"><strong>Konteks Global/Nasional</strong> — Mulai dari fenomena atau kebijakan pendidikan yang relevan secara luas (kurikulum Merdeka, literasi, numerasi). Dukung dengan data atau kutipan regulasi.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body"><strong>Kondisi Ideal vs. Fakta Lapangan</strong> — Paparkan standar kompetensi yang diharapkan, lalu kontraskan dengan kondisi nyata di sekolah dasar berdasarkan observasi atau pra-penelitian.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body"><strong>Kajian Literatur Singkat</strong> — Sebutkan 3–5 penelitian terdahulu yang relevan. Tunjukkan apa yang sudah dilakukan dan <strong>apa yang belum</strong> (gap penelitian).</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body"><strong>Solusi yang Ditawarkan</strong> — Perkenalkan pendekatan/metode/media yang Anda gunakan sebagai solusi atas masalah yang diidentifikasi.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body"><strong>Tujuan Penelitian</strong> — Rumuskan tujuan secara eksplisit dan operasional; harus sinkron dengan judul dan rumusan masalah.</div>
+        </div>
+      </div>
+
+      <div class="kriteria" style="margin-top:1rem;">
+        <h3>Teknik Menulis Setiap Bagian</h3>
+        <ul>
+          <li>Paragraf pertama: awali dengan fakta statistik, kutipan regulasi, atau fenomena yang langsung "menggigit"</li>
+          <li>Setiap klaim harus didukung referensi (APA 7th edition untuk PGSD)</li>
+          <li>Hindari mendefinisikan hal umum di awal (jangan awali: "Matematika adalah...")</li>
+          <li>Kajian literatur dalam pendahuluan: sintesis, bukan daftar ringkasan satu per satu</li>
+          <li>Gap penelitian: gunakan frasa "Namun, belum ada penelitian yang...", "Studi tersebut belum mengkaji..."</li>
+        </ul>
+      </div>
+
+      <div class="contoh-box">
+        "Hasil asesmen PISA 2022 menunjukkan bahwa literasi membaca siswa Indonesia berada di peringkat 68 dari 79 negara (OECD, 2023). Di tingkat sekolah dasar, rendahnya kemampuan membaca pemahaman menjadi hambatan lintas mata pelajaran..."
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="num">3</span><h2>Proporsi dan Panjang Ideal</h2></div>
+    <div class="card-body prose">
+      <p>Untuk jurnal PGSD ber-ISSN nasional, pendahuluan umumnya <strong>400–700 kata</strong> (3–5 paragraf). Untuk jurnal Sinta 2–3, pendahuluan bisa mencapai 700–1000 kata dengan kajian literatur yang lebih dalam.</p>
+
+      <div class="kriteria">
+        <h3>Proporsi Pendahuluan yang Seimbang</h3>
+        <ul>
+          <li>Konteks & latar belakang masalah: ≈ 40%</li>
+          <li>Kajian literatur & gap penelitian: ≈ 35%</li>
+          <li>Solusi yang ditawarkan & tujuan: ≈ 25%</li>
+        </ul>
+      </div>
+
+      <ul class="checklist">
+        <li>Tidak ada paragraf yang berdiri sendiri tanpa fungsi argumentatif</li>
+        <li>Setiap kutipan memiliki relevansi langsung dengan argumen</li>
+        <li>Tujuan penelitian ditulis eksplisit di kalimat terakhir pendahuluan</li>
+        <li>Tidak mengulang informasi yang sudah ada di abstrak secara verbatim</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======== PANEL 3: METODE ======== -->
+<div id="panel-metode" class="panel">
+
+  <div class="card">
+    <div class="card-header"><span class="num">1</span><h2>Komponen Wajib Bagian Metode</h2></div>
+    <div class="card-body">
+      <div class="prose">
+        <p>Metode penelitian harus ditulis dengan <strong>ketepatan dan kelengkapan</strong> yang memungkinkan peneliti lain mereplikasi penelitian Anda. Semua keputusan metodologis harus dapat dipertanggungjawabkan secara ilmiah.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body"><strong>Jenis/Desain Penelitian</strong> — Sebutkan dan jelaskan alasan pemilihan: kuantitatif (quasi-eksperimen, survei), kualitatif (studi kasus, fenomenologi), atau mixed-method. Sertakan referensi definisi desain.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body"><strong>Subjek/Partisipan</strong> — Populasi dan sampel: jumlah, kelas, sekolah, teknik pengambilan sampel (purposive, random, total sampling). Jelaskan kriteria inklusi/eksklusi.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body"><strong>Instrumen Penelitian</strong> — Tes, angket, observasi, wawancara, atau dokumentasi. Jelaskan validitas dan reliabilitas instrumen; sertakan nilai koefisien jika ada.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body"><strong>Prosedur Pengumpulan Data</strong> — Urutan pelaksanaan: pra-tes, perlakuan (treatment), pasca-tes. Untuk PTK: siklus I, II, dst.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body"><strong>Teknik Analisis Data</strong> — Statistik deskriptif, uji prasyarat (normalitas, homogenitas), uji hipotesis (t-test, ANOVA, Mann-Whitney), atau analisis tematik untuk kualitatif.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="num">2</span><h2>Metode Populer dalam Penelitian PGSD</h2></div>
+    <div class="card-body">
+
+      <div class="kriteria">
+        <h3>Penelitian Kuantitatif (Quasi-Eksperimen)</h3>
+        <ul>
+          <li>Desain: Non-Equivalent Control Group / Pretest-Posttest Control Group</li>
+          <li>Instrumen: tes tertulis, lembar observasi</li>
+          <li>Analisis: N-Gain ternormalisasi, uji-t independen</li>
+          <li>Kalimat pembuka: <em>"Metode penelitian yang digunakan adalah kuasi-eksperimen dengan desain nonequivalent control group design (Sugiyono, 2019)."</em></li>
+        </ul>
+      </div>
+
+      <div class="ornament">✦</div>
+
+      <div class="kriteria">
+        <h3>Penelitian Tindakan Kelas (PTK)</h3>
+        <ul>
+          <li>Model: Kemmis & McTaggart atau Hopkins</li>
+          <li>Fase: Perencanaan → Tindakan → Observasi → Refleksi</li>
+          <li>Indikator keberhasilan harus ditetapkan di awal (misal: ≥75% siswa mencapai KKM)</li>
+          <li>Minimal 2 siklus untuk membuktikan peningkatan</li>
+        </ul>
+      </div>
+
+      <div class="ornament">✦</div>
+
+      <div class="kriteria">
+        <h3>Penelitian Pengembangan (R&D)</h3>
+        <ul>
+          <li>Model: ADDIE, 4-D (Define, Design, Develop, Disseminate), atau Borg & Gall</li>
+          <li>Validasi: ahli materi & ahli media (sertakan persentase/kategori kelayakan)</li>
+          <li>Uji coba: terbatas → kelompok kecil → uji lapangan</li>
+          <li>Instrumen: angket validasi, angket respons siswa, tes hasil belajar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="num">3</span><h2>Teknik Penulisan Kalimat Metode</h2></div>
+    <div class="card-body">
+
+      <div class="formula">
+        <span class="label">// Pola kalimat instrumen yang baik</span>
+        "Instrumen yang digunakan adalah [nama instrumen] yang terdiri atas [jumlah butir] soal/pernyataan berbentuk [uraian/pilihan ganda/skala Likert], dengan nilai validitas isi sebesar [nilai] dan reliabilitas Cronbach's Alpha sebesar [nilai], sehingga dinyatakan valid dan reliabel."
+      </div>
+
+      <div class="formula">
+        <span class="label">// Pola kalimat analisis data</span>
+        "Analisis data dilakukan secara deskriptif dan inferensial. Uji prasyarat meliputi uji normalitas Kolmogorov-Smirnov dan uji homogenitas Levene's Test, dilanjutkan dengan uji-t independen pada taraf signifikansi α = 0,05 menggunakan perangkat lunak SPSS 26."
+      </div>
+
+      <ul class="checklist" style="margin-top:1rem;">
+        <li>Gunakan kalimat pasif konsisten: "Data dikumpulkan...", "Instrumen divalidasi..."</li>
+        <li>Setiap teknik analisis wajib disebutkan software yang digunakan</li>
+        <li>Cantumkan tahun pelaksanaan dan lokasi penelitian secara eksplisit</li>
+        <li>Jelaskan alasan pemilihan teknik analisis, bukan hanya menyebutnya</li>
+        <li>Hindari penggunaan akronim tanpa penjelasan pertama kali</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======== PANEL 4: TUGAS ======== -->
+<div id="panel-tugas" class="panel">
+
+  <div class="tugas-card">
+    <h2>📋 Pengumpulan Tugas Penulisan Jurnal</h2>
+    <p>Kirimkan dokumen Word (.docx) judul, pendahuluan, dan metode penelitian Anda melalui formulir di bawah. Tautan Google Drive Anda akan tercatat otomatis di Google Sheet kelas.</p>
+  </div>
+
+  <div class="google-sheet-info">
+    <strong>📊 Cara Pengumpulan:</strong><br>
+    1. Buat dokumen Word berisi: Judul, Pendahuluan (min. 400 kata), dan Metode Penelitian (min. 300 kata).<br>
+    2. Unggah file ke Google Drive Anda → klik kanan → <em>Bagikan</em> → <em>Siapa saja yang memiliki tautan</em> → salin tautan.<br>
+    3. Isi formulir di bawah, termasuk tautan Google Drive tersebut.<br>
+    4. Klik <strong>Kirim Tugas</strong> — data langsung masuk ke Google Sheet kelas.
+  </div>
+
+  <!-- FORM -->
+  <div class="form-section">
+    <h3>§ Identitas Mahasiswa</h3>
+
+    <label for="nama">Nama Lengkap</label>
+    <input type="text" id="nama" placeholder="contoh: Siti Nurhaliza">
+
+    <label for="nim">NIM</label>
+    <input type="text" id="nim" placeholder="contoh: 2023010001">
+
+    <label for="kelas">Kelas</label>
+    <select id="kelas">
+      <option value="">— Pilih Kelas —</option>
+      <option>PGSD A</option>
+      <option>PGSD B</option>
+      <option>PGSD C</option>
+      <option>PGSD D</option>
+    </select>
+
+    <label for="email">Email Aktif</label>
+    <input type="email" id="email" placeholder="contoh: siti@email.com">
+  </div>
+
+  <div class="form-section">
+    <h3>§ Informasi Tugas</h3>
+
+    <label for="judul-tugas">Judul Artikel/Jurnal Anda</label>
+    <input type="text" id="judul-tugas" placeholder="Tuliskan judul lengkap artikel Anda...">
+
+    <label for="jenis">Jenis Penelitian</label>
+    <select id="jenis">
+      <option value="">— Pilih Jenis —</option>
+      <option>Kuantitatif (Quasi-Eksperimen)</option>
+      <option>Kuantitatif (Survei)</option>
+      <option>Kualitatif (Studi Kasus)</option>
+      <option>Kualitatif (Fenomenologi)</option>
+      <option>Penelitian Tindakan Kelas (PTK)</option>
+      <option>Penelitian Pengembangan (R&D)</option>
+      <option>Mixed Method</option>
+    </select>
+
+    <label for="ringkasan">Ringkasan Singkat Penelitian (2–3 kalimat)</label>
+    <textarea id="ringkasan" placeholder="Jelaskan secara singkat fokus penelitian Anda..."></textarea>
+
+    <label for="link-doc">🔗 Tautan Google Drive (file Word .docx)</label>
+    <input type="url" id="link-doc" placeholder="https://drive.google.com/file/d/...">
+
+    <label for="catatan">Catatan / Pertanyaan untuk Dosen (opsional)</label>
+    <textarea id="catatan" placeholder="Tuliskan jika ada catatan khusus..."></textarea>
+  </div>
+
+  <button class="btn-submit" onclick="submitTugas()">✉ Kirim Tugas ke Google Sheet</button>
+
+  <p style="font-size:0.78rem; color:#9a8060; text-align:center; margin-top:0.8rem; font-style:italic;">
+    * Pastikan tautan Google Drive sudah diset "Siapa saja yang memiliki tautan dapat melihat" sebelum mengirim.
+  </p>
+
+</div>
+
+</main>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3>✅ Tugas Terkirim!</h3>
+    <p>Data Anda telah berhasil dicatat di Google Sheet kelas. Simpan bukti pengiriman ini. Anda juga akan mendapat konfirmasi melalui email dosen.</p>
+    <button onclick="closeModal()">Tutup</button>
+  </div>
+</div>
+
+<footer>
+  Martin Bernard, M.Pd. &nbsp;·&nbsp; Pendidikan Matematika · IKIP Siliwangi &nbsp;·&nbsp; Modul Penulisan Jurnal PGSD
+</footer>
+
+<script>
+  // ---- TAB SWITCHING ----
+  function showPanel(name, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ---- FORM VALIDATION & GOOGLE FORM SUBMIT ----
+  // Ganti URL ini dengan URL Google Form Anda yang sebenarnya
+  // Format: https://docs.google.com/forms/d/e/XXXX/formResponse
+  // Entry IDs disesuaikan dengan form Anda
+  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfbNKaJjS4ulySKMc9S_PLbJ3Tyl1MlOyQlffs7Tdal03kKSA/formResponse';
+  const ENTRY = {
+    nama:      'entry.1382101594',  // Ganti dengan entry ID field Nama
+    nim:       'entry.1678072984',  // Ganti dengan entry ID field NIM
+    kelas:     'entry.130280510',
+    email:     'entry.820033163',
+    judul:     'entry.1145080316',
+    jenis:     'entry.96302405',
+    ringkasan: 'entry.1976947422',
+    link:      'entry.959497881',
+    catatan:   'entry.1013696817',
+  };
+
+  function validate() {
+    const required = [
+      { id: 'nama', label: 'Nama Lengkap' },
+      { id: 'nim', label: 'NIM' },
+      { id: 'kelas', label: 'Kelas' },
+      { id: 'email', label: 'Email' },
+      { id: 'judul-tugas', label: 'Judul Artikel' },
+      { id: 'jenis', label: 'Jenis Penelitian' },
+      { id: 'link-doc', label: 'Tautan Google Drive' },
+    ];
+    for (const f of required) {
+      const el = document.getElementById(f.id);
+      if (!el.value.trim()) {
+        el.focus();
+        el.style.borderColor = '#c0392b';
+        alert(`Field "${f.label}" wajib diisi.`);
+        return false;
+      }
+      el.style.borderColor = '';
+    }
+    const linkEl = document.getElementById('link-doc');
+    if (!linkEl.value.startsWith('http')) {
+      linkEl.focus();
+      alert('Tautan Google Drive tidak valid. Pastikan diawali dengan https://');
+      return false;
+    }
+    return true;
+  }
+
+  function submitTugas() {
+    if (!validate()) return;
+
+    const params = new URLSearchParams();
+    params.append(ENTRY.nama,      document.getElementById('nama').value.trim());
+    params.append(ENTRY.nim,       document.getElementById('nim').value.trim());
+    params.append(ENTRY.kelas,     document.getElementById('kelas').value);
+    params.append(ENTRY.email,     document.getElementById('email').value.trim());
+    params.append(ENTRY.judul,     document.getElementById('judul-tugas').value.trim());
+    params.append(ENTRY.jenis,     document.getElementById('jenis').value);
+    params.append(ENTRY.ringkasan, document.getElementById('ringkasan').value.trim());
+    params.append(ENTRY.link,      document.getElementById('link-doc').value.trim());
+    params.append(ENTRY.catatan,   document.getElementById('catatan').value.trim());
+
+    // Submit via hidden iframe (hindari redirect)
+    let iframe = document.getElementById('hidden-iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'hidden-iframe';
+      iframe.name = 'hidden-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = GOOGLE_FORM_URL;
+    form.target = 'hidden-iframe';
+    for (const [k, v] of params.entries()) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = k;
+      input.value = v;
+      form.appendChild(input);
+    }
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+
+    setTimeout(() => { document.getElementById('modal').classList.add('show'); }, 800);
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    // Reset form
+    ['nama','nim','email','judul-tugas','ringkasan','link-doc','catatan'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('kelas').value = '';
+    document.getElementById('jenis').value = '';
+  }
+</script>
+</body>
+</html>
