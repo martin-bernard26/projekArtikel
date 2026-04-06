@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contoh Media Pembelajaran Teknologi SD – Berbasis R&D</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #0D1B2A;
+  --paper:  #F5F0E8;
+  --cream:  #EDE8D8;
+  --accent: #E84545;
+  --gold:   #D4A017;
+  --teal:   #1A9C8E;
+  --sky:    #3B82F6;
+  --lime:   #65A30D;
+  --plum:   #7C3AED;
+  --rose:   #DB2777;
+  --orange: #EA580C;
+  --slate:  #475569;
+  --white:  #FFFFFF;
+  --r: 16px;
+  --sh: 0 4px 24px rgba(13,27,42,.10);
+  --sh2: 0 12px 48px rgba(13,27,42,.16);
+  --ff-head: 'Syne', sans-serif;
+  --ff-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN TEXTURE ── */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+/* ── WRAPPER ── */
+.wrap { position:relative; z-index:1; max-width:1060px; margin:0 auto; padding:0 18px 80px; }
+
+/* ── MASTHEAD ── */
+.masthead {
+  background: var(--ink);
+  margin: 0 -18px 0;
+  padding: 64px 36px 52px;
+  position:relative; overflow:hidden;
+}
+.masthead::after {
+  content:'R&D';
+  position:absolute; right:-10px; bottom:-30px;
+  font-family:var(--ff-head); font-size:180px; font-weight:800;
+  color:rgba(255,255,255,.04); line-height:1; pointer-events:none;
+  letter-spacing:-8px;
+}
+.mast-inner { max-width:1060px; margin:0 auto; }
+.mast-chip {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(232,69,69,.18); border:1px solid rgba(232,69,69,.4);
+  color:#FF8080; border-radius:6px;
+  padding:5px 14px; font-size:.75rem; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase; margin-bottom:22px;
+}
+.masthead h1 {
+  font-family:var(--ff-head);
+  font-size:clamp(1.8rem,5vw,3.4rem);
+  font-weight:800; color:#fff;
+  line-height:1.15; margin-bottom:16px;
+  max-width:680px;
+}
+.masthead h1 em { color:var(--gold); font-style:normal; }
+.masthead p { color:rgba(255,255,255,.65); font-size:1rem; max-width:560px; line-height:1.8; }
+.mast-stats {
+  display:flex; gap:32px; flex-wrap:wrap;
+  margin-top:36px; padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.stat { display:flex; flex-direction:column; gap:4px; }
+.stat-n { font-family:var(--ff-head); font-size:2rem; font-weight:800; color:var(--gold); }
+.stat-l { font-size:.8rem; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:1px; }
+
+/* ── STICKY NAV ── */
+.sticky-nav {
+  position:sticky; top:0; z-index:200;
+  background:rgba(245,240,232,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:2px solid var(--cream);
+  padding:0 18px;
+}
+.nav-inner {
+  max-width:1060px; margin:0 auto;
+  display:flex; gap:0; overflow-x:auto;
+  scrollbar-width:none;
+}
+.nav-inner::-webkit-scrollbar { display:none; }
+.nav-tab {
+  font-family:var(--ff-body); font-weight:600; font-size:.82rem;
+  padding:16px 18px; border:none; background:none;
+  cursor:pointer; color:var(--slate);
+  border-bottom:3px solid transparent;
+  white-space:nowrap; transition:all .2s;
+}
+.nav-tab:hover { color:var(--ink); }
+.nav-tab.on { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* ── SECTION ── */
+section { padding: 56px 0 0; scroll-margin-top: 56px; }
+.sec-label {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.72rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:2px; color:var(--slate); margin-bottom:12px;
+}
+.sec-label .bar { width:24px; height:2px; background:currentColor; }
+.sec-title {
+  font-family:var(--ff-head);
+  font-size:clamp(1.4rem,3.5vw,2.1rem);
+  font-weight:800; color:var(--ink);
+  line-height:1.2; margin-bottom:8px;
+}
+.sec-sub { font-size:.97rem; color:var(--slate); max-width:600px; margin-bottom:36px; }
+
+/* ── R&D PIPELINE ── */
+.pipeline {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap:0;
+  border-radius:var(--r);
+  overflow:hidden;
+  box-shadow:var(--sh2);
+  margin-bottom:48px;
+}
+.pipe-step {
+  background:var(--white);
+  padding:24px 18px;
+  border-right:2px solid var(--cream);
+  position:relative;
+  transition:transform .25s, box-shadow .25s;
+  cursor:default;
+}
+.pipe-step:last-child { border-right:none; }
+.pipe-step:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(13,27,42,.14); z-index:2; }
+.pipe-step::after {
+  content:'▶';
+  position:absolute; right:-14px; top:50%;
+  transform:translateY(-50%);
+  color:var(--cream); font-size:1.2rem; z-index:1;
+}
+.pipe-step:last-child::after { display:none; }
+.pipe-num {
+  font-family:var(--ff-head); font-size:2rem; font-weight:800;
+  line-height:1; margin-bottom:8px;
+}
+.pipe-name {
+  font-family:var(--ff-head); font-size:.85rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px;
+}
+.pipe-desc { font-size:.78rem; color:var(--slate); line-height:1.55; }
+.pipe-step[data-c="1"] .pipe-num { color:var(--sky); }
+.pipe-step[data-c="2"] .pipe-num { color:var(--teal); }
+.pipe-step[data-c="3"] .pipe-num { color:var(--lime); }
+.pipe-step[data-c="4"] .pipe-num { color:var(--gold); }
+.pipe-step[data-c="5"] .pipe-num { color:var(--plum); }
+.pipe-step[data-c="6"] .pipe-num { color:var(--orange); }
+.pipe-step[data-c="7"] .pipe-num { color:var(--rose); }
+.pipe-step[data-c="8"] .pipe-num { color:var(--accent); }
+.pipe-step[data-c="9"] .pipe-num { color:var(--teal); }
+.pipe-step[data-c="10"] .pipe-num { color:var(--lime); }
+
+/* ── MAPEL FILTER ── */
+.filter-row {
+  display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px;
+}
+.filter-btn {
+  font-family:var(--ff-body); font-weight:600; font-size:.8rem;
+  padding:8px 18px; border-radius:6px;
+  border:2px solid var(--cream); background:var(--white);
+  color:var(--ink); cursor:pointer; transition:all .2s;
+}
+.filter-btn:hover { border-color:var(--ink); }
+.filter-btn.on { color:var(--white); border-color:transparent; }
+.filter-btn[data-f="all"].on { background:var(--ink); }
+.filter-btn[data-f="mtk"].on  { background:var(--sky); }
+.filter-btn[data-f="ipa"].on  { background:var(--teal); }
+.filter-btn[data-f="ips"].on  { background:var(--lime); }
+.filter-btn[data-f="bind"].on { background:var(--rose); }
+.filter-btn[data-f="agama"].on{ background:var(--gold); color:var(--ink); }
+.filter-btn[data-f="sbd"].on  { background:var(--plum); }
+
+/* ── MEDIA CARDS GRID ── */
+.cards-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px,1fr));
+  gap:22px;
+  margin-bottom:48px;
+}
+.mcard {
+  background:var(--white);
+  border-radius:var(--r);
+  box-shadow:var(--sh);
+  overflow:hidden;
+  transition:transform .25s, box-shadow .25s;
+  display:flex; flex-direction:column;
+  opacity:1;
+  transform:scale(1);
+  transition: opacity .3s, transform .3s, box-shadow .25s;
+}
+.mcard.hidden { opacity:0; transform:scale(.95); pointer-events:none; display:none; }
+.mcard:hover { transform:translateY(-6px); box-shadow:var(--sh2); }
+.mcard-head {
+  padding:28px 26px 20px;
+  position:relative;
+  min-height:130px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+}
+.mcard-icon { font-size:2.2rem; margin-bottom:10px; }
+.mcard-mapel {
+  position:absolute; top:16px; right:16px;
+  font-size:.68rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:1px;
+  padding:4px 10px; border-radius:4px;
+  color:var(--white);
+}
+.mcard-class {
+  position:absolute; top:16px; left:16px;
+  font-size:.68rem; font-weight:700;
+  padding:4px 10px; border-radius:4px;
+  background:rgba(255,255,255,.22); color:var(--white);
+  border:1px solid rgba(255,255,255,.3);
+}
+.mcard-title {
+  font-family:var(--ff-head); font-size:1.1rem;
+  font-weight:800; color:var(--white); line-height:1.25;
+}
+.mcard-body { padding:20px 26px 24px; flex:1; display:flex; flex-direction:column; gap:14px; }
+.mcard-desc { font-size:.88rem; color:var(--slate); line-height:1.7; }
+.mcard-rd {
+  display:flex; flex-direction:column; gap:6px;
+}
+.rd-row {
+  display:flex; gap:8px; align-items:flex-start; font-size:.82rem;
+}
+.rd-label {
+  font-weight:700; color:var(--ink); flex-shrink:0;
+  min-width:72px; padding-top:1px;
+}
+.rd-val { color:var(--slate); }
+.mcard-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.tag {
+  font-size:.7rem; font-weight:600;
+  padding:3px 9px; border-radius:4px;
+  background:var(--cream); color:var(--slate);
+}
+.btn-detail {
+  margin-top:auto;
+  font-family:var(--ff-body); font-weight:700; font-size:.82rem;
+  padding:10px 0; width:100%;
+  border-radius:8px; border:2px solid var(--cream);
+  background:transparent; cursor:pointer; color:var(--ink);
+  transition:all .2s;
+}
+.btn-detail:hover { background:var(--ink); color:var(--white); border-color:var(--ink); }
+
+/* colors per mapel */
+.mtk  .mcard-head { background:linear-gradient(135deg,#1E40AF,#3B82F6); }
+.ipa  .mcard-head { background:linear-gradient(135deg,#065F46,#1A9C8E); }
+.ips  .mcard-head { background:linear-gradient(135deg,#3F6212,#65A30D); }
+.bind .mcard-head { background:linear-gradient(135deg,#9D174D,#DB2777); }
+.agama .mcard-head { background:linear-gradient(135deg,#92400E,#D4A017); }
+.sbd  .mcard-head { background:linear-gradient(135deg,#4C1D95,#7C3AED); }
+
+.mtk  .mcard-mapel { background:var(--sky); }
+.ipa  .mcard-mapel { background:var(--teal); }
+.ips  .mcard-mapel { background:var(--lime); }
+.bind .mcard-mapel { background:var(--rose); }
+.agama .mcard-mapel { background:var(--gold); color:var(--ink); }
+.sbd  .mcard-mapel { background:var(--plum); }
+
+/* ── MODAL ── */
+.modal-bg {
+  position:fixed; inset:0; z-index:900;
+  background:rgba(13,27,42,.6); backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center;
+  padding:16px; opacity:0; pointer-events:none;
+  transition:opacity .3s;
+}
+.modal-bg.open { opacity:1; pointer-events:all; }
+.modal {
+  background:var(--white); border-radius:24px;
+  max-width:720px; width:100%;
+  max-height:90vh; overflow-y:auto;
+  box-shadow:0 32px 80px rgba(13,27,42,.3);
+  transform:translateY(20px); transition:transform .3s;
+}
+.modal-bg.open .modal { transform:translateY(0); }
+.modal-top {
+  padding:32px 32px 24px;
+  position:relative; border-radius:24px 24px 0 0;
+}
+.modal-close {
+  position:absolute; top:20px; right:20px;
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(255,255,255,.2); border:none;
+  color:var(--white); font-size:1.1rem;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:background .2s;
+}
+.modal-close:hover { background:rgba(255,255,255,.35); }
+.modal-body { padding:24px 32px 32px; }
+.modal-section { margin-bottom:24px; }
+.modal-section h4 {
+  font-family:var(--ff-head); font-size:.95rem; font-weight:800;
+  text-transform:uppercase; letter-spacing:1px; color:var(--slate);
+  margin-bottom:10px; display:flex; align-items:center; gap:8px;
+}
+.modal-section h4::after { content:''; flex:1; height:1px; background:var(--cream); }
+.modal-section p { font-size:.93rem; color:var(--slate); line-height:1.75; }
+.phase-list { display:flex; flex-direction:column; gap:8px; }
+.phase-item {
+  display:flex; gap:12px; align-items:flex-start;
+  background:var(--paper); border-radius:10px; padding:12px 16px;
+  font-size:.88rem;
+}
+.phase-item .ph-num {
+  width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--ff-head); font-size:.78rem; font-weight:800;
+  color:var(--white); flex-shrink:0;
+}
+.phase-item p { color:var(--slate); line-height:1.6; }
+.phase-item strong { color:var(--ink); }
+.validation-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px;
+}
+.val-card {
+  background:var(--paper); border-radius:10px; padding:14px 16px;
+}
+.val-card .v-label { font-size:.75rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.val-card .v-score {
+  font-family:var(--ff-head); font-size:1.5rem; font-weight:800;
+}
+.val-card .v-bar { height:6px; border-radius:3px; background:var(--cream); margin-top:6px; overflow:hidden; }
+.val-card .v-fill { height:100%; border-radius:3px; transition:width 1s ease; }
+.result-row {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  text-align:center;
+}
+.result-box { background:var(--paper); border-radius:10px; padding:14px; }
+.result-box .rb-n { font-family:var(--ff-head); font-size:1.6rem; font-weight:800; }
+.result-box .rb-l { font-size:.75rem; color:var(--slate); margin-top:4px; }
+
+/* ── COMPARISON TABLE ── */
+.comp-table { width:100%; border-collapse:collapse; margin-bottom:48px; }
+.comp-table th {
+  background:var(--ink); color:var(--white);
+  font-family:var(--ff-head); font-size:.82rem;
+  font-weight:700; padding:14px 16px; text-align:left;
+}
+.comp-table th:first-child { border-radius:var(--r) 0 0 0; }
+.comp-table th:last-child  { border-radius:0 var(--r) 0 0; }
+.comp-table td {
+  padding:14px 16px; font-size:.87rem;
+  border-bottom:1px solid var(--cream); vertical-align:top;
+}
+.comp-table tr:hover td { background:#F9F7F3; }
+.comp-table tr:last-child td:first-child { border-radius:0 0 0 var(--r); }
+.comp-table tr:last-child td:last-child  { border-radius:0 0 var(--r) 0; }
+.comp-table .c-pill {
+  display:inline-block; padding:2px 10px; border-radius:4px;
+  font-size:.7rem; font-weight:700; color:var(--white);
+}
+
+/* ── TIMELINE ── */
+.timeline { position:relative; padding-left:32px; }
+.timeline::before {
+  content:''; position:absolute; left:10px; top:0; bottom:0;
+  width:2px; background:var(--cream);
+}
+.tl-item { position:relative; margin-bottom:28px; }
+.tl-dot {
+  position:absolute; left:-26px; top:4px;
+  width:16px; height:16px; border-radius:50%;
+  border:3px solid var(--white);
+  box-shadow:0 0 0 2px currentColor;
+}
+.tl-item h4 {
+  font-family:var(--ff-head); font-size:.97rem; font-weight:800;
+  margin-bottom:6px;
+}
+.tl-item p { font-size:.87rem; color:var(--slate); line-height:1.65; }
+.tl-duration {
+  display:inline-block; font-size:.72rem; font-weight:700;
+  padding:2px 10px; border-radius:4px;
+  background:var(--cream); color:var(--slate); margin-bottom:6px;
+}
+
+/* ── TIPS STRIP ── */
+.tips-strip {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px; margin-bottom:48px;
+}
+.tip-card {
+  background:var(--white); border-radius:var(--r);
+  padding:22px 20px; box-shadow:var(--sh);
+  border-top:4px solid;
+  transition:transform .2s;
+}
+.tip-card:hover { transform:translateY(-4px); }
+.tip-card .t-icon { font-size:1.8rem; margin-bottom:10px; }
+.tip-card h4 { font-family:var(--ff-head); font-size:.97rem; font-weight:800; margin-bottom:8px; }
+.tip-card p { font-size:.84rem; color:var(--slate); line-height:1.65; }
+
+/* ── FOOTER ── */
+.site-footer {
+  border-top:2px solid var(--cream);
+  padding:32px 0; text-align:center;
+  font-size:.83rem; color:var(--slate);
+}
+.site-footer strong { color:var(--ink); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .masthead { padding:40px 20px 36px; }
+  .mast-stats { gap:20px; }
+  .pipeline { grid-template-columns:repeat(2,1fr); }
+  .pipe-step::after { display:none; }
+  .validation-grid { grid-template-columns:1fr; }
+  .result-row { grid-template-columns:1fr; }
+  .modal-body { padding:20px; }
+  .modal-top { padding:24px 20px 18px; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.mcard { animation: fadeUp .4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="mast-inner">
+    <div class="mast-chip">⚗️ Research &amp; Development</div>
+    <h1>Contoh Media Pembelajaran<br>Teknologi <em>Berbasis R&amp;D</em><br>untuk Sekolah Dasar</h1>
+    <p>Katalog produk media teknologi hasil pengembangan sistematis menggunakan model Borg &amp; Gall, ADDIE, dan 4D — lengkap dengan tahapan, validasi, dan hasil uji coba.</p>
+    <div class="mast-stats">
+      <div class="stat"><span class="stat-n">18</span><span class="stat-l">Contoh Produk</span></div>
+      <div class="stat"><span class="stat-n">6</span><span class="stat-l">Mata Pelajaran</span></div>
+      <div class="stat"><span class="stat-n">3</span><span class="stat-l">Model R&amp;D</span></div>
+      <div class="stat"><span class="stat-n">SD 1–6</span><span class="stat-l">Cakupan Kelas</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-tab on" onclick="scrollSec('model')">🔬 Model R&D</button>
+    <button class="nav-tab" onclick="scrollSec('katalog')">📦 Katalog Produk</button>
+    <button class="nav-tab" onclick="scrollSec('perbandingan')">📊 Perbandingan</button>
+    <button class="nav-tab" onclick="scrollSec('timeline')">📅 Alur Pengembangan</button>
+    <button class="nav-tab" onclick="scrollSec('tips')">💡 Tips Implementasi</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════
+     SEKSI 1 — MODEL R&D
+══════════════════════════════════ -->
+<section id="model">
+  <div class="sec-label"><span class="bar"></span> Fondasi Teoritis</div>
+  <h2 class="sec-title">Model R&amp;D yang Digunakan</h2>
+  <p class="sec-sub">Tiga model R&D populer dalam penelitian media pembelajaran SD di Indonesia, berikut tahapan operasionalnya.</p>
+
+  <!-- BORG & GALL (10 langkah) -->
+  <h3 style="font-family:var(--ff-head);font-size:1rem;font-weight:800;margin-bottom:14px;color:var(--accent)">
+    ① Borg &amp; Gall — 10 Langkah Pengembangan
+  </h3>
+  <div class="pipeline" style="margin-bottom:32px">
+    <div class="pipe-step" data-c="1"><div class="pipe-num">01</div><div class="pipe-name">Penelitian & Pengumpulan Info</div><div class="pipe-desc">Studi literatur, analisis kebutuhan guru & siswa, observasi lapangan</div></div>
+    <div class="pipe-step" data-c="2"><div class="pipe-num">02</div><div class="pipe-name">Perencanaan</div><div class="pipe-desc">Rumusan tujuan, scope produk, rencana uji coba, estimasi biaya</div></div>
+    <div class="pipe-step" data-c="3"><div class="pipe-num">03</div><div class="pipe-name">Pengembangan Draf Produk</div><div class="pipe-desc">Prototipe awal media, storyboard, desain UI/UX, konten</div></div>
+    <div class="pipe-step" data-c="4"><div class="pipe-num">04</div><div class="pipe-name">Uji Coba Awal</div><div class="pipe-desc">Validasi ahli materi & media (3–5 pakar), revisi tahap 1</div></div>
+    <div class="pipe-step" data-c="5"><div class="pipe-num">05</div><div class="pipe-name">Revisi Produk Utama</div><div class="pipe-desc">Perbaikan berdasarkan saran validator, uji keterbacaan</div></div>
+    <div class="pipe-step" data-c="6"><div class="pipe-num">06</div><div class="pipe-name">Uji Coba Lapangan Utama</div><div class="pipe-desc">Kelompok kecil 6–12 siswa, observasi & angket respons</div></div>
+    <div class="pipe-step" data-c="7"><div class="pipe-num">07</div><div class="pipe-name">Revisi Produk Operasional</div><div class="pipe-desc">Penyempurnaan berdasarkan data uji lapangan utama</div></div>
+    <div class="pipe-step" data-c="8"><div class="pipe-num">08</div><div class="pipe-name">Uji Coba Lapangan Operasional</div><div class="pipe-desc">Skala besar 30+ siswa, pretest-posttest, angket motivasi</div></div>
+    <div class="pipe-step" data-c="9"><div class="pipe-num">09</div><div class="pipe-name">Revisi Produk Final</div><div class="pipe-desc">Penyempurnaan akhir berdasarkan semua data uji coba</div></div>
+    <div class="pipe-step" data-c="10"><div class="pipe-num">10</div><div class="pipe-name">Diseminasi & Implementasi</div><div class="pipe-desc">Publikasi jurnal, distribusi ke sekolah, upload repository</div></div>
+  </div>
+
+  <!-- ADDIE -->
+  <h3 style="font-family:var(--ff-head);font-size:1rem;font-weight:800;margin-bottom:14px;color:var(--teal)">
+    ② Model ADDIE — 5 Fase Siklus
+  </h3>
+  <div class="pipeline" style="grid-template-columns:repeat(5,1fr);margin-bottom:32px">
+    <div class="pipe-step" data-c="1"><div class="pipe-num" style="color:var(--teal)">A</div><div class="pipe-name">Analyze</div><div class="pipe-desc">Analisis kebutuhan, karakteristik siswa, tujuan pembelajaran</div></div>
+    <div class="pipe-step" data-c="2"><div class="pipe-num" style="color:var(--teal)">D</div><div class="pipe-name">Design</div><div class="pipe-desc">Desain instruksional, storyboard, struktur konten, prototipe</div></div>
+    <div class="pipe-step" data-c="3"><div class="pipe-num" style="color:var(--teal)">D</div><div class="pipe-name">Develop</div><div class="pipe-desc">Produksi media, validasi ahli, revisi berdasarkan feedback</div></div>
+    <div class="pipe-step" data-c="4"><div class="pipe-num" style="color:var(--teal)">I</div><div class="pipe-name">Implement</div><div class="pipe-desc">Uji coba di kelas nyata, observasi guru, pretest-posttest</div></div>
+    <div class="pipe-step" data-c="5"><div class="pipe-num" style="color:var(--teal)">E</div><div class="pipe-name">Evaluate</div><div class="pipe-desc">Evaluasi sumatif, analisis n-gain, diseminasi hasil</div></div>
+  </div>
+
+  <!-- 4D -->
+  <h3 style="font-family:var(--ff-head);font-size:1rem;font-weight:800;margin-bottom:14px;color:var(--plum)">
+    ③ Model 4D (Thiagarajan) — Khusus Perangkat Pembelajaran
+  </h3>
+  <div class="pipeline" style="grid-template-columns:repeat(4,1fr)">
+    <div class="pipe-step" data-c="1"><div class="pipe-num" style="color:var(--plum)">D1</div><div class="pipe-name">Define</div><div class="pipe-desc">Analisis ujung-depan, siswa, tugas, konsep, tujuan</div></div>
+    <div class="pipe-step" data-c="2"><div class="pipe-num" style="color:var(--plum)">D2</div><div class="pipe-name">Design</div><div class="pipe-desc">Pemilihan media, format, desain awal instrumen & produk</div></div>
+    <div class="pipe-step" data-c="3"><div class="pipe-num" style="color:var(--plum)">D3</div><div class="pipe-name">Develop</div><div class="pipe-desc">Validasi ahli, uji keterbacaan, uji coba terbatas & revisi</div></div>
+    <div class="pipe-step" data-c="4"><div class="pipe-num" style="color:var(--plum)">D4</div><div class="pipe-name">Disseminate</div><div class="pipe-desc">Uji pemakaian skala luas, publikasi, distribusi ke sekolah</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SEKSI 2 — KATALOG
+══════════════════════════════════ -->
+<section id="katalog">
+  <div class="sec-label"><span class="bar"></span> Katalog Produk</div>
+  <h2 class="sec-title">18 Contoh Media Teknologi Hasil R&amp;D</h2>
+  <p class="sec-sub">Filter berdasarkan mata pelajaran. Klik kartu untuk melihat detail tahapan R&D, validasi, dan hasil uji coba.</p>
+
+  <div class="filter-row">
+    <button class="filter-btn on" data-f="all" onclick="filterCards('all',this)">🔍 Semua</button>
+    <button class="filter-btn" data-f="mtk"  onclick="filterCards('mtk',this)">🔢 Matematika</button>
+    <button class="filter-btn" data-f="ipa"  onclick="filterCards('ipa',this)">🌱 IPA</button>
+    <button class="filter-btn" data-f="ips"  onclick="filterCards('ips',this)">🌍 IPS</button>
+    <button class="filter-btn" data-f="bind" onclick="filterCards('bind',this)">📖 B. Indonesia</button>
+    <button class="filter-btn" data-f="agama" onclick="filterCards('agama',this)">🕌 PAI</button>
+    <button class="filter-btn" data-f="sbd"  onclick="filterCards('sbd',this)">🎨 SBdP</button>
+  </div>
+
+  <div class="cards-grid" id="cards-grid"></div>
+</section>
+
+<!-- ══════════════════════════════════
+     SEKSI 3 — PERBANDINGAN
+══════════════════════════════════ -->
+<section id="perbandingan">
+  <div class="sec-label"><span class="bar"></span> Analisis Komparatif</div>
+  <h2 class="sec-title">Perbandingan Jenis Media &amp; Model R&amp;D</h2>
+  <p class="sec-sub">Panduan memilih model R&D dan jenis media yang tepat sesuai konteks penelitian dan sumber daya yang tersedia.</p>
+
+  <div style="overflow-x:auto">
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Jenis Media Teknologi</th>
+        <th>Model R&D Cocok</th>
+        <th>Biaya Produksi</th>
+        <th>Waktu Pengembangan</th>
+        <th>Keahlian Teknis</th>
+        <th>Kelas Optimal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🎮 Game Edukatif (HTML/JS)</strong></td>
+        <td><span class="c-pill" style="background:var(--teal)">ADDIE</span></td>
+        <td>Gratis – Rp500rb</td>
+        <td>4–8 minggu</td>
+        <td>⭐⭐⭐⭐</td>
+        <td>Kelas 1–6</td>
+      </tr>
+      <tr>
+        <td><strong>🎬 Video Animasi</strong></td>
+        <td><span class="c-pill" style="background:var(--accent)">Borg &amp; Gall</span></td>
+        <td>Gratis – Rp300rb</td>
+        <td>3–6 minggu</td>
+        <td>⭐⭐⭐</td>
+        <td>Kelas 3–6</td>
+      </tr>
+      <tr>
+        <td><strong>💻 E-Modul Interaktif</strong></td>
+        <td><span class="c-pill" style="background:var(--accent)">Borg &amp; Gall</span> <span class="c-pill" style="background:var(--teal)">ADDIE</span></td>
+        <td>Gratis</td>
+        <td>6–12 minggu</td>
+        <td>⭐⭐⭐⭐</td>
+        <td>Kelas 4–6</td>
+      </tr>
+      <tr>
+        <td><strong>📱 Aplikasi Mobile (MIT App)</strong></td>
+        <td><span class="c-pill" style="background:var(--plum)">4D</span></td>
+        <td>Gratis</td>
+        <td>8–16 minggu</td>
+        <td>⭐⭐⭐⭐⭐</td>
+        <td>Kelas 4–6</td>
+      </tr>
+      <tr>
+        <td><strong>🖼️ Media Presentasi Interaktif</strong></td>
+        <td><span class="c-pill" style="background:var(--plum)">4D</span> <span class="c-pill" style="background:var(--teal)">ADDIE</span></td>
+        <td>Gratis – Rp150rb</td>
+        <td>2–4 minggu</td>
+        <td>⭐⭐</td>
+        <td>Kelas 1–6</td>
+      </tr>
+      <tr>
+        <td><strong>🃏 Flashcard Digital + Quizlet</strong></td>
+        <td><span class="c-pill" style="background:var(--teal)">ADDIE</span></td>
+        <td>Gratis</td>
+        <td>1–2 minggu</td>
+        <td>⭐</td>
+        <td>Kelas 1–6</td>
+      </tr>
+      <tr>
+        <td><strong>🔊 Podcast / Audio Edukatif</strong></td>
+        <td><span class="c-pill" style="background:var(--accent)">Borg &amp; Gall</span></td>
+        <td>Gratis – Rp200rb</td>
+        <td>2–4 minggu</td>
+        <td>⭐⭐</td>
+        <td>Kelas 1–3</td>
+      </tr>
+      <tr>
+        <td><strong>📋 E-Worksheet (Liveworksheets)</strong></td>
+        <td><span class="c-pill" style="background:var(--plum)">4D</span></td>
+        <td>Gratis</td>
+        <td>1–3 minggu</td>
+        <td>⭐⭐</td>
+        <td>Kelas 2–6</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SEKSI 4 — TIMELINE
+══════════════════════════════════ -->
+<section id="timeline">
+  <div class="sec-label"><span class="bar"></span> Panduan Waktu</div>
+  <h2 class="sec-title">Alur Pengembangan Media — Contoh Nyata</h2>
+  <p class="sec-sub">Simulasi timeline pengembangan media game matematika kelas 3 SD menggunakan model ADDIE selama satu semester.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px" class="tl-grid">
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot" style="color:var(--sky)"></div>
+          <span class="tl-duration">Minggu 1–2</span>
+          <h4>📋 Analyze — Analisis Kebutuhan</h4>
+          <p>Wawancara 3 guru, observasi 2 kelas, angket 60 siswa kelas 3. Identifikasi: 72% siswa kesulitan perkalian dan pembagian. Media yang ada terbatas pada buku teks. Diputuskan: game HTML interaktif berbasis drill &amp; practice.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="color:var(--teal)"></div>
+          <span class="tl-duration">Minggu 3–4</span>
+          <h4>🎨 Design — Perancangan Desain</h4>
+          <p>Storyboard 8 level game, pemilihan karakter maskot "Bima si Robot", flowchart navigasi, desain UI wireframe, penyusunan instrumen validasi ahli materi &amp; media (skala Likert 1–5).</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="color:var(--lime)"></div>
+          <span class="tl-duration">Minggu 5–9</span>
+          <h4>🔧 Develop — Produksi &amp; Validasi</h4>
+          <p>Coding HTML/CSS/JS game 8 level, ilustrasi karakter, rekam audio narasi. Validasi ahli materi (dosen PGSD) skor 4,3/5 = "Sangat Valid". Validasi ahli media (praktisi IT) skor 4,1/5 = "Sangat Valid". Revisi 2 putaran.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="color:var(--gold)"></div>
+          <span class="tl-duration">Minggu 10–12</span>
+          <h4>🚀 Implement — Uji Coba</h4>
+          <p>Uji terbatas: 8 siswa kelas 3A. Uji lapangan: 32 siswa kelas 3B (pretest-posttest). Angket motivasi belajar 20 butir diberikan setelah penggunaan 3 kali pertemuan.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="color:var(--accent)"></div>
+          <span class="tl-duration">Minggu 13–16</span>
+          <h4>📊 Evaluate — Analisis &amp; Diseminasi</h4>
+          <p>N-Gain = 0,61 (Sedang-Tinggi). Motivasi belajar: 84% positif. Artikel dipublikasikan di Jurnal Pendidikan Dasar Indonesia. Media diunggah ke Google Drive sekolah dan repository kampus.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="background:var(--white);border-radius:var(--r);padding:28px;box-shadow:var(--sh);margin-bottom:20px">
+        <h4 style="font-family:var(--ff-head);font-weight:800;margin-bottom:18px">📈 Hasil Pengembangan</h4>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px"><span style="font-weight:600">Validasi Ahli Materi</span><span style="font-weight:800;color:var(--teal)">86% / Sangat Valid</span></div>
+            <div style="height:8px;background:var(--cream);border-radius:4px;overflow:hidden"><div style="width:86%;height:100%;background:var(--teal);border-radius:4px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px"><span style="font-weight:600">Validasi Ahli Media</span><span style="font-weight:800;color:var(--sky)">82% / Sangat Valid</span></div>
+            <div style="height:8px;background:var(--cream);border-radius:4px;overflow:hidden"><div style="width:82%;height:100%;background:var(--sky);border-radius:4px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px"><span style="font-weight:600">Respons Siswa</span><span style="font-weight:800;color:var(--lime)">91% / Sangat Positif</span></div>
+            <div style="height:8px;background:var(--cream);border-radius:4px;overflow:hidden"><div style="width:91%;height:100%;background:var(--lime);border-radius:4px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px"><span style="font-weight:600">Peningkatan Hasil Belajar (N-Gain)</span><span style="font-weight:800;color:var(--gold)">0.61 / Sedang</span></div>
+            <div style="height:8px;background:var(--cream);border-radius:4px;overflow:hidden"><div style="width:61%;height:100%;background:var(--gold);border-radius:4px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px"><span style="font-weight:600">Motivasi Belajar</span><span style="font-weight:800;color:var(--rose)">84% / Tinggi</span></div>
+            <div style="height:8px;background:var(--cream);border-radius:4px;overflow:hidden"><div style="width:84%;height:100%;background:var(--rose);border-radius:4px"></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--ink);border-radius:var(--r);padding:24px;color:white">
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.5);margin-bottom:12px;font-weight:700">Instrumen Wajib dalam R&D</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:.87rem">
+          <div style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span><span>Lembar validasi ahli materi (20–30 butir)</span></div>
+          <div style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span><span>Lembar validasi ahli media (20–30 butir)</span></div>
+          <div style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span><span>Angket respons guru (10–15 butir)</span></div>
+          <div style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span><span>Angket respons siswa (15–20 butir)</span></div>
+          <div style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span><span>Soal pretest-posttest (10–20 butir)</span></div>
+          <div style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span><span>Lembar observasi keterlaksanaan</span></div>
+          <div style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span><span>Angket motivasi belajar (ARCS/skala sendiri)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SEKSI 5 — TIPS
+══════════════════════════════════ -->
+<section id="tips">
+  <div class="sec-label"><span class="bar"></span> Saran Praktis</div>
+  <h2 class="sec-title">Tips Implementasi R&amp;D Media Teknologi SD</h2>
+  <p class="sec-sub">Hal-hal penting yang perlu diperhatikan agar penelitian R&D media pembelajaran Anda berjalan lancar dan menghasilkan produk berkualitas.</p>
+
+  <div class="tips-strip">
+    <div class="tip-card" style="border-color:var(--sky)">
+      <div class="t-icon">🎯</div>
+      <h4>Fokus pada Satu KD Spesifik</h4>
+      <p>Jangan terlalu luas. Pilih satu Kompetensi Dasar yang benar-benar bermasalah berdasarkan data nilai ulangan, bukan asumsi. Produk yang sempit lebih dalam daripada yang lebar tapi dangkal.</p>
+    </div>
+    <div class="tip-card" style="border-color:var(--teal)">
+      <div class="t-icon">👨‍🏫</div>
+      <h4>Libatkan Guru Sejak Awal</h4>
+      <p>Guru bukan hanya subjek uji coba. Jadikan mereka co-developer — minta feedback pada tahap desain. Ini meningkatkan relevansi produk dan memudahkan diseminasi ke sekolah lain.</p>
+    </div>
+    <div class="tip-card" style="border-color:var(--lime)">
+      <div class="t-icon">📐</div>
+      <h4>Pilih Validator yang Tepat</h4>
+      <p>Ahli materi = dosen atau guru berpengalaman di bidang tersebut. Ahli media = dosen teknologi pendidikan atau IT. Jangan terbalik. Minimal 2 validator per aspek untuk triangulasi.</p>
+    </div>
+    <div class="tip-card" style="border-color:var(--gold)">
+      <div class="t-icon">📊</div>
+      <h4>Gunakan N-Gain dengan Benar</h4>
+      <p>N-Gain = (posttest–pretest) / (skor max–pretest). Interpretasi: &lt;0.3 = rendah, 0.3–0.7 = sedang, &gt;0.7 = tinggi. Tidak perlu mencapai tinggi untuk dinyatakan efektif — sedang sudah cukup.</p>
+    </div>
+    <div class="tip-card" style="border-color:var(--plum)">
+      <div class="t-icon">🔁</div>
+      <h4>Dokumentasikan Setiap Revisi</h4>
+      <p>Buat "tabel revisi" yang mencatat: saran validator → perubahan yang dilakukan → alasan. Ini menjadi bukti ilmiah proses iterasi dan memperkuat bagian pembahasan artikel.</p>
+    </div>
+    <div class="tip-card" style="border-color:var(--rose)">
+      <div class="t-icon">📱</div>
+      <h4>Uji di Perangkat Nyata Siswa</h4>
+      <p>Jangan hanya uji di laptop/PC pengembang. Test di HP Android entry-level (RAM 2–3GB) karena itu perangkat yang paling umum dimiliki siswa SD di Indonesia. Optimalkan performa!</p>
+    </div>
+    <div class="tip-card" style="border-color:var(--orange)">
+      <div class="t-icon">📄</div>
+      <h4>Siapkan Panduan Penggunaan</h4>
+      <p>Buat buku panduan singkat (4–8 halaman) untuk guru dan siswa. Sertakan screenshot langkah penggunaan, tips troubleshooting, dan cara mengakses offline. Ini bagian dari produk R&D Anda.</p>
+    </div>
+    <div class="tip-card" style="border-color:var(--accent)">
+      <div class="t-icon">🌐</div>
+      <h4>Publikasikan di Jurnal Bereputasi</h4>
+      <p>Target jurnal PGSD/Dikdas terakreditasi Sinta 2–4. Tulis artikel lebih awal (mulai bab 4). Jurnal seperti JPDI, Mimbar Sekolah Dasar, dan Prima Edukasia adalah target yang realistis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="site-footer">
+  <p>📚 <strong>Materi Perkuliahan R&D Media Pembelajaran</strong> — Program Studi PGSD &amp; Pendidikan Dasar<br>
+  <strong>IKIP Siliwangi Cimahi</strong> · Disusun berdasarkan: Borg &amp; Gall (2003), Branch (2009-ADDIE), Thiagarajan (1974-4D)</p>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
+  <div class="modal" id="modal-box">
+    <div class="modal-top" id="modal-top">
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+      <div style="font-size:2.8rem;margin-bottom:10px" id="m-icon"></div>
+      <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.7);margin-bottom:8px" id="m-chip"></div>
+      <h2 style="font-family:var(--ff-head);font-size:1.5rem;font-weight:800;color:#fff;line-height:1.2" id="m-title"></h2>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────
+// DATA
+// ─────────────────────────────────
+const cards = [
+  {
+    mapel:'mtk', kelas:'Kelas 3', icon:'🎮',
+    title:'Game "Petualangan Perkalian" – HTML5 Browser',
+    model:'ADDIE', platform:'HTML + CSS + JS',
+    desc:'Game berbasis browser dengan 8 level tantangan perkalian 1–10. Siswa mengontrol karakter robot yang harus melewati rintangan dengan menjawab soal perkalian. Feedback audio-visual instan, sistem nyawa, dan papan skor.',
+    phases:[
+      {n:'Analyze',t:'Observasi kelas, wawancara guru, analisis nilai UTS Matematika. Ditemukan: 68% siswa nilai perkalian <70.'},
+      {n:'Design',t:'Storyboard 8 level, desain karakter "Bima Robot", flowchart navigasi, kisi-kisi soal perkalian 1-10.'},
+      {n:'Develop',t:'Coding HTML/JS game engine sederhana, ilustrasi karakter SVG, integrasi audio feedback, validasi 2 ahli.'},
+      {n:'Implement',t:'Uji terbatas 8 siswa → uji lapangan 30 siswa selama 4 pertemuan, pretest-posttest.'},
+      {n:'Evaluate',t:'N-Gain 0.63 (Sedang), respons siswa 89% positif, publikasi di JPDI Sinta 3.'}
+    ],
+    val:{materi:87,media:83,siswa:89,guru:85},
+    result:{pretest:58,posttest:79,ngain:'0.63'},
+    tags:['Gamifikasi','Drill & Practice','Offline','Kelas 3']
+  },
+  {
+    mapel:'ipa', kelas:'Kelas 5', icon:'🌱',
+    title:'Video Animasi "Ekosistem & Rantai Makanan"',
+    model:'Borg & Gall',platform:'Animaker + Google Forms',
+    desc:'Serial video animasi 4 episode (masing-masing 5–6 menit) tentang ekosistem darat, air tawar, laut, dan hutan hujan. Setiap episode dilengkapi kuis Google Forms terintegrasi dan lembar kerja digital.',
+    phases:[
+      {n:'Penelitian Awal',t:'Studi literatur ekosistem SD, observasi proses belajar IPA, wawancara 4 guru SD kelas 5.'},
+      {n:'Perencanaan',t:'Naskah 4 episode, storyboard visual, jadwal produksi, penetapan validator 3 ahli.'},
+      {n:'Pengembangan Draf',t:'Produksi animasi di Animaker, dubbing narasi, scoring musik, integrasi kuis Google Forms.'},
+      {n:'Uji Coba Awal',t:'Validasi ahli IPA dan ahli media, skor rata-rata 4.2/5. Revisi 14 poin.'},
+      {n:'Uji Lapangan',t:'32 siswa kelas 5B, 4 pertemuan. Angket motivasi ARCS diberikan pasca penggunaan.'}
+    ],
+    val:{materi:84,media:81,siswa:92,guru:88},
+    result:{pretest:61,posttest:80,ngain:'0.49'},
+    tags:['Video Animasi','Animaker','Google Forms','Kelas 5']
+  },
+  {
+    mapel:'ips', kelas:'Kelas 4', icon:'🗺️',
+    title:'E-Modul Interaktif "Keragaman Budaya Indonesia"',
+    model:'4D', platform:'HTML/CSS + Flip Cards + Quiz',
+    desc:'E-modul HTML mandiri tentang 6 pulau besar Indonesia: pakaian adat, rumah adat, tarian, dan makanan khas. Fitur: peta interaktif klik-per-provinsi, galeri foto, quiz 30 soal berlevel, dan fitur cetak laporan belajar.',
+    phases:[
+      {n:'Define',t:'Analisis kurikulum IPS kelas 4, peta konsep materi, wawancara guru, angket siswa 40 anak.'},
+      {n:'Design',t:'Desain peta Indonesia interaktif SVG, struktur 6 bab, soal kuis berlevel A/B/C.'},
+      {n:'Develop',t:'Coding e-modul HTML all-in-one, validasi ahli IPS & media, 3 putaran revisi.'},
+      {n:'Disseminate',t:'Uji coba 3 SD berbeda kota, distribusi via flashdisk + Google Drive, artikel Jurnal Pendidikan Dasar.'}
+    ],
+    val:{materi:90,media:86,siswa:94,guru:91},
+    result:{pretest:55,posttest:81,ngain:'0.58'},
+    tags:['E-Modul','HTML Offline','Peta Interaktif','Kelas 4']
+  },
+  {
+    mapel:'bind', kelas:'Kelas 2', icon:'📖',
+    title:'Flashcard Digital Membaca – Quizlet + Suku Kata',
+    model:'ADDIE', platform:'Quizlet + Liveworksheets',
+    desc:'Set 120 flashcard digital bergambar untuk melatih pengenalan suku kata dan kata dasar. Gambar ilustrasi lokal (buah-buahan, hewan, benda sehari-hari). Terintegrasi dengan e-worksheet tindak lanjut di Liveworksheets.',
+    phases:[
+      {n:'Analyze',t:'Diagnosis membaca siswa kelas 2, temukan 58% belum lancar suku kata gabungan (KVK).'},
+      {n:'Design',t:'Kategorisasi 120 kata dalam 10 tema, pembuatan ilustrasi lokal, desain kartu di Canva.'},
+      {n:'Develop',t:'Upload ke Quizlet, setting mode belajar, buat e-worksheet di Liveworksheets, validasi 2 ahli bahasa.'},
+      {n:'Implement',t:'Uji coba 25 siswa kelas 2A selama 3 minggu (15 menit/hari), tes membaca pre-post.'},
+      {n:'Evaluate',t:'Kelancaran membaca meningkat 71% (skor rata: 52→79), respons siswa 96% "Suka".'}
+    ],
+    val:{materi:88,media:82,siswa:96,guru:87},
+    result:{pretest:52,posttest:79,ngain:'0.56'},
+    tags:['Flashcard','Quizlet','Suku Kata','Kelas 1-2']
+  },
+  {
+    mapel:'mtk', kelas:'Kelas 1', icon:'🍎',
+    title:'Game "Berhitung Buah" – Mengenal Bilangan 1–20',
+    model:'ADDIE', platform:'HTML + CSS + JS (Offline)',
+    desc:'Game drag-and-drop untuk siswa kelas 1: menghitung buah, memasangkan bilangan dengan gambar, dan menulis angka secara digital. Antarmuka sangat sederhana, font besar, tombol jumbo, cocok untuk layar sentuh HP/tablet.',
+    phases:[
+      {n:'Analyze',t:'Observasi kelas 1, fokus KD Mengenal Bilangan 1–20. Identifikasi: 45% siswa masih bingung simbol angka.'},
+      {n:'Design',t:'UI wireframe jumbo-button, animasi buah SVG, audio pengucapan angka, navigasi tap-only.'},
+      {n:'Develop',t:'Coding HTML responsif, rekam audio angka 1-20, ilustrasi 10 jenis buah lokal, validasi 2 ahli.'},
+      {n:'Implement',t:'Uji terbatas 6 siswa kelas 1 + guru pendamping, uji lapangan 28 siswa 3 pertemuan.'},
+      {n:'Evaluate',t:'N-Gain 0.68 (Sedang). Semua siswa menyatakan "Mudah Digunakan" (100% respons positif).'}
+    ],
+    val:{materi:91,media:88,siswa:100,guru:93},
+    result:{pretest:48,posttest:82,ngain:'0.65'},
+    tags:['Kelas 1','Touch-Friendly','Offline','Bilangan']
+  },
+  {
+    mapel:'ipa', kelas:'Kelas 4', icon:'🔬',
+    title:'Simulasi Interaktif "Gaya dan Gerak" – PhET-inspired',
+    model:'Borg & Gall', platform:'HTML5 Canvas + JS',
+    desc:'Simulasi fisika sederhana: siswa dapat mendorong benda virtual, mengubah massa dan permukaan, lalu mengamati perubahan kecepatan dan arah gerak. Dilengkapi lembar kerja digital dan catatan observasi terstruktur.',
+    phases:[
+      {n:'Penelitian Awal',t:'Analisis miskonsepsi "gaya" pada siswa SD, referensi PhET Colorado, wawancara guru IPA.'},
+      {n:'Perencanaan',t:'Spesifikasi 5 skenario simulasi, desain lembar observasi digital, rencana validasi.'},
+      {n:'Pengembangan Draf',t:'Coding Canvas API untuk fisika sederhana, desain UI kontrol interaktif, validasi ahli fisika & media.'},
+      {n:'Uji Coba Awal',t:'5 siswa kelas 4, focus group dengan guru, revisi 9 poin antarmuka.'},
+      {n:'Uji Lapangan',t:'30 siswa kelas 4, desain quasi-eksperimen kelas kontrol vs eksperimen.'}
+    ],
+    val:{materi:85,media:80,siswa:87,guru:84},
+    result:{pretest:59,posttest:76,ngain:'0.41'},
+    tags:['Simulasi','Canvas','Fisika','Kelas 4']
+  },
+  {
+    mapel:'agama', kelas:'Kelas 3', icon:'🕌',
+    title:'Video Animasi "Kisah Nabi" – Seri 5 Episode',
+    model:'Borg & Gall', platform:'Powtoon + YouTube Embed',
+    desc:'5 episode animasi kisah para nabi (Nabi Ibrahim, Musa, Isa, Yusuf, Muhammad SAW) masing-masing 7–8 menit. Narasi bahasa Indonesia sederhana, visual karakter non-wajah, dilengkapi pertanyaan refleksi dan aktivitas mewarnai digital.',
+    phases:[
+      {n:'Penelitian Awal',t:'Review kurikulum PAI SD, wawancara guru agama, identifikasi kesulitan siswa memahami kisah nabi secara kronologis.'},
+      {n:'Perencanaan',t:'Naskah 5 episode berdasarkan Al-Quran dan hadis shahih, konsultasi dengan ulama/ustaz sebagai reviewer konten.'},
+      {n:'Pengembangan Draf',t:'Produksi di Powtoon (gratis), pilih visual non-figuratif sesuai fatwa MUI, tambah lagu nasyhid pembuka.'},
+      {n:'Uji Lapangan',t:'28 siswa kelas 3 selama 5 pertemuan, angket pemahaman dan sikap keagamaan pre-post.'},
+      {n:'Diseminasi',t:'Distribusi via channel YouTube sekolah (privat), share link ke grup WhatsApp wali murid.'}
+    ],
+    val:{materi:93,media:84,siswa:95,guru:92},
+    result:{pretest:62,posttest:85,ngain:'0.61'},
+    tags:['Video','PAI','Non-Figuratif','Kelas 3']
+  },
+  {
+    mapel:'sbd', kelas:'Kelas 5', icon:'🎨',
+    title:'Aplikasi "Mewarnai Digital" – MIT App Inventor',
+    model:'4D', platform:'MIT App Inventor 2 (Android APK)',
+    desc:'Aplikasi Android (APK) untuk mewarnai motif batik Jawa dan Sumatera secara digital. Fitur: 12 template motif batik, 48 pilihan warna, mode "cek simetri", dan galeri karya siswa yang bisa disimpan ke galeri HP.',
+    phases:[
+      {n:'Define',t:'Analisis kurikulum SBdP KD batik, observasi kemampuan motorik halus siswa kelas 5, studi APK serupa.'},
+      {n:'Design',t:'Desain 12 template batik (6 Jawa, 6 Sumatera), UI color picker, flowchart navigasi aplikasi.'},
+      {n:'Develop',t:'Pengembangan di MIT App Inventor 2, validasi ahli seni & media, revisi 2 putaran, export APK.'},
+      {n:'Disseminate',t:'Uji 3 kelas berbeda sekolah, distribusi APK via WhatsApp & Bluetooth, workshop guru SBdP.'}
+    ],
+    val:{materi:89,media:85,siswa:93,guru:88},
+    result:{pretest:60,posttest:82,ngain:'0.55'},
+    tags:['Android APK','MIT App Inventor','Batik','Kelas 5']
+  },
+  {
+    mapel:'mtk', kelas:'Kelas 6', icon:'📐',
+    title:'E-Modul "Bangun Ruang" – Animasi 3D + Kalkulator',
+    model:'ADDIE', platform:'HTML + Three.js (3D render)',
+    desc:'E-modul HTML dengan visualisasi 3D bangun ruang (kubus, balok, prisma, limas, tabung, kerucut, bola) yang bisa diputar interaktif. Dilengkapi kalkulator volume dan luas permukaan otomatis serta 40 soal berlevel.',
+    phases:[
+      {n:'Analyze',t:'Analisis soal UASBN matematika 3 tahun terakhir: 35% soal bangun ruang. Wawancara guru kelas 6.'},
+      {n:'Design',t:'Desain 7 modul bangun ruang, integrasi Three.js untuk 3D interaktif, kalkulator dinamis.'},
+      {n:'Develop',t:'Coding HTML + Three.js, 40 soal berlevel (Mudah/Sedang/Sukar), validasi 3 ahli.'},
+      {n:'Implement',t:'36 siswa kelas 6B, 6 pertemuan, soal UASBN sebagai posttest.'},
+      {n:'Evaluate',t:'N-Gain 0.55. Nilai rata-rata UASBN matematika naik dari 68 menjadi 79.'}
+    ],
+    val:{materi:86,media:88,siswa:91,guru:89},
+    result:{pretest:62,posttest:80,ngain:'0.55'},
+    tags:['3D Interaktif','Three.js','Geometri','Kelas 6']
+  },
+  {
+    mapel:'ips', kelas:'Kelas 5', icon:'🌾',
+    title:'Podcast Edukatif "Cerita Pahlawan Nasional"',
+    model:'Borg & Gall', platform:'Anchor/Spotify + Google Forms',
+    desc:'Serial 10 episode podcast menceritakan biografi singkat pahlawan nasional dengan gaya bercerita (storytelling) yang engaging. Durasi 8–12 menit per episode. Dilengkapi lembar kerja audio digital yang diisi sambil mendengarkan.',
+    phases:[
+      {n:'Penelitian Awal',t:'Survei minat belajar sejarah siswa kelas 5, identifikasi: 74% siswa bosan dengan metode ceramah sejarah.'},
+      {n:'Perencanaan',t:'Naskah 10 episode, pemilihan 10 pahlawan dari berbagai daerah (inklusif), penentuan host dan narrator.'},
+      {n:'Pengembangan Draf',t:'Rekam audio, editing di Audacity, upload ke Anchor, buat Google Forms lembar kerja, validasi ahli.'},
+      {n:'Uji Lapangan',t:'30 siswa kelas 5, mendengarkan di HP masing-masing, mengisi worksheet online.'},
+      {n:'Diseminasi',t:'Podcast dipublikasikan di Spotify For Education, QR Code disebarkan ke 5 SD sekitar.'}
+    ],
+    val:{materi:87,media:79,siswa:90,guru:86},
+    result:{pretest:57,posttest:76,ngain:'0.44'},
+    tags:['Podcast','Audio','Sejarah','Kelas 5']
+  },
+  {
+    mapel:'bind', kelas:'Kelas 4', icon:'✍️',
+    title:'E-Worksheet "Menulis Puisi" – Liveworksheets AI',
+    model:'4D', platform:'Liveworksheets + Google Slides',
+    desc:'Lembar kerja digital berlevel untuk pembelajaran menulis puisi: Level 1 (melengkapi puisi rumpang), Level 2 (menulis puisi dengan panduan pilihan kata), Level 3 (menulis puisi mandiri dengan checklist mandiri).',
+    phases:[
+      {n:'Define',t:'Analisis KD menulis puisi kelas 4, identifikasi kesulitan: diksi, rima, dan ekspresi. Angket 35 siswa.'},
+      {n:'Design',t:'Desain 3 level worksheet, bank kata puisi 200 kata terpilih, rubrik penilaian 5 aspek.'},
+      {n:'Develop',t:'Pembuatan 9 worksheet di Liveworksheets, validasi ahli bahasa & media, revisi tampilan.'},
+      {n:'Disseminate',t:'Uji 32 siswa kelas 4, 3 pertemuan, penilaian portofolio puisi digital, artikel Jurnal Bahasa.'}
+    ],
+    val:{materi:85,media:83,siswa:88,guru:86},
+    result:{pretest:54,posttest:74,ngain:'0.44'},
+    tags:['E-Worksheet','Liveworksheets','Puisi','Kelas 4']
+  },
+  {
+    mapel:'ipa', kelas:'Kelas 6', icon:'🔭',
+    title:'Aplikasi AR "Tata Surya" – WebAR + Marker',
+    model:'ADDIE', platform:'AR.js + A-Frame (WebAR)',
+    desc:'Media Augmented Reality berbasis web (tanpa install aplikasi) menggunakan marker kartu planet. Siswa mengarahkan kamera HP ke kartu, muncul model 3D planet berputar lengkap dengan informasi jarak, diameter, dan jumlah bulan.',
+    phases:[
+      {n:'Analyze',t:'Analisis abstraksi konsep tata surya di kelas 6, hambatan visualisasi skala planet, ketersediaan HP siswa.'},
+      {n:'Design',t:'Desain 9 kartu marker (8 planet + Matahari), model 3D planet, konten info tiap planet.'},
+      {n:'Develop',t:'Develop WebAR dengan AR.js + A-Frame, optimasi untuk HP Android RAM 2GB, validasi 3 ahli.'},
+      {n:'Implement',t:'Uji coba 34 siswa kelas 6, sesi eksplorasi AR 40 menit, pretest-posttest 20 soal tata surya.'},
+      {n:'Evaluate',t:'N-Gain 0.71 (Tinggi), pertama kali N-Gain >0.7 dalam penelitian IPA sekolah tersebut.'}
+    ],
+    val:{materi:88,media:91,siswa:97,guru:90},
+    result:{pretest:55,posttest:85,ngain:'0.71'},
+    tags:['Augmented Reality','WebAR','Tata Surya','Kelas 6']
+  },
+  {
+    mapel:'mtk', kelas:'Kelas 2', icon:'🧮',
+    title:'Media "Papan Hitung Digital" – Abakus Interaktif',
+    model:'4D', platform:'HTML + SVG Animasi',
+    desc:'Simulasi abakus digital (sempoa) yang bisa dioperasikan touch/click untuk belajar nilai tempat satuan, puluhan, dan ratusan. Tersedia 3 mode: eksplorasi bebas, demonstrasi guru, dan latihan terbimbing.',
+    phases:[
+      {n:'Define',t:'Analisis kesulitan nilai tempat kelas 2, referensi abakus fisik yang mahal, kebutuhan media konkret.'},
+      {n:'Design',t:'Desain SVG abakus 3 kolom, animasi manik bergerak, 3 mode penggunaan, desain untuk layar sentuh.'},
+      {n:'Develop',t:'Coding SVG interaktif + JavaScript event, testing di berbagai resolusi HP, validasi 2 ahli.'},
+      {n:'Disseminate',t:'Uji 3 kelas kelas 2 berbeda sekolah, workshop guru tentang cara integrasi ke pembelajaran.'}
+    ],
+    val:{materi:90,media:87,siswa:94,guru:91},
+    result:{pretest:53,posttest:80,ngain:'0.57'},
+    tags:['Abakus Digital','SVG Interaktif','Nilai Tempat','Kelas 2']
+  },
+  {
+    mapel:'agama', kelas:'Kelas 5', icon:'📿',
+    title:'Kuis Interaktif "Asmaul Husna" – Wordwall Custom',
+    model:'ADDIE', platform:'Wordwall + Google Forms',
+    desc:'Set 10 aktivitas Wordwall dengan variasi: Memory match (nama-arti), Anagram asmaul husna, Categorize (sifat Allah), Fill-in-the-blank (ayat quran), dan Multiple choice (contoh perilaku). Dapat dimainkan di HP tanpa install.',
+    phases:[
+      {n:'Analyze',t:'Analisis hafalan asmaul husna siswa kelas 5, temukan hafalan tanpa pemahaman makna. Data: 80% hafal nama, 30% hafal arti.'},
+      {n:'Design',t:'Pemetaan 99 asmaul husna ke 10 aktivitas game, desain rubrik penilaian kompetensi hafalan + pemahaman.'},
+      {n:'Develop',t:'Pembuatan 10 game Wordwall custom, integrasi Google Forms untuk skor otomatis, validasi ahli PAI.'},
+      {n:'Implement',t:'30 siswa kelas 5, 3 pertemuan hybrid (kelas + rumah), pengukuran hafalan lisan + tertulis.'},
+      {n:'Evaluate',t:'Pemahaman makna meningkat dari 30% → 82%. Motivasi belajar PAI meningkat signifikan.'}
+    ],
+    val:{materi:92,media:85,siswa:95,guru:90},
+    result:{pretest:58,posttest:83,ngain:'0.60'},
+    tags:['Wordwall','Gamifikasi','PAI','Kelas 5']
+  },
+  {
+    mapel:'sbd', kelas:'Kelas 3', icon:'🎵',
+    title:'Media Audio "Lagu Daerah Nusantara" – Seri Interaktif',
+    model:'Borg & Gall', platform:'HTML5 Audio Player + Quizlet',
+    desc:'Perpustakaan audio 30 lagu daerah dari 30 provinsi, lengkap dengan lirik berjalan (karaoke-style), notasi balok sederhana, asal daerah pada peta interaktif, dan flashcard kosakata bahasa daerah dari lirik lagu.',
+    phases:[
+      {n:'Penelitian Awal',t:'Observasi pembelajaran seni budaya, identifikasi: siswa hanya kenal 2–3 lagu daerah. Potensi budaya lokal terabaikan.'},
+      {n:'Perencanaan',t:'Kurasi 30 lagu daerah dari 30 provinsi, perizinan konten (domain publik), perencanaan fitur karaoke HTML.'},
+      {n:'Pengembangan Draf',t:'Coding HTML5 audio player dengan sinkronisasi lirik, peta SVG interaktif, flashcard Quizlet 30 set.'},
+      {n:'Uji Lapangan',t:'32 siswa kelas 3 dan 4, 5 pertemuan SBdP, pre-post pengenalan lagu daerah.'},
+      {n:'Diseminasi',t:'Media dijadikan pojok budaya di perpustakaan sekolah (mode kiosk), disebarkan ke 8 SD.'}
+    ],
+    val:{materi:88,media:86,siswa:93,guru:89},
+    result:{pretest:42,posttest:75,ngain:'0.57'},
+    tags:['Audio','Lagu Daerah','Karaoke','Kelas 3-4']
+  },
+  {
+    mapel:'bind', kelas:'Kelas 6', icon:'📰',
+    title:'Platform "Majalah Digital Sekolah" – Flip PDF',
+    model:'Borg & Gall', platform:'Canva + FlipHTML5 + Google Drive',
+    desc:'Media pembelajaran bahasa Indonesia berbasis majalah digital interaktif yang DIBUAT OLEH SISWA. Siswa menjadi jurnalis cilik: menulis artikel, mewawancarai narasumber, membuat infografis, dan mempublikasikan di platform flip-PDF.',
+    phases:[
+      {n:'Penelitian Awal',t:'Analisis kompetensi menulis kelas 6, identifikasi kurangnya proyek menulis autentik untuk tujuan nyata.'},
+      {n:'Perencanaan',t:'Desain alur proyek 8 minggu: pitch artikel → riset → menulis → revisi → desain → publish.'},
+      {n:'Pengembangan',t:'Template Canva majalah, panduan jurnalistik siswa, rubrik penilaian 6 aspek, validasi 3 ahli.'},
+      {n:'Uji Lapangan',t:'30 siswa kelas 6 membuat majalah 3 edisi selama 1 semester, penilaian portofolio.'},
+      {n:'Diseminasi',t:'Majalah digital dikirim ke orang tua via WhatsApp, arsip di Google Drive sekolah, lomba tingkat kota.'}
+    ],
+    val:{materi:91,media:87,siswa:96,guru:94},
+    result:{pretest:56,posttest:80,ngain:'0.55'},
+    tags:['Majalah Digital','Student-Generated','Menulis','Kelas 6']
+  },
+  {
+    mapel:'ipa', kelas:'Kelas 3', icon:'🦋',
+    title:'Komik Digital "Metamorfosis & Siklus Hidup"',
+    model:'4D', platform:'Canva Comics + Flip PDF',
+    desc:'Komik digital 24 halaman yang menceritakan petualangan "Ulo si Ulat" melalui proses metamorfosis. Karakter anthropomorphic, dialog bilingual (Indonesia-Sunda), soal tersembunyi di tiap chapter, dan puzzle digital di akhir cerita.',
+    phases:[
+      {n:'Define',t:'Analisis kesulitan siswa memahami metamorfosis sebagai proses berurutan, studi minat baca komik siswa SD.'},
+      {n:'Design',t:'Desain karakter Ulo si Ulat, 24 panel komik, dialog sederhana, 3 soal tersembunyi per bab.'},
+      {n:'Develop',t:'Ilustrasi komik di Canva Pro, konversi ke FlipPDF interaktif, validasi ahli IPA & media, revisi.'},
+      {n:'Disseminate',t:'Uji 28 siswa kelas 3, distribusi FlipPDF via QR Code, pameran komik mini di sekolah.'}
+    ],
+    val:{materi:89,media:92,siswa:98,guru:90},
+    result:{pretest:50,posttest:80,ngain:'0.60'},
+    tags:['Komik Digital','FlipPDF','IPA','Kelas 3']
+  },
+  {
+    mapel:'mtk', kelas:'Kelas 4', icon:'📊',
+    title:'Dashboard "Ayo Statistik!" – Data Kelas Interaktif',
+    model:'ADDIE', platform:'HTML + Chart.js + Google Sheets',
+    desc:'Media pembelajaran statistik sederhana di mana SISWA SENDIRI mengumpulkan data kelas (tinggi badan, warna favorit, dll), memasukkan ke Google Sheets, lalu hasilnya otomatis muncul di dashboard grafik HTML interaktif (bar, pie, line).',
+    phases:[
+      {n:'Analyze',t:'Analisis abstraksi data statistik di kelas 4, identifikasi: siswa tidak punya konteks mengapa statistik penting.'},
+      {n:'Design',t:'Desain alur project-based: survei → input data → visualisasi → interpretasi → presentasi.'},
+      {n:'Develop',t:'Coding dashboard HTML + Chart.js terintegrasi Google Sheets API, validasi 3 ahli statistik & media.'},
+      {n:'Implement',t:'32 siswa kelas 4 melakukan 3 proyek statistik berbeda selama 1 bulan, penilaian produk.'},
+      {n:'Evaluate',t:'Pemahaman statistik N-Gain 0.52, kemampuan presentasi data meningkat 87%.'}
+    ],
+    val:{materi:87,media:90,siswa:92,guru:88},
+    result:{pretest:53,posttest:76,ngain:'0.50'},
+    tags:['Dashboard','Chart.js','Statistik','Project-Based']
+  }
+];
+
+// ─────────────────────────────────
+// RENDER CARDS
+// ─────────────────────────────────
+function renderCards(filter) {
+  const grid = document.getElementById('cards-grid');
+  grid.innerHTML = '';
+  let delay = 0;
+  cards.forEach((c,i) => {
+    if (filter !== 'all' && c.mapel !== filter) return;
+    const el = document.createElement('div');
+    el.className = `mcard ${c.mapel}`;
+    el.style.animationDelay = delay + 'ms';
+    delay += 60;
+    el.innerHTML = `
+      <div class="mcard-head">
+        <span class="mcard-class">${c.kelas}</span>
+        <span class="mcard-mapel">${labelMapel(c.mapel)}</span>
+        <div class="mcard-icon">${c.icon}</div>
+        <div class="mcard-title">${c.title}</div>
+      </div>
+      <div class="mcard-body">
+        <p class="mcard-desc">${c.desc}</p>
+        <div class="mcard-rd">
+          <div class="rd-row"><span class="rd-label">Model R&D</span><span class="rd-val">${c.model}</span></div>
+          <div class="rd-row"><span class="rd-label">Platform</span><span class="rd-val">${c.platform}</span></div>
+          <div class="rd-row"><span class="rd-label">N-Gain</span><span class="rd-val"><strong>${c.result.ngain}</strong> — ${ngainLabel(c.result.ngain)}</span></div>
+        </div>
+        <div class="mcard-tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <button class="btn-detail" onclick="openModal(${i})">Lihat Detail R&D →</button>
+      </div>`;
+    grid.appendChild(el);
+  });
+}
+
+function labelMapel(m) {
+  return {mtk:'Matematika',ipa:'IPA',ips:'IPS',bind:'B. Indonesia',agama:'PAI',sbd:'SBdP'}[m]||m;
+}
+function ngainLabel(v) {
+  const n = parseFloat(v);
+  if(n>=0.7) return '🟢 Tinggi';
+  if(n>=0.3) return '🟡 Sedang';
+  return '🔴 Rendah';
+}
+
+// ─────────────────────────────────
+// FILTER
+// ─────────────────────────────────
+function filterCards(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderCards(f);
+}
+
+// ─────────────────────────────────
+// MODAL
+// ─────────────────────────────────
+const bgColors = {mtk:'linear-gradient(135deg,#1E40AF,#3B82F6)',ipa:'linear-gradient(135deg,#065F46,#1A9C8E)',ips:'linear-gradient(135deg,#3F6212,#65A30D)',bind:'linear-gradient(135deg,#9D174D,#DB2777)',agama:'linear-gradient(135deg,#92400E,#D4A017)',sbd:'linear-gradient(135deg,#4C1D95,#7C3AED)'};
+const phColors = ['#3B82F6','#1A9C8E','#65A30D','#D4A017','#7C3AED','#DB2777','#EA580C','#E84545','#1A9C8E','#65A30D'];
+
+function openModal(idx) {
+  const c = cards[idx];
+  document.getElementById('modal-top').style.background = bgColors[c.mapel];
+  document.getElementById('m-icon').textContent = c.icon;
+  document.getElementById('m-chip').textContent = `${labelMapel(c.mapel)} · ${c.kelas} · ${c.model}`;
+  document.getElementById('m-title').textContent = c.title;
+
+  const phaseHtml = c.phases.map((p,i)=>`
+    <div class="phase-item">
+      <div class="ph-num" style="background:${phColors[i]}">${i+1}</div>
+      <p><strong>${p.n}:</strong> ${p.t}</p>
+    </div>`).join('');
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-section">
+      <h4>Deskripsi Produk</h4>
+      <p>${c.desc}</p>
+    </div>
+    <div class="modal-section">
+      <h4>Tahapan R&D (${c.model})</h4>
+      <div class="phase-list">${phaseHtml}</div>
+    </div>
+    <div class="modal-section">
+      <h4>Hasil Validasi</h4>
+      <div class="validation-grid">
+        ${valCard('Ahli Materi', c.val.materi, '#3B82F6')}
+        ${valCard('Ahli Media', c.val.media, '#1A9C8E')}
+        ${valCard('Respons Siswa', c.val.siswa, '#65A30D')}
+        ${valCard('Respons Guru', c.val.guru, '#D4A017')}
+      </div>
+    </div>
+    <div class="modal-section">
+      <h4>Hasil Uji Coba</h4>
+      <div class="result-row">
+        <div class="result-box"><div class="rb-n" style="color:#94A3B8">${c.result.pretest}</div><div class="rb-l">Rata-rata Pretest</div></div>
+        <div class="result-box"><div class="rb-n" style="color:#1A9C8E">${c.result.posttest}</div><div class="rb-l">Rata-rata Posttest</div></div>
+        <div class="result-box"><div class="rb-n" style="color:#D4A017">${c.result.ngain}</div><div class="rb-l">N-Gain Score</div></div>
+      </div>
+    </div>
+    <div class="modal-section">
+      <h4>Platform &amp; Tools</h4>
+      <p>${c.platform}</p>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+  `;
+
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // animate bars after render
+  setTimeout(()=>{
+    document.querySelectorAll('.v-fill').forEach(el=>{
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 150);
+}
+
+function valCard(label, score, color) {
+  const pct = Math.round(score);
+  const interp = pct>=90?'Sangat Valid':pct>=80?'Sangat Valid':pct>=70?'Valid':'Cukup Valid';
+  return `<div class="val-card">
+    <div class="v-label">${label}</div>
+    <div class="v-score" style="color:${color}">${pct}%</div>
+    <div style="font-size:.75rem;color:#64748B;margin-top:2px">${interp}</div>
+    <div class="v-bar"><div class="v-fill" data-w="${pct}" style="background:${color};width:0%"></div></div>
+  </div>`;
+}
+
+function closeModal(e) {
+  if(e.target === document.getElementById('modal-bg')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal-bg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModalBtn(); });
+
+// ─────────────────────────────────
+// NAV SCROLL
+// ─────────────────────────────────
+function scrollSec(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('on'));
+  event.target.classList.add('on');
+}
+const secIds = ['model','katalog','perbandingan','timeline','tips'];
+const navTabs = document.querySelectorAll('.nav-tab');
+window.addEventListener('scroll',()=>{
+  secIds.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    const r=el.getBoundingClientRect();
+    if(r.top<=100&&r.bottom>=100){
+      navTabs.forEach(t=>t.classList.remove('on'));
+      navTabs[i]&&navTabs[i].classList.add('on');
+    }
+  });
+});
+
+// ─────────────────────────────────
+// INIT
+// ─────────────────────────────────
+renderCards('all');
+</script>
+</body>
+</html>
