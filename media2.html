@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Media Pembelajaran Bahasa Indonesia SD</title>
+<style>
+    body {
+        font-family: 'Comic Sans MS', cursive;
+        background: linear-gradient(to right, #fddb92, #d1fdff);
+        text-align: center;
+        margin: 0;
+    }
+
+    h1 {
+        color: #333;
+        margin-top: 20px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    .card {
+        background: #ff9a9e;
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        font-size: 28px;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .btn {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-nav {
+        background: #fff;
+    }
+
+    .quiz-box {
+        margin-top: 20px;
+        background: #a18cd1;
+        color: white;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .option {
+        display: block;
+        margin: 10px;
+        padding: 10px;
+        background: white;
+        color: black;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .option:hover {
+        background: #ddd;
+    }
+
+    .score {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📖 Belajar Bahasa Indonesia SD</h1>
+
+<div class="container">
+
+    <!-- FLASHCARD -->
+    <div class="card" onclick="flipCard()" id="card">
+        Apel
+    </div>
+
+    <div>
+        <button class="btn btn-nav" onclick="prev()">⬅️</button>
+        <button class="btn btn-nav" onclick="next()">➡️</button>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-box">
+        <h3 id="question">Pilih kata yang benar:</h3>
+        <div id="options"></div>
+        <div class="score" id="score">Skor: 0</div>
+    </div>
+
+</div>
+
+<script>
+// FLASHCARD DATA
+const cards = [
+    { depan: "Apel", belakang: "Buah" },
+    { depan: "Kucing", belakang: "Hewan" },
+    { depan: "Meja", belakang: "Benda" },
+    { depan: "Guru", belakang: "Pekerjaan" },
+    { depan: "Sepeda", belakang: "Kendaraan" }
+];
+
+let index = 0;
+let flipped = false;
+
+function showCard() {
+    document.getElementById("card").innerText = cards[index].depan;
+    flipped = false;
+}
+
+function flipCard() {
+    if (flipped) {
+        document.getElementById("card").innerText = cards[index].depan;
+    } else {
+        document.getElementById("card").innerText = cards[index].belakang;
+    }
+    flipped = !flipped;
+}
+
+function next() {
+    index = (index + 1) % cards.length;
+    showCard();
+}
+
+function prev() {
+    index = (index - 1 + cards.length) % cards.length;
+    showCard();
+}
+
+// QUIZ DATA
+const quiz = [
+    {
+        q: "Manakah kata benda?",
+        options: ["Lari", "Meja", "Cepat"],
+        answer: "Meja"
+    },
+    {
+        q: "Manakah kata kerja?",
+        options: ["Makan", "Buku", "Merah"],
+        answer: "Makan"
+    },
+    {
+        q: "Manakah kata sifat?",
+        options: ["Indah", "Kursi", "Minum"],
+        answer: "Indah"
+    }
+];
+
+let qIndex = 0;
+let score = 0;
+
+function loadQuiz() {
+    document.getElementById("question").innerText = quiz[qIndex].q;
+    let optionsHTML = "";
+    quiz[qIndex].options.forEach(opt => {
+        optionsHTML += `<div class="option" onclick="checkAnswer('${opt}')">${opt}</div>`;
+    });
+    document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function checkAnswer(ans) {
+    if (ans === quiz[qIndex].answer) {
+        score++;
+        alert("Benar! 🎉");
+    } else {
+        alert("Salah 😢");
+    }
+
+    qIndex = (qIndex + 1) % quiz.length;
+    document.getElementById("score").innerText = "Skor: " + score;
+    loadQuiz();
+}
+
+// INIT
+showCard();
+loadQuiz();
+</script>
+
+</body>
+</html>
