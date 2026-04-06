@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Pembelajaran Teknologi Buatan Sendiri – Siswa SD</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFD93D;
+    --sky: #6BCBF7;
+    --grass: #6BDB8C;
+    --coral: #FF6B6B;
+    --purple: #A78BFA;
+    --orange: #FFA94D;
+    --mint: #52CCA3;
+    --navy: #1E3A5F;
+    --cloud: #F0F8FF;
+    --white: #FFFFFF;
+    --card-shadow: 0 8px 32px rgba(30,58,95,0.13);
+    --radius: 22px;
+    --font-head: 'Baloo 2', cursive;
+    --font-body: 'Nunito', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: linear-gradient(160deg, #e0f7ff 0%, #f0fff4 50%, #fff8e1 100%);
+    min-height: 100vh;
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ===== FLOATING SHAPES BACKGROUND ===== */
+  .bg-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .shape {
+    position: absolute; border-radius: 50%; opacity: 0.18;
+    animation: floatShape 8s ease-in-out infinite;
+  }
+  .shape:nth-child(1) { width:120px;height:120px; background:var(--sun); top:8%; left:5%; animation-delay:0s; }
+  .shape:nth-child(2) { width:80px;height:80px; background:var(--coral); top:20%; right:8%; animation-delay:1.5s; }
+  .shape:nth-child(3) { width:160px;height:160px; background:var(--sky); bottom:15%; left:3%; animation-delay:3s; }
+  .shape:nth-child(4) { width:90px;height:90px; background:var(--grass); bottom:25%; right:6%; animation-delay:2s; }
+  .shape:nth-child(5) { width:60px;height:60px; background:var(--purple); top:45%; left:50%; animation-delay:4s; }
+  @keyframes floatShape {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(15deg); }
+  }
+
+  /* ===== WRAPPER ===== */
+  .wrapper { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* ===== HERO HEADER ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #2B5BA8 100%);
+    border-radius: 32px;
+    padding: 44px 40px 36px;
+    text-align: center;
+    color: white;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(30,58,95,0.3);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 150px; height: 150px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    padding: 6px 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    color: var(--sun);
+  }
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--sun); }
+  .hero p {
+    font-size: 1rem;
+    opacity: 0.88;
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .hero-icons { font-size: 2.4rem; margin-bottom: 14px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+  /* ===== SECTION TITLE ===== */
+  .sec-title {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sec-title .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+  /* ===== PSIKOLOGI TABS ===== */
+  .tab-nav {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .tab-btn {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.87rem;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 2.5px solid transparent;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: white;
+    color: var(--navy);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .tab-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+  .tab-btn.active { color: white; border-color: transparent; transform: translateY(-2px); }
+  .tab-btn[data-tab="piaget"].active { background: var(--coral); }
+  .tab-btn[data-tab="vygotsky"].active { background: var(--purple); }
+  .tab-btn[data-tab="bruner"].active { background: var(--mint); }
+  .tab-btn[data-tab="gardner"].active { background: var(--orange); }
+
+  .tab-panel { display: none; animation: fadeIn 0.4s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ===== PSYCH CARD ===== */
+  .psych-card {
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+  }
+  .psych-card.coral { background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%); border-left: 6px solid var(--coral); }
+  .psych-card.purple { background: linear-gradient(135deg, #f8f5ff 0%, #e8dcff 100%); border-left: 6px solid var(--purple); }
+  .psych-card.mint { background: linear-gradient(135deg, #f0fff8 0%, #d4f5e9 100%); border-left: 6px solid var(--mint); }
+  .psych-card.orange { background: linear-gradient(135deg, #fff8f0 0%, #ffe8cc 100%); border-left: 6px solid var(--orange); }
+
+  .psych-card h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+  .psych-card .subtitle { font-size: 0.83rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; margin-bottom: 14px; }
+  .psych-card p { font-size: 0.97rem; line-height: 1.75; margin-bottom: 12px; }
+  .psych-card .emoji-big { font-size: 3rem; position: absolute; top: 20px; right: 24px; opacity: 0.3; }
+
+  /* ===== POINTS LIST ===== */
+  .point-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .point-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: rgba(255,255,255,0.65); border-radius: 12px; padding: 12px 16px;
+    font-size: 0.95rem; line-height: 1.6;
+  }
+  .point-list li .icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* ===== GRID CARDS ===== */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; margin-bottom: 32px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 32px; }
+
+  /* ===== MEDIA CARD ===== */
+  .media-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .media-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(30,58,95,0.18); }
+  .media-card .badge {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    padding: 4px 12px; border-radius: 50px; display: inline-block; margin-bottom: 14px;
+    color: white;
+  }
+  .media-card .icon-wrap {
+    width: 56px; height: 56px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin-bottom: 14px;
+  }
+  .media-card h4 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+  .media-card p { font-size: 0.88rem; line-height: 1.65; color: #4a5568; }
+  .media-card .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .media-card .tag {
+    font-size: 0.72rem; font-weight: 700; padding: 3px 10px;
+    border-radius: 50px; background: #f0f4f8; color: #4a5568;
+  }
+
+  /* ===== STEP CARD ===== */
+  .step-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    transition: transform 0.2s;
+  }
+  .step-card:hover { transform: translateX(6px); }
+  .step-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 1.3rem; font-weight: 900;
+    color: white; flex-shrink: 0;
+  }
+  .step-card h4 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 800; margin-bottom: 6px; }
+  .step-card p { font-size: 0.9rem; line-height: 1.65; color: #4a5568; }
+
+  /* ===== CONTOH ACCORDION ===== */
+  .accordion { margin-bottom: 12px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 16px rgba(30,58,95,0.09); }
+  .accordion-head {
+    background: white; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; font-weight: 700; font-size: 1rem;
+    font-family: var(--font-head);
+    transition: background 0.2s;
+  }
+  .accordion-head:hover { background: #f8fafc; }
+  .accordion-head .left { display: flex; align-items: center; gap: 12px; }
+  .accordion-head .emoji { font-size: 1.5rem; }
+  .accordion-head .arrow { transition: transform 0.3s; font-size: 0.9rem; color: #94a3b8; }
+  .accordion.open .accordion-head .arrow { transform: rotate(180deg); }
+  .accordion-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    background: #fafcff; padding: 0 24px;
+  }
+  .accordion.open .accordion-body { max-height: 600px; padding: 0 24px 20px; }
+  .accordion-body p { font-size: 0.92rem; line-height: 1.75; color: #4a5568; padding-top: 16px; }
+  .accordion-body ul { padding-top: 10px; padding-left: 20px; }
+  .accordion-body ul li { font-size: 0.92rem; line-height: 1.8; color: #4a5568; }
+
+  /* ===== PENILAIAN INTERAKTIF ===== */
+  .quiz-box {
+    background: linear-gradient(135deg, var(--navy) 0%, #2B5BA8 100%);
+    border-radius: 28px;
+    padding: 36px;
+    color: white;
+    margin-bottom: 32px;
+    box-shadow: 0 12px 40px rgba(30,58,95,0.28);
+  }
+  .quiz-box h3 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+  .quiz-box .desc { font-size: 0.9rem; opacity: 0.8; margin-bottom: 24px; }
+  .quiz-progress { background: rgba(255,255,255,0.15); border-radius: 50px; height: 8px; margin-bottom: 24px; overflow: hidden; }
+  .quiz-progress-bar { height: 100%; border-radius: 50px; background: var(--sun); transition: width 0.5s ease; }
+  .quiz-q { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt {
+    background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 14px; padding: 14px 20px;
+    cursor: pointer; font-size: 0.93rem; font-weight: 600;
+    display: flex; align-items: center; gap: 12px;
+    transition: all 0.2s;
+  }
+  .quiz-opt:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.5); transform: translateX(4px); }
+  .quiz-opt.correct { background: rgba(107,219,140,0.3); border-color: var(--grass); }
+  .quiz-opt.wrong { background: rgba(255,107,107,0.3); border-color: var(--coral); }
+  .quiz-opt .opt-icon { font-size: 1.2rem; }
+  .quiz-feedback { margin-top: 18px; padding: 14px 20px; border-radius: 14px; font-size: 0.93rem; font-weight: 700; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: rgba(107,219,140,0.25); border: 2px solid var(--grass); }
+  .quiz-feedback.no { background: rgba(255,107,107,0.25); border: 2px solid var(--coral); }
+  .quiz-nav { display: flex; gap: 12px; margin-top: 22px; justify-content: flex-end; }
+  .btn-quiz {
+    font-family: var(--font-body); font-weight: 800; font-size: 0.9rem;
+    padding: 12px 28px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-next { background: var(--sun); color: var(--navy); }
+  .btn-next:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,217,61,0.5); }
+  .quiz-result { text-align: center; padding: 20px 0; }
+  .quiz-result .score { font-size: 3.5rem; font-weight: 900; font-family: var(--font-head); }
+  .quiz-result p { font-size: 1rem; opacity: 0.88; margin-top: 8px; }
+  .btn-reset { background: rgba(255,255,255,0.18); color: white; border: 2px solid rgba(255,255,255,0.4); margin-top: 16px; }
+  .btn-reset:hover { background: rgba(255,255,255,0.28); }
+
+  /* ===== INFOGRAPHIC TABLE ===== */
+  .info-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+  .info-table thead th {
+    background: var(--navy); color: white;
+    font-family: var(--font-head); font-weight: 800; font-size: 0.9rem;
+    padding: 14px 18px; text-align: left;
+  }
+  .info-table thead th:first-child { border-radius: 12px 0 0 12px; }
+  .info-table thead th:last-child { border-radius: 0 12px 12px 0; }
+  .info-table tbody tr { background: white; box-shadow: 0 4px 14px rgba(30,58,95,0.08); transition: transform 0.2s; }
+  .info-table tbody tr:hover { transform: scale(1.01); }
+  .info-table td { padding: 14px 18px; font-size: 0.9rem; line-height: 1.5; }
+  .info-table td:first-child { border-radius: 12px 0 0 12px; font-weight: 700; }
+  .info-table td:last-child { border-radius: 0 12px 12px 0; }
+  .pill { display: inline-block; padding: 3px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+
+  /* ===== TIP BOX ===== */
+  .tip-box {
+    border-radius: var(--radius); padding: 22px 26px;
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+  .tip-box .tip-icon { font-size: 2rem; flex-shrink: 0; }
+  .tip-box h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+  .tip-box p { font-size: 0.9rem; line-height: 1.65; }
+  .tip-box.yellow { background: #fffbe6; border: 2px solid #ffe066; }
+  .tip-box.blue { background: #e8f4ff; border: 2px solid #90caf9; }
+  .tip-box.green { background: #e6fff0; border: 2px solid #66d9a0; }
+  .tip-box.pink { background: #fff0f6; border: 2px solid #f9a8d4; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center; padding: 28px; font-size: 0.85rem; color: #7a8fa6;
+    border-top: 2px dashed #d0e4f7; margin-top: 40px;
+  }
+  .footer strong { color: var(--navy); }
+
+  /* ===== SCROLL NAV ===== */
+  .scroll-nav {
+    position: sticky; top: 12px; z-index: 100;
+    background: rgba(255,255,255,0.88); backdrop-filter: blur(12px);
+    border-radius: 60px; padding: 8px 16px;
+    box-shadow: 0 4px 24px rgba(30,58,95,0.12);
+    display: flex; gap: 4px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 32px;
+  }
+  .nav-btn {
+    font-family: var(--font-body); font-weight: 700; font-size: 0.78rem;
+    padding: 7px 14px; border-radius: 50px; border: none;
+    background: transparent; cursor: pointer; color: var(--navy);
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .nav-btn:hover, .nav-btn.active { background: var(--navy); color: white; }
+
+  section { scroll-margin-top: 80px; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 30px 20px 24px; }
+    .psych-card { padding: 24px 18px; }
+    .psych-card .emoji-big { display: none; }
+    .quiz-box { padding: 24px 18px; }
+    .scroll-nav { top: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-shapes">
+  <div class="shape"></div><div class="shape"></div>
+  <div class="shape"></div><div class="shape"></div><div class="shape"></div>
+</div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">📚 Materi Mahasiswa PGSD & Pendidikan Dasar</div>
+    <div class="hero-icons">🔧🎨📱🌟🧠</div>
+    <h1>Media Pembelajaran <span>Teknologi Buatan Sendiri</span><br>untuk Siswa Sekolah Dasar</h1>
+    <p>Memahami dasar psikologi perkembangan anak dalam merancang media teknologi yang efektif, menyenangkan, dan sesuai tahap pertumbuhan siswa SD.</p>
+  </div>
+
+  <!-- STICKY NAV -->
+  <nav class="scroll-nav">
+    <button class="nav-btn active" onclick="scrollTo('psikologi')">🧠 Psikologi Dasar</button>
+    <button class="nav-btn" onclick="scrollTo('jenis')">🗂️ Jenis Media</button>
+    <button class="nav-btn" onclick="scrollTo('langkah')">🔧 Cara Membuat</button>
+    <button class="nav-btn" onclick="scrollTo('contoh')">💡 Contoh Nyata</button>
+    <button class="nav-btn" onclick="scrollTo('prinsip')">✅ Prinsip Desain</button>
+    <button class="nav-btn" onclick="scrollTo('latihan')">🧩 Latihan</button>
+  </nav>
+
+  <!-- ===== SEKSI 1: DASAR PSIKOLOGI ===== -->
+  <section id="psikologi">
+    <div class="sec-title">
+      <span class="dot" style="background:var(--coral)"></span>
+      🧠 Dasar Psikologi Pengembangan Media untuk Siswa SD
+    </div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="piaget">Piaget</button>
+      <button class="tab-btn" data-tab="vygotsky">Vygotsky</button>
+      <button class="tab-btn" data-tab="bruner">Bruner</button>
+      <button class="tab-btn" data-tab="gardner">Gardner</button>
+    </div>
+
+    <!-- Piaget -->
+    <div class="tab-panel active" id="tab-piaget">
+      <div class="psych-card coral">
+        <div class="emoji-big">🔬</div>
+        <div class="subtitle">Jean Piaget · Teori Perkembangan Kognitif</div>
+        <h3>Tahap Operasional Konkret (7–11 Tahun)</h3>
+        <p>Siswa SD berada pada tahap <strong>operasional konkret</strong> — mereka belajar paling baik melalui benda nyata, pengalaman langsung, dan manipulasi objek. Pemikiran abstrak belum berkembang sepenuhnya.</p>
+        <ul class="point-list">
+          <li><span class="icon">🎯</span><span><strong>Implikasi media:</strong> Gunakan objek visual, animasi, dan simulasi interaktif yang dapat dimanipulasi anak secara langsung.</span></li>
+          <li><span class="icon">🧩</span><span><strong>Skema kognitif:</strong> Media harus menghubungkan informasi baru dengan pengalaman yang sudah dimiliki anak (asimilasi & akomodasi).</span></li>
+          <li><span class="icon">📊</span><span><strong>Urutan belajar:</strong> Mulai dari konkret → semi-konkret → abstrak. Misalnya: benda fisik → gambar → simbol.</span></li>
+          <li><span class="icon">⏰</span><span><strong>Rentang perhatian:</strong> Usia 7–9 tahun sekitar 20–25 menit; 10–11 tahun hingga 30 menit. Media harus singkat dan bervariasi.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Vygotsky -->
+    <div class="tab-panel" id="tab-vygotsky">
+      <div class="psych-card purple">
+        <div class="emoji-big">🤝</div>
+        <div class="subtitle">Lev Vygotsky · Teori Sosio-Kultural</div>
+        <h3>Zone of Proximal Development (ZPD) & Scaffolding</h3>
+        <p>Vygotsky menekankan bahwa anak belajar optimal dalam <strong>zona perkembangan terdekat</strong> — yaitu area antara apa yang bisa dilakukan sendiri dan apa yang bisa dicapai dengan bantuan orang lain atau teknologi.</p>
+        <ul class="point-list">
+          <li><span class="icon">🧲</span><span><strong>Scaffolding digital:</strong> Media teknologi sebagai "teman belajar" yang memberikan petunjuk bertahap (hint, clue, panduan langkah demi langkah).</span></li>
+          <li><span class="icon">👥</span><span><strong>Kolaborasi:</strong> Media yang mendukung kerja kelompok, diskusi, atau berbagi hasil antar siswa.</span></li>
+          <li><span class="icon">📝</span><span><strong>Dialog:</strong> Fitur tanya-jawab, komentar, atau umpan balik otomatis dalam media digital merepresentasikan dialog sosial.</span></li>
+          <li><span class="icon">🏔️</span><span><strong>Tingkat kesulitan adaptif:</strong> Media yang menyesuaikan level soal berdasarkan kemampuan siswa mendukung ZPD secara individual.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bruner -->
+    <div class="tab-panel" id="tab-bruner">
+      <div class="psych-card mint">
+        <div class="emoji-big">🌀</div>
+        <div class="subtitle">Jerome Bruner · Teori Konstruktivistik & Representasi</div>
+        <h3>Tiga Mode Representasi Belajar</h3>
+        <p>Bruner mengidentifikasi tiga cara manusia merepresentasikan pengetahuan. Desain media untuk SD harus mengintegrasikan ketiganya secara harmonis.</p>
+        <ul class="point-list">
+          <li><span class="icon">🖐️</span><span><strong>Enaktif (Enactive):</strong> Belajar melalui tindakan fisik langsung. Media: simulasi drag-and-drop, game edukatif berbasis gerakan, manipulatif digital.</span></li>
+          <li><span class="icon">🖼️</span><span><strong>Ikonik (Iconic):</strong> Belajar melalui gambar dan ilustrasi. Media: infografis animasi, video pendek, komik digital, flashcard bergambar.</span></li>
+          <li><span class="icon">🔤</span><span><strong>Simbolik (Symbolic):</strong> Belajar melalui bahasa dan simbol abstrak. Media: teks interaktif, persamaan matematika, kode pemrograman visual.</span></li>
+          <li><span class="icon">🌀</span><span><strong>Kurikulum spiral:</strong> Konsep yang sama disajikan ulang dengan tingkat kompleksitas meningkat — cocok untuk media berlevel.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Gardner -->
+    <div class="tab-panel" id="tab-gardner">
+      <div class="psych-card orange">
+        <div class="emoji-big">🌈</div>
+        <div class="subtitle">Howard Gardner · Teori Kecerdasan Majemuk</div>
+        <h3>Multiple Intelligence dalam Desain Media</h3>
+        <p>Gardner mengidentifikasi bahwa setiap anak memiliki profil kecerdasan yang berbeda. Media teknologi yang baik harus mengakomodasi beragam jenis kecerdasan ini.</p>
+        <ul class="point-list">
+          <li><span class="icon">📖</span><span><strong>Linguistik:</strong> Teks interaktif, cerita digital, kuis berbasis kata.</span></li>
+          <li><span class="icon">🔢</span><span><strong>Logis-Matematis:</strong> Puzzle logika, game strategi, simulasi data.</span></li>
+          <li><span class="icon">🎵</span><span><strong>Musikal:</strong> Lagu pembelajaran, ritme interaktif, suara umpan balik.</span></li>
+          <li><span class="icon">🏃</span><span><strong>Kinestetik:</strong> Touch-screen game, AR berbasis gerakan, manipulatif digital.</span></li>
+          <li><span class="icon">🎨</span><span><strong>Visual-Spasial:</strong> Peta konsep digital, animasi, infografis interaktif.</span></li>
+          <li><span class="icon">🌿</span><span><strong>Naturalis:</strong> Simulasi alam, video edukasi lingkungan, ensiklopedia digital.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEKSI 2: JENIS MEDIA ===== -->
+  <section id="jenis" style="margin-top:48px">
+    <div class="sec-title">
+      <span class="dot" style="background:var(--sky)"></span>
+      🗂️ Jenis Media Teknologi Buatan Guru untuk SD
+    </div>
+
+    <div class="grid-3">
+
+      <div class="media-card">
+        <div class="icon-wrap" style="background:#fff0e6">💻</div>
+        <span class="badge" style="background:var(--orange)">Digital</span>
+        <h4>Presentasi Interaktif</h4>
+        <p>PowerPoint, Google Slides, atau Canva dengan animasi, kuis embed, dan navigasi non-linear sesuai alur belajar anak.</p>
+        <div class="tag-list">
+          <span class="tag">PowerPoint</span><span class="tag">Canva</span><span class="tag">Prezi</span>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <div class="icon-wrap" style="background:#e8f5e9">🎮</div>
+        <span class="badge" style="background:var(--grass)">Gamifikasi</span>
+        <h4>Game Edukatif</h4>
+        <p>Game berbasis browser (HTML5), Wordwall, Quizizz, atau Kahoot! yang mengubah latihan menjadi pengalaman bermain.</p>
+        <div class="tag-list">
+          <span class="tag">Wordwall</span><span class="tag">Quizizz</span><span class="tag">Kahoot!</span>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <div class="icon-wrap" style="background:#fce4ec">🎬</div>
+        <span class="badge" style="background:var(--coral)">Visual</span>
+        <h4>Video Animasi Pendek</h4>
+        <p>Video buatan guru dengan Animaker, Powtoon, atau CapCut – durasi 3–7 menit sesuai rentang perhatian siswa SD.</p>
+        <div class="tag-list">
+          <span class="tag">Animaker</span><span class="tag">Powtoon</span><span class="tag">CapCut</span>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <div class="icon-wrap" style="background:#ede7f6">🧩</div>
+        <span class="badge" style="background:var(--purple)">Interaktif</span>
+        <h4>E-Worksheet Digital</h4>
+        <p>Lembar kerja digital di Google Forms, Liveworksheets, atau Seesaw dengan umpan balik otomatis dan gambar menarik.</p>
+        <div class="tag-list">
+          <span class="tag">Google Forms</span><span class="tag">Liveworksheets</span><span class="tag">Seesaw</span>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <div class="icon-wrap" style="background:#e0f7fa">📱</div>
+        <span class="badge" style="background:var(--sky)">Mobile</span>
+        <h4>Flashcard Digital</h4>
+        <p>Kartu belajar interaktif di Anki, Quizlet, atau Flip (Flipgrid) dengan gambar, audio, dan sistem pengulangan terjadwal.</p>
+        <div class="tag-list">
+          <span class="tag">Quizlet</span><span class="tag">Anki</span><span class="tag">Flip</span>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <div class="icon-wrap" style="background:#fff8e1">🌐</div>
+        <span class="badge" style="background:var(--sun); color:var(--navy)">Web</span>
+        <h4>Modul HTML Buatan Sendiri</h4>
+        <p>Halaman web interaktif buatan guru dengan HTML/CSS/JS yang bisa diakses offline, tanpa biaya platform.</p>
+        <div class="tag-list">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SEKSI 3: LANGKAH MEMBUAT ===== -->
+  <section id="langkah" style="margin-top:48px">
+    <div class="sec-title">
+      <span class="dot" style="background:var(--grass)"></span>
+      🔧 Langkah Merancang Media Teknologi Buatan Sendiri
+    </div>
+
+    <div class="step-card">
+      <div class="step-num" style="background:var(--coral)">1</div>
+      <div>
+        <h4>Analisis Karakteristik Siswa (Psikografi)</h4>
+        <p>Tentukan usia, tahap perkembangan kognitif (Piaget), gaya belajar dominan (Gardner), dan latar belakang sosial siswa. Data ini menjadi fondasi seluruh desain media. Lakukan observasi atau survei singkat sebelum mulai merancang.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num" style="background:var(--orange)">2</div>
+      <div>
+        <h4>Rumuskan Tujuan Pembelajaran yang Spesifik</h4>
+        <p>Gunakan kata kerja operasional (Bloom's Taxonomy): menyebutkan, menjelaskan, menghitung, membandingkan, dll. Tujuan yang jelas menentukan jenis media dan interaktivitas yang dibutuhkan. Hindari tujuan yang terlalu umum.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num" style="background:var(--grass)">3</div>
+      <div>
+        <h4>Pilih Platform & Format Media yang Tepat</h4>
+        <p>Sesuaikan dengan ketersediaan perangkat di sekolah, kemampuan teknis guru, dan kebutuhan siswa. Platform gratis seperti Canva, Google Slides, atau HTML/CSS sudah sangat powerful untuk membuat media berkualitas.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num" style="background:var(--sky)">4</div>
+      <div>
+        <h4>Terapkan Prinsip Desain Visual & UX untuk Anak</h4>
+        <p>Gunakan warna cerah tapi tidak mencolok, font besar dan mudah dibaca (min. 18px untuk layar), ikon/emoji yang familiar, navigasi sederhana, dan elemen interaktif yang responsif terhadap sentuhan/klik anak.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num" style="background:var(--purple)">5</div>
+      <div>
+        <h4>Integrasikan Feedback & Gamifikasi</h4>
+        <p>Tambahkan umpan balik instan (benar/salah), animasi reward (bintang, poin), audio positif, dan sistem level/progres. Elemen ini memotivasi siswa secara intrinsik dan mendukung scaffolding Vygotsky.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num" style="background:var(--mint)">6</div>
+      <div>
+        <h4>Uji Coba & Iterasi (Prototyping)</h4>
+        <p>Lakukan uji coba dengan 3–5 siswa representatif. Amati: apakah navigasinya mudah? Apakah instruksinya dipahami? Apakah tampilan menarik? Perbaiki berdasarkan observasi sebelum digunakan seluruh kelas.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num" style="background:var(--navy)">7</div>
+      <div>
+        <h4>Evaluasi Efektivitas Secara Berkala</h4>
+        <p>Ukur capaian belajar siswa sebelum dan sesudah menggunakan media (pre-post test). Kumpulkan respons siswa dan rekan guru. Media teknologi adalah produk hidup — terus diperbarui dan ditingkatkan setiap semester.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEKSI 4: CONTOH NYATA ===== -->
+  <section id="contoh" style="margin-top:48px">
+    <div class="sec-title">
+      <span class="dot" style="background:var(--purple)"></span>
+      💡 Contoh Penerapan Media Teknologi Buatan Guru
+    </div>
+
+    <div class="accordion" id="acc1">
+      <div class="accordion-head" onclick="toggleAcc('acc1')">
+        <div class="left"><span class="emoji">🔢</span> Game Matematika Penjumlahan – Kelas 1 SD</div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <p><strong>Konteks psikologi:</strong> Usia 6–7 tahun (pre-operasional → awal operasional konkret, Piaget). Anak butuh representasi visual konkret.</p>
+        <p><strong>Deskripsi:</strong> Guru membuat game HTML/CSS sederhana di mana siswa menghitung buah yang muncul di layar dan mengetik jawabannya. Jika benar, muncul animasi bintang dan suara tepuk tangan. Jika salah, muncul petunjuk bergambar.</p>
+        <ul>
+          <li>Platform: HTML + JS (bisa dibuka di HP tanpa internet)</li>
+          <li>Durasi: 10–15 menit per sesi</li>
+          <li>Elemen gamifikasi: poin, level, bintang reward</li>
+          <li>Teori: Piaget (konkret → abstrak), Vygotsky (scaffolding petunjuk bertahap)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc2">
+      <div class="accordion-head" onclick="toggleAcc('acc2')">
+        <div class="left"><span class="emoji">🌍</span> Video Animasi IPS – Suku Bangsa di Indonesia</div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <p><strong>Konteks psikologi:</strong> Usia 9–10 tahun (operasional konkret, kecerdasan visual-spasial & interpersonal – Gardner).</p>
+        <p><strong>Deskripsi:</strong> Guru membuat video animasi 5 menit menggunakan Powtoon tentang keberagaman suku di Indonesia. Setiap suku ditampilkan dengan karakter animasi khas, pakaian adat, dan lagu daerah singkat. Diakhiri kuis Google Forms embed.</p>
+        <ul>
+          <li>Platform: Powtoon + Google Forms</li>
+          <li>Durasi video: 5 menit + kuis 5 menit</li>
+          <li>Elemen: narasi, visual, musik, pertanyaan refleksi</li>
+          <li>Teori: Bruner (ikonik + simbolik), Gardner (visual-spasial + musikal)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc3">
+      <div class="accordion-head" onclick="toggleAcc('acc3')">
+        <div class="left"><span class="emoji">🌱</span> E-Worksheet IPA – Siklus Kehidupan Tanaman</div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <p><strong>Konteks psikologi:</strong> Usia 10–11 tahun (akhir operasional konkret, kecerdasan naturalis – Gardner, ZPD dengan panduan bertahap – Vygotsky).</p>
+        <p><strong>Deskripsi:</strong> Guru membuat lembar kerja digital di Liveworksheets dengan gambar siklus tanaman yang harus dilengkapi siswa secara drag-and-drop. Ada bagian observasi (siswa foto tanaman di rumah) dan narasi singkat yang ditulis sendiri.</p>
+        <ul>
+          <li>Platform: Liveworksheets + Google Forms</li>
+          <li>Komponen: drag-drop, multiple choice, esai singkat, upload foto</li>
+          <li>Umpan balik: otomatis untuk soal objektif, peer review untuk esai</li>
+          <li>Teori: Piaget (konkret), Gardner (naturalis + kinestetik), Bruner (enaktif + simbolik)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc4">
+      <div class="accordion-head" onclick="toggleAcc('acc4')">
+        <div class="left"><span class="emoji">📖</span> Flashcard Digital – Kosakata Bahasa Inggris</div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <p><strong>Konteks psikologi:</strong> Semua kelas SD; mendukung kecerdasan linguistik (Gardner) dan sistem pengulangan terjadwal (Spaced Repetition) yang terbukti secara neurosains.</p>
+        <p><strong>Deskripsi:</strong> Guru membuat set flashcard di Quizlet dengan gambar, audio pengucapan, dan contoh kalimat. Siswa bisa berlatih secara mandiri di HP atau tablet. Ada mode "learn", "write", dan mini-game "match".</p>
+        <ul>
+          <li>Platform: Quizlet (gratis untuk guru)</li>
+          <li>Isi kartu: gambar + kata + audio + contoh kalimat</li>
+          <li>Mode belajar: flashcard, learn, write, match, test</li>
+          <li>Teori: Gardner (linguistik), Spaced Repetition, Piaget (ikonik-simbolik)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEKSI 5: PRINSIP DESAIN ===== -->
+  <section id="prinsip" style="margin-top:48px">
+    <div class="sec-title">
+      <span class="dot" style="background:var(--orange)"></span>
+      ✅ Prinsip Desain Media Teknologi untuk Siswa SD
+    </div>
+
+    <div style="overflow-x:auto; margin-bottom:28px;">
+      <table class="info-table">
+        <thead>
+          <tr>
+            <th>Prinsip</th>
+            <th>Dasar Psikologi</th>
+            <th>Implementasi Praktis</th>
+            <th>Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🎨 Visual Dominan</td>
+            <td>Piaget (konkret), Bruner (ikonik)</td>
+            <td>60–70% konten berupa gambar, animasi, atau video</td>
+            <td><span class="pill" style="background:#fff0e6;color:#c05621">Wajib</span></td>
+          </tr>
+          <tr>
+            <td>⏱️ Durasi Pendek</td>
+            <td>Rentang perhatian anak (20–30 mnt)</td>
+            <td>Video ≤7 menit, sesi kuis ≤15 soal</td>
+            <td><span class="pill" style="background:#e8f5e9;color:#276749">Wajib</span></td>
+          </tr>
+          <tr>
+            <td>🌈 Warna Cerah & Kontras</td>
+            <td>Teori persepsi visual anak</td>
+            <td>Gunakan 3–5 warna utama, teks gelap di latar terang</td>
+            <td><span class="pill" style="background:#e8f5e9;color:#276749">Wajib</span></td>
+          </tr>
+          <tr>
+            <td>🔤 Font Besar & Jelas</td>
+            <td>Kemampuan baca anak berkembang</td>
+            <td>Min. 18–20px untuk body text, font sans-serif bulat</td>
+            <td><span class="pill" style="background:#e8f5e9;color:#276749">Wajib</span></td>
+          </tr>
+          <tr>
+            <td>⭐ Reward Instan</td>
+            <td>Reinforcement (Skinner), motivasi intrinsik</td>
+            <td>Bintang, poin, animasi, audio positif saat benar</td>
+            <td><span class="pill" style="background:#fce4ec;color:#ad1457">Dianjurkan</span></td>
+          </tr>
+          <tr>
+            <td>📶 Tingkat Kesulitan Bertahap</td>
+            <td>ZPD Vygotsky, Spiral Curriculum Bruner</td>
+            <td>Mulai mudah, tingkatkan secara gradual, sediakan petunjuk</td>
+            <td><span class="pill" style="background:#fce4ec;color:#ad1457">Dianjurkan</span></td>
+          </tr>
+          <tr>
+            <td>📲 Responsif & Mudah Diakses</td>
+            <td>Prinsip inklusivitas & aksesibilitas</td>
+            <td>Bisa dibuka di HP, tidak perlu login, ukuran file kecil</td>
+            <td><span class="pill" style="background:#e8f5e9;color:#276749">Wajib</span></td>
+          </tr>
+          <tr>
+            <td>🤝 Kolaboratif</td>
+            <td>Vygotsky (sosio-kultural), peer learning</td>
+            <td>Fitur berbagi, kerja kelompok, presentasi hasil</td>
+            <td><span class="pill" style="background:#ede7f6;color:#5b21b6">Opsional</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="tip-box yellow">
+        <div class="tip-icon">⚠️</div>
+        <div>
+          <h4>Hindari: Overload Informasi</h4>
+          <p>Jangan tampilkan lebih dari 5–7 item dalam satu layar. Otak anak memiliki working memory terbatas (Cognitive Load Theory – Sweller).</p>
+        </div>
+      </div>
+      <div class="tip-box blue">
+        <div class="tip-icon">💡</div>
+        <div>
+          <h4>Tips: Gunakan Maskot/Karakter</h4>
+          <p>Karakter animasi yang konsisten (maskot guru virtual) meningkatkan kedekatan emosional dan keterlibatan siswa secara signifikan.</p>
+        </div>
+      </div>
+      <div class="tip-box green">
+        <div class="tip-icon">✅</div>
+        <div>
+          <h4>Best Practice: Audio Narasi</h4>
+          <p>Siswa SD (terutama kelas 1–3) belum fasih membaca. Tambahkan narasi audio pada setiap instruksi untuk mendukung semua gaya belajar.</p>
+        </div>
+      </div>
+      <div class="tip-box pink">
+        <div class="tip-icon">🎯</div>
+        <div>
+          <h4>Kunci: Konteks Lokal</h4>
+          <p>Gunakan nama, gambar, cerita, dan contoh yang dekat dengan kehidupan siswa (budaya, lingkungan sekitar) agar materi lebih bermakna dan mudah dipahami.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEKSI 6: LATIHAN ===== -->
+  <section id="latihan" style="margin-top:48px">
+    <div class="sec-title">
+      <span class="dot" style="background:var(--mint)"></span>
+      🧩 Uji Pemahaman Anda
+    </div>
+
+    <div class="quiz-box">
+      <h3>Kuis Interaktif</h3>
+      <p class="desc">Uji pemahaman Anda tentang media pembelajaran teknologi berbasis psikologi</p>
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="prog-bar" style="width:0%"></div>
+      </div>
+      <div id="quiz-content"></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <p>📚 <strong>Materi Perkuliahan</strong> – Media Pembelajaran Berbasis Teknologi<br>
+    Program Studi PGSD & Pendidikan Matematika · <strong>IKIP Siliwangi</strong><br>
+    <span style="font-size:0.8rem">Disusun berdasarkan teori: Piaget · Vygotsky · Bruner · Gardner · Sweller</span></p>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+// ===== TABS =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const t = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + t).classList.add('active');
+  });
+});
+
+// ===== SCROLL NAV =====
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+const sections = ['psikologi','jenis','langkah','contoh','prinsip','latihan'];
+window.addEventListener('scroll', () => {
+  const navBtns = document.querySelectorAll('.nav-btn');
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const r = el.getBoundingClientRect();
+      if (r.top <= 120 && r.bottom >= 120) {
+        navBtns.forEach(b => b.classList.remove('active'));
+        navBtns[i] && navBtns[i].classList.add('active');
+      }
+    }
+  });
+});
+
+// ===== ACCORDION =====
+function toggleAcc(id) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.accordion').forEach(a => a.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+// ===== QUIZ =====
+const questions = [
+  {
+    q: "Menurut Piaget, siswa SD (7–11 tahun) berada di tahap perkembangan kognitif apa?",
+    opts: [
+      { text: "Sensorimotor", icon: "🍼" },
+      { text: "Pra-operasional", icon: "🎭" },
+      { text: "Operasional Konkret", icon: "🔬", correct: true },
+      { text: "Operasional Formal", icon: "🧪" }
+    ],
+    fb_ok: "✅ Tepat! Tahap Operasional Konkret (7–11 tahun) – anak belajar optimal melalui pengalaman konkret dan manipulasi benda nyata.",
+    fb_no: "❌ Kurang tepat. Siswa SD berada di tahap Operasional Konkret, di mana mereka belajar paling baik melalui benda dan pengalaman nyata."
+  },
+  {
+    q: "Konsep 'Zone of Proximal Development (ZPD)' dan 'Scaffolding' dikembangkan oleh siapa?",
+    opts: [
+      { text: "Howard Gardner", icon: "🌈" },
+      { text: "Jerome Bruner", icon: "📚" },
+      { text: "Jean Piaget", icon: "🔬" },
+      { text: "Lev Vygotsky", icon: "🤝", correct: true }
+    ],
+    fb_ok: "✅ Benar! Vygotsky mengembangkan teori ZPD – media teknologi berperan sebagai 'scaffolding digital' yang membantu siswa mencapai potensi maksimalnya.",
+    fb_no: "❌ Kurang tepat. ZPD dan Scaffolding adalah konsep dari Lev Vygotsky (teori sosio-kultural)."
+  },
+  {
+    q: "Dalam Teori Kecerdasan Majemuk Gardner, siswa yang belajar paling baik melalui musik dan ritme termasuk kecerdasan apa?",
+    opts: [
+      { text: "Visual-Spasial", icon: "🎨" },
+      { text: "Musikal", icon: "🎵", correct: true },
+      { text: "Linguistik", icon: "📖" },
+      { text: "Kinestetik", icon: "🏃" }
+    ],
+    fb_ok: "✅ Correct! Kecerdasan Musikal – siswa ini belajar efektif melalui lagu edukatif, ritme, dan suara yang bermakna.",
+    fb_no: "❌ Belum tepat. Kecerdasan Musikal (Musical Intelligence) adalah kecerdasan yang berkaitan dengan sensitivitas terhadap bunyi, ritme, dan melodi."
+  },
+  {
+    q: "Prinsip desain media untuk SD mana yang paling sesuai dengan Cognitive Load Theory (Sweller)?",
+    opts: [
+      { text: "Gunakan sebanyak mungkin teks untuk informasi lengkap", icon: "📄" },
+      { text: "Tampilkan maksimal 5–7 item per layar dan hindari overload", icon: "✅", correct: true },
+      { text: "Gunakan banyak warna berbeda agar menarik", icon: "🌈" },
+      { text: "Buat sesi belajar selama 2 jam tanpa jeda", icon: "⏳" }
+    ],
+    fb_ok: "✅ Tepat! Cognitive Load Theory menyatakan bahwa working memory anak terbatas. Membatasi informasi per layar (5–7 item) mencegah overload kognitif.",
+    fb_no: "❌ Belum tepat. Cognitive Load Theory (Sweller) mengajarkan bahwa kita harus membatasi informasi per layar karena kapasitas working memory anak sangat terbatas."
+  },
+  {
+    q: "Guru membuat video animasi IPS dengan gambar, karakter, dan musik daerah. Mode representasi Bruner mana yang digunakan?",
+    opts: [
+      { text: "Hanya mode Simbolik", icon: "🔤" },
+      { text: "Hanya mode Enaktif", icon: "🖐️" },
+      { text: "Mode Ikonik dan Simbolik", icon: "🖼️", correct: true },
+      { text: "Tidak menggunakan teori Bruner", icon: "❌" }
+    ],
+    fb_ok: "✅ Benar! Gambar dan animasi = mode Ikonik; narasi teks/audio = mode Simbolik. Menggabungkan keduanya membuat pembelajaran lebih efektif.",
+    fb_no: "❌ Kurang tepat. Video animasi menggunakan mode Ikonik (gambar, animasi visual) dan Simbolik (narasi, teks, musik yang memiliki makna simbolik)."
+  }
+];
+
+let cur = 0, answered = false, score = 0;
+
+function renderQuiz() {
+  if (cur >= questions.length) {
+    showResult(); return;
+  }
+  const q = questions[cur];
+  const pct = (cur / questions.length) * 100;
+  document.getElementById('prog-bar').style.width = pct + '%';
+  document.getElementById('quiz-content').innerHTML = `
+    <div class="quiz-q">Soal ${cur+1} dari ${questions.length}: ${q.q}</div>
+    <div class="quiz-options">
+      ${q.opts.map((o,i) => `
+        <div class="quiz-opt" onclick="pickOpt(${i})" id="opt-${i}">
+          <span class="opt-icon">${o.icon}</span>
+          <span>${o.text}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-nav">
+      <button class="btn-quiz btn-next" onclick="nextQ()" id="btn-next" style="display:none">
+        ${cur < questions.length-1 ? 'Soal Berikutnya →' : 'Lihat Hasil 🎉'}
+      </button>
+    </div>
+  `;
+  answered = false;
+}
+
+function pickOpt(i) {
+  if (answered) return;
+  answered = true;
+  const q = questions[cur];
+  const isCorrect = q.opts[i].correct;
+  if (isCorrect) score++;
+  document.querySelectorAll('.quiz-opt').forEach((el, idx) => {
+    el.style.pointerEvents = 'none';
+    if (q.opts[idx].correct) el.classList.add('correct');
+    else if (idx === i) el.classList.add('wrong');
+  });
+  const fb = document.getElementById('feedback');
+  fb.textContent = isCorrect ? q.fb_ok : q.fb_no;
+  fb.className = 'quiz-feedback show ' + (isCorrect ? 'ok' : 'no');
+  document.getElementById('btn-next').style.display = 'inline-block';
+}
+
+function nextQ() {
+  cur++;
+  renderQuiz();
+}
+
+function showResult() {
+  document.getElementById('prog-bar').style.width = '100%';
+  const pct = Math.round((score / questions.length) * 100);
+  let msg = pct >= 80 ? '🏆 Luar biasa! Pemahaman Anda sangat baik.' :
+            pct >= 60 ? '👍 Bagus! Ada beberapa konsep yang perlu diperdalam.' :
+            '📚 Tetap semangat! Pelajari kembali materi di atas ya.';
+  const stars = pct >= 80 ? '⭐⭐⭐' : pct >= 60 ? '⭐⭐' : '⭐';
+  document.getElementById('quiz-content').innerHTML = `
+    <div class="quiz-result">
+      <div class="score">${stars}</div>
+      <div class="score">${score}/${questions.length}</div>
+      <div style="font-size:1.4rem;font-weight:800;font-family:var(--font-head);margin:8px 0">${pct}% Benar</div>
+      <p>${msg}</p>
+      <button class="btn-quiz btn-reset" onclick="resetQuiz()">🔄 Ulangi Kuis</button>
+    </div>
+  `;
+}
+
+function resetQuiz() {
+  cur = 0; score = 0; answered = false;
+  document.getElementById('prog-bar').style.width = '0%';
+  renderQuiz();
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
