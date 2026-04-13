@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alur Penelitian R&D ADDIE – Media Animasi Pecahan SD</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Fredoka+One&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --blue:    #2563eb;
+  --blue-lt: #dbeafe;
+  --blue-mid:#3b82f6;
+  --green:   #16a34a;
+  --green-lt:#dcfce7;
+  --orange:  #ea580c;
+  --orange-lt:#ffedd5;
+  --purple:  #7c3aed;
+  --purple-lt:#ede9fe;
+  --pink:    #db2777;
+  --pink-lt: #fce7f3;
+  --yellow:  #ca8a04;
+  --yellow-lt:#fef9c3;
+  --dark:    #0f172a;
+  --mid:     #334155;
+  --muted:   #64748b;
+  --border:  #e2e8f0;
+  --bg:      #f8faff;
+  --white:   #ffffff;
+  --radius:  14px;
+  --shadow:  0 4px 24px rgba(15,23,42,.10);
+  --shadow-lg: 0 8px 40px rgba(15,23,42,.15);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  line-height: 1.7;
+  font-size: 15px;
+  background-image:
+    radial-gradient(circle at 15% 10%, #dbeafe55 0%, transparent 40%),
+    radial-gradient(circle at 85% 90%, #ede9fe44 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #dcfce733 0%, transparent 60%);
+}
+
+/* ═══════════════════ HEADER ═══════════════════ */
+.site-header {
+  background: var(--dark);
+  padding: 0;
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+.header-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem; height: 58px; gap: 1rem;
+}
+.brand {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem; color: #fff;
+  display: flex; align-items: center; gap: .6rem;
+}
+.brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue-mid); }
+.prog-bar-wrap { flex: 1; max-width: 300px; }
+.prog-bar { height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden; }
+.prog-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue-mid), var(--purple));
+  border-radius: 3px; transition: width .4s ease;
+}
+.prog-lbl { font-size: .65rem; color: #94a3b8; margin-top: 3px; text-align: right;
+  font-family: 'JetBrains Mono', monospace; }
+.nav-pills { display: flex; gap: .3rem; }
+.npill {
+  background: none; border: 1px solid #334155;
+  color: #94a3b8; padding: .25rem .65rem;
+  border-radius: 20px; cursor: pointer; font-size: .72rem;
+  font-family: 'Nunito', sans-serif; transition: all .2s;
+  white-space: nowrap;
+}
+.npill:hover { border-color: var(--blue-mid); color: #60a5fa; }
+
+/* ═══════════════════ HERO ═══════════════════ */
+.hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0c1a3a 100%);
+  color: #fff; padding: 5rem 1.5rem 4rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234f46e5' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 1px solid rgba(99,102,241,.5); color: #a5b4fc;
+  padding: .35rem 1.1rem; border-radius: 20px;
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace; margin-bottom: 1.75rem;
+  background: rgba(99,102,241,.08); position: relative;
+}
+.hero h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.2; margin-bottom: 1rem;
+  position: relative;
+}
+.hero h1 .hl-blue  { color: #60a5fa; }
+.hero h1 .hl-green { color: #4ade80; }
+.hero h1 .hl-orng  { color: #fb923c; }
+.hero-sub {
+  font-size: 1rem; color: #94a3b8; max-width: 600px;
+  margin: 0 auto 2.5rem; position: relative;
+}
+.hero-chips {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .6rem; position: relative; margin-bottom: 2.5rem;
+}
+.chip {
+  padding: .3rem .85rem; border-radius: 20px;
+  font-size: .75rem; font-weight: 700;
+}
+.chip-blue   { background: rgba(59,130,246,.2); color: #93c5fd; border: 1px solid rgba(59,130,246,.3); }
+.chip-purple { background: rgba(124,58,237,.2); color: #c4b5fd; border: 1px solid rgba(124,58,237,.3); }
+.chip-green  { background: rgba(22,163,74,.2);  color: #86efac; border: 1px solid rgba(22,163,74,.3); }
+.chip-orange { background: rgba(234,88,12,.2);  color: #fdba74; border: 1px solid rgba(234,88,12,.3); }
+.chip-pink   { background: rgba(219,39,119,.2); color: #f9a8d4; border: 1px solid rgba(219,39,119,.3); }
+
+.hero-scroll { color: #475569; font-size: .78rem; animation: bounce 1.8s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+/* ═══════════════════ LAYOUT ═══════════════════ */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 4rem 0; }
+.section + .section { border-top: 1px solid var(--border); }
+
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: .4rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.sec-label::before { content:''; width: 24px; height: 2px; background: var(--blue); border-radius: 1px; }
+.sec-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--dark); margin-bottom: .6rem; line-height: 1.25;
+}
+.sec-lead { color: var(--muted); max-width: 680px; margin-bottom: 2.5rem; font-size: .95rem; }
+
+/* ═══════════════════ RESEARCH IDENTITY ═══════════════════ */
+.identity-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.25rem;
+}
+.id-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 1.4rem;
+  transition: transform .2s, box-shadow .2s;
+  position: relative; overflow: hidden;
+}
+.id-card::after {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+}
+.id-card.c-blue::after   { background: var(--blue); }
+.id-card.c-green::after  { background: var(--green); }
+.id-card.c-orange::after { background: var(--orange); }
+.id-card.c-purple::after { background: var(--purple); }
+.id-card.c-pink::after   { background: var(--pink); }
+.id-card.c-yellow::after { background: var(--yellow); }
+.id-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.id-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem; margin-bottom: .9rem;
+}
+.ic-blue   { background: var(--blue-lt);   color: var(--blue); }
+.ic-green  { background: var(--green-lt);  color: var(--green); }
+.ic-orange { background: var(--orange-lt); color: var(--orange); }
+.ic-purple { background: var(--purple-lt); color: var(--purple); }
+.ic-pink   { background: var(--pink-lt);   color: var(--pink); }
+.ic-yellow { background: var(--yellow-lt); color: var(--yellow); }
+.id-label {
+  font-size: .65rem; font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .25rem;
+}
+.id-card h3 { font-size: .95rem; font-weight: 800; margin-bottom: .3rem; line-height: 1.4; }
+.id-card p  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+/* ═══════════════════ ADDIE PHASE TIMELINE ═══════════════════ */
+.addie-nav {
+  display: flex; gap: .5rem; overflow-x: auto;
+  padding-bottom: .5rem; margin-bottom: 2rem;
+  -webkit-overflow-scrolling: touch;
+}
+.addie-pill {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .55rem 1.1rem; border-radius: 30px;
+  border: 2px solid var(--border); background: var(--white);
+  cursor: pointer; font-weight: 800; font-size: .82rem;
+  transition: all .2s; white-space: nowrap; flex-shrink: 0;
+}
+.addie-pill .pill-letter {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; font-family: 'Fredoka One', cursive;
+}
+.addie-pill:hover { transform: translateY(-2px); }
+.ap-a  { --ac: var(--blue);   --al: var(--blue-lt); }
+.ap-d1 { --ac: var(--green);  --al: var(--green-lt); }
+.ap-d2 { --ac: var(--orange); --al: var(--orange-lt); }
+.ap-i  { --ac: var(--purple); --al: var(--purple-lt); }
+.ap-e  { --ac: var(--pink);   --al: var(--pink-lt); }
+.addie-pill.active {
+  border-color: var(--ac); background: var(--al); color: var(--ac);
+}
+.addie-pill.active .pill-letter { background: var(--ac); color: #fff; }
+.addie-pill:not(.active) .pill-letter { background: #f1f5f9; color: var(--muted); }
+
+.addie-panel { display: none; animation: fadeSlide .35s ease; }
+.addie-panel.active { display: block; }
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.phase-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .phase-layout { grid-template-columns: 1fr; }
+}
+
+.phase-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 1.75rem;
+  box-shadow: var(--shadow);
+}
+.phase-header {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
+}
+.phase-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.phase-title { font-family: 'Fredoka One', cursive; font-size: 1.3rem; }
+.phase-sub   { font-size: .78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.phase-desc  { font-size: .87rem; color: var(--mid); line-height: 1.7; margin-bottom: 1rem; }
+
+.step-list { list-style: none; }
+.step-list li {
+  display: flex; gap: .7rem; padding: .6rem 0;
+  border-bottom: 1px dashed var(--border); font-size: .85rem;
+  align-items: flex-start; line-height: 1.5;
+}
+.step-list li:last-child { border: none; }
+.step-num {
+  min-width: 22px; height: 22px;
+  background: var(--step-bg, var(--blue-lt));
+  color: var(--step-c, var(--blue));
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-size: .65rem; font-weight: 800; font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+.story-box {
+  background: linear-gradient(135deg, #f8faff, #eef2ff);
+  border: 1.5px solid #c7d2fe; border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.story-box h4 {
+  font-family: 'Fredoka One', cursive; font-size: 1rem;
+  color: var(--purple); margin-bottom: .75rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.story-box p { font-size: .85rem; color: var(--mid); line-height: 1.7; margin-bottom: .75rem; }
+.story-box p:last-child { margin: 0; }
+
+.finding-box {
+  border-radius: var(--radius); padding: 1.25rem;
+  font-size: .85rem; line-height: 1.7;
+}
+.finding-box h4 {
+  font-weight: 800; margin-bottom: .6rem;
+  display: flex; align-items: center; gap: .5rem; font-size: .9rem;
+}
+
+.data-row {
+  display: flex; gap: .75rem; flex-wrap: wrap; margin-top: .75rem;
+}
+.data-chip {
+  padding: .35rem .8rem; border-radius: 8px;
+  font-size: .78rem; font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ═══════════════════ INSTRUMENT TABLE ═══════════════════ */
+.instr-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+.instr-table th {
+  background: var(--dark); color: #e2e8f0;
+  padding: .8rem 1rem; text-align: left;
+  font-family: 'Nunito', sans-serif; font-weight: 700;
+}
+.instr-table th:first-child { border-radius: 8px 0 0 0; }
+.instr-table th:last-child  { border-radius: 0 8px 0 0; }
+.instr-table td { padding: .7rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+.instr-table tr:hover td { background: #f8faff; }
+.instr-table tr:nth-child(even) td { background: #fafbff; }
+.badge {
+  display: inline-block; padding: .15rem .55rem;
+  border-radius: 6px; font-size: .68rem; font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.bd-blue   { background: var(--blue-lt);   color: var(--blue); }
+.bd-green  { background: var(--green-lt);  color: var(--green); }
+.bd-orange { background: var(--orange-lt); color: var(--orange); }
+.bd-purple { background: var(--purple-lt); color: var(--purple); }
+.bd-pink   { background: var(--pink-lt);   color: var(--pink); }
+
+/* ═══════════════════ HASIL / TEMUAN ═══════════════════ */
+.hasil-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.1rem; }
+.hasil-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 1.3rem; text-align: center;
+  box-shadow: var(--shadow); transition: transform .2s;
+}
+.hasil-card:hover { transform: translateY(-3px); }
+.hasil-num {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.6rem; line-height: 1; margin-bottom: .3rem;
+}
+.hasil-lbl { font-size: .76rem; color: var(--muted); font-weight: 700; line-height: 1.4; }
+.hasil-note { font-size: .7rem; color: var(--muted); margin-top: .3rem; font-style: italic; }
+
+/* ═══════════════════ ALUR VISUAL ═══════════════════ */
+.flow-wrap {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0; overflow-x: auto; padding: 1.5rem 0;
+}
+.flow-node {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 10px; padding: .85rem 1rem; text-align: center;
+  min-width: 105px; flex-shrink: 0; cursor: pointer;
+  transition: all .2s; position: relative;
+}
+.flow-node:hover {
+  border-color: var(--blue); background: var(--blue-lt);
+  transform: translateY(-3px); box-shadow: var(--shadow);
+}
+.flow-node .fn-icon { font-size: 1.3rem; display: block; margin-bottom: .2rem; }
+.flow-node .fn-lbl  { font-size: .72rem; font-weight: 800; line-height: 1.3; }
+.flow-node .fn-sub  { font-size: .62rem; color: var(--muted); }
+.flow-arrow { font-size: 1.3rem; color: var(--blue); padding: 0 .3rem; flex-shrink: 0; }
+
+/* ═══════════════════ SIMPULAN ═══════════════════ */
+.simpulan-banner {
+  background: linear-gradient(135deg, #0f172a, #1e1b4b);
+  border-radius: 20px; padding: 3rem 2.5rem; color: #fff;
+  text-align: center; position: relative; overflow: hidden;
+}
+.simpulan-banner::before {
+  content: '✨'; font-size: 8rem; position: absolute;
+  top: -2rem; right: 1rem; opacity: .06; pointer-events: none;
+}
+.simpulan-banner h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 1rem;
+  color: #fff;
+}
+.simpulan-banner h2 span { color: #a5b4fc; }
+.simpulan-banner p { color: #94a3b8; font-size: .92rem; max-width: 620px; margin: 0 auto 1.5rem; }
+.smp-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+.smp-chip {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  color: #e2e8f0; padding: .35rem .9rem; border-radius: 20px; font-size: .78rem; font-weight: 700;
+}
+
+footer {
+  background: var(--dark); color: #64748b;
+  text-align: center; padding: 2rem; font-size: .78rem; margin-top: 0;
+}
+footer strong { color: #a5b4fc; }
+
+/* ═══════════════════ SCROLL PROGRESS ═══════════════════ */
+.scroll-top {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--blue); color: #fff; border: none;
+  cursor: pointer; font-size: 1rem; box-shadow: var(--shadow-lg);
+  opacity: 0; transform: translateY(10px);
+  transition: all .3s; z-index: 99;
+}
+.scroll-top.show { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media (max-width: 640px) {
+  .nav-pills { display: none; }
+  .hero { padding: 3rem 1rem 2.5rem; }
+  .simpulan-banner { padding: 2rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      Penelitian R&D ADDIE
+    </div>
+    <div class="prog-bar-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="scrollProg"></div></div>
+      <div class="prog-lbl" id="scrollLbl">0% dibaca</div>
+    </div>
+    <nav class="nav-pills">
+      <button class="npill" onclick="gotoSec('identitas')">Identitas</button>
+      <button class="npill" onclick="gotoSec('addie')">ADDIE</button>
+      <button class="npill" onclick="gotoSec('instrumen')">Instrumen</button>
+      <button class="npill" onclick="gotoSec('hasil')">Hasil</button>
+      <button class="npill" onclick="gotoSec('simpulan')">Simpulan</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <i class="fas fa-flask"></i> Alur Cerita Contoh Penelitian R&D
+  </div>
+  <h1>
+    Pengembangan <span class="hl-blue">Media Animasi</span><br>
+    Berbasis <span class="hl-green">Streamlit</span> untuk<br>
+    Materi <span class="hl-orng">Pecahan SD Kelas III</span>
+  </h1>
+  <p class="hero-sub">
+    Studi kasus contoh penelitian lengkap menggunakan metode Research &amp; Development
+    dengan model ADDIE — dari analisis kebutuhan hingga evaluasi efektivitas.
+  </p>
+  <div class="hero-chips">
+    <span class="chip chip-blue">🎓 SD Kelas III</span>
+    <span class="chip chip-purple">🐍 Streamlit + Python</span>
+    <span class="chip chip-green">🎬 Animasi Interaktif</span>
+    <span class="chip chip-orange">📐 Materi Pecahan</span>
+    <span class="chip chip-pink">🔬 Model ADDIE</span>
+  </div>
+  <div class="hero-scroll"><i class="fas fa-chevron-down"></i><br><small>Gulir ke bawah</small></div>
+</section>
+
+<!-- ═══ IDENTITAS PENELITIAN ═══ -->
+<section class="section" id="identitas">
+  <div class="container">
+    <div class="sec-label">Bagian 01</div>
+    <h2 class="sec-title">Identitas Penelitian</h2>
+    <p class="sec-lead">Deskripsi lengkap penelitian yang menjadi contoh alur R&D menggunakan model ADDIE dalam pengembangan media pembelajaran animasi berbasis Streamlit.</p>
+
+    <div class="identity-grid">
+      <div class="id-card c-blue">
+        <div class="id-icon ic-blue"><i class="fas fa-book-open"></i></div>
+        <div class="id-label">Judul Penelitian</div>
+        <h3>Pengembangan Media Animasi Berbasis Streamlit untuk Meningkatkan Pemahaman Konsep Pecahan Siswa SD Kelas III</h3>
+      </div>
+      <div class="id-card c-green">
+        <div class="id-icon ic-green"><i class="fas fa-bullseye"></i></div>
+        <div class="id-label">Masalah & Tujuan</div>
+        <h3>Masalah</h3>
+        <p>Sebanyak 68% siswa kelas III SDN Mekar Jaya Bandung memperoleh nilai di bawah KKM (70) pada materi pecahan berdasarkan data ulangan harian semester ganjil 2023/2024.</p>
+      </div>
+      <div class="id-card c-orange">
+        <div class="id-icon ic-orange"><i class="fas fa-desktop"></i></div>
+        <div class="id-label">Produk yang Dikembangkan</div>
+        <h3>Media Animasi Interaktif "PecahanKu"</h3>
+        <p>Aplikasi web berbasis Streamlit dengan animasi visual pizza/roti, latihan interaktif, dan feedback langsung untuk konsep pecahan sederhana.</p>
+      </div>
+      <div class="id-card c-purple">
+        <div class="id-icon ic-purple"><i class="fas fa-sitemap"></i></div>
+        <div class="id-label">Metode & Model</div>
+        <h3>R&D – Model ADDIE</h3>
+        <p>Research &amp; Development dengan 5 fase: Analysis → Design → Development → Implementation → Evaluation (Dick, Carey &amp; Carey, 2009).</p>
+      </div>
+      <div class="id-card c-pink">
+        <div class="id-icon ic-pink"><i class="fas fa-users"></i></div>
+        <div class="id-label">Subjek Penelitian</div>
+        <h3>Siswa SD Kelas III</h3>
+        <p><strong>Uji coba terbatas:</strong> 8 siswa kelas III-A<br>
+        <strong>Uji lapangan:</strong> 28 siswa kelas III-B<br>
+        SDN Mekar Jaya, Kecamatan Sukasari, Bandung.</p>
+      </div>
+      <div class="id-card c-yellow">
+        <div class="id-icon ic-yellow"><i class="fas fa-calendar-alt"></i></div>
+        <div class="id-label">Waktu Penelitian</div>
+        <h3>Semester Genap 2023/2024</h3>
+        <p>Februari – Juni 2024. Validasi: Maret 2024. Uji coba terbatas: April 2024. Uji lapangan: Mei 2024.</p>
+      </div>
+    </div>
+
+    <!-- Alur Visual Singkat -->
+    <div style="margin-top:2.5rem;">
+      <h3 style="font-family:'Fredoka One',cursive; font-size:1.2rem; margin-bottom:1.25rem; color:var(--mid);">
+        <i class="fas fa-route" style="color:var(--blue)"></i> Alur Besar Penelitian
+      </h3>
+      <div class="flow-wrap">
+        <div class="flow-node">
+          <span class="fn-icon">🔍</span>
+          <div class="fn-lbl">Observasi &amp; Need Assessment</div>
+          <div class="fn-sub">Feb 2024</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="fn-icon">📋</span>
+          <div class="fn-lbl">Analisis &amp; Perencanaan</div>
+          <div class="fn-sub">Feb–Mar</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="fn-icon">🎨</span>
+          <div class="fn-lbl">Desain Media</div>
+          <div class="fn-sub">Mar 2024</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="fn-icon">💻</span>
+          <div class="fn-lbl">Pengembangan Streamlit</div>
+          <div class="fn-sub">Mar–Apr</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="fn-icon">✅</span>
+          <div class="fn-lbl">Validasi Ahli</div>
+          <div class="fn-sub">Apr 2024</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="fn-icon">🧑‍🎓</span>
+          <div class="fn-lbl">Uji Coba Terbatas</div>
+          <div class="fn-sub">Apr 2024</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="fn-icon">🏫</span>
+          <div class="fn-lbl">Uji Lapangan</div>
+          <div class="fn-sub">Mei 2024</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="fn-icon">📊</span>
+          <div class="fn-lbl">Evaluasi &amp; Revisi</div>
+          <div class="fn-sub">Mei–Jun</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--green); background:var(--green-lt);">
+          <span class="fn-icon">🏆</span>
+          <div class="fn-lbl" style="color:var(--green)">Produk Final</div>
+          <div class="fn-sub">Jun 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FASE ADDIE ═══ -->
+<section class="section" id="addie">
+  <div class="container">
+    <div class="sec-label">Bagian 02</div>
+    <h2 class="sec-title">Lima Fase Model ADDIE</h2>
+    <p class="sec-lead">Klik setiap fase untuk melihat alur cerita penelitian secara detail — dari kegiatan peneliti, temuan lapangan, hingga keputusan yang diambil.</p>
+
+    <div class="addie-nav">
+      <button class="addie-pill ap-a active" onclick="showPhase('a', this)">
+        <span class="pill-letter">A</span> Analysis
+      </button>
+      <button class="addie-pill ap-d1" onclick="showPhase('d1', this)">
+        <span class="pill-letter">D</span> Design
+      </button>
+      <button class="addie-pill ap-d2" onclick="showPhase('d2', this)">
+        <span class="pill-letter">D</span> Development
+      </button>
+      <button class="addie-pill ap-i" onclick="showPhase('i', this)">
+        <span class="pill-letter">I</span> Implementation
+      </button>
+      <button class="addie-pill ap-e" onclick="showPhase('e', this)">
+        <span class="pill-letter">E</span> Evaluation
+      </button>
+    </div>
+
+    <!-- ANALYSIS -->
+    <div class="addie-panel active" id="panel-a">
+      <div class="phase-layout">
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-icon ic-blue" style="background:var(--blue-lt)">🔍</div>
+            <div>
+              <div class="phase-title" style="color:var(--blue)">Analysis</div>
+              <div class="phase-sub">Tahap 1 — Analisis Kebutuhan</div>
+            </div>
+          </div>
+          <p class="phase-desc">Peneliti melakukan analisis mendalam terhadap kondisi lapangan, karakteristik siswa, dan materi pecahan sebelum merancang solusi.</p>
+          <ul class="step-list" style="--step-bg:var(--blue-lt); --step-c:var(--blue)">
+            <li><span class="step-num">1</span><span><strong>Analisis Kinerja:</strong> Observasi 3 pertemuan di kelas III-B SDN Mekar Jaya. Ditemukan: guru hanya menggunakan papan tulis dan buku paket, tidak ada media visual konkret.</span></li>
+            <li><span class="step-num">2</span><span><strong>Analisis Kebutuhan:</strong> Wawancara guru kelas → "Siswa kesulitan membayangkan pecahan 1/2, 1/4, 1/3. Mereka belum bisa membedakan pembilang dan penyebut."</span></li>
+            <li><span class="step-num">3</span><span><strong>Analisis Data:</strong> Rata-rata nilai ulangan pecahan = 58,4 dari 30 siswa. KKM = 70. Siswa tuntas = 32%.</span></li>
+            <li><span class="step-num">4</span><span><strong>Analisis Siswa:</strong> Usia 8–9 tahun, tahap operasional konkret (Piaget), membutuhkan representasi visual-konkret sebelum simbol abstrak.</span></li>
+            <li><span class="step-num">5</span><span><strong>Analisis Teknologi:</strong> Sekolah memiliki 1 lab komputer (15 unit), jaringan internet aktif, guru familier dengan browser. Streamlit cocok karena berbasis web, tanpa instalasi di sisi klien.</span></li>
+            <li><span class="step-num">6</span><span><strong>Analisis Kurikulum:</strong> KD 3.1 Kurikulum Merdeka Kelas III: "Mengenal pecahan sebagai bagian dari keseluruhan menggunakan benda konkret dan gambar."</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="story-box" style="margin-bottom:1.25rem;">
+            <h4><i class="fas fa-quote-left" style="color:var(--purple)"></i> Cerita di Lapangan</h4>
+            <p>Suatu pagi di bulan Februari 2024, peneliti duduk di pojok kelas III-B sambil mengamati Bu Sari mengajar pecahan. Di papan tulis tertulis "½ + ¼ = ?" dengan kapur putih. Beberapa siswa menunduk, beberapa bermain pensil. Nur, 8 tahun, berbisik ke temannya: <em>"Itu tanda bagi dua apa, Kak?"</em></p>
+            <p>Setelah wawancara dengan Bu Sari dan menelaah nilai ulangan, satu kesimpulan muncul: siswa membutuhkan representasi visual yang hidup, interaktif, dan menyenangkan — bukan sekadar gambar statis di buku.</p>
+            <p><strong>Keputusan:</strong> Mengembangkan media animasi berbasis Streamlit dengan pendekatan kontekstual (pizza, roti, buah) yang dapat menampilkan pembagian benda nyata secara animatif.</p>
+          </div>
+          <div class="finding-box" style="background:var(--blue-lt); border:1.5px solid #bfdbfe;">
+            <h4 style="color:var(--blue)"><i class="fas fa-chart-bar"></i> Temuan Utama Analisis</h4>
+            <div class="data-row">
+              <div class="data-chip" style="background:#dbeafe; color:var(--blue)">Nilai rata-rata: 58.4</div>
+              <div class="data-chip" style="background:#fee2e2; color:#dc2626">Tuntas: 32%</div>
+              <div class="data-chip" style="background:#dcfce7; color:var(--green)">KKM: 70</div>
+              <div class="data-chip" style="background:#ede9fe; color:var(--purple)">Siswa: 30 orang</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN -->
+    <div class="addie-panel" id="panel-d1">
+      <div class="phase-layout">
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-icon" style="background:var(--green-lt)">🎨</div>
+            <div>
+              <div class="phase-title" style="color:var(--green)">Design</div>
+              <div class="phase-sub">Tahap 2 — Perancangan Media</div>
+            </div>
+          </div>
+          <p class="phase-desc">Peneliti merancang blueprint media animasi, storyboard, materi, dan instrumen penilaian sebelum masuk ke tahap produksi.</p>
+          <ul class="step-list" style="--step-bg:var(--green-lt); --step-c:var(--green)">
+            <li><span class="step-num">1</span><span><strong>Tujuan Pembelajaran:</strong> Siswa mampu (a) menyebutkan nilai pecahan dari benda konkret, (b) membandingkan dua pecahan sederhana, (c) menjumlahkan pecahan berpenyebut sama.</span></li>
+            <li><span class="step-num">2</span><span><strong>Storyboard:</strong> Dirancang 5 modul: (1) Pengenalan Pecahan, (2) Mengenal Setengah, (3) Mengenal Seperempat, (4) Membandingkan Pecahan, (5) Kuis Interaktif.</span></li>
+            <li><span class="step-num">3</span><span><strong>Desain Antarmuka:</strong> Warna cerah (kuning, hijau, biru), karakter maskot "Pipih si Pizza", font anak-anak Fredoka, animasi potong pizza menggunakan matplotlib + streamlit.</span></li>
+            <li><span class="step-num">4</span><span><strong>Rancangan Interaktivitas:</strong> Slider "potong pizza" (denominator), tombol pilih jawaban, efek konfeti saat benar, feedback audio visual.</span></li>
+            <li><span class="step-num">5</span><span><strong>Rancangan Evaluasi:</strong> 15 soal kuis (pilihan ganda + drag) dengan sistem skor dan laporan progress siswa.</span></li>
+            <li><span class="step-num">6</span><span><strong>Instrumen Validasi:</strong> Lembar validasi ahli materi (25 butir) dan ahli media (22 butir) dengan skala Likert 1–4 disusun pada tahap ini.</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="story-box" style="margin-bottom:1.25rem; background:linear-gradient(135deg,#f0fdf4,#dcfce7); border-color:#86efac;">
+            <h4 style="color:var(--green)"><i class="fas fa-pencil-alt"></i> Proses Perancangan</h4>
+            <p>Maret minggu pertama, peneliti duduk bersama dosen pembimbing. Di meja: sketsa storyboard di kertas A3, diagram alur Streamlit, dan buku Piaget tentang tahap operasional konkret.</p>
+            <p><em>"Pizza adalah konteks yang paling dekat dengan anak SD,"</em> kata pembimbing. Maka lahirlah karakter "Pipih si Pizza" — lingkaran kuning yang bisa dipotong-potong sesuai penyebut yang dipilih siswa menggunakan slider interaktif.</p>
+            <p><strong>Keputusan desain kunci:</strong> Animasi dibuat menggunakan matplotlib (Python) yang dirender langsung di Streamlit, sehingga setiap potongan pizza benar-benar proporsional dan akurat secara matematis.</p>
+          </div>
+          <div class="finding-box" style="background:var(--green-lt); border:1.5px solid #86efac;">
+            <h4 style="color:var(--green)"><i class="fas fa-layer-group"></i> Struktur Modul "PecahanKu"</h4>
+            <div style="font-size:.82rem; color:var(--mid); line-height:1.8;">
+              📌 <strong>Modul 1</strong> — Apa itu Pecahan? (animasi pembagi)<br>
+              🍕 <strong>Modul 2</strong> — Setengah (½): Potong Pizza Jadi 2<br>
+              🍊 <strong>Modul 3</strong> — Seperempat (¼): Bagi Jeruk Jadi 4<br>
+              ⚖️ <strong>Modul 4</strong> — Lebih Besar atau Lebih Kecil?<br>
+              🎯 <strong>Modul 5</strong> — Kuis: Ayo Bermain Pecahan!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEVELOPMENT -->
+    <div class="addie-panel" id="panel-d2">
+      <div class="phase-layout">
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-icon" style="background:var(--orange-lt)">💻</div>
+            <div>
+              <div class="phase-title" style="color:var(--orange)">Development</div>
+              <div class="phase-sub">Tahap 3 — Pengembangan &amp; Validasi</div>
+            </div>
+          </div>
+          <p class="phase-desc">Peneliti memproduksi media "PecahanKu" menggunakan Python + Streamlit, kemudian memvalidasinya kepada dua orang ahli dan melakukan revisi.</p>
+          <ul class="step-list" style="--step-bg:var(--orange-lt); --step-c:var(--orange)">
+            <li><span class="step-num">1</span><span><strong>Produksi Prototipe I:</strong> Kode Streamlit dikembangkan (±800 baris Python). Library: streamlit, matplotlib, plotly, pandas. Animasi: matplotlib.patches.Wedge untuk potongan pizza.</span></li>
+            <li><span class="step-num">2</span><span><strong>Uji Fungsi Internal:</strong> Semua fitur diuji oleh peneliti — slider berfungsi, kuis menyimpan skor, animasi tidak lag di browser.</span></li>
+            <li><span class="step-num">3</span><span><strong>Validasi Ahli Materi:</strong> Dr. Hana Pertiwi, M.Pd. (dosen Matematika SD IKIP Siliwangi). Hasil: <strong>83,2%</strong> → Kategori Valid. 4 poin perlu direvisi.</span></li>
+            <li><span class="step-num">4</span><span><strong>Validasi Ahli Media:</strong> M. Fauzan, M.Pd.T (dosen Teknologi Pendidikan). Hasil: <strong>87,5%</strong> → Kategori Sangat Valid. 2 poin perlu direvisi.</span></li>
+            <li><span class="step-num">5</span><span><strong>Revisi Prototipe I → II:</strong> (a) Tambahkan penjelasan teks lebih sederhana di tiap slide, (b) perbesar ukuran tombol untuk anak SD, (c) tambah narasi suara (text-to-speech).</span></li>
+            <li><span class="step-num">6</span><span><strong>Prototipe II siap</strong> untuk uji coba terbatas kepada 8 siswa kelas III-A.</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="story-box" style="background:linear-gradient(135deg,#fff7ed,#ffedd5); border-color:#fdba74; margin-bottom:1.25rem;">
+            <h4 style="color:var(--orange)"><i class="fas fa-code"></i> Di Balik Layar: Coding Streamlit</h4>
+            <p>Dua minggu penuh peneliti bergulat dengan Python. Tantangan terbesar: membuat animasi pizza yang <em>benar-benar terpotong</em> sesuai nilai pecahan yang dipilih siswa.</p>
+            <p>Solusi: <code style="background:#fed7aa; padding:1px 5px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:.78rem;">matplotlib.patches.Wedge()</code> digunakan untuk menggambar irisan lingkaran. Setiap kali siswa menggeser slider "Potong jadi berapa?", pizza terpotong secara real-time dengan animasi halus.</p>
+            <p><strong>Saran Validator Dr. Hana:</strong> <em>"Tambahkan kalimat seperti 'Pizza ini dipotong menjadi 4 bagian sama besar, dan kamu mengambil 1 bagian, berarti kamu punya ¼ pizza!' agar konteks lebih kuat."</em></p>
+          </div>
+          <div class="finding-box" style="background:var(--orange-lt); border:1.5px solid #fdba74;">
+            <h4 style="color:var(--orange)"><i class="fas fa-star"></i> Hasil Validasi Ahli</h4>
+            <div class="data-row">
+              <div class="data-chip" style="background:#ffedd5; color:var(--orange)">Ahli Materi: 83.2% ✓ Valid</div>
+              <div class="data-chip" style="background:#dcfce7; color:var(--green)">Ahli Media: 87.5% ✓ Sangat Valid</div>
+            </div>
+            <p style="font-size:.78rem; color:var(--muted); margin-top:.7rem;">Rata-rata validasi: <strong>85,35%</strong> → Kategori Sangat Valid. Produk layak diujicobakan setelah revisi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMPLEMENTATION -->
+    <div class="addie-panel" id="panel-i">
+      <div class="phase-layout">
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-icon" style="background:var(--purple-lt)">🏫</div>
+            <div>
+              <div class="phase-title" style="color:var(--purple)">Implementation</div>
+              <div class="phase-sub">Tahap 4 — Penerapan di Kelas</div>
+            </div>
+          </div>
+          <p class="phase-desc">Media "PecahanKu" diterapkan dalam pembelajaran nyata di kelas III SDN Mekar Jaya melalui dua tahap: uji coba terbatas dan uji lapangan.</p>
+          <ul class="step-list" style="--step-bg:var(--purple-lt); --step-c:var(--purple)">
+            <li><span class="step-num">1</span><span><strong>Uji Coba Terbatas (8 siswa, April W3):</strong> Dilaksanakan 2 pertemuan (2×35 menit) di lab komputer. Siswa: 8 orang (4 laki, 4 perempuan), dipilih berdasarkan kemampuan heterogen.</span></li>
+            <li><span class="step-num">2</span><span><strong>Observasi Uji Terbatas:</strong> Semua siswa antusias. Nur langsung memahami konsep ½ setelah "memotong pizza" di layar. Masalah: loading lambat saat gambar pertama muncul.</span></li>
+            <li><span class="step-num">3</span><span><strong>Revisi Pasca Uji Terbatas:</strong> Optimasi gambar, tambah loading spinner animasi, sederhanakan instruksi kuis dari teks panjang ke ikon visual.</span></li>
+            <li><span class="step-num">4</span><span><strong>Uji Lapangan (28 siswa, Mei W1–W2):</strong> Pretest → 3 pertemuan pembelajaran dengan media → Posttest. Guru kelas (Bu Sari) bertindak sebagai fasilitator.</span></li>
+            <li><span class="step-num">5</span><span><strong>Pengisian Angket:</strong> Angket praktikalitas diisi oleh Bu Sari (guru) dan seluruh 28 siswa setelah pembelajaran selesai.</span></li>
+            <li><span class="step-num">6</span><span><strong>Dokumentasi:</strong> Foto, video pembelajaran, catatan lapangan, dan log aktivitas Streamlit dicatat sebagai data penelitian.</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="story-box" style="background:linear-gradient(135deg,#faf5ff,#ede9fe); border-color:#c4b5fd; margin-bottom:1.25rem;">
+            <h4 style="color:var(--purple)"><i class="fas fa-laptop-code"></i> Hari Pertama Uji Lapangan</h4>
+            <p>Senin, 6 Mei 2024. Lab komputer bau kayu dan sedikit berdebu. 28 siswa kelas III-B berdatangan dengan seragam merah putih, beberapa berlomba menuju komputer paling depan.</p>
+            <p>Bu Sari membuka <code style="background:#ddd6fe; padding:1px 5px; border-radius:3px; font-size:.78rem; font-family:'JetBrains Mono'">pecahanku.streamlit.app</code> di browser. Layar menampilkan Pipih si Pizza yang tersenyum. Seisi kelas serempak berkata: <em>"Waaah pizzaaa!"</em></p>
+            <p>Pretest sebelumnya menunjukkan rata-rata 56,4. Kini 28 pasang mata menatap pizza animasi yang terpotong saat mereka menggeser slider. Peneliti mencatat: <em>"Baru 7 menit, sudah 5 siswa bisa menyebutkan ½ dengan benar tanpa bantuan."</em></p>
+          </div>
+          <div class="finding-box" style="background:var(--purple-lt); border:1.5px solid #c4b5fd;">
+            <h4 style="color:var(--purple)"><i class="fas fa-thumbs-up"></i> Hasil Angket Praktikalitas</h4>
+            <div class="data-row" style="flex-direction:column; gap:.4rem;">
+              <div style="display:flex; justify-content:space-between; font-size:.8rem; color:var(--mid);">
+                <span>Praktikalitas Guru (Bu Sari)</span>
+                <strong style="color:var(--purple)">88,6%</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:.8rem; color:var(--mid);">
+                <span>Respons Siswa (28 orang)</span>
+                <strong style="color:var(--purple)">91,3%</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:.8rem; color:var(--mid);">
+                <span>Rata-rata Praktikalitas</span>
+                <strong style="color:var(--green)">89,9% → Sangat Praktis</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVALUATION -->
+    <div class="addie-panel" id="panel-e">
+      <div class="phase-layout">
+        <div class="phase-card">
+          <div class="phase-header">
+            <div class="phase-icon" style="background:var(--pink-lt)">📊</div>
+            <div>
+              <div class="phase-title" style="color:var(--pink)">Evaluation</div>
+              <div class="phase-sub">Tahap 5 — Evaluasi Komprehensif</div>
+            </div>
+          </div>
+          <p class="phase-desc">Evaluasi formatif dilakukan di setiap fase, dan evaluasi sumatif dilakukan setelah uji lapangan untuk mengukur efektivitas media.</p>
+          <ul class="step-list" style="--step-bg:var(--pink-lt); --step-c:var(--pink)">
+            <li><span class="step-num">1</span><span><strong>Evaluasi Formatif (tiap fase):</strong> Review ahli (Development), observasi &amp; angket (Implementation). Digunakan untuk revisi berkelanjutan.</span></li>
+            <li><span class="step-num">2</span><span><strong>Evaluasi Sumatif — Pretest:</strong> Dilaksanakan sebelum penggunaan media. Rata-rata = <strong>56,4</strong>. Tuntas: 25% (7/28 siswa).</span></li>
+            <li><span class="step-num">3</span><span><strong>Evaluasi Sumatif — Posttest:</strong> Dilaksanakan setelah 3 pertemuan dengan media. Rata-rata = <strong>81,7</strong>. Tuntas: 89,3% (25/28 siswa).</span></li>
+            <li><span class="step-num">4</span><span><strong>Uji N-Gain:</strong> g = (81,7 − 56,4) / (100 − 56,4) = 25,3 / 43,6 = <strong>0,58</strong> → Kategori <em>Sedang</em> mendekati Tinggi.</span></li>
+            <li><span class="step-num">5</span><span><strong>Uji Beda (Paired t-test):</strong> t-hitung = 9,84 &gt; t-tabel = 2,052 (df=27, α=0,05) → <strong>H₁ diterima</strong>: ada peningkatan signifikan.</span></li>
+            <li><span class="step-num">6</span><span><strong>Revisi Final &amp; Produk Final:</strong> Perbaikan minor tampilan, penambahan halaman panduan guru, dan pengemasan media sebagai produk siap distribusi.</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="story-box" style="background:linear-gradient(135deg,#fff1f2,#fce7f3); border-color:#f9a8d4; margin-bottom:1.25rem;">
+            <h4 style="color:var(--pink)"><i class="fas fa-chart-line"></i> Momen Pembuktian</h4>
+            <p>Jumat, 24 Mei 2024. Peneliti memasukkan angka pretest dan posttest ke dalam spreadsheet. Jari-jarinya gemetar sedikit saat menekan Enter untuk rumus N-Gain.</p>
+            <p>Nilai muncul: <strong>0,58</strong>. <em>"Sedang,"</em> bisik peneliti, sedikit kecewa. Tapi kemudian ia melihat persentase ketuntasan: dari 25% menjadi 89,3%. Dan wajah Nur di memorinya — anak yang tidak bisa membedakan pembilang dan penyebut — kini berhasil mengerjakan soal ¾ + ¼ = 1 dengan tepat.</p>
+            <p><em>"N-Gain sedang, tapi untuk siswa SD kelas III dengan materi abstrak seperti pecahan, ini adalah lompatan yang nyata,"</em> tulis peneliti di catatan jurnal hariannya.</p>
+          </div>
+          <div class="finding-box" style="background:var(--pink-lt); border:1.5px solid #f9a8d4;">
+            <h4 style="color:var(--pink)"><i class="fas fa-trophy"></i> Ringkasan Hasil Evaluasi</h4>
+            <div class="data-row">
+              <div class="data-chip" style="background:#fce7f3; color:var(--pink)">Pretest: 56.4</div>
+              <div class="data-chip" style="background:#dcfce7; color:var(--green)">Posttest: 81.7</div>
+              <div class="data-chip" style="background:#ede9fe; color:var(--purple)">N-Gain: 0.58 (Sedang)</div>
+              <div class="data-chip" style="background:#dbeafe; color:var(--blue)">Tuntas: 89.3%</div>
+              <div class="data-chip" style="background:#fef9c3; color:var(--yellow)">t-hitung: 9.84 *</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSTRUMEN ═══ -->
+<section class="section" id="instrumen">
+  <div class="container">
+    <div class="sec-label">Bagian 03</div>
+    <h2 class="sec-title">Instrumen Penelitian</h2>
+    <p class="sec-lead">Seluruh instrumen yang digunakan untuk mengumpulkan data validitas, praktikalitas, dan efektivitas media "PecahanKu".</p>
+
+    <div style="overflow-x:auto; border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:2rem;">
+      <table class="instr-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nama Instrumen</th>
+            <th>Tujuan</th>
+            <th>Pengisi</th>
+            <th>Butir</th>
+            <th>Dimensi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Lembar Validasi Ahli Materi</strong></td>
+            <td>Menilai kebenaran konsep, kesesuaian KD, dan ketepatan materi pecahan</td>
+            <td>Dr. Hana Pertiwi, M.Pd.</td>
+            <td>25 butir</td>
+            <td><span class="badge bd-blue">Validitas Isi</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Lembar Validasi Ahli Media</strong></td>
+            <td>Menilai tampilan, navigasi, animasi, dan keterbacaan media Streamlit</td>
+            <td>M. Fauzan, M.Pd.T</td>
+            <td>22 butir</td>
+            <td><span class="badge bd-green">Validitas Konstruk</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>Soal Tes (Pretest &amp; Posttest)</strong></td>
+            <td>Mengukur pemahaman konsep pecahan sebelum dan sesudah penggunaan media</td>
+            <td>28 siswa kelas III-B</td>
+            <td>20 soal PG</td>
+            <td><span class="badge bd-orange">Efektivitas</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>Angket Praktikalitas Guru</strong></td>
+            <td>Menilai kemudahan penggunaan, kesesuaian waktu, dan manfaat media bagi guru</td>
+            <td>Bu Sari (Guru Kelas III)</td>
+            <td>18 butir</td>
+            <td><span class="badge bd-purple">Praktikalitas</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>Angket Respons Siswa</strong></td>
+            <td>Mengetahui ketertarikan, kemudahan, dan motivasi belajar siswa terhadap media</td>
+            <td>28 siswa kelas III-B</td>
+            <td>15 butir</td>
+            <td><span class="badge bd-pink">Praktikalitas</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>Lembar Observasi Keterlaksanaan</strong></td>
+            <td>Mengamati proses pembelajaran dan keterlaksanaan RPP selama uji lapangan</td>
+            <td>Peneliti (observer)</td>
+            <td>20 aspek</td>
+            <td><span class="badge bd-orange">Implementasi</span></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><strong>Pedoman Wawancara Guru</strong></td>
+            <td>Menggali informasi mendalam tentang kebutuhan media dan pengalaman mengajar pecahan</td>
+            <td>Bu Sari (wawancara)</td>
+            <td>8 pertanyaan</td>
+            <td><span class="badge bd-blue">Need Assessment</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:var(--blue-lt); border:1.5px solid #bfdbfe; border-radius:var(--radius); padding:1.25rem;">
+      <h4 style="font-weight:800; color:var(--blue); margin-bottom:.6rem;"><i class="fas fa-info-circle"></i> Catatan Teknis Instrumen</h4>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; font-size:.83rem; color:var(--mid);">
+        <div>📏 <strong>Skala Likert 4 poin:</strong> 4=Sangat Baik, 3=Baik, 2=Cukup, 1=Kurang. Digunakan untuk semua angket validasi dan praktikalitas.</div>
+        <div>✅ <strong>Uji validitas soal:</strong> Product-moment Pearson. Reliabilitas: Cronbach Alpha = 0,84 (sangat reliabel). Soal diujikan ke 20 siswa kelas IV (sudah mempelajari pecahan).</div>
+        <div>📊 <strong>Kategori persentase:</strong> ≥85%=Sangat Valid/Praktis, 70–84%=Valid/Praktis, 55–69%=Cukup, &lt;55%=Tidak Valid/Praktis.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HASIL ═══ -->
+<section class="section" id="hasil">
+  <div class="container">
+    <div class="sec-label">Bagian 04</div>
+    <h2 class="sec-title">Rekapitulasi Hasil Penelitian</h2>
+    <p class="sec-lead">Rangkuman seluruh hasil pengukuran yang membuktikan kualitas media "PecahanKu" dari tiga dimensi: validitas, praktikalitas, dan efektivitas.</p>
+
+    <div class="hasil-grid" style="margin-bottom:2rem;">
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--blue)">83.2<small style="font-size:1.2rem">%</small></div>
+        <div class="hasil-lbl">Validitas Ahli Materi</div>
+        <div class="hasil-note">Kategori: Valid ✓</div>
+      </div>
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--green)">87.5<small style="font-size:1.2rem">%</small></div>
+        <div class="hasil-lbl">Validitas Ahli Media</div>
+        <div class="hasil-note">Kategori: Sangat Valid ✓</div>
+      </div>
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--orange)">88.6<small style="font-size:1.2rem">%</small></div>
+        <div class="hasil-lbl">Praktikalitas Guru</div>
+        <div class="hasil-note">Kategori: Sangat Praktis ✓</div>
+      </div>
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--purple)">91.3<small style="font-size:1.2rem">%</small></div>
+        <div class="hasil-lbl">Respons Siswa</div>
+        <div class="hasil-note">Kategori: Sangat Praktis ✓</div>
+      </div>
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--pink)">0.58</div>
+        <div class="hasil-lbl">Nilai N-Gain</div>
+        <div class="hasil-note">Kategori: Sedang ✓</div>
+      </div>
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--green)">89.3<small style="font-size:1.2rem">%</small></div>
+        <div class="hasil-lbl">Ketuntasan Posttest</div>
+        <div class="hasil-note">25 dari 28 siswa tuntas ✓</div>
+      </div>
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--yellow)">9.84</div>
+        <div class="hasil-lbl">t-hitung (Paired t-test)</div>
+        <div class="hasil-note">Signifikan (α=0,05) ✓</div>
+      </div>
+      <div class="hasil-card">
+        <div class="hasil-num" style="color:var(--blue)">85.3<small style="font-size:1.2rem">%</small></div>
+        <div class="hasil-lbl">Rata-rata Validasi</div>
+        <div class="hasil-note">Kategori: Sangat Valid ✓</div>
+      </div>
+    </div>
+
+    <!-- Pretest vs Posttest visual -->
+    <div style="background:var(--white); border:1.5px solid var(--border); border-radius:var(--radius); padding:1.75rem; box-shadow:var(--shadow);">
+      <h3 style="font-family:'Fredoka One',cursive; font-size:1.15rem; margin-bottom:1.25rem; color:var(--dark);">
+        📈 Perbandingan Pretest vs Posttest (28 Siswa)
+      </h3>
+      <div style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:flex-end; margin-bottom:1rem;">
+        <div style="flex:1; min-width:200px;">
+          <div style="font-size:.75rem; color:var(--muted); margin-bottom:.4rem; font-weight:700;">PRETEST</div>
+          <div style="height:120px; background:var(--border); border-radius:6px; position:relative; overflow:hidden;">
+            <div id="bar-pre" style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(180deg,#93c5fd,var(--blue)); height:0%; border-radius:6px 6px 0 0; transition:height 1.2s ease; display:flex; align-items:flex-start; justify-content:center; padding-top:6px; color:#fff; font-weight:800; font-size:.9rem;"></div>
+          </div>
+          <div style="text-align:center; margin-top:.4rem; font-size:.82rem; color:var(--muted);">Rata-rata: <strong>56.4</strong> | Tuntas: <strong>25%</strong></div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div style="font-size:.75rem; color:var(--muted); margin-bottom:.4rem; font-weight:700;">POSTTEST</div>
+          <div style="height:120px; background:var(--border); border-radius:6px; position:relative; overflow:hidden;">
+            <div id="bar-post" style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(180deg,#86efac,var(--green)); height:0%; border-radius:6px 6px 0 0; transition:height 1.2s ease 0.3s; display:flex; align-items:flex-start; justify-content:center; padding-top:6px; color:#fff; font-weight:800; font-size:.9rem;"></div>
+          </div>
+          <div style="text-align:center; margin-top:.4rem; font-size:.82rem; color:var(--muted);">Rata-rata: <strong>81.7</strong> | Tuntas: <strong>89.3%</strong></div>
+        </div>
+        <div style="flex:1; min-width:200px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.6rem; padding:1rem; background:var(--green-lt); border-radius:10px; border:1.5px solid #86efac;">
+          <div style="font-size:2.5rem; font-family:'Fredoka One',cursive; color:var(--green); line-height:1;">+25.3</div>
+          <div style="font-size:.78rem; font-weight:700; color:var(--green);">Peningkatan Rata-rata</div>
+          <div style="font-size:.7rem; color:var(--muted); text-align:center;">Setara N-Gain 0.58<br>(Kategori Sedang)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SIMPULAN ═══ -->
+<section class="section" id="simpulan">
+  <div class="container">
+    <div class="sec-label">Bagian 05</div>
+    <h2 class="sec-title">Simpulan Penelitian</h2>
+    <p class="sec-lead">Berdasarkan seluruh data yang dikumpulkan melalui 5 fase ADDIE, penelitian ini menghasilkan simpulan sebagai berikut.</p>
+
+    <div class="simpulan-banner">
+      <h2>Media <span>PecahanKu</span> Terbukti<br>Valid, Praktis, dan Efektif</h2>
+      <p>
+        Media animasi berbasis Streamlit "PecahanKu" yang dikembangkan menggunakan model ADDIE telah berhasil meningkatkan pemahaman konsep pecahan siswa SD kelas III secara signifikan. Ketiga dimensi kualitas produk R&D terpenuhi berdasarkan data empiris.
+      </p>
+      <div class="smp-chips">
+        <span class="smp-chip">✅ Sangat Valid (85.35%)</span>
+        <span class="smp-chip">✅ Sangat Praktis (89.95%)</span>
+        <span class="smp-chip">✅ Efektif (N-Gain 0.58)</span>
+        <span class="smp-chip">📈 Ketuntasan naik: 25% → 89.3%</span>
+        <span class="smp-chip">📊 t-hitung 9.84 signifikan</span>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.25rem; margin-top:2rem;">
+      <div class="id-card c-blue">
+        <div class="id-icon ic-blue"><i class="fas fa-lightbulb"></i></div>
+        <div class="id-label">Implikasi Teoretis</div>
+        <h3>Validasi Teori Piaget</h3>
+        <p>Penggunaan representasi konkret-animatif (pizza, buah) mendukung pemahaman siswa tahap operasional konkret, sejalan dengan tahapan kognitif Piaget untuk anak usia 7–11 tahun.</p>
+      </div>
+      <div class="id-card c-green">
+        <div class="id-icon ic-green"><i class="fas fa-school"></i></div>
+        <div class="id-label">Implikasi Praktis</div>
+        <h3>Rekomendasi untuk Guru SD</h3>
+        <p>Media ini dapat digunakan sebagai suplemen pembelajaran pecahan di kelas III. Guru cukup menyediakan browser dan jaringan internet tanpa instalasi tambahan (akses via Streamlit Cloud).</p>
+      </div>
+      <div class="id-card c-purple">
+        <div class="id-icon ic-purple"><i class="fas fa-flask"></i></div>
+        <div class="id-label">Rekomendasi Penelitian Lanjutan</div>
+        <h3>Pengembangan Selanjutnya</h3>
+        <p>Penelitian berikutnya dapat memperluas cakupan: (1) pecahan kelas IV (penjumlahan/pengurangan), (2) integrasi gamifikasi dengan poin dan badge, (3) uji skala yang lebih luas (multi-sekolah).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Martin Bernard, M.Pd.</strong> · IKIP Siliwangi · Pendidikan Matematika &amp; PGSD</p>
+  <p style="margin-top:.35rem;">Contoh Alur Penelitian R&D Model ADDIE — Media Animasi Streamlit Materi Pecahan SD</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+// ── NAV ──
+function gotoSec(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── ADDIE TABS ──
+function showPhase(id, btn) {
+  document.querySelectorAll('.addie-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.addie-pill').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── SCROLL PROGRESS ──
+window.addEventListener('scroll', () => {
+  const scroll = window.scrollY;
+  const total  = document.body.scrollHeight - window.innerHeight;
+  const pct    = Math.round((scroll / total) * 100);
+  document.getElementById('scrollProg').style.width = pct + '%';
+  document.getElementById('scrollLbl').textContent  = pct + '% dibaca';
+  const btn = document.getElementById('scrollTop');
+  scroll > 300 ? btn.classList.add('show') : btn.classList.remove('show');
+
+  // Animate bars on scroll into view
+  const hasilSec = document.getElementById('hasil');
+  if (hasilSec) {
+    const rect = hasilSec.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8) {
+      document.getElementById('bar-pre').style.height  = '56.4%';
+      document.getElementById('bar-pre').textContent   = '56.4';
+      document.getElementById('bar-post').style.height = '81.7%';
+      document.getElementById('bar-post').textContent  = '81.7';
+    }
+  }
+});
+</script>
+</body>
+</html>
