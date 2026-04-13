@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R&D dalam Pengembangan Media Pembelajaran | Martin Bernard M.Pd.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --parchment: #fdf6e3;
+    --cream: #f5ecd7;
+    --amber: #c8860a;
+    --amber-light: #e8a820;
+    --amber-pale: #fef3d0;
+    --teal: #1a6b6b;
+    --teal-light: #2a8f8f;
+    --rust: #8b3a1a;
+    --muted: #7a6a50;
+    --border: #d4b896;
+    --shadow: rgba(26,18,9,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 16px;
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(200,134,10,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(26,107,107,0.06) 0%, transparent 50%);
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px var(--shadow);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    gap: 1rem;
+  }
+  .header-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--amber-light);
+    white-space: nowrap;
+  }
+  .header-subtitle {
+    font-size: 0.7rem;
+    color: #aaa;
+    font-style: italic;
+  }
+  .header-nav {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: #ccc;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.78rem;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    border-color: var(--amber);
+    color: var(--amber-light);
+    background: rgba(200,134,10,0.1);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #1a1209 0%, #2d1f0a 50%, #1a3030 100%);
+    color: var(--parchment);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(200,134,10,0.025) 40px, rgba(200,134,10,0.025) 41px),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(26,107,107,0.025) 40px, rgba(26,107,107,0.025) 41px);
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--amber);
+    color: var(--amber-light);
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .hero h1 em {
+    color: var(--amber-light);
+    font-style: italic;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: #c8b89a;
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
+    position: relative;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--amber-light);
+    display: block;
+  }
+  .hero-stat .lbl {
+    font-size: 0.72rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 4rem 0; }
+  .section + .section { border-top: 1px solid var(--border); }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 680px;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  /* ── TABS ── */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 2.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    padding: 0.8rem 1.4rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tab-btn:hover { color: var(--amber); }
+  .tab-btn.active {
+    color: var(--amber);
+    border-bottom-color: var(--amber);
+    font-weight: 600;
+  }
+  .tab-panel { display: none; animation: fadeUp 0.35s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── CARDS ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.75rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--amber), var(--teal));
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px var(--shadow); }
+  .card-icon {
+    width: 44px; height: 44px;
+    background: var(--amber-pale);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--amber);
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── TIMELINE / LANGKAH R&D ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.6rem; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--amber) 0%, var(--teal) 100%);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -2rem;
+    top: 0.35rem;
+    width: 1.2rem; height: 1.2rem;
+    border-radius: 50%;
+    background: var(--parchment);
+    border: 2px solid var(--amber);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--amber);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.2s;
+  }
+  .tl-item.open .tl-dot {
+    background: var(--amber);
+    color: white;
+    transform: scale(1.15);
+  }
+  .tl-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .tl-item.open .tl-header {
+    border-color: var(--amber);
+    background: var(--amber-pale);
+  }
+  .tl-header-left { display: flex; align-items: center; gap: 0.8rem; }
+  .tl-step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .tl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .tl-chevron { color: var(--muted); transition: transform 0.3s; font-size: 0.85rem; }
+  .tl-item.open .tl-chevron { transform: rotate(180deg); }
+  .tl-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .tl-item.open .tl-body { max-height: 600px; }
+  .tl-body-inner {
+    padding: 1.25rem 1.25rem 1.25rem;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    background: white;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #444;
+  }
+  .tl-body-inner ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+  .tl-body-inner li { margin-bottom: 0.4rem; }
+  .tl-body-inner .tip {
+    background: var(--amber-pale);
+    border-left: 3px solid var(--amber);
+    padding: 0.6rem 0.9rem;
+    border-radius: 0 4px 4px 0;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--rust);
+  }
+  .tl-body-inner .tip strong { color: var(--amber); }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .compare-table th {
+    background: var(--ink);
+    color: var(--amber-light);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.9rem 1rem;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .compare-table tr:nth-child(even) td { background: var(--cream); }
+  .compare-table tr:hover td { background: var(--amber-pale); }
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .badge-amber { background: var(--amber-pale); color: var(--amber); border: 1px solid var(--amber); }
+  .badge-teal  { background: #e8f4f4; color: var(--teal); border: 1px solid var(--teal); }
+  .badge-rust  { background: #faeae5; color: var(--rust); border: 1px solid var(--rust); }
+
+  /* ── QUIZ ── */
+  .quiz-wrap { max-width: 720px; margin: 0 auto; }
+  .quiz-progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber), var(--teal));
+    transition: width 0.4s ease;
+    border-radius: 2px;
+  }
+  .quiz-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .quiz-score-badge {
+    background: var(--ink);
+    color: var(--amber-light);
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+  }
+  .quiz-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    line-height: 1.45;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.5rem; }
+  .quiz-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+  }
+  .quiz-opt:hover:not(.disabled) { border-color: var(--amber); background: var(--amber-pale); }
+  .quiz-opt.correct  { border-color: var(--teal); background: #e8f4f4; }
+  .quiz-opt.wrong    { border-color: var(--rust); background: #faeae5; }
+  .quiz-opt.disabled { cursor: not-allowed; opacity: 0.7; }
+  .opt-key {
+    width: 28px; height: 28px; min-width: 28px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .quiz-opt.correct .opt-key { border-color: var(--teal); color: var(--teal); }
+  .quiz-opt.wrong   .opt-key { border-color: var(--rust);  color: var(--rust);  }
+  .quiz-feedback {
+    padding: 0.9rem 1rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+    display: none;
+    line-height: 1.6;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok  { background: #e8f4f4; border-left: 3px solid var(--teal); color: var(--teal); }
+  .quiz-feedback.err { background: #faeae5; border-left: 3px solid var(--rust);  color: var(--rust);  }
+  .quiz-nav { display: flex; gap: 0.75rem; justify-content: flex-end; }
+  .btn {
+    padding: 0.65rem 1.4rem;
+    border-radius: 4px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+  .btn-primary { background: var(--amber); color: white; }
+  .btn-primary:hover { background: var(--amber-light); }
+  .btn-primary:disabled { background: var(--border); cursor: not-allowed; }
+  .btn-outline { background: none; border: 1.5px solid var(--border); color: var(--muted); }
+  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+  .quiz-result {
+    text-align: center;
+    padding: 3rem 1rem;
+    display: none;
+  }
+  .quiz-result.show { display: block; }
+  .result-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .result-label { color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+  .result-msg {
+    font-size: 1.05rem;
+    max-width: 460px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--ink) 0%, #2d1f0a 100%);
+    color: var(--parchment);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight-box::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem; left: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(200,134,10,0.15);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .highlight-box p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.7;
+    position: relative;
+  }
+  .highlight-box cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--amber-light);
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── DIAGRAM R&D FLOW ── */
+  .flow-diagram {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding: 1.5rem 0;
+  }
+  .flow-box {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+    text-align: center;
+    min-width: 110px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    flex-shrink: 0;
+    transition: all 0.2s;
+    cursor: default;
+    position: relative;
+  }
+  .flow-box:hover {
+    border-color: var(--amber);
+    background: var(--amber-pale);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+  .flow-box .step-no {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.1em;
+  }
+  .flow-arrow {
+    color: var(--amber);
+    font-size: 1.2rem;
+    padding: 0 0.25rem;
+    flex-shrink: 0;
+  }
+
+  /* ── INSTRUMEN TABLE ── */
+  .instrumen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+  .instrumen-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem 1.25rem;
+    font-size: 0.86rem;
+  }
+  .instrumen-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.97rem;
+  }
+  .instrumen-card ul { padding-left: 1.1rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #888;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    margin-top: 4rem;
+  }
+  footer strong { color: var(--amber-light); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .header-nav { display: none; }
+    .hero { padding: 3rem 1.5rem 2.5rem; }
+    .hero-stats { gap: 1.5rem; }
+    .flow-diagram { gap: 0.25rem; }
+    .flow-box { min-width: 90px; padding: 0.7rem 0.6rem; font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-brand">Pengembangan Media Pembelajaran</div>
+      <div class="header-subtitle">Research &amp; Development — IKIP Siliwangi</div>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-btn" onclick="scrollTo('#konsep')">Konsep</button>
+      <button class="nav-btn" onclick="scrollTo('#model')">Model R&amp;D</button>
+      <button class="nav-btn" onclick="scrollTo('#langkah')">Langkah</button>
+      <button class="nav-btn" onclick="scrollTo('#instrumen')">Instrumen</button>
+      <button class="nav-btn" onclick="scrollTo('#kuis')">Kuis</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Mata Kuliah Pengembangan Media &amp; Perangkat Pembelajaran</div>
+  <h1>Research &amp; Development<br>dalam <em>Pengembangan Media</em><br>Pembelajaran</h1>
+  <p class="hero-desc">Pendekatan sistematis dan ilmiah untuk menghasilkan produk pendidikan yang valid, praktis, dan efektif.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">3</span><span class="lbl">Model Utama</span></div>
+    <div class="hero-stat"><span class="num">10</span><span class="lbl">Langkah Borg &amp; Gall</span></div>
+    <div class="hero-stat"><span class="num">5</span><span class="lbl">Fase ADDIE</span></div>
+    <div class="hero-stat"><span class="num">4D</span><span class="lbl">Thiagarajan</span></div>
+  </div>
+</section>
+
+<!-- KONSEP DASAR -->
+<section class="section" id="konsep">
+  <div class="container">
+    <div class="section-label">01 — Konsep Dasar</div>
+    <h2 class="section-title">Apa itu R&amp;D dalam Pendidikan?</h2>
+    <p class="section-lead">Metode penelitian yang digunakan untuk menghasilkan produk tertentu dan menguji keefektifan produk tersebut.</p>
+
+    <div class="highlight-box">
+      <p>Research and Development (R&amp;D) adalah proses yang digunakan untuk mengembangkan dan memvalidasi produk-produk pendidikan. Tujuannya bukan sekadar menguji teori, melainkan menghasilkan produk nyata yang dapat digunakan langsung di lapangan.</p>
+      <cite>— Borg &amp; Gall (2003) | Educational Research</cite>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-microscope"></i></div>
+        <h3>Penelitian (Research)</h3>
+        <p>Kegiatan mengumpulkan informasi tentang kebutuhan (need assessment) dan kajian literatur sebagai dasar pengembangan produk. Bersifat empiris dan sistematis.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-tools"></i></div>
+        <h3>Pengembangan (Development)</h3>
+        <p>Proses merancang, memproduksi, dan memvalidasi produk pembelajaran yang dikembangkan berdasarkan hasil penelitian dan teori yang relevan.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-check-double"></i></div>
+        <h3>Validasi &amp; Uji Coba</h3>
+        <p>Produk dinilai oleh para ahli (validasi) dan diujicobakan kepada pengguna nyata untuk mengetahui tingkat kepraktisan dan keefektifannya.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-recycle"></i></div>
+        <h3>Revisi Berulang</h3>
+        <p>Siklus perbaikan dilakukan secara berkelanjutan berdasarkan masukan validator dan hasil uji coba hingga produk memenuhi standar kualitas.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-book-open"></i></div>
+        <h3>Produk Akhir</h3>
+        <p>Menghasilkan produk berupa perangkat atau media pembelajaran: LKS, buku ajar, modul, aplikasi, video, permainan edukatif, dsb.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-star"></i></div>
+        <h3>Kriteria Kualitas</h3>
+        <p>Produk dinilai berdasarkan tiga dimensi: <strong>validitas</strong> (konten &amp; konstruk), <strong>praktikalitas</strong> (kemudahan penggunaan), dan <strong>efektivitas</strong> (hasil belajar).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODEL R&D -->
+<section class="section" id="model">
+  <div class="container">
+    <div class="section-label">02 — Model-Model R&amp;D</div>
+    <h2 class="section-title">Perbandingan Model Pengembangan</h2>
+    <p class="section-lead">Tiga model utama yang paling sering digunakan dalam penelitian pengembangan media dan perangkat pembelajaran di Indonesia.</p>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="showTab('borg', this)"><i class="fas fa-book"></i> Borg &amp; Gall</button>
+      <button class="tab-btn" onclick="showTab('addie', this)"><i class="fas fa-sitemap"></i> ADDIE</button>
+      <button class="tab-btn" onclick="showTab('4d', this)"><i class="fas fa-layer-group"></i> 4D Thiagarajan</button>
+      <button class="tab-btn" onclick="showTab('compare', this)"><i class="fas fa-table"></i> Perbandingan</button>
+    </div>
+
+    <!-- BORG & GALL -->
+    <div class="tab-panel active" id="tab-borg">
+      <p style="margin-bottom:1.5rem; color:var(--muted); font-style:italic;">Model Borg &amp; Gall (1983/2003) terdiri dari 10 langkah siklikal yang menyeluruh. Cocok untuk penelitian skala besar dengan uji coba luas.</p>
+      <div class="flow-diagram">
+        <div class="flow-box"><span class="step-no">01</span>Riset &amp; Pengumpulan Info</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">02</span>Perencanaan</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">03</span>Pengembangan Draf</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">04</span>Uji Coba Awal</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">05</span>Revisi Produk I</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">06</span>Uji Coba Lapangan</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">07</span>Revisi Produk II</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">08</span>Uji Lapangan Utama</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">09</span>Revisi Produk Akhir</div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">10</span>Diseminasi &amp; Implementasi</div>
+      </div>
+      <div style="margin-top:1.5rem; padding:1rem 1.25rem; background:var(--amber-pale); border-radius:6px; font-size:0.87rem; color:var(--rust);">
+        <strong>Catatan:</strong> Untuk skripsi/tesis, langkah 1–7 sudah cukup (Borg &amp; Gall menyarankan penyederhanaan). Uji coba skala besar (langkah 8–10) bersifat opsional sesuai scope penelitian.
+      </div>
+    </div>
+
+    <!-- ADDIE -->
+    <div class="tab-panel" id="tab-addie">
+      <p style="margin-bottom:1.5rem; color:var(--muted); font-style:italic;">Model ADDIE bersifat siklikal dan iteratif. Sangat populer karena alurnya sederhana, fleksibel, dan mudah diterapkan untuk berbagai jenis media.</p>
+      <div class="flow-diagram" style="justify-content:center;">
+        <div class="flow-box" style="border-color:var(--amber);"><span class="step-no">A</span>Analysis<br><small style="font-weight:400;color:var(--muted)">Analisis kebutuhan</small></div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">D</span>Design<br><small style="font-weight:400;color:var(--muted)">Perancangan</small></div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">D</span>Development<br><small style="font-weight:400;color:var(--muted)">Pengembangan</small></div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">I</span>Implementation<br><small style="font-weight:400;color:var(--muted)">Penerapan</small></div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">E</span>Evaluation<br><small style="font-weight:400;color:var(--muted)">Evaluasi</small></div>
+      </div>
+      <div class="card-grid" style="margin-top:1.5rem;">
+        <div class="card"><div class="card-icon" style="background:#e8f4f4;color:var(--teal)"><i class="fas fa-search"></i></div><h3>Analysis</h3><p>Analisis kebutuhan peserta didik, karakteristik, tujuan pembelajaran, dan kondisi lingkungan belajar.</p></div>
+        <div class="card"><div class="card-icon" style="background:#e8f4f4;color:var(--teal)"><i class="fas fa-drafting-compass"></i></div><h3>Design</h3><p>Merancang storyboard, flowchart, RPP, materi, dan instrumen penilaian yang akan dikembangkan.</p></div>
+        <div class="card"><div class="card-icon" style="background:#e8f4f4;color:var(--teal)"><i class="fas fa-hammer"></i></div><h3>Development</h3><p>Memproduksi media, memvalidasi kepada ahli materi dan ahli media, serta merevisi berdasarkan masukan.</p></div>
+        <div class="card"><div class="card-icon" style="background:#e8f4f4;color:var(--teal)"><i class="fas fa-play-circle"></i></div><h3>Implementation</h3><p>Mengujicobakan produk kepada peserta didik (uji coba terbatas dan luas) di kelas sesungguhnya.</p></div>
+        <div class="card"><div class="card-icon" style="background:#e8f4f4;color:var(--teal)"><i class="fas fa-chart-bar"></i></div><h3>Evaluation</h3><p>Mengevaluasi seluruh proses dan produk berdasarkan data kuantitatif (tes) dan kualitatif (angket).</p></div>
+      </div>
+    </div>
+
+    <!-- 4D -->
+    <div class="tab-panel" id="tab-4d">
+      <p style="margin-bottom:1.5rem; color:var(--muted); font-style:italic;">Model 4D dikembangkan oleh Thiagarajan, Semmel &amp; Semmel (1974). Awalnya untuk perangkat instruksional, kini luas digunakan untuk LKS, modul, dan perangkat pembelajaran matematika.</p>
+      <div class="flow-diagram" style="justify-content:center;">
+        <div class="flow-box" style="border-color:var(--teal);"><span class="step-no">D1</span>Define<br><small style="font-weight:400;color:var(--muted)">Pendefinisian</small></div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">D2</span>Design<br><small style="font-weight:400;color:var(--muted)">Perancangan</small></div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">D3</span>Develop<br><small style="font-weight:400;color:var(--muted)">Pengembangan</small></div>
+        <div class="flow-arrow">›</div>
+        <div class="flow-box"><span class="step-no">D4</span>Disseminate<br><small style="font-weight:400;color:var(--muted)">Penyebaran</small></div>
+      </div>
+      <div class="card-grid" style="margin-top:1.5rem;">
+        <div class="card"><div class="card-icon"><i class="fas fa-clipboard-list"></i></div><h3>Define (Pendefinisian)</h3><p>Analisis ujung depan, analisis siswa, analisis tugas, analisis konsep, dan perumusan tujuan pembelajaran.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-pencil-ruler"></i></div><h3>Design (Perancangan)</h3><p>Penyusunan tes acuan patokan, pemilihan media, pemilihan format, dan rancangan awal produk (prototype I).</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-cogs"></i></div><h3>Develop (Pengembangan)</h3><p>Validasi ahli, revisi I, uji coba terbatas (kelompok kecil), revisi II, uji coba lapangan, revisi III → produk final.</p></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-broadcast-tower"></i></div><h3>Disseminate (Penyebaran)</h3><p>Validasi final, pengemasan produk, difusi &amp; adopsi ke sekolah/guru lain, publikasi ilmiah.</p></div>
+      </div>
+    </div>
+
+    <!-- COMPARE -->
+    <div class="tab-panel" id="tab-compare">
+      <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Aspek</th>
+            <th>Borg &amp; Gall</th>
+            <th>ADDIE</th>
+            <th>4D Thiagarajan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jumlah Tahap</strong></td>
+            <td>10 langkah</td>
+            <td>5 fase</td>
+            <td>4 tahap</td>
+          </tr>
+          <tr>
+            <td><strong>Kerumitan</strong></td>
+            <td><span class="badge badge-rust">Tinggi</span></td>
+            <td><span class="badge badge-amber">Sedang</span></td>
+            <td><span class="badge badge-amber">Sedang</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cocok untuk</strong></td>
+            <td>Buku teks, kurikulum lengkap, penelitian skala nasional</td>
+            <td>E-learning, video, modul digital, pelatihan</td>
+            <td>LKS, modul, perangkat pembelajaran matematika/IPA</td>
+          </tr>
+          <tr>
+            <td><strong>Iterasi/Siklus</strong></td>
+            <td>Ya (revisi berulang)</td>
+            <td>Ya (kembali ke tahap mana pun)</td>
+            <td>Ya (di tahap Develop)</td>
+          </tr>
+          <tr>
+            <td><strong>Popularitas di Indonesia</strong></td>
+            <td><span class="badge badge-teal">Tinggi</span></td>
+            <td><span class="badge badge-teal">Tinggi</span></td>
+            <td><span class="badge badge-teal">Tinggi</span></td>
+          </tr>
+          <tr>
+            <td><strong>Diseminasi</strong></td>
+            <td>Tahap 10 (opsional)</td>
+            <td>Bagian dari Implementasi</td>
+            <td>Tahap D4 (eksplisit)</td>
+          </tr>
+          <tr>
+            <td><strong>Referensi Utama</strong></td>
+            <td>Borg &amp; Gall (1983, 2003)</td>
+            <td>Dick, Carey &amp; Carey (2009)</td>
+            <td>Thiagarajan et al. (1974)</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGKAH-LANGKAH -->
+<section class="section" id="langkah">
+  <div class="container">
+    <div class="section-label">03 — Panduan Praktis</div>
+    <h2 class="section-title">Langkah Penelitian R&amp;D<br>untuk Skripsi / Tesis</h2>
+    <p class="section-lead">Klik setiap langkah untuk melihat penjelasan detail, tips, dan hal-hal yang perlu diperhatikan.</p>
+
+    <div class="timeline" id="timeline-wrap">
+      <!-- diisi oleh JS -->
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUMEN -->
+<section class="section" id="instrumen">
+  <div class="container">
+    <div class="section-label">04 — Instrumen Penelitian</div>
+    <h2 class="section-title">Jenis Instrumen dalam R&amp;D</h2>
+    <p class="section-lead">Instrumen digunakan untuk mengukur validitas, praktikalitas, dan efektivitas produk yang dikembangkan.</p>
+
+    <div class="instrumen-grid">
+      <div class="instrumen-card">
+        <h4><i class="fas fa-user-check" style="color:var(--amber)"></i> Lembar Validasi Ahli Materi</h4>
+        <ul>
+          <li>Kesesuaian materi dengan KD/CP</li>
+          <li>Kebenaran konsep/fakta</li>
+          <li>Kedalaman dan keluasan materi</li>
+          <li>Keterkaitan dengan kehidupan nyata</li>
+          <li>Kejelasan bahasa dan penyajian</li>
+        </ul>
+      </div>
+      <div class="instrumen-card">
+        <h4><i class="fas fa-desktop" style="color:var(--teal)"></i> Lembar Validasi Ahli Media</h4>
+        <ul>
+          <li>Kemenarikan tampilan/layout</li>
+          <li>Keterbacaan tulisan dan grafis</li>
+          <li>Kemudahan navigasi</li>
+          <li>Konsistensi desain</li>
+          <li>Kesesuaian warna dan ilustrasi</li>
+        </ul>
+      </div>
+      <div class="instrumen-card">
+        <h4><i class="fas fa-chalkboard-teacher" style="color:var(--rust)"></i> Angket Praktikalitas Guru</h4>
+        <ul>
+          <li>Kemudahan penggunaan media</li>
+          <li>Keterlaksanaan RPP/modul</li>
+          <li>Manfaat bagi pembelajaran</li>
+          <li>Kesesuaian alokasi waktu</li>
+          <li>Kemudahan penilaian peserta didik</li>
+        </ul>
+      </div>
+      <div class="instrumen-card">
+        <h4><i class="fas fa-user-graduate" style="color:var(--amber)"></i> Angket Respons Siswa</h4>
+        <ul>
+          <li>Ketertarikan pada media</li>
+          <li>Kejelasan penyajian materi</li>
+          <li>Kemudahan memahami isi</li>
+          <li>Motivasi belajar setelah pakai media</li>
+          <li>Kebermanfaatan media</li>
+        </ul>
+      </div>
+      <div class="instrumen-card">
+        <h4><i class="fas fa-file-alt" style="color:var(--teal)"></i> Tes Hasil Belajar (THB)</h4>
+        <ul>
+          <li>Pretest &amp; Posttest</li>
+          <li>Uji validitas butir soal</li>
+          <li>Uji reliabilitas (Cronbach Alpha)</li>
+          <li>Analisis tingkat kesukaran</li>
+          <li>Analisis daya pembeda</li>
+        </ul>
+      </div>
+      <div class="instrumen-card">
+        <h4><i class="fas fa-comments" style="color:var(--rust)"></i> Pedoman Wawancara</h4>
+        <ul>
+          <li>Wawancara guru (need assessment)</li>
+          <li>Wawancara siswa setelah uji coba</li>
+          <li>Konfirmasi hasil angket</li>
+          <li>Kendala penggunaan media</li>
+          <li>Saran perbaikan produk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem; padding:1.5rem; background:white; border:1px solid var(--border); border-radius:6px;">
+      <h3 style="font-family:'Playfair Display',serif; margin-bottom:0.75rem;">Skala Pengukuran yang Umum Digunakan</h3>
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; font-size:0.87rem;">
+        <div style="flex:1; min-width:200px;">
+          <strong>Skala Likert (4/5 poin)</strong>
+          <p style="color:var(--muted); margin-top:0.25rem;">Sangat Baik – Baik – Cukup – Kurang – Sangat Kurang. Digunakan untuk angket validasi dan praktikalitas.</p>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <strong>Persentase &amp; Kategori</strong>
+          <p style="color:var(--muted); margin-top:0.25rem;">≥85% = Sangat Valid/Praktis/Efektif; 70–84% = Valid; 55–69% = Cukup; &lt;55% = Tidak Valid.</p>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <strong>N-Gain (Efektivitas)</strong>
+          <p style="color:var(--muted); margin-top:0.25rem;">g = (posttest – pretest)/(100 – pretest). Tinggi: g ≥ 0.7; Sedang: 0.3 ≤ g &lt; 0.7; Rendah: g &lt; 0.3.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KUIS -->
+<section class="section" id="kuis">
+  <div class="container">
+    <div class="section-label">05 — Evaluasi Pemahaman</div>
+    <h2 class="section-title">Uji Kompetensi Diri</h2>
+    <p class="section-lead">Jawab 8 pertanyaan berikut untuk menguji pemahaman Anda tentang metode R&amp;D dalam pengembangan media pembelajaran.</p>
+
+    <div class="quiz-wrap">
+      <div id="quiz-main">
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="qprogress" style="width:0%"></div></div>
+        <div class="quiz-counter">
+          <span id="qcounter">Soal 1 dari 8</span>
+          <span class="quiz-score-badge" id="qscore">Skor: 0</span>
+        </div>
+        <div class="quiz-q" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="btn-next" onclick="nextQ()" disabled>Lanjut →</button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quiz-result">
+        <div class="result-score" id="result-score-num"></div>
+        <div class="result-label">dari 100 poin</div>
+        <div class="result-msg" id="result-msg"></div>
+        <button class="btn btn-primary" onclick="restartQuiz()">Ulangi Kuis</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Martin Bernard, M.Pd.</strong> &nbsp;·&nbsp; IKIP Siliwangi Bandung &nbsp;·&nbsp; Program Studi Pendidikan Matematika &amp; PGSD</p>
+  <p style="margin-top:0.4rem;">Materi Pengembangan Media Pembelajaran &amp; Penelitian R&amp;D</p>
+</footer>
+
+<script>
+// ── NAV SCROLL ──
+function scrollTo(id) {
+  document.querySelector(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── TABS ──
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── TIMELINE DATA ──
+const steps = [
+  {
+    step: 'Langkah 01', title: 'Analisis Kebutuhan (Need Assessment)',
+    body: `<p>Tahap awal ini bertujuan mengidentifikasi kesenjangan antara kondisi ideal dan kondisi nyata di lapangan.</p>
+    <ul>
+      <li>Observasi proses pembelajaran di kelas</li>
+      <li>Wawancara dengan guru dan siswa</li>
+      <li>Analisis dokumen (nilai ulangan, RPP, buku yang digunakan)</li>
+      <li>Studi literatur tentang masalah yang ditemukan</li>
+      <li>Identifikasi akar masalah → rumuskan solusi berupa produk</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Masalah harus nyata dan signifikan, bukan rekayasa. Kuatkan dengan data kuantitatif (misal: persentase siswa di bawah KKM).</div>`
+  },
+  {
+    step: 'Langkah 02', title: 'Kajian Literatur &amp; Perencanaan',
+    body: `<p>Telaah teori dan penelitian terdahulu untuk membangun landasan ilmiah produk yang akan dikembangkan.</p>
+    <ul>
+      <li>Kajian teori media/perangkat yang akan dikembangkan</li>
+      <li>Kajian teori belajar yang relevan (konstruktivisme, dll.)</li>
+      <li>Analisis penelitian terdahulu (state of the art)</li>
+      <li>Perencanaan: waktu, sumber daya, anggaran</li>
+      <li>Penyusunan proposal/instrumen penelitian</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Gunakan database jurnal bereputasi: Scopus, Google Scholar, ERIC, atau jurnal SINTA 1–3. Minimal 20 referensi untuk skripsi.</div>`
+  },
+  {
+    step: 'Langkah 03', title: 'Pengembangan Desain &amp; Prototipe Awal',
+    body: `<p>Merancang dan memproduksi produk berdasarkan hasil analisis kebutuhan dan kajian literatur.</p>
+    <ul>
+      <li>Penyusunan blueprint/storyboard/flowchart produk</li>
+      <li>Perancangan tampilan, konten, dan aktivitas pembelajaran</li>
+      <li>Produksi prototipe I (draf awal produk)</li>
+      <li>Penyelarasan produk dengan KD, tujuan, dan materi</li>
+      <li>Penyusunan instrumen validasi ahli</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Sertakan identitas produk yang jelas: judul, mata pelajaran, kelas/jenjang, penulis, dan tahun pembuatan.</div>`
+  },
+  {
+    step: 'Langkah 04', title: 'Validasi oleh Para Ahli',
+    body: `<p>Produk dinilai oleh minimal 2 orang validator: ahli materi dan ahli media. Gunakan angket terstruktur.</p>
+    <ul>
+      <li>Validasi ahli materi: konten, kebenaran konsep, kesesuaian kurikulum</li>
+      <li>Validasi ahli media: tampilan, keterbacaan, kemenarikan</li>
+      <li>Validator minimal berpendidikan S2/S3 di bidang yang relevan</li>
+      <li>Analisis data validasi dengan formula rata-rata persentase</li>
+      <li>Kategorikan: sangat valid / valid / cukup / tidak valid</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Catat setiap saran validator secara rinci. Saran inilah yang menjadi dasar revisi dan bahan pembahasan penelitian.</div>`
+  },
+  {
+    step: 'Langkah 05', title: 'Revisi Produk (Berdasarkan Validasi)',
+    body: `<p>Produk diperbaiki berdasarkan masukan dan saran dari para validator ahli.</p>
+    <ul>
+      <li>Buat tabel daftar saran dan tindak lanjut revisi</li>
+      <li>Perbaiki konten, tampilan, dan struktur sesuai masukan</li>
+      <li>Lakukan revisi minimal 1 kali (bisa lebih jika diperlukan)</li>
+      <li>Dokumentasikan perubahan sebelum dan sesudah revisi</li>
+      <li>Hasilkan prototipe II (setelah revisi validasi)</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Gunakan tabel 3 kolom: Aspek yang Disarankan | Saran Validator | Tindak Lanjut. Ini penting untuk bagian pembahasan skripsi.</div>`
+  },
+  {
+    step: 'Langkah 06', title: 'Uji Coba Terbatas (Kelompok Kecil)',
+    body: `<p>Produk diujicobakan kepada 6–10 peserta didik yang representatif sebelum uji lapangan luas.</p>
+    <ul>
+      <li>Pemilihan subjek uji coba yang mewakili karakteristik populasi</li>
+      <li>Pelaksanaan pembelajaran menggunakan produk</li>
+      <li>Pengisian angket praktikalitas oleh siswa dan guru</li>
+      <li>Observasi keterlaksanaan media dalam pembelajaran</li>
+      <li>Wawancara singkat untuk mendapatkan umpan balik kualitatif</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Rekam proses uji coba (dengan izin) sebagai dokumentasi penelitian. Perhatikan reaksi spontan siswa terhadap media.</div>`
+  },
+  {
+    step: 'Langkah 07', title: 'Uji Coba Lapangan (Kelas Sesungguhnya)',
+    body: `<p>Uji coba dilakukan dalam skala lebih besar (1–2 kelas) untuk mengukur efektivitas produk.</p>
+    <ul>
+      <li>Pretest sebelum pembelajaran untuk mengukur kemampuan awal</li>
+      <li>Pelaksanaan pembelajaran dengan media yang dikembangkan</li>
+      <li>Posttest setelah pembelajaran untuk mengukur hasil belajar</li>
+      <li>Pengisian angket praktikalitas guru dan respons siswa</li>
+      <li>Analisis efektivitas: N-Gain, ketuntasan klasikal, uji-t</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Siapkan RPP yang sesuai dengan media yang dikembangkan. Ketuntasan klasikal ≥75% biasanya dijadikan patokan efektivitas.</div>`
+  },
+  {
+    step: 'Langkah 08', title: 'Revisi Akhir &amp; Produk Final',
+    body: `<p>Berdasarkan seluruh data uji coba, produk direvisi untuk menghasilkan versi final yang siap digunakan.</p>
+    <ul>
+      <li>Analisis menyeluruh data validasi, praktikalitas, dan efektivitas</li>
+      <li>Revisi berdasarkan hasil uji lapangan</li>
+      <li>Finalisasi tampilan dan konten produk</li>
+      <li>Penyusunan panduan penggunaan produk (jika diperlukan)</li>
+      <li>Persiapan diseminasi: publikasi jurnal, seminar, atau repository</li>
+    </ul>
+    <div class="tip"><strong>💡 Tips:</strong> Produk akhir harus dilengkapi data empiris yang membuktikan kualitasnya. Pastikan ketiga dimensi kualitas (valid, praktis, efektif) terpenuhi.</div>`
+  }
+];
+
+function buildTimeline() {
+  const wrap = document.getElementById('timeline-wrap');
+  wrap.innerHTML = steps.map((s, i) => `
+    <div class="tl-item" id="tl${i}" onclick="toggleTL(${i})">
+      <div class="tl-dot">${i + 1}</div>
+      <div class="tl-header">
+        <div class="tl-header-left">
+          <div>
+            <div class="tl-step">${s.step}</div>
+            <div class="tl-title">${s.title}</div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down tl-chevron"></i>
+      </div>
+      <div class="tl-body"><div class="tl-body-inner">${s.body}</div></div>
+    </div>
+  `).join('');
+}
+
+function toggleTL(i) {
+  const el = document.getElementById('tl' + i);
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.tl-item').forEach(e => e.classList.remove('open'));
+  if (!wasOpen) el.classList.add('open');
+}
+
+buildTimeline();
+
+// ── QUIZ ──
+const questions = [
+  {
+    q: "Menurut Borg & Gall, tujuan utama metode Research and Development (R&D) dalam pendidikan adalah…",
+    opts: ["Menguji hipotesis ilmiah tentang proses belajar", "Menghasilkan dan memvalidasi produk pendidikan", "Melakukan survei kebutuhan guru secara nasional", "Mendeskripsikan fenomena di kelas secara kualitatif"],
+    ans: 1,
+    fb: "R&D bertujuan menghasilkan produk pendidikan (media, perangkat) yang telah divalidasi secara empiris, bukan sekadar menguji teori."
+  },
+  {
+    q: "Tiga dimensi kualitas produk yang harus dipenuhi dalam penelitian R&D adalah…",
+    opts: ["Relevansi, konsistensi, dan kecukupan", "Validitas, praktikalitas, dan efektivitas", "Objektivitas, reliabilitas, dan standarisasi", "Kredibilitas, transferabilitas, dan dependabilitas"],
+    ans: 1,
+    fb: "Tiga dimensi kualitas produk R&D: Validitas (konten & konstruk), Praktikalitas (kemudahan penggunaan), dan Efektivitas (peningkatan hasil belajar)."
+  },
+  {
+    q: "Pada model 4D Thiagarajan, tahap 'Define' mencakup kegiatan…",
+    opts: ["Produksi prototipe dan validasi ahli", "Analisis ujung depan, siswa, tugas, konsep, dan tujuan pembelajaran", "Pengujian lapangan dan analisis N-Gain", "Penyebaran produk ke sekolah lain"],
+    ans: 1,
+    fb: "Tahap Define (Pendefinisian) meliputi: analisis ujung depan, analisis siswa, analisis tugas, analisis konsep, dan perumusan tujuan pembelajaran."
+  },
+  {
+    q: "Dalam model ADDIE, huruf 'A' pertama merujuk pada kegiatan…",
+    opts: ["Authoring — pembuatan konten media", "Assessment — penilaian akhir produk", "Analysis — analisis kebutuhan dan karakteristik peserta didik", "Arrangement — pengaturan tata letak media"],
+    ans: 2,
+    fb: "A dalam ADDIE = Analysis. Ini adalah tahap menganalisis kebutuhan peserta didik, tujuan pembelajaran, karakteristik, dan kondisi lingkungan belajar."
+  },
+  {
+    q: "Nilai N-Gain sebesar 0,45 termasuk dalam kategori…",
+    opts: ["Sangat tinggi (g ≥ 0,8)", "Tinggi (g ≥ 0,7)", "Sedang (0,3 ≤ g < 0,7)", "Rendah (g < 0,3)"],
+    ans: 2,
+    fb: "Klasifikasi N-Gain: Tinggi (g ≥ 0,7), Sedang (0,3 ≤ g < 0,7), Rendah (g < 0,3). Nilai 0,45 masuk kategori Sedang."
+  },
+  {
+    q: "Perbedaan utama antara model Borg & Gall dan model 4D Thiagarajan terletak pada…",
+    opts: ["Borg & Gall tidak memerlukan validasi ahli, sedangkan 4D memerlukannya", "4D memiliki tahap diseminasi yang eksplisit sebagai tahap tersendiri (D4)", "ADDIE lebih cocok untuk media digital, sedangkan Borg & Gall hanya untuk buku teks", "Model 4D tidak melibatkan uji coba kepada siswa sama sekali"],
+    ans: 1,
+    fb: "Salah satu keunikan model 4D adalah adanya tahap Disseminate (D4) sebagai tahap eksplisit, yang pada model lain bersifat opsional atau bagian dari tahap lain."
+  },
+  {
+    q: "Instrumen yang digunakan untuk mengukur 'praktikalitas' suatu media pembelajaran adalah…",
+    opts: ["Tes hasil belajar pretest-posttest", "Lembar validasi konten oleh ahli materi", "Angket respons siswa dan guru setelah menggunakan media", "Pedoman wawancara kepada kepala sekolah"],
+    ans: 2,
+    fb: "Praktikalitas diukur menggunakan angket yang diisi oleh guru dan siswa setelah menggunakan media. Ini menilai kemudahan, kebermanfaatan, dan kenyamanan penggunaan."
+  },
+  {
+    q: "Persentase hasil validasi ahli sebesar 78% berdasarkan skala umum termasuk kategori…",
+    opts: ["Sangat valid (≥ 85%)", "Valid (70–84%)", "Cukup valid (55–69%)", "Tidak valid (< 55%)"],
+    ans: 1,
+    fb: "Kategori validitas berdasarkan persentase: ≥85% = Sangat Valid, 70–84% = Valid, 55–69% = Cukup Valid, <55% = Tidak Valid. Nilai 78% masuk kategori Valid."
+  }
+];
+
+let qIdx = 0, score = 0, answered = false;
+
+function renderQ() {
+  const q = questions[qIdx];
+  const keys = ['A','B','C','D'];
+  document.getElementById('qcounter').textContent = `Soal ${qIdx+1} dari ${questions.length}`;
+  document.getElementById('qscore').textContent = `Skor: ${score}`;
+  document.getElementById('qprogress').style.width = `${(qIdx / questions.length) * 100}%`;
+  document.getElementById('quiz-question').innerHTML = q.q;
+  document.getElementById('quiz-options').innerHTML = q.opts.map((o, i) =>
+    `<button class="quiz-opt" onclick="selectOpt(${i})" id="opt${i}">
+      <span class="opt-key">${keys[i]}</span><span>${o}</span>
+    </button>`
+  ).join('');
+  document.getElementById('quiz-feedback').className = 'quiz-feedback';
+  document.getElementById('quiz-feedback').innerHTML = '';
+  document.getElementById('btn-next').disabled = true;
+  answered = false;
+}
+
+function selectOpt(i) {
+  if (answered) return;
+  answered = true;
+  const q = questions[qIdx];
+  const fb = document.getElementById('quiz-feedback');
+  document.querySelectorAll('.quiz-opt').forEach(o => o.classList.add('disabled'));
+  document.getElementById('opt' + q.ans).classList.add('correct');
+  if (i === q.ans) {
+    score += 12;
+    if (qIdx === questions.length - 1) score += 4; // bonus last question to make 100
+    fb.className = 'quiz-feedback ok show';
+    fb.innerHTML = `<strong>✓ Benar!</strong> ${q.fb}`;
+  } else {
+    document.getElementById('opt' + i).classList.add('wrong');
+    fb.className = 'quiz-feedback err show';
+    fb.innerHTML = `<strong>✗ Kurang tepat.</strong> ${q.fb}`;
+  }
+  document.getElementById('btn-next').disabled = false;
+  document.getElementById('btn-next').textContent = qIdx < questions.length - 1 ? 'Lanjut →' : 'Lihat Hasil';
+}
+
+function nextQ() {
+  qIdx++;
+  if (qIdx < questions.length) { renderQ(); }
+  else { showResult(); }
+}
+
+function showResult() {
+  const finalScore = Math.min(score, 100);
+  document.getElementById('quiz-main').style.display = 'none';
+  const res = document.getElementById('quiz-result');
+  res.classList.add('show');
+  document.getElementById('result-score-num').textContent = finalScore;
+  let msg;
+  if (finalScore >= 85) msg = 'Luar biasa! Anda memahami konsep R&D dalam pengembangan media pembelajaran dengan sangat baik. Siap untuk merancang penelitian sendiri! 🎉';
+  else if (finalScore >= 70) msg = 'Bagus! Pemahaman Anda sudah cukup kuat. Pelajari kembali bagian yang masih terlewat untuk memperkuat konsep.';
+  else if (finalScore >= 55) msg = 'Cukup baik! Masih ada beberapa konsep yang perlu diperdalam. Silakan pelajari ulang materi di atas.';
+  else msg = 'Anda perlu mempelajari kembali materi ini secara lebih mendalam. Jangan menyerah — baca ulang setiap bagian dengan cermat!';
+  document.getElementById('result-msg').textContent = msg;
+}
+
+function restartQuiz() {
+  qIdx = 0; score = 0; answered = false;
+  document.getElementById('quiz-main').style.display = 'block';
+  document.getElementById('quiz-result').classList.remove('show');
+  renderQ();
+}
+
+renderQ();
+</script>
+</body>
+</html>
