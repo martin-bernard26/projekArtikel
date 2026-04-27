@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instrumen Kemampuan Berpikir Siswa SD – IPA Kelas 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700;800&family=Architects+Daughter&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky:       #0ea5e9;
+  --sky-dk:    #0369a1;
+  --sky-lt:    #e0f2fe;
+  --mint:      #10b981;
+  --mint-lt:   #d1fae5;
+  --amber:     #f59e0b;
+  --amber-lt:  #fef3c7;
+  --rose:      #f43f5e;
+  --rose-lt:   #ffe4e6;
+  --violet:    #8b5cf6;
+  --violet-lt: #ede9fe;
+  --lime:      #84cc16;
+  --lime-lt:   #ecfccb;
+  --ink:       #1e293b;
+  --ink-light: #64748b;
+  --paper:     #f8fafc;
+  --white:     #ffffff;
+  --shadow:    rgba(14,165,233,.15);
+  --radius:    16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0ea5e9 100%);
+  color: #fff;
+  padding: 4rem 2rem 8rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,.06) 0%, transparent 50%);
+}
+.bubble-deco {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  animation: float 6s ease-in-out infinite;
+}
+.bubble-deco:nth-child(1) { width:120px;height:120px;top:10%;left:5%; animation-delay:0s; }
+.bubble-deco:nth-child(2) { width:80px;height:80px;top:60%;left:15%; animation-delay:1s; }
+.bubble-deco:nth-child(3) { width:60px;height:60px;top:20%;right:10%; animation-delay:2s; }
+.bubble-deco:nth-child(4) { width:100px;height:100px;bottom:20%;right:5%; animation-delay:.5s; }
+@keyframes float {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-16px) scale(1.04); }
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
+  padding: .4rem 1.1rem;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+.hero h1 {
+  font-family: 'Lora', serif;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  line-height: 1.2;
+  margin-bottom: .7rem;
+}
+.hero h1 em { color: #bae6fd; font-style: italic; }
+.hero p { font-size: 1rem; opacity: .85; max-width: 560px; margin: 0 auto 1.6rem; line-height: 1.7; }
+.hero-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+.chip {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  padding: .3rem .9rem;
+  font-size: .78rem;
+  font-weight: 600;
+}
+.wave-bot { position: absolute; bottom: -1px; left: 0; width: 100%; }
+.wave-bot svg { display: block; fill: var(--paper); }
+
+/* LEGEND */
+.legend-bar {
+  display: flex; flex-wrap: wrap; gap: .7rem;
+  justify-content: center;
+  padding: 1.8rem 2rem;
+  background: var(--white);
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.leg-item {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .78rem; font-weight: 600; color: var(--ink-light);
+}
+.leg-dot {
+  width: 12px; height: 12px; border-radius: 3px;
+}
+
+/* MAIN */
+main { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+/* INFO STRIP */
+.info-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.info-card {
+  background: var(--white);
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  transition: transform .2s;
+}
+.info-card:hover { transform: translateY(-3px); }
+.info-card .ic { font-size: 1.8rem; margin-bottom: .35rem; }
+.info-card .lbl { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: .2rem; }
+.info-card .val { font-size: .9rem; font-weight: 700; color: var(--ink); }
+
+/* SECTION HEADER */
+.sec-head {
+  display: flex; align-items: center; gap: .9rem;
+  margin-bottom: 1.8rem;
+}
+.sec-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--sky); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; font-weight: 800; flex-shrink: 0;
+}
+.sec-head h2 { font-family: 'Lora',serif; font-size: 1.3rem; }
+.sec-head hr { flex: 1; border: none; border-top: 1.5px solid #e2e8f0; }
+
+/* QUESTION CARD */
+.q-card {
+  background: var(--white);
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+  transition: box-shadow .25s, transform .25s;
+  position: relative;
+}
+.q-card:hover {
+  box-shadow: 0 8px 30px var(--shadow);
+  transform: translateY(-3px);
+}
+.q-card-top {
+  display: flex; align-items: stretch;
+}
+.q-num-col {
+  width: 64px; flex-shrink: 0;
+  background: var(--qcolor);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 1rem .5rem;
+  gap: .3rem;
+}
+.q-num-col .big { font-family:'Architects Daughter',cursive; font-size:2rem; color:#fff; line-height:1; }
+.q-num-col .small { font-size:.6rem; color:rgba(255,255,255,.75); font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+.q-body { flex: 1; padding: 1.4rem 1.6rem; }
+.q-meta {
+  display: flex; flex-wrap: wrap; gap: .45rem;
+  margin-bottom: .8rem;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: .3rem;
+  border-radius: 999px;
+  padding: .25rem .75rem;
+  font-size: .7rem;
+  font-weight: 700;
+}
+.badge-domain { background: var(--qcolor-lt); color: var(--qcolor-dk); }
+.badge-bloom  { background: var(--amber-lt); color: #92400e; }
+.badge-level  { background: var(--mint-lt); color: #065f46; }
+.q-indicator {
+  font-size: .78rem;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-bottom: .9rem;
+  padding-left: .8rem;
+  border-left: 3px solid var(--qcolor);
+  line-height: 1.6;
+}
+.q-text {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.q-image-note {
+  background: var(--sky-lt);
+  border: 1px dashed var(--sky);
+  border-radius: 8px;
+  padding: .7rem 1rem;
+  font-size: .8rem;
+  color: var(--sky-dk);
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+/* Options */
+.options { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1rem; }
+.opt {
+  display: flex; align-items: flex-start; gap: .75rem;
+  padding: .65rem 1rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .18s ease;
+  user-select: none;
+}
+.opt:hover { border-color: var(--qcolor); background: var(--qcolor-lt); }
+.opt.selected { border-color: var(--qcolor); background: var(--qcolor-lt); }
+.opt.correct  { border-color: var(--mint); background: var(--mint-lt); }
+.opt.wrong    { border-color: var(--rose); background: var(--rose-lt); }
+.opt-letter {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  background: #f1f5f9;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .78rem; font-weight: 800; color: var(--ink-light);
+  transition: all .18s;
+}
+.opt.selected .opt-letter, .opt.correct .opt-letter {
+  background: var(--qcolor); color: #fff;
+}
+.opt.wrong .opt-letter { background: var(--rose); color: #fff; }
+.opt-text { font-size: .9rem; line-height: 1.5; padding-top: 2px; }
+
+/* Essay / Short Answer */
+.essay-wrap { position: relative; }
+.essay-area {
+  width: 100%;
+  min-height: 90px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: .9rem 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: .92rem;
+  line-height: 1.65;
+  color: var(--ink);
+  resize: vertical;
+  transition: border-color .2s;
+  background: var(--paper);
+}
+.essay-area:focus { outline: none; border-color: var(--qcolor); background: #fff; }
+
+/* Key Answer panel */
+.key-panel {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-top: 1.5px solid #bbf7d0;
+  padding: 1rem 1.6rem;
+  display: none;
+}
+.key-panel.visible { display: block; }
+.key-panel h5 {
+  font-size: .75rem; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--mint); margin-bottom: .4rem;
+}
+.key-panel p { font-size: .86rem; line-height: 1.65; color: #166534; }
+.key-panel .scoring { margin-top: .5rem; }
+.key-panel .scoring span {
+  display: inline-block;
+  background: var(--mint);
+  color: #fff;
+  border-radius: 6px;
+  padding: .2rem .6rem;
+  font-size: .72rem;
+  font-weight: 700;
+  margin-right: .4rem;
+}
+
+/* Check btn */
+.check-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--qcolor);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: .55rem 1.3rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s;
+  margin-top: .4rem;
+}
+.check-btn:hover { opacity: .88; transform: scale(1.02); }
+
+/* RUBRIC TABLE */
+.rubric-table {
+  width: 100%; border-collapse: collapse;
+  font-size: .83rem; margin-bottom: 2.5rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.rubric-table th {
+  background: var(--ink);
+  color: #fff;
+  padding: .8rem 1rem;
+  text-align: left;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.rubric-table td {
+  padding: .75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.rubric-table tr:last-child td { border-bottom: none; }
+.rubric-table tr:nth-child(even) td { background: #f8fafc; }
+.rubric-table .dom-badge {
+  display: inline-block;
+  border-radius: 6px;
+  padding: .18rem .55rem;
+  font-size: .7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* SCORE PANEL */
+.score-panel {
+  background: linear-gradient(135deg, #0c4a6e, #0369a1);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  color: #fff;
+  margin-top: 2rem;
+  display: none;
+  box-shadow: 0 8px 32px var(--shadow);
+}
+.score-panel.visible { display: block; animation: popIn .4s cubic-bezier(.34,1.56,.64,1); }
+@keyframes popIn {
+  from { transform: scale(.85); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+.score-big { font-family:'Lora',serif; font-size: 4rem; font-weight: 700; line-height:1; margin: .5rem 0; }
+.score-label { font-size: .85rem; opacity: .75; letter-spacing: .08em; text-transform: uppercase; }
+.score-cat { font-size: 1.3rem; font-weight: 800; margin: .5rem 0; }
+.score-bar-wrap { background: rgba(255,255,255,.2); border-radius: 999px; height: 10px; margin: 1rem auto; max-width: 300px; }
+.score-bar { height: 10px; border-radius: 999px; background: #bae6fd; transition: width 1s ease; }
+
+/* SUBMIT BTN */
+.submit-area { text-align: center; margin-top: 2rem; }
+.submit-btn {
+  background: linear-gradient(135deg, #0369a1, #0ea5e9);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: .9rem 2.5rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); }
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: #94a3b8;
+  text-align: center;
+  padding: 2rem;
+  font-size: .8rem;
+  margin-top: 4rem;
+}
+footer strong { color: #fff; }
+
+@media (max-width:600px) {
+  .q-num-col { width: 50px; }
+  .q-body { padding: 1rem; }
+  .info-strip { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="bubble-deco"></div>
+  <div class="bubble-deco"></div>
+  <div class="bubble-deco"></div>
+  <div class="bubble-deco"></div>
+  <div class="hero-badge">🔬 Instrumen Penelitian</div>
+  <h1>Instrumen Kemampuan Berpikir<br><em>Siswa Sekolah Dasar</em></h1>
+  <p>Mata Pelajaran: <strong>Ilmu Pengetahuan Alam (IPA)</strong> &nbsp;·&nbsp; Tema: <em>Ekosistem & Lingkungan</em><br>6 Soal mencakup 6 Domain Kemampuan Berpikir</p>
+  <div class="hero-chips">
+    <span class="chip">🧠 Mengingat</span>
+    <span class="chip">🔍 Memahami</span>
+    <span class="chip">⚙️ Menerapkan</span>
+    <span class="chip">📊 Menganalisis</span>
+    <span class="chip">⚖️ Mengevaluasi</span>
+    <span class="chip">✨ Mencipta</span>
+  </div>
+  <div class="wave-bot">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style="height:70px">
+      <path d="M0,70 C480,0 960,0 1440,70 L1440,70 L0,70Z"/>
+    </svg>
+  </div>
+</header>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="leg-item"><div class="leg-dot" style="background:#0ea5e9"></div> C1 – Mengingat</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#10b981"></div> C2 – Memahami</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#f59e0b"></div> C3 – Menerapkan</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#8b5cf6"></div> C4 – Menganalisis</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#f43f5e"></div> C5 – Mengevaluasi</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#84cc16"></div> C6 – Mencipta</div>
+</div>
+
+<main>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-card"><div class="ic">📚</div><div class="lbl">Mata Pelajaran</div><div class="val">IPA</div></div>
+    <div class="info-card"><div class="ic">🏫</div><div class="lbl">Jenjang</div><div class="val">SD Kelas 4</div></div>
+    <div class="info-card"><div class="ic">📖</div><div class="lbl">Tema</div><div class="val">Ekosistem</div></div>
+    <div class="info-card"><div class="ic">❓</div><div class="lbl">Jumlah Soal</div><div class="val">6 Soal</div></div>
+    <div class="info-card"><div class="ic">⏱️</div><div class="lbl">Waktu</div><div class="val">40 Menit</div></div>
+    <div class="info-card"><div class="ic">📐</div><div class="lbl">Taksonomi</div><div class="val">Bloom (C1–C6)</div></div>
+  </div>
+
+  <!-- SOAL SECTION -->
+  <div class="sec-head">
+    <div class="sec-num">A</div>
+    <h2>Soal Instrumen Kemampuan Berpikir</h2>
+    <hr>
+  </div>
+
+  <div id="questionContainer"></div>
+
+  <div class="submit-area">
+    <button class="submit-btn" onclick="submitAll()">✅ Lihat Hasil & Kunci Jawaban</button>
+  </div>
+
+  <div class="score-panel" id="scorePanel">
+    <div class="score-label">Total Skor Anda</div>
+    <div class="score-big" id="scoreNum">0</div>
+    <div class="score-cat" id="scoreCat"></div>
+    <div class="score-bar-wrap"><div class="score-bar" id="scoreBar" style="width:0%"></div></div>
+    <p id="scoreFeedback" style="font-size:.9rem;opacity:.85;margin-top:.5rem;"></p>
+  </div>
+
+  <!-- RUBRIC -->
+  <div class="sec-head" style="margin-top:3.5rem">
+    <div class="sec-num">B</div>
+    <h2>Tabel Indikator & Rubrik Penilaian</h2>
+    <hr>
+  </div>
+
+  <table class="rubric-table">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Domain Berpikir</th>
+        <th>Indikator Kemampuan</th>
+        <th>Bloom</th>
+        <th>Kata Kerja Operasional</th>
+        <th>Skor Maks</th>
+      </tr>
+    </thead>
+    <tbody id="rubricBody"></tbody>
+  </table>
+
+</main>
+
+<footer>
+  <p>Instrumen disusun oleh: <strong>Martin Bernard, M.Pd.</strong> &nbsp;·&nbsp; Program Studi Pendidikan Matematika</p>
+  <p style="margin-top:.4rem"><strong>IKIP Siliwangi Cimahi</strong> &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Instrumen Penelitian Kemampuan Berpikir SD</p>
+</footer>
+
+<script>
+const COLORS = {
+  C1: { main:'#0ea5e9', lt:'#e0f2fe', dk:'#0369a1', label:'C1 – Mengingat' },
+  C2: { main:'#10b981', lt:'#d1fae5', dk:'#065f46', label:'C2 – Memahami' },
+  C3: { main:'#f59e0b', lt:'#fef3c7', dk:'#92400e', label:'C3 – Menerapkan' },
+  C4: { main:'#8b5cf6', lt:'#ede9fe', dk:'#4c1d95', label:'C4 – Menganalisis' },
+  C5: { main:'#f43f5e', lt:'#ffe4e6', dk:'#9f1239', label:'C5 – Mengevaluasi' },
+  C6: { main:'#84cc16', lt:'#ecfccb', dk:'#365314', label:'C6 – Mencipta' },
+};
+
+const questions = [
+  {
+    id: 1,
+    bloom: 'C1',
+    domain: 'Mengingat (Remembering)',
+    kko: 'Menyebutkan, Mendefinisikan, Mengidentifikasi',
+    indicator: 'Siswa dapat menyebutkan kembali komponen-komponen penyusun ekosistem yang telah dipelajari.',
+    text: 'Perhatikan daftar berikut ini:\n① Batu  ② Pohon mangga  ③ Ulat  ④ Air  ⑤ Burung pipit  ⑥ Tanah\n\nManakah yang merupakan komponen <strong>biotik</strong> (makhluk hidup) dalam ekosistem?',
+    type: 'pilgan',
+    options: [
+      '① Batu, ④ Air, dan ⑥ Tanah',
+      '② Pohon mangga, ③ Ulat, dan ⑤ Burung pipit',
+      '① Batu, ② Pohon mangga, dan ③ Ulat',
+      '③ Ulat, ④ Air, dan ⑥ Tanah',
+    ],
+    answer: 1,
+    keyText: 'Komponen biotik adalah makhluk hidup: pohon mangga (produsen), ulat (konsumen 1), dan burung pipit (konsumen 2). Batu, air, dan tanah adalah komponen abiotik.',
+    scoreMax: 10,
+  },
+  {
+    id: 2,
+    bloom: 'C2',
+    domain: 'Memahami (Understanding)',
+    kko: 'Menjelaskan, Mengklasifikasikan, Menafsirkan',
+    indicator: 'Siswa dapat menjelaskan hubungan antar organisme dalam rantai makanan secara tepat.',
+    text: 'Perhatikan rantai makanan berikut:\n\n🌾 Padi → 🐛 Belalang → 🐸 Katak → 🐍 Ular → 🦅 Elang\n\nJika populasi katak tiba-tiba <strong>menurun drastis</strong> akibat penyakit, apa yang paling mungkin terjadi pada populasi belalang dan ular?',
+    type: 'pilgan',
+    options: [
+      'Belalang berkurang, ular bertambah',
+      'Belalang bertambah, ular berkurang',
+      'Belalang dan ular keduanya bertambah',
+      'Belalang dan ular tidak terpengaruh',
+    ],
+    answer: 1,
+    keyText: 'Karena katak adalah pemakan belalang, jika katak berkurang → belalang tidak ada yang memangsa → belalang bertambah banyak. Sebaliknya, karena katak adalah makanan ular, ular kekurangan makanan → ular berkurang.',
+    scoreMax: 15,
+  },
+  {
+    id: 3,
+    bloom: 'C3',
+    domain: 'Menerapkan (Applying)',
+    kko: 'Menggunakan, Menerapkan, Menyelesaikan',
+    indicator: 'Siswa dapat menerapkan konsep daur ulang materi dalam kehidupan sehari-hari untuk menjaga keseimbangan ekosistem.',
+    text: 'Pak Budi memiliki kebun sayur. Ia ingin menjaga kesuburan tanah tanpa membeli pupuk kimia. Di kebunnya terdapat sisa sayuran busuk, daun kering berguguran, dan bekas kulit buah.\n\nStrategi <strong>paling tepat</strong> yang dapat Pak Budi terapkan berdasarkan konsep ekosistem adalah...',
+    type: 'pilgan',
+    options: [
+      'Membakar semua sisa tanaman agar kebun bersih',
+      'Membuang sisa tanaman ke sungai terdekat',
+      'Mengumpulkan sisa tanaman lalu membuat kompos untuk pupuk alami',
+      'Membiarkan sisa tanaman menumpuk di sudut kebun tanpa diproses',
+    ],
+    answer: 2,
+    keyText: 'Membuat kompos dari sisa tanaman organik adalah penerapan konsep dekomposer/pengurai dalam ekosistem. Ini menjaga siklus materi (daur biogeokimia) sehingga unsur hara kembali ke tanah secara alami dan berkelanjutan.',
+    scoreMax: 15,
+  },
+  {
+    id: 4,
+    bloom: 'C4',
+    domain: 'Menganalisis (Analyzing)',
+    kko: 'Membandingkan, Menganalisis, Membedakan, Menelaah',
+    indicator: 'Siswa dapat menganalisis dampak kerusakan lingkungan terhadap keseimbangan ekosistem dan mengidentifikasi penyebab utamanya.',
+    text: 'Bacalah informasi berikut:\n\n<em>"Hutan di tepi sungai Cimanuk ditebang untuk dijadikan lahan pertanian. Setelah penebangan, terjadi erosi besar-besaran. Populasi ikan di sungai menurun tajam. Petani di hilir mengeluh air sungai menjadi keruh dan sulit digunakan untuk irigasi."</em>\n\nAnalisislah: <strong>mengapa penebangan hutan berdampak pada penurunan populasi ikan</strong> di sungai? Tuliskan analisismu!',
+    type: 'essay',
+    keyText: 'Jawaban model: Penebangan hutan menyebabkan tidak ada akar pohon yang menahan tanah → terjadi erosi → tanah/lumpur masuk ke sungai → air menjadi keruh → kadar oksigen terlarut menurun → ganggang dan plankton (makanan ikan) tidak bisa berfotosintesis → ikan kekurangan makanan dan oksigen → populasi ikan menurun. (Rantai sebab-akibat 3–5 langkah = skor penuh)',
+    scoreMax: 20,
+  },
+  {
+    id: 5,
+    bloom: 'C5',
+    domain: 'Mengevaluasi (Evaluating)',
+    kko: 'Menilai, Mempertahankan, Mengkritik, Menyimpulkan',
+    indicator: 'Siswa dapat mengevaluasi suatu tindakan berdasarkan dampaknya terhadap kelestarian ekosistem dan memberikan pendapat yang didukung alasan logis.',
+    text: 'Seorang petani berencana menyemprot seluruh sawahnya dengan pestisida kimia berbahaya untuk membunuh hama tikus. Pestisida ini juga akan membunuh katak, cacing tanah, dan serangga di sekitar sawah.\n\n<strong>Setujukah kamu dengan tindakan petani tersebut?</strong> Berikan penilaianmu beserta <em>minimal 2 alasan ilmiah</em> yang mendukung pendapatmu!',
+    type: 'essay',
+    keyText: 'Jawaban model (tidak setuju): Tidak setuju, karena: (1) Membunuh katak akan meningkatkan populasi hama lain seperti belalang karena rantai makanan terganggu. (2) Cacing tanah yang mati membuat tanah menjadi padat dan tidak subur, merugikan pertanian jangka panjang. (3) Pestisida dapat mencemari air tanah dan sungai, membahayakan ekosistem perairan. Solusi alternatif: penggunaan predator alami (burung hantu untuk tikus) atau pestisida organik.',
+    scoreMax: 20,
+  },
+  {
+    id: 6,
+    bloom: 'C6',
+    domain: 'Mencipta (Creating)',
+    kko: 'Merancang, Membuat, Merumuskan, Mengkonstruksi',
+    indicator: 'Siswa dapat merancang sebuah solusi kreatif dan orisinal untuk memulihkan ekosistem yang telah rusak dengan mempertimbangkan hubungan antar komponen.',
+    text: 'Bayangkan kamu adalah seorang ilmuwan cilik yang ditugasi untuk <strong>merancang program pemulihan ekosistem</strong> di sebuah danau yang tercemar limbah pabrik. Di danau tersebut sudah tidak ada ikan, tumbuhan air hampir punah, dan airnya berwarna hijau pekat.\n\n<strong>Rancanglah langkah-langkah program pemulihanmu!</strong> Sertakan: (1) komponen ekosistem yang akan kamu kembalikan, (2) urutan langkah pemulihan, dan (3) mengapa urutan itu penting.',
+    type: 'essay',
+    keyText: 'Jawaban model kreatif: Langkah 1 – Hentikan sumber pencemaran (tutup/perbaiki sistem limbah pabrik). Langkah 2 – Bersihkan polutan dengan tanaman eceng gondok/fitoremediasi. Langkah 3 – Kembalikan mikroorganisme pengurai (bakteri baik) agar siklus nutrisi berjalan. Langkah 4 – Tanam kembali tumbuhan air sebagai produsen dan tempat berlindung. Langkah 5 – Introduksi ikan kecil herbivora, lalu ikan pemangsa. Urutan penting karena setiap tingkat trofik bergantung pada tingkat di bawahnya. Tanpa produsen, konsumen tidak bisa bertahan.',
+    scoreMax: 20,
+  },
+];
+
+/* ── BUILD QUESTIONS ── */
+const container = document.getElementById('questionContainer');
+const userAnswers = {};
+
+questions.forEach(q => {
+  const c = COLORS[q.bloom];
+  const card = document.createElement('div');
+  card.className = 'q-card';
+  card.id = `card-${q.id}`;
+  card.style.setProperty('--qcolor', c.main);
+  card.style.setProperty('--qcolor-lt', c.lt);
+  card.style.setProperty('--qcolor-dk', c.dk);
+
+  let optionsHTML = '';
+  if (q.type === 'pilgan') {
+    optionsHTML = `<div class="options" id="opts-${q.id}">` +
+      q.options.map((o, i) => `
+        <div class="opt" data-qid="${q.id}" data-idx="${i}" onclick="selectOpt(this)">
+          <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+          <span class="opt-text">${o}</span>
+        </div>`).join('') +
+      `</div>`;
+  } else {
+    optionsHTML = `
+      <div class="essay-wrap">
+        <textarea class="essay-area" id="essay-${q.id}" placeholder="Tuliskan jawabanmu di sini..." oninput="userAnswers[${q.id}]=this.value"></textarea>
+      </div>`;
+  }
+
+  // Format text with line breaks
+  const formattedText = q.text
+    .replace(/\n/g, '<br>')
+    .replace(/①/g,'①').replace(/②/g,'②').replace(/③/g,'③')
+    .replace(/④/g,'④').replace(/⑤/g,'⑤').replace(/⑥/g,'⑥');
+
+  card.innerHTML = `
+    <div class="q-card-top">
+      <div class="q-num-col">
+        <span class="big">${q.id}</span>
+        <span class="small">${q.bloom}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-meta">
+          <span class="badge badge-domain">${q.domain}</span>
+          <span class="badge badge-bloom">📘 ${c.label}</span>
+          <span class="badge badge-level">Skor: ${q.scoreMax}</span>
+        </div>
+        <div class="q-indicator">📌 <strong>Indikator:</strong> ${q.indicator}</div>
+        <div class="q-text">${formattedText}</div>
+        ${optionsHTML}
+        ${q.type === 'essay' ? `<button class="check-btn" style="background:${c.main}" onclick="revealKey(${q.id})">🔑 Lihat Kunci Jawaban</button>` : ''}
+      </div>
+    </div>
+    <div class="key-panel" id="key-${q.id}">
+      <h5>✅ Kunci Jawaban & Penjelasan</h5>
+      <p>${q.keyText}</p>
+      <div class="scoring"><span>Skor Maksimal: ${q.scoreMax}</span></div>
+    </div>`;
+
+  container.appendChild(card);
+});
+
+function selectOpt(el) {
+  const qid = +el.dataset.qid;
+  const idx  = +el.dataset.idx;
+  document.querySelectorAll(`#opts-${qid} .opt`).forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  userAnswers[qid] = idx;
+}
+
+function revealKey(qid) {
+  const panel = document.getElementById(`key-${qid}`);
+  panel.classList.toggle('visible');
+}
+
+function submitAll() {
+  let totalScore = 0;
+  let maxTotal = 0;
+
+  questions.forEach(q => {
+    maxTotal += q.scoreMax;
+    const keyPanel = document.getElementById(`key-${q.id}`);
+    keyPanel.classList.add('visible');
+
+    if (q.type === 'pilgan') {
+      const opts = document.querySelectorAll(`#opts-${q.id} .opt`);
+      const chosen = userAnswers[q.id];
+      opts.forEach((o, i) => {
+        o.style.pointerEvents = 'none';
+        if (i === q.answer) o.classList.add('correct');
+        else if (i === chosen && chosen !== q.answer) o.classList.add('wrong');
+      });
+      if (chosen === q.answer) totalScore += q.scoreMax;
+    } else {
+      // For essay: give partial credit if answered
+      const ans = (userAnswers[q.id] || '').trim();
+      if (ans.length > 30) totalScore += Math.round(q.scoreMax * 0.7); // partial
+      else if (ans.length > 0) totalScore += Math.round(q.scoreMax * 0.3);
+    }
+  });
+
+  const pct = Math.round(totalScore / maxTotal * 100);
+  const panel = document.getElementById('scorePanel');
+  panel.classList.add('visible');
+  document.getElementById('scoreNum').textContent = totalScore;
+
+  let cat = '', fb = '';
+  if (pct >= 85) { cat = '🌟 Sangat Baik'; fb = 'Luar biasa! Kemampuan berpikirmu sangat berkembang. Terus berlatih!'; }
+  else if (pct >= 70) { cat = '👍 Baik'; fb = 'Bagus! Kamu sudah memahami sebagian besar materi. Tingkatkan lagi!'; }
+  else if (pct >= 55) { cat = '📖 Cukup'; fb = 'Cukup baik. Ulangi materi tentang ekosistem dan pelajari kembali.'; }
+  else { cat = '💪 Perlu Belajar Lagi'; fb = 'Jangan menyerah! Pelajari lagi materinya dan coba ulangi soal ini.'; }
+
+  document.getElementById('scoreCat').textContent = cat;
+  document.getElementById('scoreFeedback').textContent = fb;
+  setTimeout(() => {
+    document.getElementById('scoreBar').style.width = pct + '%';
+  }, 300);
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ── BUILD RUBRIC ── */
+const rubricBody = document.getElementById('rubricBody');
+const rubricColors = { C1:'#0ea5e9',C2:'#10b981',C3:'#f59e0b',C4:'#8b5cf6',C5:'#f43f5e',C6:'#84cc16' };
+questions.forEach(q => {
+  const c = rubricColors[q.bloom];
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td style="font-weight:700;text-align:center">${q.id}</td>
+    <td><span class="dom-badge" style="background:${c}15;color:${c}">${q.bloom}</span><br><small>${q.domain}</small></td>
+    <td>${q.indicator}</td>
+    <td style="text-align:center"><span class="dom-badge" style="background:${c};color:#fff">${q.bloom}</span></td>
+    <td style="font-style:italic;color:#64748b">${q.kko}</td>
+    <td style="text-align:center;font-weight:700;color:${c}">${q.scoreMax}</td>`;
+  rubricBody.appendChild(tr);
+});
+
+/* ── SCROLL REVEAL ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.q-card, .info-card').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = `opacity .5s ease ${i * .07}s, transform .5s ease ${i * .07}s`;
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
