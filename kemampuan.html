@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kemampuan Berpikir & Belajar Siswa SD – Perspektif Psikologi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #fdf6ec;
+    --paper:     #fffaf3;
+    --ink:       #2c1a0e;
+    --ink-light: #6b4c2a;
+    --amber:     #d97706;
+    --amber-lt:  #fde68a;
+    --teal:      #0f766e;
+    --teal-lt:   #ccfbf1;
+    --rose:      #be123c;
+    --rose-lt:   #ffe4e6;
+    --indigo:    #4338ca;
+    --indigo-lt: #e0e7ff;
+    --lime:      #4d7c0f;
+    --lime-lt:   #ecfccb;
+    --shadow:    rgba(44,26,14,.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, #2c1a0e 0%, #4a2c17 60%, #7c3c1a 100%);
+    color: #fdf6ec;
+    padding: 5rem 2rem 7rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 1;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    line-height: 1.18;
+    margin-bottom: .8rem;
+  }
+  .hero h1 em { color: var(--amber-lt); font-style: italic; }
+  .hero p {
+    font-size: 1.05rem;
+    opacity: .82;
+    max-width: 600px;
+    margin: 0 auto 1.6rem;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    font-size: .78rem;
+    opacity: .55;
+    letter-spacing: .06em;
+  }
+  .wave {
+    position: absolute; bottom: -1px; left: 0; width: 100%;
+    fill: var(--bg);
+  }
+
+  /* ── LAYOUT ── */
+  main { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+
+  /* ── INTRO CARD ── */
+  .intro-card {
+    background: var(--paper);
+    border: 1.5px solid #e8d5b7;
+    border-left: 5px solid var(--amber);
+    border-radius: 12px;
+    padding: 2rem 2.2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 18px var(--shadow);
+    position: relative;
+  }
+  .intro-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    margin-bottom: .8rem;
+    color: var(--ink);
+  }
+  .intro-card p { line-height: 1.75; color: var(--ink-light); font-size: .97rem; }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--amber-lt);
+    line-height: 0;
+    position: absolute;
+    top: 2.2rem; right: 1.6rem;
+    user-select: none;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-label {
+    display: flex; align-items: center; gap: .8rem;
+    margin-bottom: 1.6rem;
+  }
+  .section-label span.pill {
+    background: var(--ink);
+    color: #fdf6ec;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem .9rem;
+    border-radius: 999px;
+  }
+  .section-label hr { flex: 1; border: none; border-top: 1.5px solid #ddd0bc; }
+
+  /* ── TAB NAV ── */
+  .tab-nav {
+    display: flex; flex-wrap: wrap; gap: .6rem;
+    margin-bottom: 2rem;
+  }
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+    padding: .55rem 1.2rem;
+    border: 1.5px solid #d4c4a8;
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: all .22s ease;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { border-color: var(--amber); color: var(--amber); }
+  .tab-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fdf6ec;
+  }
+
+  /* ── DOMAIN PANEL ── */
+  .domain-panel { display: none; animation: fadeUp .35s ease; }
+  .domain-panel.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .domain-header {
+    display: flex; align-items: flex-start; gap: 1.4rem;
+    background: var(--paper);
+    border: 1.5px solid #e8d5b7;
+    border-radius: 14px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 3px 12px var(--shadow);
+  }
+  .domain-icon {
+    font-size: 2.8rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .domain-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: .35rem;
+  }
+  .domain-header p { font-size: .93rem; line-height: 1.7; color: var(--ink-light); }
+
+  /* ── INDICATORS GRID ── */
+  .indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .ind-card {
+    background: var(--paper);
+    border: 1.5px solid #e8d5b7;
+    border-radius: 12px;
+    padding: 1.4rem 1.5rem;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ind-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--accent);
+    border-radius: 4px 0 0 4px;
+  }
+  .ind-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--shadow);
+    border-color: var(--accent);
+  }
+  .ind-card .num {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: .4rem;
+  }
+  .ind-card h4 { font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
+  .ind-card p { font-size: .83rem; line-height: 1.6; color: var(--ink-light); }
+
+  /* ── EXAMPLE BOX ── */
+  .example-box {
+    background: linear-gradient(135deg, #fef9ee, #fffaf3);
+    border: 1.5px dashed #c8a96a;
+    border-radius: 12px;
+    padding: 1.4rem 1.8rem;
+    margin-top: 1.6rem;
+  }
+  .example-box h4 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--amber);
+    margin-bottom: .7rem;
+  }
+  .example-box ul { padding-left: 1.2rem; }
+  .example-box li { font-size: .88rem; line-height: 1.8; color: var(--ink-light); }
+
+  /* ── THEORY STRIP ── */
+  .theory-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 3rem 0;
+  }
+  .theory-card {
+    background: var(--paper);
+    border: 1.5px solid #e8d5b7;
+    border-radius: 12px;
+    padding: 1.5rem 1.4rem;
+    text-align: center;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .theory-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px var(--shadow); }
+  .theory-card .t-icon { font-size: 2.4rem; margin-bottom: .7rem; }
+  .theory-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: .4rem; }
+  .theory-card p { font-size: .8rem; line-height: 1.6; color: var(--ink-light); }
+
+  /* ── TAHAPAN PERKEMBANGAN ── */
+  .stage-timeline {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 2rem 0;
+    position: relative;
+  }
+  .stage-timeline::before {
+    content: '';
+    position: absolute; left: 28px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--amber) 0%, #d4c4a8 100%);
+  }
+  .stage-item {
+    display: flex; gap: 1.4rem; align-items: flex-start;
+    padding: 0 0 1.8rem 0;
+    position: relative;
+  }
+  .stage-dot {
+    width: 58px; height: 58px; flex-shrink: 0;
+    background: var(--paper);
+    border: 2.5px solid var(--accent, var(--amber));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    position: relative; z-index: 1;
+    box-shadow: 0 2px 10px var(--shadow);
+    transition: transform .2s;
+  }
+  .stage-item:hover .stage-dot { transform: scale(1.1); }
+  .stage-content {
+    background: var(--paper);
+    border: 1.5px solid #e8d5b7;
+    border-radius: 12px;
+    padding: 1.1rem 1.4rem;
+    flex: 1;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .stage-content h4 { font-size: .95rem; font-weight: 600; margin-bottom: .25rem; }
+  .stage-content .age { font-family: 'Caveat', cursive; color: var(--amber); font-size: 1.1rem; font-weight: 600; }
+  .stage-content p { font-size: .83rem; line-height: 1.65; color: var(--ink-light); margin-top: .35rem; }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-bottom: 2rem; }
+  .acc-item {
+    background: var(--paper);
+    border: 1.5px solid #e8d5b7;
+    border-radius: 10px;
+    margin-bottom: .7rem;
+    overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .acc-item:hover { box-shadow: 0 4px 16px var(--shadow); }
+  .acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.4rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .acc-header span { font-size: .95rem; font-weight: 500; }
+  .acc-header .arr {
+    transition: transform .28s ease;
+    font-size: 1.1rem;
+    color: var(--amber);
+  }
+  .acc-item.open .arr { transform: rotate(180deg); }
+  .acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s ease, padding .35s ease;
+    padding: 0 1.4rem;
+  }
+  .acc-item.open .acc-body {
+    max-height: 600px;
+    padding: 0 1.4rem 1.2rem;
+  }
+  .acc-body p, .acc-body li { font-size: .87rem; line-height: 1.72; color: var(--ink-light); }
+  .acc-body ul { padding-left: 1.2rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background: #2c1a0e;
+    color: #c8a96a;
+    font-size: .8rem;
+    letter-spacing: .04em;
+    margin-top: 4rem;
+  }
+  footer strong { color: #fdf6ec; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .domain-header { flex-direction: column; }
+    .theory-strip { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">📚 Psikologi Pendidikan SD</div>
+  <h1>Kemampuan Berpikir &amp; Belajar<br><em>Siswa Sekolah Dasar</em></h1>
+  <p>Kajian komprehensif berbasis psikologi perkembangan dan kognitif untuk memahami potensi berpikir anak usia 6–12 tahun</p>
+  <p class="hero-meta">Martin Bernard, M.Pd. &nbsp;·&nbsp; IKIP Siliwangi Cimahi &nbsp;·&nbsp; 2026</p>
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z"/></svg>
+</header>
+
+<main>
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <span class="quote-mark">"</span>
+    <h2>Mengapa Memahami Kemampuan Berpikir Siswa SD Itu Penting?</h2>
+    <p>Anak usia Sekolah Dasar (6–12 tahun) berada pada fase kritis perkembangan kognitif. Menurut Jean Piaget, anak berada pada tahap <strong>Operasional Konkret</strong> — mereka mulai berpikir logis namun masih terikat pada benda nyata. Memahami kemampuan berpikir dan belajar mereka secara psikologis membantu guru merancang pembelajaran yang sesuai dengan perkembangan, efektif, dan bermakna.</p>
+  </div>
+
+  <!-- TEORI DASAR -->
+  <div class="section-label"><span class="pill">01</span><hr><strong style="font-size:.88rem;color:var(--ink-light)">Landasan Teoritis</strong></div>
+
+  <div class="theory-strip">
+    <div class="theory-card">
+      <div class="t-icon">🧩</div>
+      <h4>Teori Piaget</h4>
+      <p>Tahap Operasional Konkret (7–11 th). Berpikir logis dengan bantuan benda nyata; mulai memahami konservasi dan klasifikasi.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">🗣️</div>
+      <h4>Teori Vygotsky</h4>
+      <p>Zone of Proximal Development (ZPD): anak belajar optimal saat mendapat bimbingan guru/teman sebaya yang lebih kompeten.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">🔁</div>
+      <h4>Teori Bruner</h4>
+      <p>Representasi enaktif → ikonik → simbolik. Anak perlu tahapan konkret sebelum abstrak dalam memahami konsep baru.</p>
+    </div>
+    <div class="theory-card">
+      <div class="t-icon">🧠</div>
+      <h4>Bloom's Taxonomy</h4>
+      <p>Enam level kognitif: mengingat, memahami, menerapkan, menganalisis, mengevaluasi, mencipta — dasar penyusunan indikator.</p>
+    </div>
+  </div>
+
+  <!-- TAHAPAN PERKEMBANGAN -->
+  <div class="section-label"><span class="pill">02</span><hr><strong style="font-size:.88rem;color:var(--ink-light)">Tahapan Perkembangan Kognitif Siswa SD</strong></div>
+
+  <div class="stage-timeline">
+    <div class="stage-item">
+      <div class="stage-dot" style="--accent:#d97706">🌱</div>
+      <div class="stage-content">
+        <span class="age">Kelas 1–2 (6–8 tahun)</span>
+        <h4>Pra-Operasional → Awal Operasional Konkret</h4>
+        <p>Mulai memahami konsep bilangan sederhana, klasifikasi warna dan bentuk. Berpikir masih egosentris, butuh contoh nyata di sekitar lingkungannya. Daya ingat jangka pendek mulai berkembang pesat.</p>
+      </div>
+    </div>
+    <div class="stage-item">
+      <div class="stage-dot" style="--accent:#0f766e">🌿</div>
+      <div class="stage-content">
+        <span class="age" style="color:#0f766e">Kelas 3–4 (8–10 tahun)</span>
+        <h4>Operasional Konkret Madya</h4>
+        <p>Mampu memahami konservasi, seriasi, dan klasifikasi ganda. Mulai bisa berpikir reversibel (mengembalikan proses ke asal). Perlu manipulatif dan alat peraga untuk memahami konsep abstrak seperti pecahan atau perkalian.</p>
+      </div>
+    </div>
+    <div class="stage-item">
+      <div class="stage-dot" style="--accent:#4338ca">🌳</div>
+      <div class="stage-content">
+        <span class="age" style="color:#4338ca">Kelas 5–6 (10–12 tahun)</span>
+        <h4>Operasional Konkret Lanjut → Awal Formal</h4>
+        <p>Mulai mampu berpikir hipotetis terbatas dan memahami proporsi. Kemampuan metakognisi mulai muncul. Dapat memecahkan masalah multi-langkah dengan bimbingan. Siap diperkenalkan berpikir kritis dan kreatif.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMAIN KEMAMPUAN BERPIKIR -->
+  <div class="section-label"><span class="pill">03</span><hr><strong style="font-size:.88rem;color:var(--ink-light)">Domain Kemampuan Berpikir &amp; Indikatornya</strong></div>
+
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="kognitif">🧠 Kognitif</button>
+    <button class="tab-btn" data-tab="kritis">🔍 Berpikir Kritis</button>
+    <button class="tab-btn" data-tab="kreatif">💡 Berpikir Kreatif</button>
+    <button class="tab-btn" data-tab="meta">🔄 Metakognitif</button>
+    <button class="tab-btn" data-tab="sosio">🤝 Sosio-Emosional</button>
+  </div>
+
+  <!-- PANEL: KOGNITIF -->
+  <div class="domain-panel active" id="kognitif">
+    <div class="domain-header">
+      <div class="domain-icon">🧠</div>
+      <div>
+        <h3>Kemampuan Kognitif Dasar</h3>
+        <p>Kemampuan kognitif dasar mencakup proses mental yang digunakan siswa untuk menerima, menyimpan, mengolah, dan mengungkap kembali informasi. Pada siswa SD, kemampuan ini berkembang secara bertahap sesuai usia dan pengalaman belajar.</p>
+      </div>
+    </div>
+    <div class="indicators-grid">
+      <div class="ind-card" style="--accent:#d97706">
+        <div class="num">01</div>
+        <h4>Kemampuan Mengingat (Memory)</h4>
+        <p>Siswa mampu menyebutkan kembali fakta, angka, konsep, atau prosedur yang telah dipelajari sebelumnya tanpa bantuan.</p>
+      </div>
+      <div class="ind-card" style="--accent:#d97706">
+        <div class="num">02</div>
+        <h4>Kemampuan Memahami (Comprehension)</h4>
+        <p>Siswa dapat menjelaskan kembali suatu konsep dengan kata-kata sendiri, membuat contoh, dan mengklasifikasikan informasi.</p>
+      </div>
+      <div class="ind-card" style="--accent:#d97706">
+        <div class="num">03</div>
+        <h4>Kemampuan Menerapkan (Application)</h4>
+        <p>Siswa mampu menggunakan pengetahuan yang telah diperoleh dalam situasi baru yang relevan dan bermakna.</p>
+      </div>
+      <div class="ind-card" style="--accent:#d97706">
+        <div class="num">04</div>
+        <h4>Perhatian &amp; Konsentrasi</h4>
+        <p>Kemampuan memfokuskan perhatian pada tugas selama rentang waktu tertentu tanpa mudah teralihkan.</p>
+      </div>
+      <div class="ind-card" style="--accent:#d97706">
+        <div class="num">05</div>
+        <h4>Persepsi Visual-Spasial</h4>
+        <p>Kemampuan memahami hubungan bentuk, ruang, dan posisi benda — penting untuk geometri dan membaca peta.</p>
+      </div>
+      <div class="ind-card" style="--accent:#d97706">
+        <div class="num">06</div>
+        <h4>Pemrosesan Bahasa</h4>
+        <p>Kemampuan memahami instruksi lisan/tulisan, menceritakan pengalaman, dan menyampaikan ide secara verbal maupun tertulis.</p>
+      </div>
+    </div>
+    <div class="example-box">
+      <h4>✏️ Contoh Indikator Observasi di Kelas</h4>
+      <ul>
+        <li>Siswa mampu menyebutkan urutan langkah-langkah pengerjaan soal tanpa membaca buku.</li>
+        <li>Siswa dapat memberi contoh lain dari konsep yang baru dipelajari guru.</li>
+        <li>Siswa menyelesaikan soal cerita dengan cara yang diajarkan di situasi berbeda.</li>
+        <li>Siswa fokus mengerjakan tugas selama 20–30 menit tanpa keluar jalur.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: KRITIS -->
+  <div class="domain-panel" id="kritis">
+    <div class="domain-header">
+      <div class="domain-icon">🔍</div>
+      <div>
+        <h3>Berpikir Kritis (Critical Thinking)</h3>
+        <p>Berpikir kritis adalah kemampuan menganalisis informasi secara objektif, mengevaluasi argumen, dan mengambil keputusan berdasarkan bukti dan logika. Pada anak SD, ini dikembangkan secara bertahap melalui pertanyaan terbuka dan diskusi kelas.</p>
+      </div>
+    </div>
+    <div class="indicators-grid">
+      <div class="ind-card" style="--accent:#be123c">
+        <div class="num">01</div>
+        <h4>Mengidentifikasi Masalah</h4>
+        <p>Siswa mampu mengenali dan mengartikulasikan permasalahan yang ada dalam suatu situasi atau soal dengan jelas.</p>
+      </div>
+      <div class="ind-card" style="--accent:#be123c">
+        <div class="num">02</div>
+        <h4>Mengumpulkan Informasi</h4>
+        <p>Siswa dapat mencari data/fakta yang relevan dari berbagai sumber untuk menjawab pertanyaan atau memecahkan masalah.</p>
+      </div>
+      <div class="ind-card" style="--accent:#be123c">
+        <div class="num">03</div>
+        <h4>Menganalisis &amp; Membandingkan</h4>
+        <p>Siswa mampu membandingkan dua objek/ide, menemukan persamaan dan perbedaan, serta menjelaskan sebab-akibat.</p>
+      </div>
+      <div class="ind-card" style="--accent:#be123c">
+        <div class="num">04</div>
+        <h4>Mengevaluasi Argumen</h4>
+        <p>Siswa dapat menilai apakah suatu pernyataan masuk akal atau tidak, dan memberi alasan yang logis atas penilaiannya.</p>
+      </div>
+      <div class="ind-card" style="--accent:#be123c">
+        <div class="num">05</div>
+        <h4>Menarik Kesimpulan</h4>
+        <p>Siswa mampu merumuskan kesimpulan berdasarkan data/fakta yang dikumpulkan, bukan sekadar opini pribadi.</p>
+      </div>
+      <div class="ind-card" style="--accent:#be123c">
+        <div class="num">06</div>
+        <h4>Mempertanyakan Asumsi</h4>
+        <p>Siswa berani mengajukan pertanyaan "Mengapa?" dan "Bagaimana jika...?" terhadap informasi yang diterima.</p>
+      </div>
+    </div>
+    <div class="example-box">
+      <h4>✏️ Contoh Indikator Observasi di Kelas</h4>
+      <ul>
+        <li>Siswa mengajukan pertanyaan "Kenapa hasilnya berbeda?" saat data tidak sesuai ekspektasi.</li>
+        <li>Siswa dapat membedakan fakta dengan pendapat dalam sebuah teks bacaan.</li>
+        <li>Siswa memberikan alasan logis mengapa suatu cara lebih efisien dari cara lain.</li>
+        <li>Siswa mengidentifikasi kesalahan dalam penyelesaian soal temannya dengan penjelasan.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: KREATIF -->
+  <div class="domain-panel" id="kreatif">
+    <div class="domain-header">
+      <div class="domain-icon">💡</div>
+      <div>
+        <h3>Berpikir Kreatif (Creative Thinking)</h3>
+        <p>Berpikir kreatif mencakup kemampuan menghasilkan ide baru, menemukan solusi tidak biasa, dan mengekspresikan diri secara orisinal. Guilford (1967) mendefinisikannya melalui empat komponen utama: fluency, flexibility, originality, dan elaboration.</p>
+      </div>
+    </div>
+    <div class="indicators-grid">
+      <div class="ind-card" style="--accent:#4338ca">
+        <div class="num">01</div>
+        <h4>Kelancaran (Fluency)</h4>
+        <p>Siswa mampu menghasilkan banyak ide, jawaban, atau solusi dalam waktu singkat terhadap suatu permasalahan.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4338ca">
+        <div class="num">02</div>
+        <h4>Keluwesan (Flexibility)</h4>
+        <p>Siswa mampu melihat masalah dari berbagai sudut pandang dan menggunakan pendekatan yang berbeda-beda.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4338ca">
+        <div class="num">03</div>
+        <h4>Keaslian (Originality)</h4>
+        <p>Siswa menghasilkan ide atau karya yang unik dan berbeda dari yang biasa dilakukan teman-temannya.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4338ca">
+        <div class="num">04</div>
+        <h4>Elaborasi (Elaboration)</h4>
+        <p>Siswa mampu mengembangkan, memperluas, dan memperinci ide dasar menjadi sesuatu yang lebih lengkap dan bermakna.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4338ca">
+        <div class="num">05</div>
+        <h4>Imajinasi Konstruktif</h4>
+        <p>Siswa dapat membayangkan situasi yang belum pernah dialami dan menggunakannya sebagai dasar memecahkan masalah.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4338ca">
+        <div class="num">06</div>
+        <h4>Rasa Ingin Tahu (Curiosity)</h4>
+        <p>Siswa menunjukkan ketertarikan aktif terhadap hal-hal baru, sering bertanya, dan berani mencoba hal yang belum pernah dilakukan.</p>
+      </div>
+    </div>
+    <div class="example-box">
+      <h4>✏️ Contoh Indikator Observasi di Kelas</h4>
+      <ul>
+        <li>Siswa menyebutkan 5 cara berbeda untuk menyelesaikan soal penjumlahan yang sama.</li>
+        <li>Siswa membuat cerita bergambar dengan alur yang tidak umum dan penuh imajinasi.</li>
+        <li>Siswa menghias hasil karyanya dengan detail tambahan yang tidak diminta guru.</li>
+        <li>Siswa mengajukan pertanyaan di luar materi yang sedang dibahas karena penasaran.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: META -->
+  <div class="domain-panel" id="meta">
+    <div class="domain-header">
+      <div class="domain-icon">🔄</div>
+      <div>
+        <h3>Kemampuan Metakognitif</h3>
+        <p>Metakognisi adalah "berpikir tentang berpikir" — kemampuan siswa untuk memantau, mengevaluasi, dan mengatur proses belajarnya sendiri. John Flavell (1979) mengidentifikasi ini sebagai salah satu komponen kecerdasan yang paling penting untuk keberhasilan belajar jangka panjang.</p>
+      </div>
+    </div>
+    <div class="indicators-grid">
+      <div class="ind-card" style="--accent:#0f766e">
+        <div class="num">01</div>
+        <h4>Perencanaan Belajar</h4>
+        <p>Siswa mampu merencanakan langkah-langkah yang akan dilakukan sebelum mengerjakan tugas atau menghadapi ujian.</p>
+      </div>
+      <div class="ind-card" style="--accent:#0f766e">
+        <div class="num">02</div>
+        <h4>Pemantauan Diri</h4>
+        <p>Siswa dapat mengenali saat dirinya memahami atau tidak memahami suatu materi, dan mencari bantuan saat perlu.</p>
+      </div>
+      <div class="ind-card" style="--accent:#0f766e">
+        <div class="num">03</div>
+        <h4>Evaluasi Diri</h4>
+        <p>Siswa mampu menilai hasil pekerjaannya sendiri, mengidentifikasi kesalahan, dan memikirkan cara memperbaikinya.</p>
+      </div>
+      <div class="ind-card" style="--accent:#0f766e">
+        <div class="num">04</div>
+        <h4>Strategi Belajar</h4>
+        <p>Siswa memiliki cara belajar sendiri (membuat rangkuman, mengulang pelajaran, bertanya) yang disadari efektifnya bagi diri sendiri.</p>
+      </div>
+      <div class="ind-card" style="--accent:#0f766e">
+        <div class="num">05</div>
+        <h4>Regulasi Waktu</h4>
+        <p>Siswa mulai mampu mengatur waktu belajar, menentukan prioritas tugas, dan menyelesaikan pekerjaan tepat waktu.</p>
+      </div>
+      <div class="ind-card" style="--accent:#0f766e">
+        <div class="num">06</div>
+        <h4>Transfer Belajar</h4>
+        <p>Siswa mampu menghubungkan pengetahuan dari satu mata pelajaran ke mata pelajaran lain atau kehidupan sehari-hari.</p>
+      </div>
+    </div>
+    <div class="example-box">
+      <h4>✏️ Contoh Indikator Observasi di Kelas</h4>
+      <ul>
+        <li>Siswa berkata "Saya belum mengerti bagian ini, boleh dijelaskan lagi?" secara mandiri.</li>
+        <li>Siswa memeriksa kembali jawabannya sebelum dikumpulkan dan menemukan kesalahannya sendiri.</li>
+        <li>Siswa menggunakan strategi membuat peta konsep untuk menghapal materi IPA.</li>
+        <li>Siswa menghubungkan pelajaran matematika dengan cara menghitung uang kembalian di kantin.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: SOSIO -->
+  <div class="domain-panel" id="sosio">
+    <div class="domain-header">
+      <div class="domain-icon">🤝</div>
+      <div>
+        <h3>Kemampuan Sosio-Emosional dalam Belajar</h3>
+        <p>Vygotsky menegaskan bahwa belajar adalah proses sosial. Kemampuan siswa berinteraksi, berkolaborasi, dan mengelola emosi sangat memengaruhi kualitas berpikir dan belajarnya. Kecerdasan emosional (Goleman) juga berperan besar dalam kesuksesan akademik.</p>
+      </div>
+    </div>
+    <div class="indicators-grid">
+      <div class="ind-card" style="--accent:#4d7c0f">
+        <div class="num">01</div>
+        <h4>Regulasi Emosi</h4>
+        <p>Siswa mampu mengelola frustrasi, rasa takut salah, atau kekecewaan saat menghadapi kesulitan belajar.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4d7c0f">
+        <div class="num">02</div>
+        <h4>Kerja Sama (Kolaborasi)</h4>
+        <p>Siswa dapat bekerja dalam kelompok, mendengarkan pendapat orang lain, dan berkontribusi aktif dalam diskusi.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4d7c0f">
+        <div class="num">03</div>
+        <h4>Empati Kognitif</h4>
+        <p>Siswa mampu memahami perspektif teman yang berbeda dan menggunakannya untuk memperkaya pemahaman bersama.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4d7c0f">
+        <div class="num">04</div>
+        <h4>Motivasi Intrinsik</h4>
+        <p>Siswa menunjukkan dorongan belajar dari dalam diri sendiri, bukan semata-mata karena nilai atau hadiah dari luar.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4d7c0f">
+        <div class="num">05</div>
+        <h4>Kepercayaan Diri Akademik</h4>
+        <p>Siswa berani mencoba menjawab, mengajukan pertanyaan, dan tidak takut membuat kesalahan di depan kelas.</p>
+      </div>
+      <div class="ind-card" style="--accent:#4d7c0f">
+        <div class="num">06</div>
+        <h4>Ketekunan (Persistence)</h4>
+        <p>Siswa tidak mudah menyerah menghadapi soal sulit dan terus berusaha dengan cara yang berbeda sampai menemukan solusi.</p>
+      </div>
+    </div>
+    <div class="example-box">
+      <h4>✏️ Contoh Indikator Observasi di Kelas</h4>
+      <ul>
+        <li>Siswa tidak langsung menangis atau menyerah saat soal sulit, tetapi mencoba cara lain.</li>
+        <li>Siswa mendengarkan presentasi teman tanpa memotong, lalu memberi tanggapan yang membangun.</li>
+        <li>Siswa mengangkat tangan dan menjawab pertanyaan guru meski tidak yakin 100% benar.</li>
+        <li>Siswa mengerjakan soal tambahan secara sukarela tanpa disuruh karena merasa tertantang.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STRATEGI PENGEMBANGAN -->
+  <div class="section-label" style="margin-top:3rem"><span class="pill">04</span><hr><strong style="font-size:.88rem;color:var(--ink-light)">Strategi Pengembangan Kemampuan Berpikir</strong></div>
+
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-header">
+        <span>🎯 Pembelajaran Berbasis Masalah (Problem-Based Learning)</span>
+        <span class="arr">▼</span>
+      </div>
+      <div class="acc-body">
+        <p>PBL mendorong siswa menghadapi masalah nyata sejak awal pembelajaran. Guru berperan sebagai fasilitator, bukan penyampai informasi. Untuk SD, masalah harus kontekstual dan dekat dengan kehidupan siswa.</p>
+        <ul>
+          <li>Sajikan masalah yang autentik: "Bagaimana cara membagi kue ulang tahun untuk 8 teman secara adil?"</li>
+          <li>Dorong siswa berdiskusi sebelum guru memberikan solusi.</li>
+          <li>Refleksikan proses berpikir, bukan hanya jawaban akhir.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header">
+        <span>❓ Strategi Bertanya Tingkat Tinggi (Higher-Order Questions)</span>
+        <span class="arr">▼</span>
+      </div>
+      <div class="acc-body">
+        <p>Pertanyaan guru sangat menentukan level berpikir siswa. Gunakan hierarki Bloom untuk merancang pertanyaan yang mendorong analisis dan evaluasi.</p>
+        <ul>
+          <li><strong>C1–C2:</strong> "Apa nama...? Apa yang dimaksud dengan...?"</li>
+          <li><strong>C3–C4:</strong> "Bagaimana cara...? Mengapa hal ini terjadi?"</li>
+          <li><strong>C5–C6:</strong> "Menurutmu apa yang akan terjadi jika...? Bagaimana kamu akan merancang...?"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header">
+        <span>🖐️ Pembelajaran Berbasis Manipulatif &amp; Konkret</span>
+        <span class="arr">▼</span>
+      </div>
+      <div class="acc-body">
+        <p>Sesuai teori Piaget dan Bruner, siswa SD membutuhkan benda nyata untuk membangun pemahaman. Alat peraga, permainan edukatif, dan media konkret menjadi jembatan menuju pemahaman abstrak.</p>
+        <ul>
+          <li>Gunakan balok, gambar, dan model tiga dimensi untuk geometri.</li>
+          <li>Manfaatkan benda sehari-hari untuk konsep pecahan dan pengukuran.</li>
+          <li>Transisi bertahap: konkret → representasi gambar → simbol matematika.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header">
+        <span>📓 Jurnal Berpikir &amp; Refleksi (Think-Aloud &amp; Learning Journal)</span>
+        <span class="arr">▼</span>
+      </div>
+      <div class="acc-body">
+        <p>Menulis jurnal belajar dan verbalisasi proses berpikir ("think-aloud") melatih kemampuan metakognitif siswa secara langsung dan efektif.</p>
+        <ul>
+          <li>Minta siswa menulis: "Hari ini saya belajar... Yang masih membingungkan saya adalah..."</li>
+          <li>Ajak siswa menceritakan langkah berpikirnya saat memecahkan soal di papan tulis.</li>
+          <li>Beri umpan balik positif atas proses, bukan hanya hasil akhir.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header">
+        <span>🎨 Pembelajaran Kreatif &amp; Ekspresif</span>
+        <span class="arr">▼</span>
+      </div>
+      <div class="acc-body">
+        <p>Integrasi seni, cerita, drama, dan proyek kreatif dalam pembelajaran membantu mengembangkan berpikir divergen dan imajinasi konstruktif siswa SD.</p>
+        <ul>
+          <li>Buat peta pikiran berwarna-warni untuk merangkum materi.</li>
+          <li>Dorong siswa membuat cerita bergambar bertema sains atau matematika.</li>
+          <li>Berikan tugas proyek terbuka: "Buatlah sesuatu yang menunjukkan konsep simetri!"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABEL RINGKASAN -->
+  <div class="section-label"><span class="pill">05</span><hr><strong style="font-size:.88rem;color:var(--ink-light)">Ringkasan Indikator per Domain</strong></div>
+
+  <div style="overflow-x:auto; background:var(--paper); border:1.5px solid #e8d5b7; border-radius:12px; box-shadow:0 3px 12px var(--shadow);">
+    <table id="summaryTable" style="width:100%; border-collapse:collapse; font-size:.87rem;">
+      <thead>
+        <tr style="background:#2c1a0e; color:#fdf6ec;">
+          <th style="padding:1rem 1.2rem; text-align:left; font-weight:600;">Domain</th>
+          <th style="padding:1rem 1.2rem; text-align:left; font-weight:600;">Indikator Utama</th>
+          <th style="padding:1rem 1.2rem; text-align:left; font-weight:600;">Usia Optimal SD</th>
+          <th style="padding:1rem 1.2rem; text-align:left; font-weight:600;">Teori Dasar</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  <p>Disusun oleh: <strong>Martin Bernard, M.Pd.</strong> &nbsp;|&nbsp; Program Studi Pendidikan Matematika</p>
+  <p style="margin-top:.4rem"><strong>IKIP Siliwangi Cimahi</strong> &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Materi Psikologi Pendidikan</p>
+</footer>
+
+<script>
+  /* ── TAB SWITCHING ── */
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels  = document.querySelectorAll('.domain-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* ── ACCORDION ── */
+  document.querySelectorAll('.acc-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── SUMMARY TABLE ── */
+  const data = [
+    {
+      domain: '🧠 Kognitif Dasar',
+      indicators: 'Mengingat, Memahami, Menerapkan, Perhatian, Persepsi Spasial, Bahasa',
+      age: 'Kelas 1–6 (bertahap)',
+      theory: 'Piaget, Bloom'
+    },
+    {
+      domain: '🔍 Berpikir Kritis',
+      indicators: 'Identifikasi masalah, Analisis, Evaluasi, Menarik kesimpulan',
+      age: 'Kelas 4–6 (optimal)',
+      theory: 'Bloom C4–C6, Facione'
+    },
+    {
+      domain: '💡 Berpikir Kreatif',
+      indicators: 'Fluency, Flexibility, Originality, Elaboration, Curiosity',
+      age: 'Kelas 2–6 (semua jenjang)',
+      theory: 'Guilford, Torrance'
+    },
+    {
+      domain: '🔄 Metakognitif',
+      indicators: 'Perencanaan, Pemantauan, Evaluasi diri, Strategi belajar',
+      age: 'Kelas 4–6 (mulai muncul)',
+      theory: 'Flavell, Vygotsky'
+    },
+    {
+      domain: '🤝 Sosio-Emosional',
+      indicators: 'Regulasi emosi, Kolaborasi, Empati, Motivasi, Ketekunan',
+      age: 'Kelas 1–6 (terus berkembang)',
+      theory: 'Vygotsky, Goleman'
+    }
+  ];
+
+  const tbody = document.getElementById('tableBody');
+  data.forEach((row, i) => {
+    const tr = document.createElement('tr');
+    tr.style.background = i % 2 === 0 ? 'var(--paper)' : 'var(--bg)';
+    tr.innerHTML = `
+      <td style="padding:.9rem 1.2rem; font-weight:600;">${row.domain}</td>
+      <td style="padding:.9rem 1.2rem; color:var(--ink-light);">${row.indicators}</td>
+      <td style="padding:.9rem 1.2rem; color:var(--amber); font-weight:500;">${row.age}</td>
+      <td style="padding:.9rem 1.2rem; font-style:italic; color:var(--ink-light);">${row.theory}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.ind-card, .theory-card, .stage-item, .acc-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
