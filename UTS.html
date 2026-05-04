@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pengumpulan Tugas</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #4facfe;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #007bff;
+}
+
+#status {
+    margin-top: 15px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📚 Upload Tugas</h2>
+
+    <input type="text" id="nama" placeholder="Nama Lengkap">
+    <input type="text" id="nim" placeholder="NIM">
+    <input type="text" id="link" placeholder="Link Tugas (Drive/Github)">
+
+    <button onclick="kirimData()">Kirim</button>
+
+    <div id="status"></div>
+</div>
+
+<script>
+function kirimData() {
+    let nama = document.getElementById("nama").value;
+    let nim = document.getElementById("nim").value;
+    let link = document.getElementById("link").value;
+
+    if(nama === "" || nim === "" || link === "") {
+        document.getElementById("status").innerHTML = "❌ Semua field harus diisi!";
+        return;
+    }
+
+    let url = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfXU6JAJnoSMQ_p1YmWFxaZqbeFZKWp_M8C-Sss2hpJUXx_Aw/formResponse";
+
+    let data = new FormData();
+    data.append("entry.715648488", nama);
+    data.append("entry.80768691", nim);
+    data.append("entry.1535598071", link);
+
+    fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+    })
+    .then(() => {
+        document.getElementById("status").innerHTML = "✅ Tugas berhasil dikirim!";
+        document.getElementById("nama").value = "";
+        document.getElementById("nim").value = "";
+        document.getElementById("link").value = "";
+    })
+    .catch(() => {
+        document.getElementById("status").innerHTML = "❌ Gagal mengirim!";
+    });
+}
+</script>
+
+</body>
+</html>
