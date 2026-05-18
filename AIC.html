@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Instrumen Soal SD — PGSD</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --paper: #faf6ef;
+    --cream: #f0e8d8;
+    --amber: #c8872a;
+    --amber-light: #e8b86d;
+    --amber-pale: #fdf3e3;
+    --teal: #1a6b6b;
+    --teal-light: #2a9090;
+    --teal-pale: #e4f4f4;
+    --rose: #b84040;
+    --rose-pale: #fdf0f0;
+    --sky: #2850a0;
+    --sky-pale: #edf2ff;
+    --sage: #4a7c59;
+    --sage-pale: #edf7f0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px 100px;
+    overflow: hidden;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(200,135,42,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,0.2) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,135,42,0.25);
+    border: 1px solid rgba(200,135,42,0.5);
+    color: var(--amber-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--amber-light);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(250,246,239,0.7);
+    max-width: 580px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(250,246,239,0.6);
+  }
+
+  .hero-meta-item .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+  }
+
+  /* ─── DECO BOTTOM ─── */
+  .hero-wave {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 50px;
+    background: var(--paper);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  /* ─── NAV PILLS ─── */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    background: rgba(250,246,239,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cream);
+    z-index: 100;
+    padding: 12px 40px;
+  }
+
+  .nav-pills {
+    display: flex;
+    gap: 6px;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-pills::-webkit-scrollbar { display: none; }
+
+  .nav-pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: rgba(26,18,9,0.5);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .nav-pill:hover {
+    background: var(--cream);
+    color: var(--ink);
+    border-color: rgba(0,0,0,0.1);
+  }
+
+  /* ─── WRAPPER ─── */
+  .wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ─── SECTION ─── */
+  section {
+    padding: 64px 0 48px;
+  }
+
+  section + section {
+    border-top: 1px solid var(--cream);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: -8px;
+  }
+
+  .section-title-wrap {}
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 16px; color: rgba(26,18,9,0.82); }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    position: relative;
+  }
+
+  .callout-amber { background: var(--amber-pale); border-left: 4px solid var(--amber); }
+  .callout-teal  { background: var(--teal-pale);  border-left: 4px solid var(--teal); }
+  .callout-rose  { background: var(--rose-pale);  border-left: 4px solid var(--rose); }
+  .callout-sky   { background: var(--sky-pale);   border-left: 4px solid var(--sky); }
+  .callout-sage  { background: var(--sage-pale);  border-left: 4px solid var(--sage); }
+
+  .callout-icon {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .callout h4 {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+  }
+
+  .callout-amber h4 { color: var(--amber); }
+  .callout-teal  h4 { color: var(--teal); }
+  .callout-rose  h4 { color: var(--rose); }
+  .callout-sky   h4 { color: var(--sky); }
+  .callout-sage  h4 { color: var(--sage); }
+
+  .callout p { margin: 0; font-size: 0.93rem; }
+
+  /* ─── GRID CARDS ─── */
+  .card-grid {
+    display: grid;
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .card-grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--cream);
+    border-radius: 14px;
+    padding: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .card-amber::before { background: var(--amber); }
+  .card-teal::before  { background: var(--teal); }
+  .card-rose::before  { background: var(--rose); }
+  .card-sky::before   { background: var(--sky); }
+  .card-sage::before  { background: var(--sage); }
+
+  .card-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 0.88rem;
+    color: rgba(26,18,9,0.65);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ─── THEORY TABLE ─── */
+  .stage-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin-top: 24px;
+  }
+
+  .stage-table th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(26,18,9,0.4);
+    padding: 0 16px 8px;
+    font-weight: 600;
+  }
+
+  .stage-table td {
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid var(--cream);
+    font-size: 0.9rem;
+    vertical-align: top;
+  }
+
+  .stage-table tr td:first-child {
+    border-radius: 10px 0 0 10px;
+    border-right: none;
+    font-weight: 600;
+    width: 140px;
+  }
+
+  .stage-table tr td:last-child {
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+  }
+
+  .stage-table tr td:not(:first-child):not(:last-child) {
+    border-left: none;
+    border-right: none;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .badge-amber { background: var(--amber-pale); color: var(--amber); }
+  .badge-teal  { background: var(--teal-pale);  color: var(--teal); }
+  .badge-sky   { background: var(--sky-pale);   color: var(--sky); }
+  .badge-sage  { background: var(--sage-pale);  color: var(--sage); }
+
+  /* ─── STEP LIST ─── */
+  .steps { list-style: none; margin-top: 24px; }
+
+  .steps li {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 36px; height: 36px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-body h4 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+  .step-body p  { font-size: 0.9rem; color: rgba(26,18,9,0.65); margin: 0; }
+
+  /* ─── COMPARISON BLOCK ─── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+
+  .compare-col {
+    background: #fff;
+    border: 1px solid var(--cream);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .compare-head {
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+  }
+
+  .compare-col.good .compare-head  { background: var(--teal); color: #fff; }
+  .compare-col.bad  .compare-head  { background: var(--rose); color: #fff; }
+
+  .compare-body { padding: 16px 20px; }
+
+  .compare-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    align-items: flex-start;
+    color: rgba(26,18,9,0.8);
+  }
+
+  .compare-item:last-child { margin-bottom: 0; }
+
+  .compare-item .ci { flex-shrink: 0; font-size: 0.85rem; }
+
+  /* ─── BLOOM BOX ─── */
+  .bloom-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 24px;
+  }
+
+  .bloom-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid var(--cream);
+    border-radius: 10px;
+    padding: 14px 18px;
+    transition: background 0.2s;
+  }
+
+  .bloom-row:hover { background: var(--cream); }
+
+  .bloom-level-bar {
+    height: 6px;
+    border-radius: 3px;
+    transition: width 0.4s;
+  }
+
+  .bloom-label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    min-width: 130px;
+  }
+
+  .bloom-desc {
+    font-size: 0.85rem;
+    color: rgba(26,18,9,0.6);
+    flex: 1;
+  }
+
+  .bloom-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* ─── QUOTE ─── */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    margin: 32px 0;
+    padding: 20px 28px;
+    background: var(--amber-pale);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(26,18,9,0.85);
+    margin: 0 0 8px;
+  }
+
+  .pull-quote cite {
+    font-size: 0.82rem;
+    color: var(--amber);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ─── PROMPT EXAMPLE ─── */
+  .prompt-box {
+    background: #1a1209;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prompt-box::before {
+    content: 'CONTOH PROMPT AI';
+    position: absolute;
+    top: 12px; right: 16px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.25);
+    font-weight: 700;
+  }
+
+  .prompt-box p {
+    font-family: 'DM Sans', monospace;
+    color: var(--amber-light);
+    font-size: 0.88rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .prompt-box .ph {
+    color: rgba(255,255,255,0.3);
+    font-style: italic;
+  }
+
+  /* ─── CHECKLIST ─── */
+  .checklist { list-style: none; margin-top: 16px; }
+
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    font-size: 0.93rem;
+    color: rgba(26,18,9,0.8);
+  }
+
+  .check {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--teal);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: rgba(250,246,239,0.4);
+    text-align: center;
+    padding: 40px 32px;
+    font-size: 0.82rem;
+    margin-top: 80px;
+  }
+
+  footer strong { color: var(--amber-light); font-weight: 600; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--cream);
+    margin: 32px 0;
+  }
+
+  /* ─── HIGHLIGHT ─── */
+  mark {
+    background: linear-gradient(120deg, rgba(200,135,42,0.15), rgba(200,135,42,0.25));
+    color: inherit;
+    padding: 0 4px;
+    border-radius: 3px;
+  }
+
+  /* ─── TABLE SOAL ─── */
+  .soal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-top: 20px;
+  }
+
+  .soal-table th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+  }
+
+  .soal-table th:first-child { border-radius: 8px 0 0 0; }
+  .soal-table th:last-child  { border-radius: 0 8px 0 0; }
+
+  .soal-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--cream);
+    vertical-align: top;
+    line-height: 1.55;
+    color: rgba(26,18,9,0.8);
+  }
+
+  .soal-table tr:last-child td { border-bottom: none; }
+  .soal-table tr:nth-child(even) td { background: rgba(240,232,216,0.3); }
+
+  /* ─── ANIMATION ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  section { animation: fadeUp 0.5s ease both; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .hero { padding: 60px 24px 80px; }
+    .nav-bar { padding: 10px 16px; }
+    .wrapper { padding: 0 20px; }
+    h2 { font-size: 1.4rem; }
+    .stage-table { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <span class="hero-tag">📚 Materi Perkuliahan PGSD</span>
+    <h1>Integrasi <em>Kecerdasan Buatan</em> dalam Pembuatan Instrumen Soal SD</h1>
+    <p class="hero-sub">Memahami dan mengintegrasikan AI dengan prinsip psikologi kognitif siswa Sekolah Dasar untuk menghasilkan instrumen penilaian yang berkualitas, valid, dan sesuai tahap perkembangan anak.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="dot"></span> Program Studi PGSD</div>
+      <div class="hero-meta-item"><span class="dot"></span> Mata Kuliah: Evaluasi Pembelajaran</div>
+      <div class="hero-meta-item"><span class="dot"></span> 6 Topik Utama</div>
+    </div>
+  </div>
+  <div class="hero-wave"></div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="nav-bar">
+  <div class="nav-pills">
+    <a href="#latar" class="nav-pill">1. Latar Belakang</a>
+    <a href="#kognitif" class="nav-pill">2. Psikologi Kognitif</a>
+    <a href="#ai-instrumen" class="nav-pill">3. AI & Instrumen</a>
+    <a href="#bloom" class="nav-pill">4. Taksonomi Bloom</a>
+    <a href="#langkah" class="nav-pill">5. Panduan Praktis</a>
+    <a href="#etika" class="nav-pill">6. Etika & Tantangan</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION 1: LATAR BELAKANG -->
+<!-- ══════════════════════════════════════ -->
+<div class="wrapper">
+<section id="latar">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <div class="section-title-wrap">
+      <div class="section-label">Pengantar</div>
+      <h2>Latar Belakang & Urgensi</h2>
+    </div>
+  </div>
+
+  <p>Instrumen soal yang berkualitas merupakan fondasi penilaian pembelajaran yang adil dan efektif. Namun, <mark>pembuatan instrumen soal yang tepat sasaran untuk siswa Sekolah Dasar</mark> membutuhkan pemahaman mendalam tentang tahap perkembangan kognitif anak, yang sering kali tidak terakomodasi dengan baik dalam praktik pengajaran sehari-hari.</p>
+
+  <p>Di era kecerdasan buatan (AI), mahasiswa PGSD perlu memiliki kompetensi untuk memanfaatkan teknologi ini secara cerdas dan kritis — bukan sekadar mengandalkannya secara mentah-mentah, melainkan mengintegrasikannya dengan landasan pedagogis dan psikologis yang kokoh.</p>
+
+  <div class="callout callout-amber">
+    <span class="callout-icon">🎯</span>
+    <h4>Tujuan Pembelajaran</h4>
+    <p>Setelah mempelajari materi ini, mahasiswa PGSD mampu: (1) memahami prinsip psikologi kognitif yang relevan dengan siswa SD, (2) memanfaatkan AI untuk menghasilkan draft instrumen soal, dan (3) melakukan telaah kritis terhadap soal yang dihasilkan AI berdasarkan prinsip psikologi kognitif dan taksonomi pembelajaran.</p>
+  </div>
+
+  <div class="card-grid card-grid-3">
+    <div class="card card-amber">
+      <span class="card-emoji">🧩</span>
+      <h4>Masalah Konvensional</h4>
+      <p>Guru seringkali membuat soal tanpa mempertimbangkan tahap kognitif siswa, sehingga soal terlalu sulit, terlalu mudah, atau tidak mengukur kompetensi yang tepat.</p>
+    </div>
+    <div class="card card-teal">
+      <span class="card-emoji">🤖</span>
+      <h4>Peluang AI</h4>
+      <p>AI generatif mampu menghasilkan variasi soal dalam jumlah besar dengan cepat, namun tetap membutuhkan supervisi pedagogis dari guru.</p>
+    </div>
+    <div class="card card-sky">
+      <span class="card-emoji">🔬</span>
+      <h4>Solusi Integratif</h4>
+      <p>Menggabungkan kemampuan AI dengan pengetahuan psikologi kognitif menghasilkan instrumen soal yang lebih valid, reliabel, dan sesuai perkembangan anak.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION 2: PSIKOLOGI KOGNITIF -->
+<!-- ══════════════════════════════════════ -->
+<section id="kognitif">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <div class="section-title-wrap">
+      <div class="section-label">Fondasi Teoretis</div>
+      <h2>Psikologi Kognitif Siswa SD</h2>
+    </div>
+  </div>
+
+  <p>Memahami cara berpikir anak usia SD (6–12 tahun) adalah prasyarat mutlak dalam merancang instrumen soal yang valid. Dua teori utama yang menjadi acuan adalah <strong>Teori Perkembangan Kognitif Piaget</strong> dan <strong>Teori Pemrosesan Informasi</strong>.</p>
+
+  <div class="pull-quote">
+    <p>"Anak bukan botol kosong yang diisi informasi, melainkan ilmuwan kecil yang aktif membangun pengetahuannya sendiri."</p>
+    <cite>— Jean Piaget, Psikolog Perkembangan</cite>
+  </div>
+
+  <h3>Tahapan Perkembangan Kognitif Piaget pada Usia SD</h3>
+
+  <table class="stage-table">
+    <thead>
+      <tr>
+        <th>Tahap</th>
+        <th>Usia</th>
+        <th>Karakteristik Berpikir</th>
+        <th>Implikasi Soal</th>
+        <th>Label</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Praoperasional</td>
+        <td>2–7 tahun</td>
+        <td>Berpikir simbolik, egosentris, belum logis sepenuhnya</td>
+        <td>Kelas 1–2: gunakan gambar, konteks konkret sehari-hari</td>
+        <td><span class="badge badge-amber">Kelas 1–2</span></td>
+      </tr>
+      <tr>
+        <td>Operasional Konkret</td>
+        <td>7–11 tahun</td>
+        <td>Mulai logis, butuh objek/situasi nyata, mampu klasifikasi & seriasi</td>
+        <td>Kelas 3–5: soal berbasis situasi nyata, manipulasi konsep</td>
+        <td><span class="badge badge-teal">Kelas 3–5</span></td>
+      </tr>
+      <tr>
+        <td>Operasional Formal (awal)</td>
+        <td>11–12 tahun</td>
+        <td>Mulai mampu berpikir abstrak dan hipotetis</td>
+        <td>Kelas 6: soal analisis sederhana mulai dapat diberikan</td>
+        <td><span class="badge badge-sky">Kelas 6</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card-grid card-grid-2" style="margin-top: 32px;">
+    <div class="card card-teal">
+      <span class="card-emoji">🧠</span>
+      <h4>Beban Kognitif (Cognitive Load)</h4>
+      <p>Teori John Sweller: ingatan kerja (working memory) anak terbatas. Soal yang terlalu panjang, kompleks, atau memuat banyak informasi asing akan membebani kognitif dan menurunkan performa — bukan karena anak tidak paham materi, tapi karena soalnya yang bermasalah.</p>
+    </div>
+    <div class="card card-rose">
+      <span class="card-emoji">🔄</span>
+      <h4>Skema & Asimilasi-Akomodasi</h4>
+      <p>Soal yang baik harus berada dalam <em>zona perkembangan proksimal</em> — tidak terlalu mudah (hanya asimilasi) maupun terlalu sulit (tidak ada pijakan skema lama), melainkan sedikit di atas kemampuan saat ini untuk mendorong akomodasi kognitif.</p>
+    </div>
+    <div class="card card-sky">
+      <span class="card-emoji">🗣️</span>
+      <h4>Bahasa & Literasi</h4>
+      <p>Kemampuan membaca dan kosakata aktif anak SD sangat bervariasi. Soal dengan kalimat panjang, kosakata asing, atau struktur kalimat kompleks (misalnya kalimat negatif ganda) dapat mengecoh pemahaman alih-alih menguji konsep yang dimaksud.</p>
+    </div>
+    <div class="card card-sage">
+      <span class="card-emoji">🌍</span>
+      <h4>Konteks & Relevansi</h4>
+      <p>Anak SD belajar lebih baik melalui konteks yang dekat dengan pengalaman nyata mereka. Soal dengan latar cerita yang familiar (lingkungan keluarga, sekolah, kampung) meningkatkan keterlibatan dan meminimalkan kecemasan tes.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-teal" style="margin-top: 32px;">
+    <span class="callout-icon">💡</span>
+    <h4>Prinsip Utama untuk Diingat</h4>
+    <p><strong>Soal yang baik untuk SD = Konten yang benar + Bahasa yang sesuai usia + Konteks yang relevan + Kompleksitas kognitif yang tepat.</strong> Jika salah satu unsur ini tidak tepat, validitas soal akan terganggu meskipun kontennya sudah akurat secara materi.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION 3: AI & INSTRUMEN -->
+<!-- ══════════════════════════════════════ -->
+<section id="ai-instrumen">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <div class="section-title-wrap">
+      <div class="section-label">Teknologi Pendidikan</div>
+      <h2>Kecerdasan Buatan & Pembuatan Instrumen</h2>
+    </div>
+  </div>
+
+  <p>AI generatif (seperti ChatGPT, Gemini, atau Claude) bekerja dengan memprediksi teks berdasarkan pola dari data pelatihan yang sangat besar. Artinya, AI dapat menghasilkan soal yang <em>secara struktur tampak baik</em>, namun belum tentu valid secara psikologis dan pedagogis untuk konteks anak SD tertentu.</p>
+
+  <div class="compare">
+    <div class="compare-col good">
+      <div class="compare-head">✅ Kelebihan AI dalam Membuat Soal</div>
+      <div class="compare-body">
+        <div class="compare-item"><span class="ci">⚡</span><span>Menghasilkan variasi soal dalam jumlah besar secara cepat</span></div>
+        <div class="compare-item"><span class="ci">🔤</span><span>Mampu menyesuaikan tingkat bahasa jika diperintahkan secara spesifik</span></div>
+        <div class="compare-item"><span class="ci">📋</span><span>Bisa mengikuti struktur taksonomi Bloom jika diminta</span></div>
+        <div class="compare-item"><span class="ci">🌐</span><span>Dapat menghasilkan konteks cerita yang beragam dan menarik</span></div>
+        <div class="compare-item"><span class="ci">♻️</span><span>Membantu parafrase soal yang sudah ada agar tidak plagiat</span></div>
+        <div class="compare-item"><span class="ci">💬</span><span>Bisa memberi penjelasan kunci jawaban sekaligus</span></div>
+      </div>
+    </div>
+    <div class="compare-col bad">
+      <div class="compare-head">⚠️ Keterbatasan AI yang Wajib Diketahui</div>
+      <div class="compare-body">
+        <div class="compare-item"><span class="ci">🎭</span><span>Tidak "memahami" konteks budaya lokal dan karakteristik siswa spesifik</span></div>
+        <div class="compare-item"><span class="ci">🧮</span><span>Bisa menghasilkan soal matematika dengan jawaban yang salah</span></div>
+        <div class="compare-item"><span class="ci">📚</span><span>Mungkin tidak sesuai dengan kurikulum Merdeka Belajar terbaru</span></div>
+        <div class="compare-item"><span class="ci">🔄</span><span>Pengecoh (distraktor) soal pilihan ganda sering tidak berkualitas</span></div>
+        <div class="compare-item"><span class="ci">⚖️</span><span>Tidak otomatis mempertimbangkan beban kognitif anak</span></div>
+        <div class="compare-item"><span class="ci">✏️</span><span>Selalu butuh telaah dan revisi oleh guru yang kompeten</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 36px;">Cara Kerja Prompt yang Efektif</h3>
+  <p>Kualitas soal yang dihasilkan AI sangat bergantung pada kualitas <em>prompt</em> (perintah) yang diberikan. Semakin spesifik dan kaya konteks prompt Anda, semakin relevan hasilnya.</p>
+
+  <div class="prompt-box">
+    <p>
+      <strong style="color: rgba(255,255,255,0.9);">Buatkan 5 soal pilihan ganda materi Siklus Air untuk siswa kelas 4 SD</strong><br><br>
+      <span class="ph">Ketentuan:</span><br>
+      • Tingkat kognitif: C2 (pemahaman) dan C3 (penerapan) sesuai Taksonomi Bloom<br>
+      • Bahasa: sederhana, kalimat maksimal 20 kata, hindari kata abstrak<br>
+      • Konteks: kehidupan sehari-hari di lingkungan pedesaan Indonesia<br>
+      • Format: stem, 4 opsi (A–D), kunci jawaban, dan penjelasan singkat<br>
+      • Pengecoh: buat distraktor yang plausibel berdasarkan miskonsepsi umum siswa<br>
+      • Kurikulum: Merdeka Belajar 2024, Fase B
+    </p>
+  </div>
+
+  <div class="callout callout-rose">
+    <span class="callout-icon">⚠️</span>
+    <h4>Peringatan Penting</h4>
+    <p>Jangan langsung menyalin soal dari AI ke lembar ujian! Selalu lakukan telaah soal yang mencakup: validasi konten (apakah secara materi benar?), validasi bahasa (apakah sesuai usia?), validasi konstruk (apakah mengukur yang dimaksud?), dan validasi kesesuaian kognitif dengan tahap perkembangan siswa.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION 4: TAKSONOMI BLOOM -->
+<!-- ══════════════════════════════════════ -->
+<section id="bloom">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <div class="section-title-wrap">
+      <div class="section-label">Kerangka Penilaian</div>
+      <h2>Taksonomi Bloom & Kesesuaiannya dengan Kognitif SD</h2>
+    </div>
+  </div>
+
+  <p>Taksonomi Bloom (revisi Anderson & Krathwohl, 2001) adalah kerangka yang paling banyak digunakan untuk mengklasifikasikan tingkat kognitif dalam soal. Namun, tidak semua level Bloom tepat untuk semua jenjang kelas di SD — penggunaannya harus disesuaikan dengan tahap perkembangan kognitif Piaget.</p>
+
+  <div class="bloom-levels">
+    <div class="bloom-row">
+      <div style="width:60px; text-align:center; font-size:1.3rem;">🔖</div>
+      <div class="bloom-label">C1 — Mengingat</div>
+      <div style="flex:1">
+        <div class="bloom-level-bar" style="width:95%; background:#e5c07b; margin-bottom:6px;"></div>
+        <div class="bloom-desc">Menyebutkan, mendefinisikan, mengenali fakta. Cocok untuk semua kelas. Porsi: tidak berlebihan (maks 20–30% total soal).</div>
+      </div>
+      <span class="bloom-tag" style="background:#fdf3e3; color:#c8872a;">Semua Kelas</span>
+    </div>
+    <div class="bloom-row">
+      <div style="width:60px; text-align:center; font-size:1.3rem;">💬</div>
+      <div class="bloom-label">C2 — Memahami</div>
+      <div style="flex:1">
+        <div class="bloom-level-bar" style="width:90%; background:#56b6c2; margin-bottom:6px;"></div>
+        <div class="bloom-desc">Menjelaskan, mengklasifikasikan, membedakan, merangkum. Sangat cocok untuk kelas 2–6.</div>
+      </div>
+      <span class="bloom-tag" style="background:#e4f4f4; color:#1a6b6b;">Kelas 2–6</span>
+    </div>
+    <div class="bloom-row">
+      <div style="width:60px; text-align:center; font-size:1.3rem;">🔧</div>
+      <div class="bloom-label">C3 — Menerapkan</div>
+      <div style="flex:1">
+        <div class="bloom-level-bar" style="width:78%; background:#98c379; margin-bottom:6px;"></div>
+        <div class="bloom-desc">Menggunakan konsep dalam situasi baru, memecahkan soal cerita. Optimal untuk kelas 3–6 dengan konteks konkret.</div>
+      </div>
+      <span class="bloom-tag" style="background:#edf7f0; color:#4a7c59;">Kelas 3–6</span>
+    </div>
+    <div class="bloom-row">
+      <div style="width:60px; text-align:center; font-size:1.3rem;">🔍</div>
+      <div class="bloom-label">C4 — Menganalisis</div>
+      <div style="flex:1">
+        <div class="bloom-level-bar" style="width:55%; background:#61afef; margin-bottom:6px;"></div>
+        <div class="bloom-desc">Membandingkan, membedakan, menyimpulkan. Mulai dapat diberikan di kelas 5–6 dengan scaffolding yang memadai.</div>
+      </div>
+      <span class="bloom-tag" style="background:#edf2ff; color:#2850a0;">Kelas 5–6</span>
+    </div>
+    <div class="bloom-row">
+      <div style="width:60px; text-align:center; font-size:1.3rem;">✨</div>
+      <div class="bloom-label">C5 — Mengevaluasi</div>
+      <div style="flex:1">
+        <div class="bloom-level-bar" style="width:30%; background:#e06c75; margin-bottom:6px;"></div>
+        <div class="bloom-desc">Memberi penilaian dengan kriteria. Sangat terbatas di SD; bila digunakan, harus dengan rubrik yang sangat jelas.</div>
+      </div>
+      <span class="bloom-tag" style="background:#fdf0f0; color:#b84040;">Terbatas</span>
+    </div>
+    <div class="bloom-row">
+      <div style="width:60px; text-align:center; font-size:1.3rem;">🎨</div>
+      <div class="bloom-label">C6 — Mencipta</div>
+      <div style="flex:1">
+        <div class="bloom-level-bar" style="width:20%; background:#c678dd; margin-bottom:6px;"></div>
+        <div class="bloom-desc">Merancang, membuat karya baru. Lebih tepat sebagai penilaian proyek/portofolio, bukan soal tulis konvensional.</div>
+      </div>
+      <span class="bloom-tag" style="background:#f9eaff; color:#8040b8;">Proyek</span>
+    </div>
+  </div>
+
+  <div class="callout callout-sky" style="margin-top: 32px;">
+    <span class="callout-icon">📊</span>
+    <h4>Distribusi Soal yang Direkomendasikan untuk SD</h4>
+    <p>Untuk penilaian harian/sumatif SD: <strong>C1 (15%) — C2 (35%) — C3 (35%) — C4 (15%)</strong>. Fokus pada pemahaman dan penerapan dengan konteks konkret. Hindari mendominasi soal C1 (hafalan) karena bertentangan dengan pendekatan pembelajaran bermakna Kurikulum Merdeka.</p>
+  </div>
+
+  <hr class="divider">
+
+  <h3>Contoh Penjenjangan Soal Berdasarkan Bloom</h3>
+  <p>Tema: <strong>Fotosintesis</strong> | Kelas: 5 SD</p>
+
+  <table class="soal-table">
+    <thead>
+      <tr>
+        <th>Level</th>
+        <th>Contoh Soal</th>
+        <th>Analisis Kognisi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-amber">C1</span></td>
+        <td>Apakah bahan baku yang dibutuhkan tumbuhan untuk melakukan fotosintesis?</td>
+        <td>Mengingat fakta. Kalimat pendek, kosakata yang sudah dikenalkan. ✅</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-teal">C2</span></td>
+        <td>Mengapa daun yang ditutupi plastik hitam selama seminggu akan berubah warna menjadi kuning? Jelaskan dengan kata-katamu sendiri!</td>
+        <td>Menjelaskan hubungan cahaya–fotosintesis–klorofil. Konteks percobaan sederhana yang familiar. ✅</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-sky">C3</span></td>
+        <td>Pak Budi ingin menanam bayam di dalam rumah yang gelap. Menurutmu, apakah bayam itu akan tumbuh subur? Jelaskan alasanmu!</td>
+        <td>Menerapkan konsep fotosintesis ke situasi baru yang kontekstual. ✅</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-sage">C4</span></td>
+        <td>Perhatikan tabel hasil percobaan berikut [tabel sederhana]. Di kondisi mana fotosintesis berlangsung paling cepat? Apa yang memengaruhinya?</td>
+        <td>Menganalisis data, membandingkan kondisi. Butuh scaffold tabel yang jelas untuk SD. ⚠️</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION 5: PANDUAN PRAKTIS -->
+<!-- ══════════════════════════════════════ -->
+<section id="langkah">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <div class="section-title-wrap">
+      <div class="section-label">Panduan Implementasi</div>
+      <h2>Langkah-Langkah Pembuatan Instrumen Soal Berbantuan AI</h2>
+    </div>
+  </div>
+
+  <ul class="steps">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Analisis Kompetensi & Konteks</h4>
+        <p>Tentukan: kelas, Capaian Pembelajaran (CP), Tujuan Pembelajaran, karakteristik siswa (kemampuan rata-rata, latar budaya), dan jenis penilaian (diagnostik, formatif, sumatif). Ini menjadi "brief" untuk prompt Anda.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Tentukan Kisi-Kisi Soal</h4>
+        <p>Buat kisi-kisi secara manual terlebih dahulu: distribusi level Bloom, jumlah soal per indikator, dan bobot penilaian. Kisi-kisi ini akan memandu prompt AI agar menghasilkan soal yang proporsional dan sesuai kurikulum.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Buat Prompt yang Spesifik & Kaya Konteks</h4>
+        <p>Masukkan: kelas, level Bloom yang ditarget, tema soal, batasan bahasa, jenis konteks, format soal, dan permintaan kunci jawaban + penjelasan. Semakin spesifik prompt, semakin relevan hasilnya.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Telaah Soal Hasil AI</h4>
+        <p>Lakukan telaah pada 3 aspek: (a) <em>Materi</em> — apakah konten akurat dan sesuai CP? (b) <em>Bahasa</em> — apakah kalimat efektif, tidak ambigu, dan sesuai level literasi kelas tersebut? (c) <em>Konstruk</em> — apakah soal mengukur kompetensi yang dimaksud, bukan faktor lain?</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Revisi & Kontekstualisasi Lokal</h4>
+        <p>Sesuaikan nama tokoh, latar cerita, dan referensi budaya dengan konteks lokal siswa. AI cenderung menggunakan konteks yang generik atau "kota-sentris" — ini adalah tugas guru untuk mengadaptasinya.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h4>Uji Keterbacaan & Validasi Rekan</h4>
+        <p>Minta 1–2 rekan guru membaca soal dan menilai kejelasannya tanpa melihat kunci jawaban. Jika rekan salah paham, maka siswa kemungkinan besar akan salah paham juga. Lakukan revisi berdasarkan masukan.</p>
+      </div>
+    </li>
+  </ul>
+
+  <div class="callout callout-sage">
+    <span class="callout-icon">🔁</span>
+    <h4>Siklus Iteratif, Bukan Sekali Jadi</h4>
+    <p>Pembuatan instrumen soal yang baik adalah proses iteratif. Setelah soal digunakan, analisis respons siswa: apakah soal yang ternyata dijawab benar semua (terlalu mudah) atau salah semua (terlalu sulit)? Gunakan data ini untuk memperbaiki prompt AI berikutnya dan meningkatkan kualitas soal secara berkelanjutan.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECTION 6: ETIKA & TANTANGAN -->
+<!-- ══════════════════════════════════════ -->
+<section id="etika">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <div class="section-title-wrap">
+      <div class="section-label">Refleksi Kritis</div>
+      <h2>Etika, Tantangan & Sikap Profesional</h2>
+    </div>
+  </div>
+
+  <p>Penggunaan AI dalam pendidikan membawa tanggung jawab etis yang tidak boleh diabaikan. Sebagai calon guru profesional, mahasiswa PGSD perlu mengembangkan <em>literasi AI yang kritis</em> — bukan sekadar mampu menggunakan, tapi juga memahami batasannya dan bertanggung jawab atas dampaknya.</p>
+
+  <div class="card-grid card-grid-2">
+    <div class="card card-rose">
+      <span class="card-emoji">🔒</span>
+      <h4>Privasi & Data Siswa</h4>
+      <p>Jangan memasukkan nama, data personal, atau informasi identifikasi siswa ke dalam prompt AI. Platform AI komersial menyimpan data input untuk keperluan pelatihan model.</p>
+    </div>
+    <div class="card card-amber">
+      <span class="card-emoji">⚖️</span>
+      <h4>Bias Algoritma</h4>
+      <p>AI dilatih pada data yang mungkin mengandung bias gender, budaya, atau kelas sosial. Soal yang dihasilkan bisa jadi tidak adil bagi kelompok siswa tertentu — telaah kritis sangat diperlukan.</p>
+    </div>
+    <div class="card card-sky">
+      <span class="card-emoji">📜</span>
+      <h4>Hak Cipta & Integritas</h4>
+      <p>Soal yang dihasilkan AI bisa saja menyerupai soal yang sudah ada di dataset pelatihan. Selalu verifikasi orisinalitas dan adaptasi soal sesuai kebutuhan lokal Anda.</p>
+    </div>
+    <div class="card card-sage">
+      <span class="card-emoji">🧑‍🏫</span>
+      <h4>Tanggung Jawab Profesional</h4>
+      <p>AI adalah alat bantu, bukan pengganti profesionalisme guru. Guru tetap bertanggung jawab penuh atas kualitas instrumen soal yang diberikan kepada siswa.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3>Checklist Evaluasi Soal Berbantuan AI</h3>
+  <p>Gunakan checklist ini sebelum menggunakan soal yang dihasilkan AI:</p>
+
+  <ul class="checklist">
+    <li><div class="check">✓</div><span><strong>Konten akurat</strong> — Apakah fakta, angka, dan konsep dalam soal sudah diverifikasi kebenarannya?</span></li>
+    <li><div class="check">✓</div><span><strong>Sesuai kurikulum</strong> — Apakah soal selaras dengan Capaian Pembelajaran dan Tujuan Pembelajaran dalam Kurikulum Merdeka?</span></li>
+    <li><div class="check">✓</div><span><strong>Bahasa tepat usia</strong> — Apakah kosakata dan struktur kalimat sesuai dengan kemampuan baca siswa di kelas tersebut?</span></li>
+    <li><div class="check">✓</div><span><strong>Beban kognitif wajar</strong> — Apakah soal tidak memuat terlalu banyak informasi baru yang membebani working memory?</span></li>
+    <li><div class="check">✓</div><span><strong>Konteks relevan</strong> — Apakah latar cerita dekat dengan pengalaman siswa, tidak bias gender/budaya/kelas sosial?</span></li>
+    <li><div class="check">✓</div><span><strong>Distraktor berkualitas</strong> — Apakah pengecoh mewakili miskonsepsi nyata, bukan sekadar jawaban yang jelas salah?</span></li>
+    <li><div class="check">✓</div><span><strong>Kunci jawaban valid</strong> — Apakah hanya ada satu jawaban yang benar dan sudah diverifikasi (khususnya soal matematika dan sains)?</span></li>
+    <li><div class="check">✓</div><span><strong>Tidak ambigu</strong> — Apakah stem soal hanya memiliki satu interpretasi yang masuk akal?</span></li>
+  </ul>
+
+  <div class="callout callout-amber" style="margin-top: 40px;">
+    <span class="callout-icon">🌱</span>
+    <h4>Pesan untuk Mahasiswa PGSD</h4>
+    <p>AI adalah mitra, bukan pengganti. Kompetensi Anda sebagai guru — pemahaman tentang anak, konteks lokal, nilai-nilai kemanusiaan, dan hubungan personal dengan siswa — adalah hal yang tidak bisa direplikasi oleh mesin. Gunakan AI untuk menghemat waktu pada hal-hal teknis, sehingga Anda punya lebih banyak energi untuk hal yang paling penting: <strong>memahami dan mendampingi tumbuh kembang setiap anak didik Anda</strong>.</p>
+  </div>
+</section>
+
+</div><!-- end wrapper -->
+
+<!-- FOOTER -->
+<footer>
+  <p>Materi Perkuliahan PGSD &bull; <strong>Integrasi AI dalam Pembuatan Instrumen Soal SD</strong></p>
+  <p style="margin-top:8px;">Diadaptasi dari: Piaget (1964), Anderson & Krathwohl (2001), Sweller (1988) &bull; Referensi: Kurikulum Merdeka Kemendikbudristek</p>
+</footer>
+
+</body>
+</html>
