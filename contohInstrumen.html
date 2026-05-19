@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instrumen Soal Esai SD — Lingkungan Hidup</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════════ */
+:root {
+  --bg:         #f5f0e8;
+  --surface:    #fffdf8;
+  --surface-2:  #faf5ec;
+  --border:     #e2d9c8;
+  --border-2:   #cfc4b0;
+  --ink:        #1d1710;
+  --ink-2:      #4a3f2f;
+  --ink-3:      #8c7d68;
+  --ink-4:      #b5a898;
+
+  --red:        #c0392b;
+  --red-lt:     #fef4f2;
+  --red-mid:    #f8d7d3;
+
+  --forest:     #2e6b3e;
+  --forest-lt:  #edf7f0;
+  --forest-mid: #c3e6cc;
+
+  --gold:       #b07d1a;
+  --gold-lt:    #fef9ec;
+  --gold-mid:   #f5e4a8;
+
+  --cobalt:     #1a4c8c;
+  --cobalt-lt:  #eef3fb;
+  --cobalt-mid: #c0d4f0;
+
+  --plum:       #6b2d5e;
+  --plum-lt:    #f8f0f6;
+  --plum-mid:   #e0bcd8;
+
+  --teal:       #1a6b6b;
+  --teal-lt:    #eef8f8;
+  --teal-mid:   #b8e0e0;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ══════════════════════════════════════════
+   TOP STRIP
+══════════════════════════════════════════ */
+.top-strip {
+  background: var(--ink);
+  color: rgba(255,255,255,0.45);
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-strip span { color: rgba(255,255,255,0.75); }
+
+/* ══════════════════════════════════════════
+   MASTHEAD
+══════════════════════════════════════════ */
+.masthead {
+  background: var(--surface);
+  border-bottom: 3px double var(--border-2);
+  padding: 48px 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.masthead::before {
+  content: '"ESAI"';
+  position: absolute;
+  right: -10px;
+  top: -20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 9rem;
+  font-weight: 700;
+  color: rgba(0,0,0,0.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.masthead-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+}
+
+.mast-eyebrow {
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mast-eyebrow::before {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: var(--red);
+  display: inline-block;
+}
+
+.masthead h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.masthead h1 em {
+  font-style: italic;
+  color: var(--forest);
+}
+
+.mast-sub {
+  font-size: 1rem;
+  color: var(--ink-2);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.mast-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: right;
+  min-width: 180px;
+}
+
+.mast-meta-item {
+  font-family: 'Inconsolata', monospace;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.mast-meta-item strong {
+  color: var(--ink);
+  font-weight: 700;
+  display: block;
+  font-size: 14px;
+}
+
+/* ══════════════════════════════════════════
+   NAV TABS — NEWSPAPER STYLE
+══════════════════════════════════════════ */
+.tab-nav {
+  background: var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.tab-nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab-nav-inner::-webkit-scrollbar { display: none; }
+
+.t-btn {
+  padding: 14px 28px;
+  background: none;
+  border: none;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.45);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.t-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.t-btn:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.05); }
+
+.t-btn.active { color: #fff; }
+.t-btn.active::after { background: var(--gold); }
+
+.t-num {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.t-btn.active .t-num { background: var(--gold); color: var(--ink); }
+
+/* ══════════════════════════════════════════
+   MAIN CONTENT
+══════════════════════════════════════════ */
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 40px 100px;
+}
+
+.tab-pane { display: none; animation: fadeIn 0.3s ease; }
+.tab-pane.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ══════════════════════════════════════════
+   SECTION TITLES
+══════════════════════════════════════════ */
+.section-hed {
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-kicker {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-kicker::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-hed h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.section-hed p {
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  margin-top: 10px;
+  font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   INFO CARD
+══════════════════════════════════════════ */
+.info-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.info-card-head {
+  background: var(--ink);
+  color: white;
+  padding: 12px 20px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.info-cell {
+  padding: 16px 20px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.info-cell:last-child { border-right: none; }
+
+.ic-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 4px;
+}
+
+.ic-val {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ══════════════════════════════════════════
+   PETUNJUK
+══════════════════════════════════════════ */
+.petunjuk-box {
+  background: var(--gold-lt);
+  border: 1px solid var(--gold-mid);
+  border-left: 5px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 20px 24px;
+  margin-bottom: 36px;
+}
+
+.petunjuk-title {
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.petunjuk-box ol { padding-left: 20px; }
+.petunjuk-box li {
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════
+   SOAL ESAI
+══════════════════════════════════════════ */
+.soal-block {
+  margin-bottom: 36px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.soal-block:hover { box-shadow: 0 6px 30px rgba(0,0,0,0.07); }
+
+.soal-strip {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.soal-num-box {
+  width: 64px;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1.5px solid var(--border);
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.soal-num-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.soal-num-val {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.soal-tags {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.soal-skor-box {
+  padding: 12px 20px;
+  border-left: 1.5px solid var(--border);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.ssb-val {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ssb-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-top: 2px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.tag-red    { background: var(--red-lt);    color: var(--red); }
+.tag-forest { background: var(--forest-lt); color: var(--forest); }
+.tag-gold   { background: var(--gold-lt);   color: var(--gold); }
+.tag-cobalt { background: var(--cobalt-lt); color: var(--cobalt); }
+.tag-plum   { background: var(--plum-lt);   color: var(--plum); }
+.tag-teal   { background: var(--teal-lt);   color: var(--teal); }
+
+.soal-body-wrap { padding: 28px 28px 24px; }
+
+.stimulus-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  line-height: 1.7;
+  position: relative;
+}
+
+.stimulus-box::before {
+  content: '❝';
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5rem;
+  color: var(--ink-4);
+  position: absolute;
+  top: 10px; left: 14px;
+  line-height: 1;
+}
+
+.stimulus-box p { padding-left: 24px; margin: 0; }
+
+.soal-stem {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.02rem;
+  color: var(--ink);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.soal-tuntutan {
+  background: var(--cobalt-lt);
+  border: 1px solid var(--cobalt-mid);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.st-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+.st-content { font-size: 0.87rem; color: var(--cobalt); line-height: 1.6; }
+.st-content strong { font-weight: 700; display: block; margin-bottom: 2px; font-family: 'Inconsolata', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+
+.jawaban-lines { margin-top: 8px; }
+
+.jl-line {
+  display: block;
+  border-bottom: 1.5px solid var(--border-2);
+  height: 34px;
+  margin-bottom: 2px;
+}
+
+.jawaban-area {
+  width: 100%;
+  min-height: 100px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 16px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  color: var(--ink);
+  background: var(--surface-2);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+  line-height: 1.7;
+}
+
+.jawaban-area:focus { border-color: var(--cobalt); background: white; }
+
+/* ══════════════════════════════════════════
+   CONTOH JAWABAN (Tab 2)
+══════════════════════════════════════════ */
+.jawaban-block {
+  margin-bottom: 40px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.jb-header {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.jb-num {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 0;
+  border-right: 1.5px solid var(--border);
+  gap: 2px;
+}
+
+.jb-num-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.jb-num-val {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.jb-info {
+  padding: 14px 20px;
+}
+
+.jb-soal-text {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.jb-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.jb-skor {
+  padding: 14px 20px;
+  border-left: 1.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.jb-skor-val {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.jb-skor-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+/* LEVEL JAWABAN */
+.level-tabs {
+  display: flex;
+  border-bottom: 1.5px solid var(--border);
+  background: var(--surface-2);
+}
+
+.lv-tab {
+  flex: 1;
+  padding: 10px 6px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--ink-3);
+  border-right: 1px solid var(--border);
+  transition: all 0.15s;
+  position: relative;
+}
+
+.lv-tab:last-child { border-right: none; }
+.lv-tab:hover { background: var(--bg); }
+
+.lv-tab.on { color: var(--ink); }
+.lv-tab.on::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5px; left: 0; right: 0;
+  height: 3px;
+}
+
+.lv-4.on::after { background: var(--forest); }
+.lv-3.on::after { background: var(--cobalt); }
+.lv-2.on::after { background: var(--gold); }
+.lv-1.on::after { background: var(--red); }
+
+.lv-skor {
+  display: block;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.lv-4 .lv-skor { color: var(--forest); }
+.lv-3 .lv-skor { color: var(--cobalt); }
+.lv-2 .lv-skor { color: var(--gold); }
+.lv-1 .lv-skor { color: var(--red); }
+
+.lv-name { font-size: 9.5px; }
+
+/* JAWABAN PANELS */
+.jawaban-panels { padding: 0; }
+
+.jw-panel { display: none; padding: 24px 24px 20px; }
+.jw-panel.show { display: block; }
+
+.jw-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jw-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.jawaban-text {
+  font-size: 0.93rem;
+  color: var(--ink-2);
+  line-height: 1.85;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.level-indicator {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.li-4 { background: var(--forest-lt); color: var(--forest); border: 1px solid var(--forest-mid); }
+.li-3 { background: var(--cobalt-lt); color: var(--cobalt); border: 1px solid var(--cobalt-mid); }
+.li-2 { background: var(--gold-lt);   color: var(--gold);   border: 1px solid var(--gold-mid); }
+.li-1 { background: var(--red-lt);    color: var(--red);    border: 1px solid var(--red-mid); }
+
+.analisis-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-top: 14px;
+}
+
+.ab-title {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+
+.ab-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 0.84rem;
+  color: var(--ink-2);
+}
+
+.ab-row:last-child { margin-bottom: 0; }
+
+.ab-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+.ab-text { line-height: 1.5; }
+
+/* ══════════════════════════════════════════
+   RUBRIK (Tab 3)
+══════════════════════════════════════════ */
+.rubrik-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 36px;
+}
+
+.ro-item {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.ro-item:last-child { border-right: none; }
+
+.ro-val {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.ro-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* RUBRIK BLOCK PER SOAL */
+.rubrik-block {
+  margin-bottom: 40px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.rb-head {
+  background: var(--ink);
+  color: white;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.rb-head-left { display: flex; align-items: center; gap: 14px; }
+
+.rb-num {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255,255,255,0.15);
+}
+
+.rb-soal {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 460px;
+}
+
+.rb-max {
+  font-family: 'Inconsolata', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+}
+
+/* DIMENSI RUBRIK */
+.dimensi-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  overflow-x: auto;
+}
+
+.d-tab {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-right: 1px solid var(--border);
+  font-family: 'Outfit', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.d-tab:hover { color: var(--ink); background: var(--bg); }
+.d-tab.active { color: var(--ink); }
+.d-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* RUBRIK GRID */
+.rubrik-grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rubrik-grid thead tr {
+  background: var(--surface-2);
+}
+
+.rubrik-grid th {
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.rubrik-grid td {
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+  font-size: 0.88rem;
+  color: var(--ink-2);
+}
+
+.rubrik-grid tr:last-child td { border-bottom: none; }
+.rubrik-grid tr:hover td { background: rgba(0,0,0,0.015); }
+
+.skor-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.sb-4 { background: var(--forest); color: white; }
+.sb-3 { background: var(--cobalt); color: white; }
+.sb-2 { background: var(--gold);   color: white; }
+.sb-1 { background: var(--red);    color: white; }
+.sb-0 { background: var(--ink-4);  color: white; }
+
+.skor-cell { text-align: center; width: 60px; }
+.kriteria-cell { font-weight: 700; color: var(--ink); width: 120px; }
+.indikator-cell { color: var(--ink-2); }
+
+/* NILAI AKHIR */
+.nilai-section {
+  background: var(--ink);
+  border-radius: 4px;
+  padding: 32px;
+  margin-top: 40px;
+  color: white;
+}
+
+.ns-title {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ns-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+
+.formula-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 28px;
+  font-family: 'Inconsolata', monospace;
+}
+
+.fb-formula {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.fb-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.fb-num {
+  color: #f5d78e;
+  font-size: 0.95rem;
+  border-bottom: 1.5px solid rgba(255,255,255,0.4);
+  padding: 0 8px 3px;
+}
+
+.fb-den {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.95rem;
+  padding: 3px 8px 0;
+}
+
+.fb-eq { color: rgba(255,255,255,0.4); font-size: 1.2rem; }
+.fb-result { color: #7eceff; font-size: 1.2rem; font-weight: 700; }
+
+.fb-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 12px;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* PREDIKAT */
+.predikat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.pred-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pred-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+}
+
+.pred-A::before { background: var(--forest); }
+.pred-B::before { background: var(--cobalt); }
+.pred-C::before { background: var(--gold); }
+.pred-D::before { background: var(--red); }
+
+.pred-range {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+  padding-left: 12px;
+}
+
+.pred-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  padding-left: 12px;
+  margin-bottom: 8px;
+}
+
+.pred-ket {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  padding-left: 12px;
+  line-height: 1.5;
+}
+
+.pred-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  margin-left: 12px;
+}
+
+.pred-A .pred-badge { background: var(--forest); color: white; }
+.pred-B .pred-badge { background: var(--cobalt); color: white; }
+.pred-C .pred-badge { background: var(--gold); color: white; }
+.pred-D .pred-badge { background: var(--red); color: white; }
+
+/* TINDAK LANJUT */
+.tl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.tl-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 14px 16px;
+}
+
+.tl-pred {
+  font-family: 'Inconsolata', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.tl-A { color: #7ecca0; }
+.tl-B { color: #7eaee0; }
+.tl-C { color: #e0c87e; }
+.tl-D { color: #e07e7e; }
+
+.tl-text {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.55;
+}
+
+/* ══════════════════════════════════════════
+   MISC
+══════════════════════════════════════════ */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 32px 0;
+}
+
+.instruksi-esai {
+  background: var(--forest-lt);
+  border: 1px solid var(--forest-mid);
+  border-left: 4px solid var(--forest);
+  border-radius: 0 4px 4px 0;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-size: 0.88rem;
+  color: var(--forest);
+  line-height: 1.65;
+}
+
+.instruksi-esai strong { font-weight: 700; }
+
+@media (max-width: 640px) {
+  .masthead { padding: 32px 20px 24px; }
+  .masthead-inner { grid-template-columns: 1fr; }
+  .mast-meta { text-align: left; }
+  .content { padding: 32px 20px 60px; }
+  .top-strip { padding: 7px 20px; }
+  .t-btn { padding: 12px 16px; font-size: 12px; }
+  .jb-header { grid-template-columns: 50px 1fr; }
+  .jb-skor { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+  <span>📋 PGSD · Instrumen Penilaian Esai</span>
+  <span>Kurikulum Merdeka · Fase C · Kelas 5 SD</span>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="mast-eyebrow">Dokumen Instrumen Penilaian</div>
+      <h1>Soal Esai: <em>Lingkungan Hidup</em><br>& Pelestarian Alam</h1>
+      <p class="mast-sub">Instrumen lengkap soal esai untuk siswa Kelas 5 SD, disertai contoh jawaban berjenjang dan rubrik penilaian analitik berbasis Taksonomi Bloom.</p>
+    </div>
+    <div class="mast-meta">
+      <div class="mast-meta-item">
+        <strong>IPAS (IPA)</strong>
+        Mata Pelajaran
+      </div>
+      <div class="mast-meta-item">
+        <strong>5 Soal Esai</strong>
+        Jumlah Soal
+      </div>
+      <div class="mast-meta-item">
+        <strong>100 Poin</strong>
+        Total Skor
+      </div>
+      <div class="mast-meta-item">
+        <strong>75 Menit</strong>
+        Alokasi Waktu
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="t-btn active" onclick="switchTab('soal', this)">
+      <span class="t-num">01</span> Lembar Soal
+    </button>
+    <button class="t-btn" onclick="switchTab('jawaban', this)">
+      <span class="t-num">02</span> Contoh Jawaban
+    </button>
+    <button class="t-btn" onclick="switchTab('rubrik', this)">
+      <span class="t-num">03</span> Rubrik Penilaian
+    </button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════ -->
+<main class="content">
+
+<!-- ════ TAB 01: LEMBAR SOAL ════ -->
+<div id="pane-soal" class="tab-pane active">
+
+  <div class="section-hed">
+    <div class="section-kicker" style="color:var(--forest);">Bagian Siswa — Lembar Soal Esai</div>
+    <h2>Lembar Soal Penilaian Harian</h2>
+    <p>Bacalah setiap soal dengan teliti sebelum menjawab. Tulis jawabanmu dengan kalimat yang jelas dan lengkap.</p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-head">📌 Identitas Peserta</div>
+    <div class="info-grid">
+      <div class="info-cell"><div class="ic-label">Nama Lengkap</div><div class="ic-val">_________________________________</div></div>
+      <div class="info-cell"><div class="ic-label">Nomor Absen</div><div class="ic-val">__________</div></div>
+      <div class="info-cell"><div class="ic-label">Kelas</div><div class="ic-val">__________</div></div>
+      <div class="info-cell"><div class="ic-label">Tanggal</div><div class="ic-val">__________________</div></div>
+    </div>
+  </div>
+
+  <div class="petunjuk-box">
+    <div class="petunjuk-title">⚠️ Petunjuk Pengerjaan Soal Esai</div>
+    <ol>
+      <li>Bacalah setiap soal dengan <strong>cermat dan tenang</strong> sebelum mulai menulis jawaban.</li>
+      <li>Jawablah setiap soal dengan <strong>kalimatmu sendiri</strong> — jangan menyalin dari teman.</li>
+      <li>Gunakan <strong>bahasa Indonesia yang baik</strong>: kalimat lengkap (ada subjek dan predikat), tidak hanya kata-kata pendek.</li>
+      <li>Perhatikan <strong>jumlah poin</strong> tiap soal untuk menentukan seberapa panjang jawabanmu.</li>
+      <li>Kerjakan soal yang <strong>paling kamu kuasai</strong> terlebih dahulu, lalu kembali ke soal yang lebih sulit.</li>
+      <li>Periksa kembali jawabanmu sebelum dikumpulkan.</li>
+    </ol>
+  </div>
+
+  <div class="instruksi-esai">
+    📖 <strong>Tema Umum:</strong> Soal-soal berikut berkaitan dengan tema <strong>Lingkungan Hidup dan Pelestarian Alam</strong>. Gunakan pengetahuanmu tentang ekosistem, rantai makanan, pencemaran lingkungan, dan peran manusia dalam menjaga alam.
+  </div>
+
+  <!-- ─── SOAL 1 ─── -->
+  <div class="soal-block">
+    <div class="soal-strip">
+      <div class="soal-num-box">
+        <span class="soal-num-label">Soal</span>
+        <span class="soal-num-val">1</span>
+      </div>
+      <div class="soal-tags">
+        <span class="tag tag-forest">C2 — Memahami</span>
+        <span class="tag tag-cobalt">Ekosistem</span>
+        <span class="tag tag-gold">Mudah</span>
+      </div>
+      <div class="soal-skor-box">
+        <div class="ssb-val" style="color:var(--forest);">15</div>
+        <div class="ssb-label">Poin</div>
+      </div>
+    </div>
+    <div class="soal-body-wrap">
+      <div class="stimulus-box">
+        <p>Di tepi sungai Desa Mekarjaya terdapat ekosistem yang kaya. Ada pohon-pohon besar, ikan-ikan kecil, katak, bangau, dan berbagai serangga. Warga desa selama ini menjaga sungai itu dengan baik.</p>
+      </div>
+      <p class="soal-stem">Jelaskan apa yang dimaksud dengan <strong>ekosistem</strong> dan sebutkan minimal <strong>dua contoh ekosistem</strong> yang ada di sekitar kehidupan kita sehari-hari. Jelaskan pula mengapa setiap makhluk hidup dalam ekosistem saling membutuhkan!</p>
+      <div class="soal-tuntutan">
+        <span class="st-icon">🎯</span>
+        <div class="st-content">
+          <strong>Tuntutan Jawaban</strong>
+          Definisi ekosistem (1 kalimat) + 2 contoh ekosistem + penjelasan ketergantungan antar makhluk hidup (minimal 2 kalimat). Total minimal 5 kalimat.
+        </div>
+      </div>
+      <div class="jawaban-lines">
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SOAL 2 ─── -->
+  <div class="soal-block">
+    <div class="soal-strip">
+      <div class="soal-num-box">
+        <span class="soal-num-label">Soal</span>
+        <span class="soal-num-val">2</span>
+      </div>
+      <div class="soal-tags">
+        <span class="tag tag-cobalt">C3 — Menerapkan</span>
+        <span class="tag tag-cobalt">Rantai Makanan</span>
+        <span class="tag tag-gold">Sedang</span>
+      </div>
+      <div class="soal-skor-box">
+        <div class="ssb-val" style="color:var(--cobalt);">20</div>
+        <div class="ssb-label">Poin</div>
+      </div>
+    </div>
+    <div class="soal-body-wrap">
+      <div class="stimulus-box">
+        <p>Di sawah milik Pak Tarjo terdapat: padi, tikus sawah, ular sawah, dan elang. Pak Tarjo mengeluhkan padinya sering dimakan tikus, sehingga ia ingin membunuh semua ular yang ada di sawahnya karena ular dianggap berbahaya.</p>
+      </div>
+      <p class="soal-stem">Buatlah <strong>rantai makanan</strong> yang terjadi di sawah Pak Tarjo. Kemudian jelaskan apa yang akan terjadi pada ekosistem sawah tersebut jika Pak Tarjo benar-benar membunuh semua ular! Apakah tindakan Pak Tarjo tepat? Berikan pendapatmu disertai alasan yang logis.</p>
+      <div class="soal-tuntutan">
+        <span class="st-icon">🎯</span>
+        <div class="st-content">
+          <strong>Tuntutan Jawaban</strong>
+          Diagram rantai makanan → dampak kepunahan ular → pendapat + alasan. Minimal 6 kalimat.
+        </div>
+      </div>
+      <div class="jawaban-lines">
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SOAL 3 ─── -->
+  <div class="soal-block">
+    <div class="soal-strip">
+      <div class="soal-num-box">
+        <span class="soal-num-label">Soal</span>
+        <span class="soal-num-val">3</span>
+      </div>
+      <div class="soal-tags">
+        <span class="tag tag-plum">C4 — Menganalisis</span>
+        <span class="tag tag-cobalt">Pencemaran</span>
+        <span class="tag tag-red">Menantang</span>
+      </div>
+      <div class="soal-skor-box">
+        <div class="ssb-val" style="color:var(--plum);">20</div>
+        <div class="ssb-label">Poin</div>
+      </div>
+    </div>
+    <div class="soal-body-wrap">
+      <div class="stimulus-box">
+        <p>Pabrik tahu di pinggiran Kota Ceria membuang limbah cair ke Sungai Jernih. Setelah sebulan, warga melaporkan: banyak ikan mati, air berbau busuk, dan anak-anak yang bermain di sungai mengalami gatal-gatal di kulit.</p>
+      </div>
+      <p class="soal-stem">Analisislah masalah pencemaran yang terjadi di Sungai Jernih! Jelaskan: (a) jenis pencemaran yang terjadi, (b) dua dampak pencemaran tersebut bagi makhluk hidup, dan (c) dua solusi konkret yang dapat dilakukan untuk mengatasi masalah ini.</p>
+      <div class="soal-tuntutan">
+        <span class="st-icon">🎯</span>
+        <div class="st-content">
+          <strong>Tuntutan Jawaban</strong>
+          Tiga bagian (a, b, c) masing-masing harus dijawab. Gunakan analisis berjenjang: sebab → dampak → solusi. Minimal 7 kalimat.
+        </div>
+      </div>
+      <div class="jawaban-lines">
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SOAL 4 ─── -->
+  <div class="soal-block">
+    <div class="soal-strip">
+      <div class="soal-num-box">
+        <span class="soal-num-label">Soal</span>
+        <span class="soal-num-val">4</span>
+      </div>
+      <div class="soal-tags">
+        <span class="tag tag-plum">C4 — Menganalisis</span>
+        <span class="tag tag-cobalt">Deforestasi</span>
+        <span class="tag tag-red">Menantang</span>
+      </div>
+      <div class="soal-skor-box">
+        <div class="ssb-val" style="color:var(--plum);">20</div>
+        <div class="ssb-label">Poin</div>
+      </div>
+    </div>
+    <div class="soal-body-wrap">
+      <div class="stimulus-box">
+        <p>Desa Tanjung Harapan dulunya dikelilingi hutan lebat. Namun dalam 5 tahun terakhir, hutan tersebut dibuka untuk perkebunan kelapa sawit. Kini, banjir terjadi setiap musim hujan dan beberapa sumber mata air warga mengering di musim kemarau.</p>
+      </div>
+      <p class="soal-stem">Berdasarkan cerita di atas, jelaskan hubungan antara <strong>penebangan hutan</strong> dengan terjadinya <strong>banjir</strong> dan <strong>kekeringan</strong>. Kemudian, jika kamu adalah anggota <em>Dewan Anak Desa</em>, usulan apa yang akan kamu sampaikan kepada kepala desa untuk mengatasi masalah ini?</p>
+      <div class="soal-tuntutan">
+        <span class="st-icon">🎯</span>
+        <div class="st-content">
+          <strong>Tuntutan Jawaban</strong>
+          Penjelasan kausalitas (hutan → banjir/kekeringan) + minimal 2 usulan solusi konkret yang realistis. Minimal 6 kalimat.
+        </div>
+      </div>
+      <div class="jawaban-lines">
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SOAL 5 ─── -->
+  <div class="soal-block">
+    <div class="soal-strip">
+      <div class="soal-num-box">
+        <span class="soal-num-label">Soal</span>
+        <span class="soal-num-val">5</span>
+      </div>
+      <div class="soal-tags">
+        <span class="tag tag-red">C5 — Mengevaluasi</span>
+        <span class="tag tag-cobalt">Aksi Nyata</span>
+        <span class="tag tag-teal">HOTS</span>
+      </div>
+      <div class="soal-skor-box">
+        <div class="ssb-val" style="color:var(--red);">25</div>
+        <div class="ssb-label">Poin</div>
+      </div>
+    </div>
+    <div class="soal-body-wrap">
+      <p class="soal-stem">Kamu telah belajar tentang ekosistem, rantai makanan, pencemaran, dan pentingnya hutan. Sekarang, bayangkan kamu ditunjuk sebagai <strong>"Duta Lingkungan Sekolah"</strong>. Buatlah sebuah <strong>rencana aksi</strong> yang akan kamu lakukan selama 1 bulan di sekolah dan di rumah untuk menjaga lingkungan. Jelaskan: (a) minimal 3 kegiatan konkret yang akan kamu lakukan, (b) alasan mengapa setiap kegiatan itu penting bagi lingkungan, dan (c) bagaimana cara kamu mengajak teman-teman untuk ikut berpartisipasi.</p>
+      <div class="soal-tuntutan">
+        <span class="st-icon">🌟</span>
+        <div class="st-content">
+          <strong>Soal HOTS — Tuntutan Jawaban</strong>
+          Jawaban kreatif, rinci, dan logis. Tiga bagian (a, b, c) harus terjawab. Nilai tinggi jika jawaban menunjukkan pemahaman mendalam, orisinalitas, dan rencana yang realistis. Minimal 8 kalimat.
+        </div>
+      </div>
+      <div class="jawaban-lines">
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+        <span class="jl-line"></span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pane-soal -->
+
+<!-- ════ TAB 02: CONTOH JAWABAN ════ -->
+<div id="pane-jawaban" class="tab-pane">
+
+  <div class="section-hed">
+    <div class="section-kicker" style="color:var(--cobalt);">Dokumen Guru — Tidak untuk Siswa</div>
+    <h2>Contoh Jawaban Berjenjang</h2>
+    <p>Setiap soal disajikan dalam 4 level jawaban: Sangat Baik (Skor 4), Baik (Skor 3), Cukup (Skor 2), dan Perlu Bimbingan (Skor 1). Guru menggunakan ini sebagai acuan penilaian.</p>
+  </div>
+
+  <!-- ─── JAWABAN SOAL 1 ─── -->
+  <div class="jawaban-block" id="jb1">
+    <div class="jb-header">
+      <div class="jb-num">
+        <span class="jb-num-label">Soal</span>
+        <span class="jb-num-val" style="color:var(--forest);">1</span>
+      </div>
+      <div class="jb-info">
+        <div class="jb-soal-text">"Jelaskan apa yang dimaksud dengan ekosistem dan sebutkan dua contoh ekosistem…"</div>
+        <div class="jb-tags">
+          <span class="tag tag-forest">C2 — Memahami</span>
+          <span class="tag tag-gold">Maks 15 Poin</span>
+        </div>
+      </div>
+      <div class="jb-skor">
+        <span class="jb-skor-val" style="color:var(--forest);">15</span>
+        <span class="jb-skor-label">Poin Max</span>
+      </div>
+    </div>
+    <div class="level-tabs">
+      <button class="lv-tab lv-4 on" onclick="showLevel(this,'jb1',4)">
+        <span class="lv-skor">12–15</span>
+        <span class="lv-name">Sangat Baik</span>
+      </button>
+      <button class="lv-tab lv-3" onclick="showLevel(this,'jb1',3)">
+        <span class="lv-skor">8–11</span>
+        <span class="lv-name">Baik</span>
+      </button>
+      <button class="lv-tab lv-2" onclick="showLevel(this,'jb1',2)">
+        <span class="lv-skor">4–7</span>
+        <span class="lv-name">Cukup</span>
+      </button>
+      <button class="lv-tab lv-1" onclick="showLevel(this,'jb1',1)">
+        <span class="lv-skor">1–3</span>
+        <span class="lv-name">Perlu Bimbingan</span>
+      </button>
+    </div>
+    <div class="jawaban-panels">
+      <div class="jw-panel show" id="jb1-lv4">
+        <div class="jw-label" style="color:var(--forest);">Contoh Jawaban — Sangat Baik (12–15 Poin)</div>
+        <span class="level-indicator li-4">✦ SANGAT BAIK</span>
+        <div class="jawaban-text">
+          Ekosistem adalah suatu sistem alam yang terdiri dari makhluk hidup (biotik) dan lingkungan tidak hidup (abiotik) yang saling berinteraksi dan saling memengaruhi satu sama lain. Contoh ekosistem yang ada di sekitar kita adalah ekosistem sawah dan ekosistem hutan. Di ekosistem sawah, terdapat padi, serangga, tikus, ular, dan petani yang semuanya saling berkaitan. Sementara di ekosistem hutan, ada pohon-pohon besar, burung, rusa, harimau, dan berbagai jamur pengurai. Setiap makhluk hidup dalam ekosistem saling membutuhkan karena mereka membentuk rantai makanan. Contohnya, tumbuhan membutuhkan sinar matahari dan mineral dari tanah untuk tumbuh, lalu dimakan oleh hewan herbivora, kemudian dimakan oleh hewan karnivora. Jika satu makhluk hidup hilang, keseimbangan ekosistem akan terganggu.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Keunggulan Jawaban</div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Definisi ekosistem lengkap, menyebut komponen biotik dan abiotik secara eksplisit</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Dua contoh ekosistem disebut beserta deskripsi organisme di dalamnya</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Penjelasan ketergantungan konkret melalui konsep rantai makanan</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Bahasa runtut, kalimat lengkap, menggunakan istilah ilmiah (biotik, abiotik, herbivora, karnivora)</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb1-lv3">
+        <div class="jw-label" style="color:var(--cobalt);">Contoh Jawaban — Baik (8–11 Poin)</div>
+        <span class="level-indicator li-3">◆ BAIK</span>
+        <div class="jawaban-text">
+          Ekosistem adalah tempat di mana makhluk hidup dan lingkungannya hidup bersama dan saling mempengaruhi. Contohnya ekosistem sungai dan ekosistem kebun. Di sungai ada ikan, ganggang, dan katak yang hidup bersama. Di kebun ada tanaman, cacing, dan serangga. Makhluk hidup saling membutuhkan karena ada yang menjadi makanan bagi yang lain, seperti ulat memakan daun dan burung memakan ulat. Kalau salah satu hilang, yang lain bisa kekurangan makanan.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Definisi ekosistem ada, dua contoh ekosistem disebutkan</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Definisi tidak menyebut istilah "biotik" dan "abiotik" secara eksplisit</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Penjelasan ketergantungan ada tetapi hanya satu contoh dan cukup dangkal</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Tidak menyebutkan konsekuensi gangguan ekosistem secara lebih luas</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb1-lv2">
+        <div class="jw-label" style="color:var(--gold);">Contoh Jawaban — Cukup (4–7 Poin)</div>
+        <span class="level-indicator li-2">▲ CUKUP</span>
+        <div class="jawaban-text">
+          Ekosistem adalah kumpulan makhluk hidup yang tinggal di satu tempat. Contohnya hutan dan laut. Makhluk hidup saling membutuhkan karena mereka saling makan satu sama lain.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Definisi terlalu sederhana, tidak menyebut komponen abiotik sama sekali</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Dua contoh ekosistem disebutkan tetapi tanpa deskripsi isi ekosistem</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Penjelasan ketergantungan hanya satu kalimat, tanpa contoh konkret</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Jawaban terlalu singkat (3 kalimat), tidak memenuhi tuntutan soal</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb1-lv1">
+        <div class="jw-label" style="color:var(--red);">Contoh Jawaban — Perlu Bimbingan (1–3 Poin)</div>
+        <span class="level-indicator li-1">● PERLU BIMBINGAN</span>
+        <div class="jawaban-text">
+          Ekosistem adalah alam. Contohnya hutan. Makhluk hidup butuh satu sama lain.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Definisi salah/tidak lengkap: "ekosistem adalah alam" bukan definisi yang tepat</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Hanya menyebutkan satu contoh ekosistem, padahal diminta dua</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Penjelasan ketergantungan tidak ada sama sekali — hanya pernyataan kosong</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Kalimat tidak lengkap, jawaban sangat minim (tidak mencerminkan pemahaman)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── JAWABAN SOAL 2 ─── -->
+  <div class="jawaban-block" id="jb2">
+    <div class="jb-header">
+      <div class="jb-num">
+        <span class="jb-num-label">Soal</span>
+        <span class="jb-num-val" style="color:var(--cobalt);">2</span>
+      </div>
+      <div class="jb-info">
+        <div class="jb-soal-text">"Buatlah rantai makanan sawah dan jelaskan dampak jika semua ular dibunuh…"</div>
+        <div class="jb-tags">
+          <span class="tag tag-cobalt">C3 — Menerapkan</span>
+          <span class="tag tag-gold">Maks 20 Poin</span>
+        </div>
+      </div>
+      <div class="jb-skor">
+        <span class="jb-skor-val" style="color:var(--cobalt);">20</span>
+        <span class="jb-skor-label">Poin Max</span>
+      </div>
+    </div>
+    <div class="level-tabs">
+      <button class="lv-tab lv-4 on" onclick="showLevel(this,'jb2',4)">
+        <span class="lv-skor">16–20</span><span class="lv-name">Sangat Baik</span>
+      </button>
+      <button class="lv-tab lv-3" onclick="showLevel(this,'jb2',3)">
+        <span class="lv-skor">11–15</span><span class="lv-name">Baik</span>
+      </button>
+      <button class="lv-tab lv-2" onclick="showLevel(this,'jb2',2)">
+        <span class="lv-skor">5–10</span><span class="lv-name">Cukup</span>
+      </button>
+      <button class="lv-tab lv-1" onclick="showLevel(this,'jb2',1)">
+        <span class="lv-skor">1–4</span><span class="lv-name">Perlu Bimbingan</span>
+      </button>
+    </div>
+    <div class="jawaban-panels">
+      <div class="jw-panel show" id="jb2-lv4">
+        <div class="jw-label" style="color:var(--forest);">Contoh Jawaban — Sangat Baik (16–20 Poin)</div>
+        <span class="level-indicator li-4">✦ SANGAT BAIK</span>
+        <div class="jawaban-text">
+          Rantai makanan di sawah Pak Tarjo adalah: <strong>Padi → Tikus → Ular → Elang</strong>. Jika Pak Tarjo membunuh semua ular, populasi tikus akan meningkat pesat karena tidak ada predator yang mengendalikannya. Akibatnya, padi Pak Tarjo justru akan semakin banyak dimakan tikus dan hasil panennya bisa gagal total. Selain itu, elang juga akan kekurangan makanan karena ular (makanannya) sudah tidak ada, sehingga populasi elang bisa menurun atau pindah. Ini akan mengganggu keseimbangan seluruh ekosistem sawah. Menurut saya, tindakan Pak Tarjo tidak tepat. Ular sawah adalah bagian penting dari ekosistem sawah sebagai pemangsa tikus alami. Solusi yang lebih baik adalah membiarkan ular tetap ada dan memasang jebakan tikus di sudut-sudut sawah, atau memanfaatkan burung hantu sebagai pemangsa tikus tambahan.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Keunggulan Jawaban</div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Rantai makanan lengkap dan benar dengan arah yang tepat</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Menjelaskan dampak berlapis: tikus meledak → padi habis → elang terganggu → ekosistem rusak</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Pendapat jelas (tidak tepat) disertai alasan ilmiah yang kuat</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Memberikan alternatif solusi yang kreatif dan realistis</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb2-lv3">
+        <div class="jw-label" style="color:var(--cobalt);">Contoh Jawaban — Baik (11–15 Poin)</div>
+        <span class="level-indicator li-3">◆ BAIK</span>
+        <div class="jawaban-text">
+          Rantai makanan di sawah: Padi → Tikus → Ular → Elang. Jika ular dibunuh semua, tikus akan bertambah banyak karena tidak ada yang memakannya. Tikus yang banyak akan memakan lebih banyak padi. Elang juga kekurangan makanan. Menurut saya, Pak Tarjo tidak boleh membunuh ular karena ular berguna untuk mengurangi tikus.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Rantai makanan benar, dampak kepunahan ular ada</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Dampak hanya dua (tikus banyak, elang kekurangan) — konsekuensi pada ekosistem secara keseluruhan tidak dijelaskan</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Pendapat ada tapi alasan masih dangkal dan singkat</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Tidak memberikan alternatif solusi sama sekali</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb2-lv2">
+        <div class="jw-label" style="color:var(--gold);">Contoh Jawaban — Cukup (5–10 Poin)</div>
+        <span class="level-indicator li-2">▲ CUKUP</span>
+        <div class="jawaban-text">
+          Rantai makanannya padi, tikus, ular, elang. Kalau ular dibunuh maka tikus akan banyak. Tikus makan padi lebih banyak. Pak Tarjo tidak boleh membunuh ular.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Rantai makanan ada tetapi tidak menggunakan tanda panah (→) dan tidak menunjukkan arah aliran energi</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Dampak hanya satu (tikus banyak) — tidak menyebut dampak pada elang atau ekosistem</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Pendapat ada tapi tanpa alasan apapun</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb2-lv1">
+        <div class="jw-label" style="color:var(--red);">Contoh Jawaban — Perlu Bimbingan (1–4 Poin)</div>
+        <span class="level-indicator li-1">● PERLU BIMBINGAN</span>
+        <div class="jawaban-text">
+          Rantai makanan: tikus makan padi. Kalau ular dibunuh itu salah.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Rantai makanan salah/tidak lengkap — hanya menyebut satu hubungan dan urutannya terbalik</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Tidak menjelaskan dampak sama sekali</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Pendapat hanya satu kata (salah) tanpa alasan apapun</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── JAWABAN SOAL 3 (ringkas) ─── -->
+  <div class="jawaban-block" id="jb3">
+    <div class="jb-header">
+      <div class="jb-num">
+        <span class="jb-num-label">Soal</span>
+        <span class="jb-num-val" style="color:var(--plum);">3</span>
+      </div>
+      <div class="jb-info">
+        <div class="jb-soal-text">"Analisis pencemaran Sungai Jernih: jenis pencemaran, dua dampak, dua solusi…"</div>
+        <div class="jb-tags">
+          <span class="tag tag-plum">C4 — Menganalisis</span>
+          <span class="tag tag-gold">Maks 20 Poin</span>
+        </div>
+      </div>
+      <div class="jb-skor">
+        <span class="jb-skor-val" style="color:var(--plum);">20</span>
+        <span class="jb-skor-label">Poin Max</span>
+      </div>
+    </div>
+    <div class="level-tabs">
+      <button class="lv-tab lv-4 on" onclick="showLevel(this,'jb3',4)">
+        <span class="lv-skor">16–20</span><span class="lv-name">Sangat Baik</span>
+      </button>
+      <button class="lv-tab lv-3" onclick="showLevel(this,'jb3',3)">
+        <span class="lv-skor">11–15</span><span class="lv-name">Baik</span>
+      </button>
+      <button class="lv-tab lv-2" onclick="showLevel(this,'jb3',2)">
+        <span class="lv-skor">5–10</span><span class="lv-name">Cukup</span>
+      </button>
+      <button class="lv-tab lv-1" onclick="showLevel(this,'jb3',1)">
+        <span class="lv-skor">1–4</span><span class="lv-name">Perlu Bimbingan</span>
+      </button>
+    </div>
+    <div class="jawaban-panels">
+      <div class="jw-panel show" id="jb3-lv4">
+        <div class="jw-label" style="color:var(--forest);">Contoh Jawaban — Sangat Baik (16–20 Poin)</div>
+        <span class="level-indicator li-4">✦ SANGAT BAIK</span>
+        <div class="jawaban-text">
+          (a) Pencemaran yang terjadi di Sungai Jernih adalah <strong>pencemaran air</strong>. Jenis pencemarannya termasuk pencemaran oleh limbah organik dari pabrik tahu yang mengandung sisa pengolahan kedelai. (b) Dampak pertama bagi makhluk hidup adalah kematian ikan karena limbah menyebabkan kadar oksigen dalam air berkurang drastis dan air menjadi beracun bagi ikan. Dampak kedua adalah gangguan kesehatan pada manusia, yaitu gatal-gatal di kulit anak-anak yang bermain di sungai akibat bakteri berbahaya dalam limbah. Selain itu, limbah organik yang membusuk menghasilkan gas beracun yang berbau busuk dan mencemari udara sekitar. (c) Solusi pertama adalah pabrik tahu wajib membangun instalasi pengolahan air limbah (IPAL) sebelum membuang air ke sungai. Solusi kedua adalah pemerintah desa bersama warga membentuk tim pengawas sungai yang bertugas melaporkan pembuangan limbah ilegal kepada dinas lingkungan hidup.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Keunggulan Jawaban</div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Tiga bagian (a,b,c) dijawab secara terstruktur dan jelas</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Jenis pencemaran tepat disertai penjelasan sumber limbah</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Dua dampak dijelaskan dengan mekanisme ilmiah (kadar oksigen turun, bakteri berbahaya)</span></div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Solusi konkret dan realistis: IPAL dan tim pengawas warga</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb3-lv3">
+        <div class="jw-label" style="color:var(--cobalt);">Contoh Jawaban — Baik (11–15 Poin)</div>
+        <span class="level-indicator li-3">◆ BAIK</span>
+        <div class="jawaban-text">
+          (a) Pencemaran yang terjadi adalah pencemaran air karena limbah pabrik tahu dibuang ke sungai. (b) Dampaknya adalah ikan-ikan mati karena air menjadi kotor dan beracun. Anak-anak juga gatal karena air sungai tercemar kuman. (c) Solusinya adalah pabrik tahu harus mengolah limbahnya dulu sebelum dibuang, dan warga harus melapor ke pemerintah agar pabrik dihukum.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">✅</span><span class="ab-text">Tiga bagian dijawab, jenis pencemaran benar</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Penjelasan mekanisme dampak kurang mendalam (tidak menyebut kadar oksigen atau zat beracun spesifik)</span></div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Solusi ada tetapi kurang rinci (tidak menyebut IPAL atau mekanisme spesifik)</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb3-lv2">
+        <div class="jw-label" style="color:var(--gold);">Contoh Jawaban — Cukup (5–10 Poin)</div>
+        <span class="level-indicator li-2">▲ CUKUP</span>
+        <div class="jawaban-text">
+          Pencemaran air. Dampaknya ikan mati dan anak gatal. Solusinya pabrik tidak boleh buang limbah ke sungai.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">⚠️</span><span class="ab-text">Jenis pencemaran benar tapi tanpa penjelasan sumber/mekanisme</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Dampak disebutkan tanpa penjelasan mengapa hal itu terjadi</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Hanya satu solusi dan sangat umum, tidak menunjukkan pemikiran kritis</span></div>
+        </div>
+      </div>
+      <div class="jw-panel" id="jb3-lv1">
+        <div class="jw-label" style="color:var(--red);">Contoh Jawaban — Perlu Bimbingan (1–4 Poin)</div>
+        <span class="level-indicator li-1">● PERLU BIMBINGAN</span>
+        <div class="jawaban-text">
+          Sungainya kotor. Ikan mati karena kotor. Harus dibersihkan.
+        </div>
+        <div class="analisis-box">
+          <div class="ab-title">Analisis Kekurangan</div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Tidak menyebut istilah "pencemaran air" sama sekali</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Hanya satu dampak, tidak ada penjelasan ilmiah apapun</span></div>
+          <div class="ab-row"><span class="ab-icon">❌</span><span class="ab-text">Solusi sangat umum dan tidak operasional</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pane-jawaban -->
+
+<!-- ════ TAB 03: RUBRIK PENILAIAN ════ -->
+<div id="pane-rubrik" class="tab-pane">
+
+  <div class="section-hed">
+    <div class="section-kicker" style="color:var(--plum);">Dokumen 03 — Rubrik Penilaian Analitik</div>
+    <h2>Rubrik Penilaian Soal Esai</h2>
+    <p>Penilaian menggunakan rubrik analitik tiga dimensi: <strong>Konten</strong>, <strong>Penalaran</strong>, dan <strong>Bahasa</strong>. Setiap dimensi dinilai terpisah lalu dijumlahkan.</p>
+  </div>
+
+  <div class="rubrik-overview">
+    <div class="ro-item"><div class="ro-val" style="color:var(--forest);">15</div><div class="ro-label">Soal 1 (C2)</div></div>
+    <div class="ro-item"><div class="ro-val" style="color:var(--cobalt);">20</div><div class="ro-label">Soal 2 (C3)</div></div>
+    <div class="ro-item"><div class="ro-val" style="color:var(--plum);">20</div><div class="ro-label">Soal 3 (C4)</div></div>
+    <div class="ro-item"><div class="ro-val" style="color:var(--plum);">20</div><div class="ro-label">Soal 4 (C4)</div></div>
+    <div class="ro-item"><div class="ro-val" style="color:var(--red);">25</div><div class="ro-label">Soal 5 (C5)</div></div>
+    <div class="ro-item" style="background:var(--surface-2);">
+      <div class="ro-val" style="color:var(--ink);">100</div>
+      <div class="ro-label">Total Skor</div>
+    </div>
+  </div>
+
+  <!-- RUBRIK SOAL 1 -->
+  <div class="rubrik-block">
+    <div class="rb-head">
+      <div class="rb-head-left">
+        <span class="rb-num">01</span>
+        <span class="rb-soal">"Jelaskan ekosistem, dua contoh, dan ketergantungan antar makhluk hidup."</span>
+      </div>
+      <span class="rb-max">Maksimal: 15 Poin</span>
+    </div>
+    <table class="rubrik-grid">
+      <thead>
+        <tr>
+          <th style="width:60px;">Skor</th>
+          <th style="width:130px;">Kriteria</th>
+          <th>Indikator Jawaban Siswa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-4" style="margin:auto;">13–15</div></td>
+          <td class="kriteria-cell">Sangat Baik</td>
+          <td class="indikator-cell">Definisi ekosistem <strong>lengkap</strong> (biotik + abiotik + interaksi). Dua contoh ekosistem <strong>disertai deskripsi</strong> organisme di dalamnya. Penjelasan ketergantungan <strong>konkret dan berlapis</strong> (contoh rantai makanan dan konsekuensi gangguan). Bahasa baku, minimal 6 kalimat.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-3" style="margin:auto;">8–12</div></td>
+          <td class="kriteria-cell">Baik</td>
+          <td class="indikator-cell">Definisi ada namun kurang lengkap (hanya menyebut makhluk hidup, tidak menyebut abiotik). Dua contoh ada tapi deskripsi minim. Penjelasan ketergantungan ada dengan satu contoh. Minimal 4 kalimat.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-2" style="margin:auto;">4–7</div></td>
+          <td class="kriteria-cell">Cukup</td>
+          <td class="indikator-cell">Definisi sangat sederhana atau salah sebagian. Dua contoh disebutkan tanpa deskripsi. Penjelasan ketergantungan hanya satu kalimat tanpa contoh konkret. Minimal 3 kalimat.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-1" style="margin:auto;">1–3</div></td>
+          <td class="kriteria-cell">Perlu Bimbingan</td>
+          <td class="indikator-cell">Definisi salah/tidak relevan. Hanya satu atau tidak ada contoh. Penjelasan ketergantungan tidak ada atau tidak logis. Jawaban kurang dari 3 kalimat.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-0" style="margin:auto;">0</div></td>
+          <td class="kriteria-cell">Tidak Menjawab</td>
+          <td class="indikator-cell">Kosong atau jawaban sama sekali tidak relevan dengan pertanyaan.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RUBRIK SOAL 2 -->
+  <div class="rubrik-block">
+    <div class="rb-head">
+      <div class="rb-head-left">
+        <span class="rb-num">02</span>
+        <span class="rb-soal">"Rantai makanan sawah, dampak kepunahan ular, dan pendapat beralasan."</span>
+      </div>
+      <span class="rb-max">Maksimal: 20 Poin</span>
+    </div>
+    <table class="rubrik-grid">
+      <thead>
+        <tr>
+          <th style="width:60px;">Skor</th>
+          <th style="width:130px;">Kriteria</th>
+          <th>Indikator Jawaban Siswa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-4" style="margin:auto;">17–20</div></td>
+          <td class="kriteria-cell">Sangat Baik</td>
+          <td class="indikator-cell">Rantai makanan <strong>benar dan lengkap</strong> (Padi→Tikus→Ular→Elang dengan tanda panah). Dampak kepunahan ular dijelaskan secara <strong>berlapis</strong> (populasi tikus meledak → padi habis → elang terganggu → ekosistem rusak). Pendapat <strong>jelas disertai alasan ilmiah</strong> dan menawarkan <strong>solusi alternatif</strong>.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-3" style="margin:auto;">11–16</div></td>
+          <td class="kriteria-cell">Baik</td>
+          <td class="indikator-cell">Rantai makanan benar. Dampak kepunahan ular disebutkan 2 aspek (tikus banyak + elang kekurangan makan). Pendapat ada dengan alasan, tetapi tidak menawarkan solusi alternatif.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-2" style="margin:auto;">5–10</div></td>
+          <td class="kriteria-cell">Cukup</td>
+          <td class="indikator-cell">Rantai makanan kurang lengkap (tidak menggunakan tanda panah atau urutan kurang tepat). Dampak hanya satu aspek. Pendapat ada tetapi tanpa alasan yang memadai.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-1" style="margin:auto;">1–4</div></td>
+          <td class="kriteria-cell">Perlu Bimbingan</td>
+          <td class="indikator-cell">Rantai makanan salah atau tidak ada. Dampak tidak dijelaskan. Pendapat ada tapi tanpa alasan apapun.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-0" style="margin:auto;">0</div></td>
+          <td class="kriteria-cell">Tidak Menjawab</td>
+          <td class="indikator-cell">Kosong atau jawaban tidak relevan.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RUBRIK SOAL 3 (Analitik 3 Dimensi) -->
+  <div class="rubrik-block">
+    <div class="rb-head">
+      <div class="rb-head-left">
+        <span class="rb-num">03</span>
+        <span class="rb-soal">"Analisis pencemaran: jenis, dampak, solusi (format 3 bagian a-b-c)."</span>
+      </div>
+      <span class="rb-max">Maksimal: 20 Poin</span>
+    </div>
+    <table class="rubrik-grid">
+      <thead>
+        <tr>
+          <th style="width:60px;">Skor</th>
+          <th style="width:130px;">Dimensi</th>
+          <th>Deskriptor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-4" style="margin:auto;">7–8</div></td>
+          <td class="kriteria-cell">Konten (a)</td>
+          <td>Jenis pencemaran tepat (pencemaran air) + menyebut sumber limbah organik + menyebut mekanisme (oksigen turun / zat beracun)</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-4" style="margin:auto;">7–8</div></td>
+          <td class="kriteria-cell">Penalaran (b)</td>
+          <td>Dua dampak berbeda dijelaskan dengan mekanisme ilmiah: dampak pada hewan (ikan mati + penyebabnya) dan dampak pada manusia (penyakit kulit + penyebabnya)</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-4" style="margin:auto;">3–4</div></td>
+          <td class="kriteria-cell">Solusi (c)</td>
+          <td>Dua solusi konkret dan realistis (IPAL, pengawasan warga, hukuman pabrik, bioremediasi) bukan sekedar "jangan buang sampah"</td>
+        </tr>
+        <tr style="border-top:2px dashed var(--border);">
+          <td class="skor-cell"><div class="skor-badge sb-2" style="margin:auto;">3–5</div></td>
+          <td class="kriteria-cell">Konten (a)</td>
+          <td>Jenis pencemaran tepat tapi tanpa penjelasan mekanisme</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-2" style="margin:auto;">3–5</div></td>
+          <td class="kriteria-cell">Penalaran (b)</td>
+          <td>Satu atau dua dampak disebutkan tanpa penjelasan mekanisme ilmiah</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-2" style="margin:auto;">1–2</div></td>
+          <td class="kriteria-cell">Solusi (c)</td>
+          <td>Hanya satu solusi atau solusi yang disebutkan terlalu umum</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RUBRIK SOAL 4 & 5 (Ringkas) -->
+  <div class="rubrik-block">
+    <div class="rb-head">
+      <div class="rb-head-left">
+        <span class="rb-num">04</span>
+        <span class="rb-soal">"Hubungan penebangan hutan dengan banjir/kekeringan + usulan solusi."</span>
+      </div>
+      <span class="rb-max">Maksimal: 20 Poin</span>
+    </div>
+    <table class="rubrik-grid">
+      <thead>
+        <tr>
+          <th style="width:60px;">Skor</th>
+          <th style="width:130px;">Kriteria</th>
+          <th>Indikator Jawaban Siswa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-4" style="margin:auto;">17–20</div></td>
+          <td class="kriteria-cell">Sangat Baik</td>
+          <td>Menjelaskan mekanisme kausal <strong>banjir</strong> (hutan = peresap air, tanpa hutan air limpas langsung) DAN <strong>kekeringan</strong> (hutan = penahan air tanah, tanpa hutan sumber air mengering). Dua usulan solusi <strong>spesifik dan realistis</strong> (reboisasi, embung, sumur resapan, sengkeling lahan) yang dikaitkan kembali ke mekanisme.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-3" style="margin:auto;">11–16</div></td>
+          <td class="kriteria-cell">Baik</td>
+          <td>Menjelaskan salah satu mekanisme (banjir ATAU kekeringan) secara lengkap, dan yang lain hanya sebagian. Dua solusi disebutkan tetapi tidak dikaitkan dengan mekanisme.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-2" style="margin:auto;">5–10</div></td>
+          <td class="kriteria-cell">Cukup</td>
+          <td>Memahami bahwa hutan penting tapi tidak menjelaskan mekanisme kausal dengan jelas. Solusi terlalu umum (misalnya "jangan tebang pohon") tanpa rincian operasional.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-1" style="margin:auto;">1–4</div></td>
+          <td class="kriteria-cell">Perlu Bimbingan</td>
+          <td>Tidak memahami hubungan hutan dengan banjir/kekeringan. Solusi tidak relevan atau tidak ada.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rubrik-block">
+    <div class="rb-head">
+      <div class="rb-head-left">
+        <span class="rb-num">05</span>
+        <span class="rb-soal">"Rencana aksi Duta Lingkungan: kegiatan, alasan, cara mengajak teman (HOTS)."</span>
+      </div>
+      <span class="rb-max">Maksimal: 25 Poin</span>
+    </div>
+    <table class="rubrik-grid">
+      <thead>
+        <tr>
+          <th style="width:60px;">Skor</th>
+          <th style="width:130px;">Kriteria</th>
+          <th>Indikator Jawaban Siswa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-4" style="margin:auto;">21–25</div></td>
+          <td class="kriteria-cell">Sangat Baik</td>
+          <td>Tiga kegiatan <strong>konkret, spesifik, dan orisinal</strong> (bukan klise). Alasan setiap kegiatan dikaitkan dengan konsep ilmiah yang dipelajari (ekosistem, rantai makanan, dll.). Cara mengajak teman <strong>kreatif dan realistis</strong>. Jawaban menunjukkan refleksi dan kesadaran lingkungan yang dalam. Minimal 8 kalimat.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-3" style="margin:auto;">14–20</div></td>
+          <td class="kriteria-cell">Baik</td>
+          <td>Tiga kegiatan disebutkan, dua di antaranya disertai alasan ilmiah. Cara mengajak teman ada tapi kurang rinci. Jawaban menunjukkan pemahaman yang baik.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-2" style="margin:auto;">6–13</div></td>
+          <td class="kriteria-cell">Cukup</td>
+          <td>Kurang dari tiga kegiatan atau kegiatan terlalu umum. Alasan ada tapi tidak dikaitkan dengan konsep ilmiah. Cara mengajak teman tidak disebutkan.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-1" style="margin:auto;">1–5</div></td>
+          <td class="kriteria-cell">Perlu Bimbingan</td>
+          <td>Satu kegiatan atau jawaban sangat singkat tanpa alasan. Tidak ada cara mengajak teman.</td>
+        </tr>
+        <tr>
+          <td class="skor-cell"><div class="skor-badge sb-0" style="margin:auto;">0</div></td>
+          <td class="kriteria-cell">Tidak Menjawab</td>
+          <td>Kosong.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PRINSIP PENILAIAN ESAI -->
+  <div style="background:var(--surface); border:1.5px solid var(--border); border-radius:4px; padding:24px 28px; margin-bottom:32px;">
+    <div style="font-family:'Inconsolata',monospace; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ink-3); margin-bottom:16px;">📐 Prinsip Penilaian Soal Esai</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
+      <div>
+        <div style="font-weight:700; font-size:0.88rem; margin-bottom:6px; color:var(--ink);">🔤 Kelonggaran Bahasa</div>
+        <div style="font-size:0.83rem; color:var(--ink-2); line-height:1.6;">Kesalahan ejaan minor tidak dikurangi nilai selama makna dapat dipahami. Fokus penilaian pada isi dan penalaran, bukan kesempurnaan tata bahasa.</div>
+      </div>
+      <div>
+        <div style="font-weight:700; font-size:0.88rem; margin-bottom:6px; color:var(--ink);">💡 Kreativitas Diapresiasi</div>
+        <div style="font-size:0.83rem; color:var(--ink-2); line-height:1.6;">Jawaban yang menunjukkan pemikiran orisinal dan contoh di luar yang diajarkan di kelas mendapat poin apresiasi, selama logis dan relevan.</div>
+      </div>
+      <div>
+        <div style="font-weight:700; font-size:0.88rem; margin-bottom:6px; color:var(--ink);">🎯 Tuntutan Soal</div>
+        <div style="font-size:0.83rem; color:var(--ink-2); line-height:1.6;">Pastikan semua bagian soal dijawab. Soal yang meminta "dua hal" harus dijawab dua — jawaban satu hal mendapat skor setengah.</div>
+      </div>
+      <div>
+        <div style="font-weight:700; font-size:0.88rem; margin-bottom:6px; color:var(--ink);">⚖️ Konsistensi Inter-Rater</div>
+        <div style="font-size:0.83rem; color:var(--ink-2); line-height:1.6;">Jika dua guru menilai, gunakan lembar kalibrasi sebelum menilai. Perbedaan skor >3 poin untuk satu soal harus didiskusikan bersama.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NILAI AKHIR -->
+  <div class="nilai-section">
+    <div class="ns-title">Formula Nilai & Konversi Predikat</div>
+
+    <div class="formula-box">
+      <div class="fb-formula">
+        Nilai Akhir &nbsp;=&nbsp;
+        <span class="fb-frac">
+          <span class="fb-num">Skor Soal 1 + 2 + 3 + 4 + 5</span>
+          <span class="fb-den">100</span>
+        </span>
+        <span class="fb-eq">×</span> 100
+        <span class="fb-eq">=</span>
+        <span class="fb-result">0 – 100</span>
+      </div>
+      <div class="fb-note">Skor Maks: Soal 1(15) + Soal 2(20) + Soal 3(20) + Soal 4(20) + Soal 5(25) = 100 Poin</div>
+    </div>
+
+    <div class="predikat-row">
+      <div class="pred-card pred-A">
+        <div class="pred-range">88 – 100</div>
+        <div class="pred-label">Sangat Baik</div>
+        <span class="pred-badge">A</span>
+        <div class="pred-ket" style="margin-top:8px;">Melampaui harapan. Jawaban mendalam, orisinal, dan menunjukkan penalaran tinggi.</div>
+      </div>
+      <div class="pred-card pred-B">
+        <div class="pred-range">75 – 87</div>
+        <div class="pred-label">Baik</div>
+        <span class="pred-badge">B</span>
+        <div class="pred-ket" style="margin-top:8px;">Memenuhi harapan. Sebagian besar soal dijawab dengan baik dan alasan memadai.</div>
+      </div>
+      <div class="pred-card pred-C">
+        <div class="pred-range">60 – 74</div>
+        <div class="pred-label">Cukup (KKM)</div>
+        <span class="pred-badge">C</span>
+        <div class="pred-ket" style="margin-top:8px;">Di atas KKM. Jawaban ada namun penjelasan kurang mendalam di beberapa soal.</div>
+      </div>
+      <div class="pred-card pred-D">
+        <div class="pred-range">0 – 59</div>
+        <div class="pred-label">Perlu Bimbingan</div>
+        <span class="pred-badge">D</span>
+        <div class="pred-ket" style="margin-top:8px;">Di bawah KKM. Perlu remediasi terfokus sebelum melanjutkan ke materi berikutnya.</div>
+      </div>
+    </div>
+
+    <div class="ns-title" style="margin-top:32px;">Rencana Tindak Lanjut</div>
+    <div class="tl-grid">
+      <div class="tl-card">
+        <div class="tl-pred tl-A">● Predikat A (88–100)</div>
+        <div class="tl-text">Pengayaan: buat proyek poster atau video pendek tentang kampanye lingkungan. Jadikan tutor sebaya untuk teman yang belum memahami materi.</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-pred tl-B">● Predikat B (75–87)</div>
+        <div class="tl-text">Latihan soal HOTS tambahan. Diskusi kelompok untuk memperdalam jawaban soal yang belum sempurna. Review bagian yang kurang bersama guru.</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-pred tl-C">● Predikat C (60–74)</div>
+        <div class="tl-text">Remediasi terfokus pada soal yang nilainya rendah. Gunakan media visual (video, diagram) untuk memperkuat pemahaman konsep dasar.</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-pred tl-D">● Predikat D (0–59)</div>
+        <div class="tl-text">Remediasi intensif: kembali ke konsep dasar dengan pendampingan guru. Ulangan remediasi setelah minimal 3 sesi belajar tambahan.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pane-rubrik -->
+
+</main>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pane-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showLevel(btn, blockId, level) {
+  const block = document.getElementById(blockId);
+  block.querySelectorAll('.lv-tab').forEach(t => t.classList.remove('on'));
+  block.querySelectorAll('.jw-panel').forEach(p => p.classList.remove('show'));
+  btn.classList.add('on');
+  const panel = document.getElementById(blockId + '-lv' + level);
+  if (panel) panel.classList.add('show');
+}
+</script>
+</body>
+</html>
