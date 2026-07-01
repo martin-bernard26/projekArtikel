@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Pengumpulan Tugas Mahasiswa</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --hover-color: #3f37c9;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--hover-color);
+        }
+
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* Sembunyikan iframe yang digunakan untuk proses submit */
+        #hidden_iframe {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Pengumpulan Tugas</h2>
+        
+        <form id="tugasForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSf37M4Oy8w7Ogr2qveDvKgNSSa4ec-d0sUX6MxnDTkbuWtQeA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="entry.1177883289" placeholder="Masukkan nama lengkap" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nim">NIM</label>
+                <input type="text" id="nim" name="entry.895103483" placeholder="Masukkan NIM Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label for="link_tugas">Link Tugas (Drive/GitHub/dll)</label>
+                <input type="url" id="link_tugas" name="entry.595557941" placeholder="https://..." required>
+            </div>
+
+            <button type="submit" id="submitBtn">Kirim Tugas</button>
+        </form>
+
+        <div id="success-message">
+            ✅ Tugas berhasil dikirim! Terima kasih.
+        </div>
+    </div>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" onload="if(submitted){showSuccess();}"></iframe>
+
+    <script>
+        let submitted = false;
+
+        function showSuccess() {
+            // Sembunyikan form dan tampilkan pesan sukses
+            document.getElementById('tugasForm').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+            
+            // Opsional: Reset form jika ingin digunakan lagi
+            // document.getElementById('tugasForm').reset();
+        }
+    </script>
+</body>
+</html>
